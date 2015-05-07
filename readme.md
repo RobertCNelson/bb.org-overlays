@@ -6,6 +6,17 @@ Comma delimited list of PART-NUMBER[:REV] of [enabled/disabled] capes
     beaglebone-capemgr.enable_partno=
     beaglebone-capemgr.disable_partno=
 
+slots:
+------------
+
+directory:
+
+    debian@beaglebone:~$ cat /sys/devices/platform/bone_capemgr/slots
+     0: 54:P---L BeagleBone RS232 CAPE,00A1,Beagleboardtoys,BB-BONE-SERL-03
+     1: 55:PF---
+     2: 56:PF---
+     3: 57:PF---
+
 .config requirements:
 ------------
 
