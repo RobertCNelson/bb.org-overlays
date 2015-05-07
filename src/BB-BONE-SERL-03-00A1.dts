@@ -40,7 +40,7 @@
 	};
 
 	fragment@1 {
-		target = <&uart3>;	/* really uart2 */
+		target = <&uart2>;
 		__overlay__ {
 			status = "okay";
 			pinctrl-names = "default";
