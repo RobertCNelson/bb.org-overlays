@@ -50,6 +50,8 @@ dtbo () {
 #keep in order...
 wfile="BB-BONE-SERL-03-00A1" ; dtbo
 wfile="BB-UART1-00A0" ; dtbo
+wfile="BB-UART2-00A0" ; dtbo
+wfile="BB-UART4-00A0" ; dtbo
 
 update_initramfs
 #

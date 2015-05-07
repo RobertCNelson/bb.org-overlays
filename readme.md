@@ -31,3 +31,7 @@ Testing:
 BB-BONE-SERL-03-00A1.dts:
 
     sudo /sbin/getty -L ttyO2 115200 vt102
+
+BB-UART1-00A0.dts:
+
+    sudo /sbin/getty -L ttyO1 115200 vt102
