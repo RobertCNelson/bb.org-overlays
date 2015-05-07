@@ -28,7 +28,7 @@ if ! id | grep -q root; then
 fi
 
 if [ ! -f /usr/share/initramfs-tools/hooks/dtbo ] ; then
-	echo "Installing: bb-customizations, if this fails bug rcn-ee to get the package out for your dist.."
+	echo "Installing: bb-customizations..."
 	apt-get update ; apt-get install bb-customizations
 fi
 
@@ -44,10 +44,10 @@ dtbo () {
 	if [ -f ./src/${wfile}.dts ] ; then
 		echo "Building: ${wfile}.dtbo"
 		dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/${wfile}.dts
-		ls -lh /lib/firmware/${wfile}.dtbo
 	fi
 }
 
+#keep in order...
 wfile="BB-BONE-SERL-03-00A1" ; dtbo
 
 update_initramfs
