@@ -41,7 +41,11 @@ update_initramfs () {
 }
 
 dtbo () {
-	dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/${wfile}.dts
+	if [ -f ./src/${wfile}.dts ] ; then
+		echo "Building: ${wfile}.dtbo"
+		dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/${wfile}.dts
+		ls -lh /lib/firmware/${wfile}.dtbo
+	fi
 }
 
 wfile="BB-BONE-SERL-03-00A1" ; dtbo
