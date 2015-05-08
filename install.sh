@@ -20,8 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#Quick and dirty, this should be a standard makefile, we could plug into kernel.org...
-
 if ! id | grep -q root; then
 	echo "must be run as root"
 	exit
@@ -40,20 +38,7 @@ update_initramfs () {
 	fi
 }
 
-dtbo () {
-	if [ -f ./src/arm/${wfile}.dts ] ; then
-		echo "Building: ${wfile}.dtbo"
-		dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/arm/${wfile}.dts
-	fi
-}
-
-#keep in order...
-wfile="BB-BONE-CRYPTO-00A0" ; dtbo
-wfile="BB-BONE-SERL-03-00A1" ; dtbo
-wfile="BB-UART1-00A0" ; dtbo
-wfile="BB-UART2-00A0" ; dtbo
-wfile="BB-UART4-00A0" ; dtbo
-wfile="BB-UART5-00A0" ; dtbo
-
+make
+make install
 update_initramfs
 #
