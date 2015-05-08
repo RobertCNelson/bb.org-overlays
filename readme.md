@@ -44,3 +44,6 @@ BB-UART4-00A0.dts:
 
     sudo /sbin/getty -L ttyO4 115200 vt102
 
+BB-UART5-00A0.dts: (DO NOT RUN ON BBB... YET)
+
+    sudo /sbin/getty -L ttyO5 115200 vt102
