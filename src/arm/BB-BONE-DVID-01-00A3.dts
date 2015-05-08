@@ -13,7 +13,7 @@
 
 	/* identification */
 	part-number = "BB-BONE-DVID-01";
-	version = "00A3", "00A2", "A2";
+	version = "00A3";
 
 	/* state the resources this cape uses */
 	exclusive-use =
@@ -88,7 +88,7 @@
 	};
 
 	fragment@1 {
-		target = <&ocp>;
+		target-path="/";
 		__overlay__ {
 
 			/* avoid stupid warning */
@@ -102,34 +102,17 @@
 
 				dvi-led0 {
 					label = "dvi:green:usr0";
-					gpios = <&gpio2 18 0>;
+					gpios = <&gpio1 18 0>;
 					linux,default-trigger = "heartbeat";
 					default-state = "off";
 				};
 
 				dvi-led1 {
 					label = "dvi:green:usr1";
-					gpios = <&gpio2 19 0>;
+					gpios = <&gpio1 19 0>;
 					linux,default-trigger = "mmc0";
 					default-state = "off";
 				};
-			};
-
-			/* use the DVI panel now */
-			panel {
-				compatible = "tilcdc,tfp410";
-				pinctrl-names = "default";
-				pinctrl-0 = <&bone_dvi_cape_dvi_00A2_pins>;
-				ti,power-gpio = <&gpio1 31 0x0>;
-				i2c = <&i2c2>;
-			};
-
-			fb {
-				compatible = "ti,am33xx-tilcdc";
-				reg = <0x4830e000 0x1000>;
-				interrupt-parent = <&intc>;
-				interrupts = <36>;
-				ti,hwmods = "lcdc";
 			};
 
 		};
