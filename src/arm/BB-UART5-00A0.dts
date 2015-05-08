@@ -10,6 +10,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
@@ -30,9 +33,8 @@
 		__overlay__ {
 			bb_uart5_pins: pinmux_bb_uart5_pins {
 				pinctrl-single,pins = <
-					/* the uart pins */
-					0x0C4 0x24	/* lcd_data9.uart5_rxd | MODE4 */
-					0x0C0 0x04	/* lcd_data8.uart5_txd | MODE4 */
+					BONE_P8_38 (PIN_INPUT_PULLUP | MUX_MODE4) /* lcd_data9.uart5_rxd */
+					BONE_P8_37 (PIN_OUTPUT_PULLDOWN | MUX_MODE4) /* lcd_data8.uart5_txd */
 				>;
 			};
 		};

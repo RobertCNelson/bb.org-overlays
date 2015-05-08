@@ -10,6 +10,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
@@ -43,8 +46,8 @@
 
 			bb_uart4_pins: pinmux_bb_uart4_pins {
 				pinctrl-single,pins = <
-					0x070 0x26	/* gpmc_wait0.uart4_rxd | MODE6 */
-					0x074 0x06	/* gpmc_wpn.uart4_txd | MODE6 */
+					BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6) /* gpmc_wait0.uart4_rxd_mux2 */
+					BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_wpn.uart4_txd_mux2 */
 				>;
 			};
 		};
