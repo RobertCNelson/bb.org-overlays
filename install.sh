@@ -36,4 +36,5 @@ update_initramfs () {
 make
 sudo make install
 update_initramfs
+echo "cape overlays have been built and added to /lib/firmware & /boot/initrd.img-`uname -r`, please reboot"
 #
