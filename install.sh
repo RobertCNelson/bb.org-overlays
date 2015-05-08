@@ -20,25 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-if ! id | grep -q root; then
-	echo "must be run as root"
-	exit
-fi
-
 if [ ! -f /usr/share/initramfs-tools/hooks/dtbo ] ; then
 	echo "Installing: bb-customizations..."
-	apt-get update ; apt-get install bb-customizations
+	sudo apt-get update ; sudo apt-get install bb-customizations
 fi
 
 update_initramfs () {
 	if [ -f /boot/initrd.img-$(uname -r) ] ; then
-		update-initramfs -u -k $(uname -r)
+		sudo update-initramfs -u -k $(uname -r)
 	else
-		update-initramfs -c -k $(uname -r)
+		sudo update-initramfs -c -k $(uname -r)
 	fi
 }
 
 make
-make install
+sudo make install
 update_initramfs
 #
