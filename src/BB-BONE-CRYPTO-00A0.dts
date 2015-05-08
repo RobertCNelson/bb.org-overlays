@@ -78,24 +78,4 @@
 			};
 		};
 	};
-
-	fragment@3 {
-		target = <&gpio1>;
-		__overlay__ {
-
-			atmega_rst {
-				gpio-hog;
-				gpio = <17 0>;
-				output-high;
-				line-name = "atmega_rst";
-			};
-
-			ataes132 {
-				gpio-hog;
-				gpio = <13 0>;
-				input;
-				line-name = "test_input";
-			};
-		};
-	};
 };
