@@ -62,6 +62,9 @@
 	fragment@2 {
 		target = <&i2c2>;
 		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
 			/* Real Time Clock */
 			ds1307@68 {
 				compatible = "ds1307";
