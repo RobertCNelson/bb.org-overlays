@@ -41,9 +41,9 @@ update_initramfs () {
 }
 
 dtbo () {
-	if [ -f ./src/${wfile}.dts ] ; then
+	if [ -f ./src/arm/${wfile}.dts ] ; then
 		echo "Building: ${wfile}.dtbo"
-		dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/${wfile}.dts
+		dtc -O dtb -o /lib/firmware/${wfile}.dtbo -b 0 -@ ./src/arm/${wfile}.dts
 	fi
 }
 
