@@ -65,8 +65,8 @@
 				pinctrl-single,pins = <
 					BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6) /* gpmc_wait0.uart4_rxd_mux2 */
 					BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_wpn.uart4_txd_mux2 */
-					BONE_P9_15 0x2f /* gpmc_a0 - pull disabled | MODE7 (GPIO1_16) */
-					0x088 0x2f /* gpmc_csn3 - pull disabled | MODE7 (GPIO2_0) */
+					BONE_P9_15 (PIN_INPUT | MUX_MODE7) /* gpmc_a0.gpio1[16] */
+					0x088 0x2f (PIN_INPUT | MUX_MODE7) /* gpmc_csn3.gpio2[0] */
 				>;
 			};
 
