@@ -1,3 +1,26 @@
+Requirements:
+------------
+
+Kernel with CONFIG_CAPE_BEAGLEBONE support:
+
+    zcat /proc/config.gz | grep CONFIG_CAPE_BEAGLEBONE
+    CONFIG_CAPE_BEAGLEBONE=y
+
+Latest dtc version:
+
+    dtc --version
+    Version: DTC 1.4.1-g92616917
+
+
+Updating dtc:
+
+    ./dtc-overlay.sh
+
+Installing:
+------------
+
+    ./install.sh
+
 capemgr: enable/disable capes on kernel cmdline:
 ------------
 
