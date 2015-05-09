@@ -20,9 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+check_dpkg () {
+	LC_ALL=C dpkg --list | awk '{print $2}' | grep "^${pkg}" >/dev/null || deb_pkgs="${deb_pkgs}${pkg} "
+}
+
+unset deb_pkgs
+pkg="build-essential"
+check_dpkg
+
 if [ ! -f /usr/share/initramfs-tools/hooks/dtbo ] ; then
-	echo "Installing: bb-customizations..."
-	sudo apt-get update ; sudo apt-get install bb-customizations
+	deb_pkgs="${deb_pkgs}bb-customizations "
+fi
+
+if [ "${deb_pkgs}" ] ; then
+	echo "Installing: ${deb_pkgs}"
+	sudo apt-get update
+	sudo apt-get -y install ${deb_pkgs}
+	sudo apt-get clean
 fi
 
 update_initramfs () {
