@@ -43,6 +43,10 @@ directory:
 .config requirements:
 ------------
 
+BeagleBone DVI-D CAPE (tilcd_tfp410):
+
+    # CONFIG_OMAP2_DSS is not set
+
 Serial:
 
     CONFIG_SERIAL_OMAP=y
