@@ -55,9 +55,17 @@ Serial:
 BBB compatibility issues:
 ------------
 
+Use blank overlay (/boot/uEnv.txt):
+
+    dtb=am335x-boneblack-overlay.dtb
+
 BB-BONE-DVID-01-00A3.dts
 
     Disable: HDMI & eMMC
+
+BB-BONE-LCD4-01-00A1.dts
+
+    Disable: HDMI
 
 BB-UART5-00A0.dts:
 
