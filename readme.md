@@ -1,10 +1,10 @@
 Requirements:
 ------------
 
-Kernel with CONFIG_CAPE_BEAGLEBONE support:
+Kernel with CONFIG_BONE_CAPEMGR support:
 
-    zcat /proc/config.gz | grep CONFIG_CAPE_BEAGLEBONE
-    CONFIG_CAPE_BEAGLEBONE=y
+    zcat /proc/config.gz | grep CONFIG_BONE_CAPEMGR
+    CONFIG_BONE_CAPEMGR=y
 
 Latest dtc version:
 
