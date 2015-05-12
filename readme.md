@@ -26,8 +26,8 @@ capemgr: enable/disable capes on kernel cmdline:
 
 Comma delimited list of PART-NUMBER[:REV] of [enabled/disabled] capes
 
-    beaglebone-capemgr.enable_partno=
-    beaglebone-capemgr.disable_partno=
+    bone_capemgr.enable_partno=
+    bone_capemgr.disable_partno=
 
 slots:
 ------------
