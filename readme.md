@@ -52,7 +52,18 @@ Serial:
     CONFIG_SERIAL_OMAP=y
     CONFIG_SERIAL_OMAP_CONSOLE=y
 
-Testing:
+BBB compatibility issues:
+------------
+
+BB-BONE-DVID-01-00A3.dts
+
+    Disable: HDMI & eMMC
+
+BB-UART5-00A0.dts:
+
+    Disable: HDMI
+
+Cape Testing:
 ------------
 
 BB-BONE-SERL-03-00A1.dts:
@@ -71,6 +82,6 @@ BB-UART4-00A0.dts:
 
     sudo /sbin/getty -L ttyO4 115200 vt102
 
-BB-UART5-00A0.dts: (DO NOT RUN ON BBB... YET)
+BB-UART5-00A0.dts:
 
     sudo /sbin/getty -L ttyO5 115200 vt102

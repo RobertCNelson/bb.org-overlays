@@ -63,6 +63,8 @@
 
 			bb_lcd_pins: pinmux_bb_lcd_pins {
 				pinctrl-single,pins = <
+
+					/* Warning, P8_04 is mmc1_dat7 on BBB's eMMC, thus the output will flicker, unless eMMC is disabled... */
 					BONE_P8_04 (PIN_OUTPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad7.gpio1_7, OUTPUT | MODE7 - DVIPDn */
 
 					BONE_P8_45 (PIN_OUTPUT | MUX_MODE0) /* lcd_data0.lcd_data0 */
