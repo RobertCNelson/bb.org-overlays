@@ -67,6 +67,10 @@ BB-BONE-LCD4-01-00A1.dts
 
     Disable: HDMI
 
+BB-BONE-LCD7-01-00A3.dts
+
+    Disable: HDMI
+
 BB-UART5-00A0.dts:
 
     Disable: HDMI
