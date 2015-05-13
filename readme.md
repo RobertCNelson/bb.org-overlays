@@ -79,6 +79,29 @@ BB-UART5-00A0.dts:
 
     Disable: HDMI
 
+Manually Loading Capes:
+------------
+
+BB-RTC-01-00A1.dts
+
+    bone_capemgr.enable_partno=BB-RTC-01:00A1
+
+BB-UART1-00A0.dts:
+
+    bone_capemgr.enable_partno=BB-UART1
+
+BB-UART2-00A0.dts:
+
+    bone_capemgr.enable_partno=BB-UART2
+
+BB-UART4-00A0.dts:
+
+    bone_capemgr.enable_partno=BB-UART4
+
+BB-UART5-00A0.dts:
+
+    bone_capemgr.enable_partno=BB-UART5
+
 Cape Testing:
 ------------
 
