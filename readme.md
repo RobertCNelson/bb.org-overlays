@@ -63,6 +63,10 @@ BB-BONE-DVID-01-00A3.dts
 
     Disable: HDMI & eMMC
 
+BB-BONE-LCD3-01-00A2.dts
+
+    Disable: HDMI
+
 BB-BONE-LCD4-01-00A1.dts
 
     Disable: HDMI

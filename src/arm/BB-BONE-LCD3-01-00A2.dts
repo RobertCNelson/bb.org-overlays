@@ -16,8 +16,8 @@
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
 	/* identification */
-	part-number = "BB-BONE-LCD4-01";
-	version = "00A1";
+	part-number = "BB-BONE-LCD3-01";
+	version = "00A2";
 
 	/* state the resources this cape uses */
 	exclusive-use =
