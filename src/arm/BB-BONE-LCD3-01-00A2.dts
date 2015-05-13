@@ -65,7 +65,7 @@
 
 			bb_lcd_led_pins: pinmux_bb_lcd_led_pins {
 				pinctrl-single,pins = <
-					BONE_P9_27 (PIN_INPUT | MUX_MODE7) /* mcasp0_fsr.gpio3_19 */
+					BONE_P9_27 (PIN_OUTPUT_PULLDOWN | MUX_MODE7) /* mcasp0_fsr.gpio3_19 */
 				>;
 			};
 
