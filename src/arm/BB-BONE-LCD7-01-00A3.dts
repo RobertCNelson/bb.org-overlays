@@ -49,7 +49,7 @@
 		"P9.23",	/* keys: gpio1_17 RIGHT */
 		"P9.16",	/* keys: gpio1_19 UP */
 		"P9.30",	/* keys: gpio3_16 DOWN */
-		"P9.24",	/* keys: gpio0_15 ENTER */
+		"P9.21",	/* keys: gpio0_3 ENTER */
 
 		"gpio3_19",	/* DISPEN */
 		"gpio1_28",	/* LED */
