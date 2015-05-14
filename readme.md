@@ -82,9 +82,9 @@ BB-UART5-00A0.dts:
 Manually Loading Capes:
 ------------
 
-BB-RTC-01-00A1.dts
+BB-RTC-01-00A0.dts
 
-    bone_capemgr.enable_partno=BB-RTC-01:00A1
+    bone_capemgr.enable_partno=BB-RTC-01
 
 BB-UART1-00A0.dts:
 
