@@ -20,6 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+arch=$(uname -m)
+
+if [ "x${arch}" != "xarmv7l" ] ; then
+	echo ""
+	echo "Error: this script: [$0] is not supported to run under [${arch}]"
+	echo "-----------------------------"
+	exit
+fi
+
 check_dpkg () {
 	LC_ALL=C dpkg --list | awk '{print $2}' | grep "^${pkg}" >/dev/null || deb_pkgs="${deb_pkgs}${pkg} "
 }
