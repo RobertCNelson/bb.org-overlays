@@ -52,6 +52,10 @@ Serial:
     CONFIG_SERIAL_OMAP=y
     CONFIG_SERIAL_OMAP_CONSOLE=y
 
+SPI:
+
+    CONFIG_SPI_OMAP24XX=m
+
 BBB compatibility issues:
 ------------
 
