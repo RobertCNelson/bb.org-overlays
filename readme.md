@@ -47,6 +47,10 @@ BeagleBone DVI-D CAPE (tilcd_tfp410):
 
     # CONFIG_OMAP2_DSS is not set
 
+led:
+
+    CONFIG_LEDS_GPIO=m
+
 PWM Backlight:
 
     CONFIG_DRM_TILCDC=m
