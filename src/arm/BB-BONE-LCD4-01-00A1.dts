@@ -51,6 +51,7 @@
 		"P9.30",	/* keys: gpio3_16 DOWN */
 		"P9.24",	/* keys: gpio0_15 ENTER */
 
+		"ehrpwm1a",
 		"gpio3_19",	/* DISPEN */
 		"gpio1_28",	/* LED */
 		"gpio1_16",	/* LEFT */
@@ -71,9 +72,9 @@
 				>;
 			};
 
-			bb_lcd_backlight_pins: pinmux_bb_lcd_backlight_pins {
+			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 				pinctrl-single,pins = <
-					BONE_P9_14 (PIN_OUTPUT | MUX_MODE7) /* gpmc_a[2].GPIO1[18] (backlight control) */
+					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_a2.ehrpwm1a */
 				>;
 			};
 
@@ -118,6 +119,47 @@
 	};
 
 	fragment@1 {
+		target = <&epwmss1>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@2 {
+		target = <&ehrpwm1>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_lcd_pwm_backlight_pins>;
+			status = "okay";
+		};
+	};
+
+	fragment@3 {
+		target = <&lcdc>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@4 {
+		target = <&tscadc>;
+		__overlay__ {
+
+			status = "okay";
+			tsc {
+				ti,wires = <4>;
+				ti,x-plate-resistance = <200>;
+				ti,coordinate-readouts = <5>;
+				ti,wire-config = <0x00 0x11 0x22 0x33>;
+			};
+
+			adc {
+				ti,adc-channels = <4 5 6 7>;
+			};
+		};
+	};
+
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 
@@ -127,11 +169,10 @@
 
 			backlight {
 				status = "okay";
-				compatible = "gpio-backlight";
-				pinctrl-names = "default";
-				pinctrl-0 = <&bb_lcd_backlight_pins>;
-				gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
-				default-on;
+				compatible = "pwm-backlight";
+				pwms = <&ehrpwm1 0 50000 0>;
+				brightness-levels = <0 51 53 56 62 75 101 152 255>;
+				default-brightness-level = <8>;
 			};
 
 			gpio-leds-cape-lcd {
@@ -231,31 +272,6 @@
 						pixelclk-active = <0>;
 					};
 				};
-			};
-		};
-	};
-
-	fragment@2 {
-		target = <&lcdc>;
-		__overlay__ {
-			status = "okay";
-		};
-	};
-
-	fragment@3 {
-		target = <&tscadc>;
-		__overlay__ {
-
-			status = "okay";
-			tsc {
-				ti,wires = <4>;
-				ti,x-plate-resistance = <200>;
-				ti,coordinate-readouts = <5>;
-				ti,wire-config = <0x00 0x11 0x22 0x33>;
-			};
-
-			adc {
-				ti,adc-channels = <4 5 6 7>;
 			};
 		};
 	};
