@@ -9,7 +9,7 @@ Kernel with CONFIG_BONE_CAPEMGR support:
 Latest dtc version:
 
     dtc --version
-    Version: DTC 1.4.1-g92616917
+    Version: DTC 1.4.1-g2341721b
 
 
 Updating dtc:
@@ -68,7 +68,7 @@ SPI:
 BBB compatibility issues:
 ------------
 
-Use blank overlay (/boot/uEnv.txt):
+Use blank overlay (HDMI & eMMC disabled) (/boot/uEnv.txt):
 
     dtb=am335x-boneblack-overlay.dtb
 
@@ -95,23 +95,10 @@ BB-UART5-00A0.dts:
 Manually Loading Capes:
 ------------
 
-BB-RTC-01-00A0.dts
+example: BB-RTC-01-00A0.dts
 
     bone_capemgr.enable_partno=BB-RTC-01
 
-BB-UART1-00A0.dts:
+example: BB-BONE-LCD7-01-00A3.dts
 
-    bone_capemgr.enable_partno=BB-UART1
-
-BB-UART2-00A0.dts:
-
-    bone_capemgr.enable_partno=BB-UART2
-
-BB-UART4-00A0.dts:
-
-    bone_capemgr.enable_partno=BB-UART4
-
-BB-UART5-00A0.dts:
-
-    bone_capemgr.enable_partno=BB-UART5
-
+    bone_capemgr.enable_partno=BB-BONE-LCD7-01:00A3
