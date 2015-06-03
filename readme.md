@@ -6,7 +6,7 @@ Kernel with CONFIG_BONE_CAPEMGR support:
     zcat /proc/config.gz | grep CONFIG_BONE_CAPEMGR
     CONFIG_BONE_CAPEMGR=y
 
-Latest dtc version:
+Latest dtc version: (this is only for v4.1.x+ for v3.8.x dtbo's use the older version)
 
     dtc --version
     Version: DTC 1.4.1-g2341721b
