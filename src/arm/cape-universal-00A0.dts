@@ -1490,7 +1490,7 @@
     /************************/
 
 //    fragment@10 {
-//        target = <&uart2>;  /* really uart1 */
+//        target = <&uart1>;
 //        __overlay__ {
 //            status = "okay";
 //            pinctrl-names = "default";
@@ -1499,7 +1499,7 @@
 //    };
 
 //    fragment@11 {
-//        target = <&uart3>;  /* really uart2 */
+//        target = <&uart2>;
 //        __overlay__ {
 //            status = "okay";
 //            pinctrl-names = "default";
@@ -1508,7 +1508,7 @@
 //    };
 
 //    fragment@12 {
-//        target = <&uart5>;  /* really uart4 */
+//        target = <&uart4>;
 //        __overlay__ {
 //            status = "okay";
 //            pinctrl-names = "default";
@@ -1518,7 +1518,7 @@
 
 //    /* UART 5 only available on LCD/HDMI pins */
 //    fragment@13 {
-//        target = <&uart6>;  /* really uart5 */
+//        target = <&uart5>;
 //        __overlay__ {
 //            status = "okay";
 //            pinctrl-names = "default";
