@@ -1,5 +1,5 @@
 
-DTC ?= /usr/local/bin/dtc
+DTC ?= dtc
 CPP ?= cpp
 
 MAKEFLAGS += -rR --no-print-directory
