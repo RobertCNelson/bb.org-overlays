@@ -56,6 +56,9 @@
     fragment@0 {
         target = <&am33xx_pinmux>;
         __overlay__ {
+	    //pinctrl-names = "default";
+	    //pinctrl-0 = <&clkout2_pin>;
+
             bone_replicape_spi1_pins: pinmux_replicape_spi1_pins {
                 pinctrl-single,pins = <
                     0x190 0x13	/* P9_31 = mcasp0_aclkx.spi1_sclk				 , OUTPUT_PULLUP | MODE3 */
@@ -105,22 +108,16 @@
                 >;
             };
 
-            pwm_enable_pins: pinmux_pwm_enable_pins{
-                pinctrl-single,pins = <
-		        0x1B0 0x17 
-                >;
-            };
-
-	    clkout2_pins: disable_clkout2 {
-                pinctrl-single,pins = < 
-                        0x1b4 0x37 /* xdma_event_intr1.clkout2 */
-                >;
-            };
+   	    //clkout2_pin: pinmux_clkout2_pin {
+		//pinctrl-single,pins = <
+	//		0x1b4 0x37	/* xdma_event_intr1.clkout2 */
+	//	>;
+	 //   };
 
             servo_pins: pinmux_servo_pins {
                 pinctrl-single,pins = <
-                        0x48 0x36     // P9_14 = Servo 0 = GPIO1_18
-                        0xC4 0x36     // P9_16 = Servo 1 = GPIO1_19
+			0x048 0x36     // P9_14 = Servo 0 = GPIO1_18
+                        0x0C4 0x36     // P9_16 = Servo 1 = GPIO1_19
                 >;
             };
         };
@@ -282,10 +279,11 @@
             };
 
 	    pwm_enable {
-		compatible 	= "pinctrl-single";
-                status 		= "okay";
+		compatible      = "bone-pinmux-helper";
+                status 	        = "okay";
 		pinctrl-names   = "default";
-               	pinctrl-0       = <&pwm_enable_pins>;
+		/*pinctrl-0       = <&servo_pins>;*/
+		/*pinctrl-0       = <&clkout2_pins>;*/
 	    };
         };
     };
