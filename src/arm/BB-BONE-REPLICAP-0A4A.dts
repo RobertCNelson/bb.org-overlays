@@ -174,7 +174,7 @@
     };
 
     fragment@3 {
-        target = <&baseboard_beaglebone_black>;
+        target = <&ocp>;
         __overlay__ {			
             #address-cells = <1>;
             #size-cells = <1>;							
