@@ -56,6 +56,7 @@ update_initramfs () {
 	fi
 }
 
+make clean
 make
 sudo make install
 update_initramfs
