@@ -22,7 +22,8 @@ if [ "${deb_pkgs}" ] ; then
 fi
 
 #git_sha="origin/master"
-git_sha="8b927bf3b80de4b0a49e6b6e4a56293e9baec364"
+#follow master, but use the git sha, just incase of git breakage...
+git_sha="f6dbc6ca9618391e4f30c415a0a09b7af35f7647"
 project="dtc"
 server="git://git.kernel.org/pub/scm/utils/dtc"
 
