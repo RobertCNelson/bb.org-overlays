@@ -10,7 +10,7 @@ Kernel update:
 
     cd /opt/scripts/tools
     git pull
-    sudo ./update_kernel.sh --beta-kernel
+    sudo ./update_kernel.sh --lts --bone-channel
 
 Latest dtc version: (this is only for v4.1.x+ for v3.8.x dtbo's use the older version)
 
