@@ -1489,32 +1489,32 @@
     /* UARTs                */
     /************************/
 
-//    fragment@10 {
-//        target = <&uart1>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@10 {
+        target = <&uart1>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@11 {
-//        target = <&uart2>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@11 {
+        target = <&uart2>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@12 {
-//        target = <&uart4>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@12 {
+        target = <&uart4>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
 //    /* UART 5 only available on LCD/HDMI pins */
 //    fragment@13 {
