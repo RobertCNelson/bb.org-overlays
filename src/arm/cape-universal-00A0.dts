@@ -1530,71 +1530,71 @@
     /* Timers / PWM         */
     /************************/
 
-//    fragment@20 {
-//        target = <&epwmss0>;
-//        __overlay__ {
-//            status = "okay";
-//        };
-//    };
+    fragment@20 {
+        target = <&epwmss0>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
 
-//    fragment@21 {
-//        target = <&ehrpwm0>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@21 {
+        target = <&ehrpwm0>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@22 {
-//        target = <&ecap0>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@22 {
+        target = <&ecap0>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@23 {
-//        target = <&epwmss1>;
-//        __overlay__ {
-//            status = "okay";
-//        };
-//    };
+    fragment@23 {
+        target = <&epwmss1>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
 
-//    fragment@24 {
-//        target = <&ehrpwm1>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@24 {
+        target = <&ehrpwm1>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@25 {
-//        target = <&epwmss2>;
-//        __overlay__ {
-//            status = "okay";
-//        };
-//    };
+    fragment@25 {
+        target = <&epwmss2>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
 
-//    fragment@26 {
-//        target = <&ehrpwm2>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@26 {
+        target = <&ehrpwm2>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
-//    fragment@27 {
-//        target = <&ecap2>;
-//        __overlay__ {
-//            status = "okay";
-//            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
-//        };
-//    };
+    fragment@27 {
+        target = <&ecap2>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
 
     /************************/
     /* I2C / SPI            */
