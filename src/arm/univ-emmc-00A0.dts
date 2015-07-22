@@ -1130,7 +1130,6 @@
             P8_07_pinmux {
                 compatible = "bone-pinmux-helper";
                 status = "okay";
-
                 pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "timer";
                 pinctrl-0 = <&P8_07_default_pin>;
                 pinctrl-1 = <&P8_07_gpio_pin>;
@@ -1422,7 +1421,7 @@
             P8_39_pinmux {
                 compatible = "bone-pinmux-helper";
                 status = "okay";
-     pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
                 pinctrl-0 = <&P8_39_default_pin>;
                 pinctrl-1 = <&P8_39_gpio_pin>;
                 pinctrl-2 = <&P8_39_gpio_pu_pin>;

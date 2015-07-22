@@ -22,7 +22,7 @@
     compatible = "ti,beaglebone", "ti,beaglebone-black";
 
     /* identification */
-    part-number = "univ-hdmi";
+    part-number = "univ-nhdmi";
     version = "00A0";
 
     /* state the resources this cape uses */
@@ -99,13 +99,13 @@
         "P9.22",
         "P9.23",
         "P9.24",
-/*      "P9.25",    Audio   */
+        "P9.25", /*    Audio   */
         "P9.26",
         "P9.27",
-/*      "P9.28",    Audio   */
-/*      "P9.29",    Audio   */
+        "P9.28", /*    Audio   */
+        "P9.29", /*    Audio   */
         "P9.30",
-/*      "P9.31",    Audio   */
+        "P9.31", /*    Audio   */
 /*      "P9.32",    VADC    */
 /*      "P9.33",    AIN4    */
 /*      "P9.34",    AGND    */
@@ -1540,6 +1540,19 @@
                 pinctrl-6 = <&P9_24_i2c_pin>;
                 pinctrl-7 = <&P9_24_pruin_pin>;
             };
+            /* audio */
+            P9_25_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout", "pruin";
+                pinctrl-0 = <&P9_25_default_pin>;
+                pinctrl-1 = <&P9_25_gpio_pin>;
+                pinctrl-2 = <&P9_25_gpio_pu_pin>;
+                pinctrl-3 = <&P9_25_gpio_pd_pin>;
+                pinctrl-4 = <&P9_25_qep_pin>;
+                pinctrl-5 = <&P9_25_pruout_pin>;
+                pinctrl-6 = <&P9_25_pruin_pin>;
+            };
 
             P9_26_pinmux {
                 compatible = "bone-pinmux-helper";
@@ -1567,6 +1580,35 @@
                 pinctrl-5 = <&P9_27_pruout_pin>;
                 pinctrl-6 = <&P9_27_pruin_pin>;
             };
+            /* audio */
+            P9_28_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm", "spi", "pwm2", "pruout", "pruin";
+                pinctrl-0 = <&P9_28_default_pin>;
+                pinctrl-1 = <&P9_28_gpio_pin>;
+                pinctrl-2 = <&P9_28_gpio_pu_pin>;
+                pinctrl-3 = <&P9_28_gpio_pd_pin>;
+                pinctrl-4 = <&P9_28_pwm_pin>;
+                pinctrl-5 = <&P9_28_spi_pin>;
+                pinctrl-6 = <&P9_28_pwm2_pin>;
+                pinctrl-7 = <&P9_28_pruout_pin>;
+                pinctrl-8 = <&P9_28_pruin_pin>;
+            };
+            /* audio */
+            P9_29_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm", "spi", "pruout", "pruin";
+                pinctrl-0 = <&P9_29_default_pin>;
+                pinctrl-1 = <&P9_29_gpio_pin>;
+                pinctrl-2 = <&P9_29_gpio_pu_pin>;
+                pinctrl-3 = <&P9_29_gpio_pd_pin>;
+                pinctrl-4 = <&P9_29_pwm_pin>;
+                pinctrl-5 = <&P9_29_spi_pin>;
+                pinctrl-6 = <&P9_29_pruout_pin>;
+                pinctrl-7 = <&P9_29_pruin_pin>;
+            };
 
             P9_30_pinmux {
                 compatible = "bone-pinmux-helper";
@@ -1580,6 +1622,20 @@
                 pinctrl-5 = <&P9_30_spi_pin>;
                 pinctrl-6 = <&P9_30_pruout_pin>;
                 pinctrl-7 = <&P9_30_pruin_pin>;
+            };
+            /* audio */
+            P9_31_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm", "spi", "pruout", "pruin";
+                pinctrl-0 = <&P9_31_default_pin>;
+                pinctrl-1 = <&P9_31_gpio_pin>;
+                pinctrl-2 = <&P9_31_gpio_pu_pin>;
+                pinctrl-3 = <&P9_31_gpio_pd_pin>;
+                pinctrl-4 = <&P9_31_pwm_pin>;
+                pinctrl-5 = <&P9_31_spi_pin>;
+                pinctrl-6 = <&P9_31_pruout_pin>;
+                pinctrl-7 = <&P9_31_pruin_pin>;
             };
 
 //            P9_41_pinmux {
@@ -1901,6 +1957,13 @@
                     input;
                     dir-changeable;
                 };
+                /* audio */
+                P9_25 {
+                    gpio-name = "P9_25";
+                    gpio = <&gpio3 21 0>;
+                    input;
+                    dir-changeable;
+                };
 
                 P9_26 {
                     gpio-name = "P9_26";
@@ -1915,10 +1978,31 @@
                     input;
                     dir-changeable;
                 };
+                /* audio */
+                P9_28 {
+                    gpio-name = "P9_28";
+                    gpio = <&gpio3 17 0>;
+                    input;
+                    dir-changeable;
+                };
+                /* audio */
+                P9_29 {
+                    gpio-name = "P9_29";
+                    gpio = <&gpio3 15 0>;
+                    input;
+                    dir-changeable;
+                };
 
                 P9_30 {
                     gpio-name = "P9_30";
                     gpio = <&gpio3 16 0>;
+                    input;
+                    dir-changeable;
+                };
+                /* audio */
+                P9_31 {
+                    gpio-name = "P9_31";
+                    gpio = <&gpio3 14 0>;
                     input;
                     dir-changeable;
                 };
