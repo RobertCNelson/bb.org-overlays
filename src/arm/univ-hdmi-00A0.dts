@@ -127,7 +127,7 @@
         "uart1",
         "uart2",
         "uart4",
-        "uart5",    /* Conflicts with HDMI  */
+/*      "uart5",    Conflicts with HDMI  */
 
         "ehrpwm0A",
         "ehrpwm0B",
@@ -1999,14 +1999,14 @@
     };
 
     /* UART 5 only available on LCD/HDMI pins */
-    fragment@13 {
-        target = <&uart5>;
-        __overlay__ {
-            status = "okay";
-            pinctrl-names = "default";
-            pinctrl-0 = <>; 
-        };
-    };
+//    fragment@13 {
+//        target = <&uart5>;
+//        __overlay__ {
+//            status = "okay";
+//            pinctrl-names = "default";
+//            pinctrl-0 = <>;
+//        };
+//    };
 
     /************************/
     /* Timers / PWM         */
