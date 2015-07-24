@@ -61,7 +61,7 @@
 
 
 			tlv320aic3x: tlv320aic3x@18 {
-				compatible = "ti,tlv320aic3x";
+				compatible = "ti,tlv320aic3104";
 				reg = <0x18>;
 
 				AVDD-supply = <&ldo4_reg>;
