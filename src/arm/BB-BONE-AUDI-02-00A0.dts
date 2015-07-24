@@ -64,6 +64,11 @@
 				compatible = "ti,tlv320aic3x";
 				reg = <0x18>;
 				status = "okay";
+
+				AVDD-supply = <&ldo4_reg>;
+				IOVDD-supply = <&ldo4_reg>;
+				DRVDD-supply = <&ldo3_reg>;
+				DVDD-supply = <&ldo3_reg>;
 			};
 		};
 	};
