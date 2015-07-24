@@ -64,8 +64,6 @@
 				compatible = "ti,tlv320aic3x";
 				reg = <0x18>;
 
-				ai3x-micbias-vg = <0>;
-
 				AVDD-supply = <&ldo4_reg>;
 				IOVDD-supply = <&ldo4_reg>;
 				DRVDD-supply = <&ldo4_reg>;
