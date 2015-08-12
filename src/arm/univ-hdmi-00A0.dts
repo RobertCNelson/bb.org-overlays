@@ -1957,6 +1957,13 @@
                     input;
                     dir-changeable;
                 };
+                /* audio */
+//                P9_25 {
+//                    gpio-name = "P9_25";
+//                    gpio = <&gpio3 21 0>;
+//                    input;
+//                    dir-changeable;
+//                };
 
                 P9_26 {
                     gpio-name = "P9_26";
@@ -1971,6 +1978,20 @@
                     input;
                     dir-changeable;
                 };
+                /* audio */
+//                P9_28 {
+//                    gpio-name = "P9_28";
+//                    gpio = <&gpio3 17 0>;
+//                    input;
+//                    dir-changeable;
+//                };
+                /* audio */
+//                P9_29 {
+//                    gpio-name = "P9_29";
+//                    gpio = <&gpio3 15 0>;
+//                    input;
+//                    dir-changeable;
+//                };
 
                 P9_30 {
                     gpio-name = "P9_30";
@@ -1978,6 +1999,13 @@
                     input;
                     dir-changeable;
                 };
+                /* audio */
+//                P9_31 {
+//                    gpio-name = "P9_31";
+//                    gpio = <&gpio3 14 0>;
+//                    input;
+//                    dir-changeable;
+//                };
 
 //                P9_41 {
 //                    gpio-name = "P9_41";
