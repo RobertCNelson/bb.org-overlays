@@ -1240,7 +1240,7 @@
 //                pinctrl-4 = <&P9_92_qep_pin>;
 //                pinctrl-5 = <&P9_92_pruout_pin>;
 //                pinctrl-6 = <&P9_92_pruin_pin>;
-            };
+//            };
         };
     };
     
