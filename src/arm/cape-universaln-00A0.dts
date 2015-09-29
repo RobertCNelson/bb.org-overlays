@@ -1087,8 +1087,7 @@
                 pinctrl-6 = <&P9_24_i2c_pin>;
                 pinctrl-7 = <&P9_24_pruin_pin>;
             };
-
-            // Audio pin
+            /* audio */
 //            P9_25_pinmux {
 //                compatible = "bone-pinmux-helper";
 //                status = "okay";
@@ -1225,18 +1224,18 @@
                 pinctrl-7 = <&P9_42_spiclk_pin>;
             };
 
-//            P9_92_pinmux {
-//                compatible = "bone-pinmux-helper";
-//                status = "okay";
-//                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout", "pruin";
-//                pinctrl-0 = <&P9_92_default_pin>;
-//                pinctrl-1 = <&P9_92_gpio_pin>;
-//                pinctrl-2 = <&P9_92_gpio_pu_pin>;
-//                pinctrl-3 = <&P9_92_gpio_pd_pin>;
-//                pinctrl-4 = <&P9_92_qep_pin>;
-//                pinctrl-5 = <&P9_92_pruout_pin>;
-//                pinctrl-6 = <&P9_92_pruin_pin>;
-//            };
+            P9_92_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout", "pruin";
+                pinctrl-0 = <&P9_92_default_pin>;
+                pinctrl-1 = <&P9_92_gpio_pin>;
+                pinctrl-2 = <&P9_92_gpio_pu_pin>;
+                pinctrl-3 = <&P9_92_gpio_pd_pin>;
+                pinctrl-4 = <&P9_92_qep_pin>;
+                pinctrl-5 = <&P9_92_pruout_pin>;
+                pinctrl-6 = <&P9_92_pruin_pin>;
+            };
         };
     };
     
@@ -1432,20 +1431,21 @@
                     input;
                     dir-changeable;
                 };
-                // Audio pin
+                /* audio */
 //                P9_28 {
 //                    gpio-name = "P9_28";
 //                    gpio = <&gpio3 17 0>;
 //                    input;
 //                    dir-changeable;
 //                };
-                // Audio pin
+                /* audio */
 //                P9_29 {
 //                    gpio-name = "P9_29";
 //                    gpio = <&gpio3 15 0>;
 //                    input;
 //                    dir-changeable;
 //                };
+
                 P9_30 {
                     gpio-name = "P9_30";
                     gpio = <&gpio3 16 0>;
@@ -1481,12 +1481,12 @@
                     dir-changeable;
                 };
 
-//                P9_92 {
-//                    gpio-name = "P9_92";
-//                    gpio = <&gpio3 18 0>;
-//                    input;
-//                    dir-changeable;
-//                };
+                P9_92 {
+                    gpio-name = "P9_92";
+                    gpio = <&gpio3 18 0>;
+                    input;
+                    dir-changeable;
+                };
             };
         };
     };
@@ -1524,13 +1524,13 @@
         };
     };
 
-//    /* UART 5 only available on LCD/HDMI pins */
+    /* UART 5 only available on LCD/HDMI pins */
 //    fragment@13 {
 //        target = <&uart5>;
 //        __overlay__ {
 //            status = "okay";
 //            pinctrl-names = "default";
-//            pinctrl-0 = <>; 
+//            pinctrl-0 = <>;
 //        };
 //    };
 

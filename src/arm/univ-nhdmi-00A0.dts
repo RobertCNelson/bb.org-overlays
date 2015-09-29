@@ -1677,18 +1677,18 @@
                 pinctrl-7 = <&P9_42_spiclk_pin>;
             };
 
-//            P9_92_pinmux {
-//                compatible = "bone-pinmux-helper";
-//                status = "okay";
-//                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout", "pruin";
-//                pinctrl-0 = <&P9_92_default_pin>;
-//                pinctrl-1 = <&P9_92_gpio_pin>;
-//                pinctrl-2 = <&P9_92_gpio_pu_pin>;
-//                pinctrl-3 = <&P9_92_gpio_pd_pin>;
-//                pinctrl-4 = <&P9_92_qep_pin>;
-//                pinctrl-5 = <&P9_92_pruout_pin>;
-//                pinctrl-6 = <&P9_92_pruin_pin>;
-//            };
+            P9_92_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout", "pruin";
+                pinctrl-0 = <&P9_92_default_pin>;
+                pinctrl-1 = <&P9_92_gpio_pin>;
+                pinctrl-2 = <&P9_92_gpio_pu_pin>;
+                pinctrl-3 = <&P9_92_gpio_pd_pin>;
+                pinctrl-4 = <&P9_92_qep_pin>;
+                pinctrl-5 = <&P9_92_pruout_pin>;
+                pinctrl-6 = <&P9_92_pruin_pin>;
+            };
         };
     };
     
@@ -2028,12 +2028,12 @@
                     dir-changeable;
                 };
 
-//                P9_92 {
-//                    gpio-name = "P9_92";
-//                    gpio = <&gpio3 18 0>;
-//                    input;
-//                    dir-changeable;
-//                };
+                P9_92 {
+                    gpio-name = "P9_92";
+                    gpio = <&gpio3 18 0>;
+                    input;
+                    dir-changeable;
+                };
             };
         };
     };
