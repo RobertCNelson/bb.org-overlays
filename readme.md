@@ -1,31 +1,53 @@
 Requirements:
 ------------
 
+Step 1: Clone this repo:
+
+    git clone https://github.com/beagleboard/bb.org-overlays
+    cd ./bb.org-overlays
+
+Step 2: Verify you have the latest (patched) dtc version: (this is only for v4.1.x+ for v3.8.x dtbo's use the older version)
+
+    dtc --version
+    Version: DTC 1.4.1-gXYZXYZXYZ
+
+Upgrade dtc:
+
+    ./dtc-overlay.sh
+
+Step 3: Install *.dtbo:
+
+    ./install.sh
+
 Kernel with CONFIG_BONE_CAPEMGR support:
 
     zcat /proc/config.gz | grep CONFIG_BONE_CAPEMGR
     CONFIG_BONE_CAPEMGR=y
 
-Kernel update:
+Pre-built kernels: (there are multiple options avaiable)
 
     cd /opt/scripts/tools
     git pull
+
+v4.1.x-ti:
+
+    sudo ./update_kernel.sh --testing --ti-channel
+
+v4.1.x-ti + Real Time:
+
+    sudo ./update_kernel.sh --testing --ti-rt-channel
+
+v4.1.x mainline:
+
     sudo ./update_kernel.sh --lts --bone-channel
 
-Latest dtc version: (this is only for v4.1.x+ for v3.8.x dtbo's use the older version)
+v4.1.x mainline + Real Time:
 
-    dtc --version
-    Version: DTC 1.4.1-g2341721b
+    sudo ./update_kernel.sh --lts --bone-rt-channel
 
+v4.2.x mainline:
 
-Updating dtc:
-
-    ./dtc-overlay.sh
-
-Installing:
-------------
-
-    ./install.sh
+    sudo ./update_kernel.sh --testing --bone-channel
 
 capemgr: enable/disable capes on kernel cmdline:
 ------------
