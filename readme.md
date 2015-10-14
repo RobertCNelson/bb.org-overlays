@@ -122,6 +122,8 @@ SPI:
 BBB compatibility issues:
 ------------
 
+You can override dtb=x in /boot/uEnv.txt...
+
 BeagleBone Black: HDMI (Audio/Video) disabled:
 
     dtb=am335x-boneblack-emmc-overlay.dtb
