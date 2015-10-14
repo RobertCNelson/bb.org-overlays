@@ -123,15 +123,19 @@ BBB compatibility issues:
 ------------
 
 BeagleBone Black: HDMI (Audio/Video) disabled:
+
     dtb=am335x-boneblack-emmc-overlay.dtb
 
 BeagleBone Black: eMMC disabled:
+
     dtb=am335x-boneblack-hdmi-overlay.dtb
 
 BeagleBone Black: HDMI Audio/eMMC disabled:
+
     dtb=am335x-boneblack-nhdmi-overlay.dtb
 
 BeagleBone Black: HDMI (Audio/Video)/eMMC disabled:
+
     dtb=am335x-boneblack-overlay.dtb
 
 BB-BONE-DVID-01-00A3.dts
