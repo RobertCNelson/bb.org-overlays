@@ -25,7 +25,7 @@ fi
 #follow master, but use the git sha, just incase of git breakage...
 git_sha="f6dbc6ca9618391e4f30c415a0a09b7af35f7647"
 project="dtc"
-server="git://git.kernel.org/pub/scm/utils/dtc"
+server="https://git.kernel.org/pub/scm/utils/dtc"
 
 if [ ! -f ${HOME}/git/${project}/.git/config ] ; then
 	git clone ${server}/${project}.git ${HOME}/git/${project}/
