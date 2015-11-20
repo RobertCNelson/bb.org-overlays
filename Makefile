@@ -1,6 +1,7 @@
 
 DTC ?= /usr/local/bin/dtc
 CPP ?= cpp
+DESTDIR ?=
 
 MAKEFLAGS += -rR --no-print-directory
 
@@ -138,7 +139,7 @@ all_arch: $(ARCH_DTB)
 
 PHONY += install_arch
 install_arch: $(ARCH_DTBO)
-	cp -v $(obj)/*.dtbo /lib/firmware/
+	cp -v $(obj)/*.dtbo $(DESTDIR)/lib/firmware/
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
