@@ -31,11 +31,11 @@ Pre-built kernels: (there are multiple options avaiable)
 
 v4.1.x-ti:
 
-    sudo ./update_kernel.sh --testing --ti-channel
+    sudo ./update_kernel.sh --stable --ti-channel
 
 v4.1.x-ti + Real Time:
 
-    sudo ./update_kernel.sh --testing --ti-rt-channel
+    sudo ./update_kernel.sh --stable --ti-rt-channel
 
 v4.1.x mainline:
 
@@ -45,7 +45,7 @@ v4.1.x mainline + Real Time:
 
     sudo ./update_kernel.sh --lts --bone-rt-channel
 
-v4.2.x mainline:
+v4.3.x mainline:
 
     sudo ./update_kernel.sh --testing --bone-channel
 
