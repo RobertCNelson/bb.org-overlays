@@ -31,7 +31,6 @@
 
 		"eqep2";		// the hardware ip used
 
-
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {

@@ -37,7 +37,7 @@
 			pinctrl_eqep0: pinctrl_eqep0_pins {
 				pinctrl-single,pins = <
 					BONE_P9_42B (PIN_INPUT | MUX_MODE1)	// GPIO3_18 = EQEP0A_in, MODE1
-					BONE_P9_27  (PULL_UP | MUX_MODE1)	// GPIO3_19 = EQEP0B_in, MODE1
+					BONE_P9_27  (PIN_INPUT | MUX_MODE1)	// GPIO3_19 = EQEP0B_in, MODE1
 					BONE_P9_41B (PIN_INPUT | MUX_MODE1)	// GPIO3_20 = EQEP0_index, MODE1
 					BONE_P9_25  (PIN_INPUT | MUX_MODE1)	// GPIO3_21 = EQEP0_strobe, MODE1
 				>;
