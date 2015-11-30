@@ -18,7 +18,7 @@
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
-	/* identification */
+	// identification
 	part-number = "bone_eqep2";
 	version	    = "00A0";
 

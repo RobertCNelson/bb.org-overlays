@@ -24,7 +24,7 @@
 
 	// state the resources this cape uses
 	exclusive-use =
-		"P9.42",		// EQEP0A_in
+		"P9.42.1",	// EQEP0A_in
 		"P9.27",		// EQEP0B_in
 		"P9.41",		// EQEP0_index
 		"P9.25",		// EQEP0_strobe
@@ -36,10 +36,10 @@
 		__overlay__ {
 			pinctrl_eqep0: pinctrl_eqep0_pins {
 				pinctrl-single,pins = <
-					BONE_P9_42B (PIN_INPUT | MUX_MODE1)	// GPIO3_18 = EQEP0A_in, MODE1
-					BONE_P9_27  (PIN_INPUT | MUX_MODE1)	// GPIO3_19 = EQEP0B_in, MODE1
-					BONE_P9_41B (PIN_INPUT | MUX_MODE1)	// GPIO3_20 = EQEP0_index, MODE1
-					BONE_P9_25  (PIN_INPUT | MUX_MODE1)	// GPIO3_21 = EQEP0_strobe, MODE1
+					BONE_P9_42B (PIN_INPUT | MUX_MODE1)	// GPIO3_18 = EQEP0A_in
+					BONE_P9_27  (PIN_INPUT | MUX_MODE1)	// GPIO3_19 = EQEP0B_in
+					BONE_P9_41B (PIN_INPUT | MUX_MODE1)	// GPIO3_20 = EQEP0_index
+					BONE_P9_25  (PIN_INPUT | MUX_MODE1)	// GPIO3_21 = EQEP0_strobe
 				>;
 			};
 		};
@@ -59,7 +59,7 @@
 			pinctrl-0 = <&pinctrl_eqep0>;
 
 			count_mode = <1>;	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
-						// 1 - Direction mode.  cha input = clock, chb input = direction
+						// 1 -> Direction mode.  cha input = clock, chb input = direction
 			swap_inputs = <0>; 	// swap channel A and B? (0 - no, 1 - yes)
 			invert_qa = <0>;   	// invert channel A input?
 			invert_qb = <0>;   	// invert channel B input?
