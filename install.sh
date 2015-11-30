@@ -39,6 +39,10 @@ check_dpkg
 
 if [ ! -f /usr/share/initramfs-tools/hooks/dtbo ] ; then
 	deb_pkgs="${deb_pkgs}bb-customizations "
+else
+	if [ ! -x /usr/share/initramfs-tools/hooks/dtbo ] ; then
+		sudo chmod +x /usr/share/initramfs-tools/hooks/dtbo
+	fi
 fi
 
 if [ "${deb_pkgs}" ] ; then
