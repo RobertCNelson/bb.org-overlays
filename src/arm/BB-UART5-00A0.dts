@@ -7,8 +7,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
-/dts-v1/;
-/plugin/;
+/dts-v1/ /plugin/;
 
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/pinctrl/am33xx.h>
@@ -16,25 +15,25 @@
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
-	/* identification */
+	// identification
 	part-number = "BB-UART5";
 	version = "00A0";
 
-	/* state the resources this cape uses */
+	// resources this cape uses
 	exclusive-use =
-		/* the pin header uses */
-		"P8.37",	/* uart5_txd */
-		"P8.38",	/* uart5_rxd */
-		/* the hardware ip uses */
-		"uart5";
+		"P8.37",		// uart5_txd
+		"P8.38",		// uart5_rxd
+
+		"uart5";		// hardware ip used
+
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_uart5_pins: pinmux_bb_uart5_pins {
 				pinctrl-single,pins = <
-					BONE_P8_38 (PIN_INPUT_PULLUP | MUX_MODE4) /* lcd_data9.uart5_rxd */
-					BONE_P8_37 (PIN_OUTPUT_PULLDOWN | MUX_MODE4) /* lcd_data8.uart5_txd */
+					BONE_P8_38 (PIN_INPUT  | MUX_MODE4)	// lcd_data9.uart5_rxd
+					BONE_P8_37 (PIN_OUTPUT | MUX_MODE4)	// lcd_data8.uart5_txd
 				>;
 			};
 		};
