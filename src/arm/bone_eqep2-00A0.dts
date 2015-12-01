@@ -22,7 +22,7 @@
 	part-number = "bone_eqep2";
 	version	    = "00A0";
 
-	// state the resources this cape uses
+	// resources this cape uses
 	exclusive-use =
 		"P8.41",		// EQEP2A_in
 		"P8.42",		// EQEP2B_in
