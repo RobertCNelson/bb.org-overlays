@@ -29,7 +29,7 @@
 		"P8.39",		// EQEP2_index
 		"P8.40",		// EQEP2_strobe
 
-		"eqep2";		// the hardware ip used
+		"eqep2";		// hardware ip used
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;

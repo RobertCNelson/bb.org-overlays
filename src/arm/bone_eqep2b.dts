@@ -17,7 +17,7 @@
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
-	/* identification */
+	// identification
 	part-number = "bone_eqep2";
 	version	    = "00A0";
 
@@ -28,7 +28,7 @@
 		"P8.16",		// EQEP2_index
 		"P8.15",		// EQEP2_strobe
 
-		"eqep2";		// the hardware ip used
+		"eqep2";		// hardware ip used
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
@@ -59,7 +59,7 @@
 			pinctrl-0 = <&pinctrl_eqep2>;
 
 			count_mode = <0>;	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
-						// 1 - Direction mode.  cha input = clock, chb input = direction
+						// 1 -> Direction mode.  cha input = clock, chb input = direction
 			swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
 			invert_qa = <1>;		// invert channel A input?
 			invert_qb = <1>;		// invert channel B input?

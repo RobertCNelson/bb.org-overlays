@@ -22,14 +22,14 @@
 	part-number = "bone_eqep0";
 	version	    = "00A0";
 
-	// state the resources this cape uses
+	// resources this cape uses
 	exclusive-use =
 		"P9.42.1",	// EQEP0A_in
 		"P9.27",		// EQEP0B_in
 		"P9.41",		// EQEP0_index
 		"P9.25",		// EQEP0_strobe
 
-		"eqep0";		// the hardware ip used
+		"eqep0";		// hardware ip used
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
@@ -63,8 +63,8 @@
 			swap_inputs = <0>; 	// swap channel A and B? (0 - no, 1 - yes)
 			invert_qa = <0>;   	// invert channel A input?
 			invert_qb = <0>;   	// invert channel B input?
-			invert_qi = <0>;   	// invert the index input?
-			invert_qs = <0>;   	// invert the strobe input?
+			invert_qi = <0>;   	// invert index input?
+			invert_qs = <0>;   	// invert strobe input?
 
 			status = "okay";
 		};
