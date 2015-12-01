@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 SoftPLC Corp.
+ * Copyright (C) 2015 SoftPLC Corporation, Dick Hollenbeck <dick@softplc.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -20,10 +20,19 @@
 	// the resources this cape uses.
 	exclusive-use =
 		"P9.42",		// uart3_txd
-		"P8.34",		// uart3_rtsn
-		"P8.36",		// uart3_ctsn
+	//	"P8.34",		// uart3_rtsn
+	//	"P8.36",		// uart3_ctsn
 
-		// Note that uart3_rxd is missing, not tied to boneblack headers
+		/*
+		Note that uart3_rxd is missing, not tied to boneblack headers.
+		However this uart can be used to tickle P9.42.1 which can
+		be EQEP0A_in without any wiring because cpu balls associated
+		with P9.42 and P9.42.1 are tied together at the header pin.
+		This was useful for developing a frequency input with eqep0
+		in relative+direction mode and period of 1000000000.
+		After software development, I then swapped EQEP0A_in and EQEP0B_in
+		to use EQEP0B_in as an external high speed counter input.
+		*/
 
 		"uart3";		// the hardware ip used
 
@@ -33,8 +42,8 @@
 			bb_uart3_pins: pinmux_bb_uart3_pins {
 				pinctrl-single,pins = <
 					BONE_P9_42A (PIN_OUTPUT       | MUX_MODE1)	// uart3_txd
-					BONE_P8_34  (PIN_OUTPUT       | MUX_MODE6)	// uart3_rtsn
-					BONE_P8_36  (PIN_INPUT_PULLUP | MUX_MODE6)	// uart3_ctsn
+				//	BONE_P8_34  (PIN_OUTPUT       | MUX_MODE6)	// uart3_rtsn
+				//	BONE_P8_36  (PIN_INPUT_PULLUP | MUX_MODE6)	// uart3_ctsn
 				>;
 			};
 		};
