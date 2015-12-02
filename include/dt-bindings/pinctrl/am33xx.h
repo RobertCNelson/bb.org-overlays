@@ -8,10 +8,8 @@
 #include <dt-bindings/pinctrl/omap.h>
 
 /* am33xx specific mux bit defines */
-#undef PULL_ENA
-#undef INPUT_EN
-
 #define PULL_DISABLE		(1 << 3)
+#undef  INPUT_EN
 #define INPUT_EN		(1 << 5)
 #define SLEWCTRL_SLOW		(1 << 6)
 #define SLEWCTRL_FAST		0

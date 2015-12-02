@@ -31,8 +31,8 @@
 		__overlay__ {
 			bb_uart4_pins: pinmux_bb_uart4_pins {
 				pinctrl-single,pins = <
-					BONE_P9_11 (PIN_INPUT  | MUX_MODE6)	// gpmc_wait0.uart4_rxd_mux2
 					BONE_P9_13 (PIN_OUTPUT | MUX_MODE6)	// gpmc_wpn.uart4_txd_mux2
+					BONE_P9_11 (PIN_INPUT  | MUX_MODE6)	// gpmc_wait0.uart4_rxd_mux2
 				>;
 			};
 		};
