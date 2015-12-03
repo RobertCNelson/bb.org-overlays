@@ -23,8 +23,8 @@
 	exclusive-use =
 		"P9.24",		// uart1_txd
 		"P9.26",		// uart1_rxd
-		"P9.19",		// uart1_rtsn
-		"P9.20",		// uart1_ctsn
+	//	"P9.19",		// uart1_rtsn	conflict with uart1_rtsn.i2c2_scl, i.e. the cape EEPROMS
+	//	"P9.20",		// uart1_ctsn	conflict with uart1_ctsn.i2c2_sda, i.e. the cape EEPROMS
 
 		"uart1";		// hardware ip used
 
