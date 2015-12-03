@@ -57,8 +57,11 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&pinctrl_eqep1>;
 
-			count_mode = <1>;	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
-						// 1 -> Direction mode.  cha input = clock, chb input = direction
+			count_mode = <1>;	// count_mode is not userspace op_mode
+			// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
+			// 1 -> Direction mode.  cha input = clock, chb input = direction
+			// 2 -> UP count mode for frequency measurement QDIR=1, ignore direction input
+			// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
 			swap_inputs = <0>; 	// swap channel A and B (0 - no, 1 - yes)
 			invert_qa = <0>;		// invert channel A input?
 			invert_qb = <0>;   	// invert channel B input?
