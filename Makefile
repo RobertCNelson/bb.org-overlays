@@ -139,6 +139,7 @@ all_arch: $(ARCH_DTB)
 
 PHONY += install_arch
 install_arch: $(ARCH_DTBO)
+	mkdir -p $(DESTDIR)/lib/firmware/
 	cp -v $(obj)/*.dtbo $(DESTDIR)/lib/firmware/
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
