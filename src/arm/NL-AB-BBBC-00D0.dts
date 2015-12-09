@@ -102,7 +102,7 @@
 
 	/*Turn on UART2*/
 	fragment@2 {
-		target = <&uart3>; /* really uart2 */
+		target = <&uart2>;
 		__overlay__ {
 			pinctrl-names = "default";
 			pinctrl-0 = <&uart2_pins>;
@@ -112,7 +112,7 @@
 
 	/*Turn on UART4*/
 	fragment@3 {
-		target = <&uart5>; /* really uart4 */
+		target = <&uart4>;
 		__overlay__ {
 			pinctrl-names = "default";
 			pinctrl-0 = <&uart4_pins>;
@@ -122,27 +122,27 @@
 
 	/*Turn on GPIO*/
 	fragment@4 {
-		target = <&ocp>;
+		target-path="/";
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <1>;
 			gpio {
 				compatible = "skywire-gpio";
-				status 	= "okay";
+				status = "okay";
 				pinctrl-names   = "default";
 				pinctrl-0       = <&gpio_pins>;
 
 				/*declare the gpios*/
 				SKYWIREDTR {
 					gpio-name = "SKYDTR";
-					gpio = <&gpio3 5 0x00>; /*GPIO3 is GPIO2*/
+					gpio = <&gpio2 5 0x00>;
 					output;
 					init-low;
 				};
 
 				SKYWIREONOFF {
 					gpio-name = "SKYONOFF";
-					GPIO = <&gpio3 3 0x00>;
+					GPIO = <&gpio2 3 0x00>;
 					output;
 					init-high;
 				};
