@@ -17,7 +17,7 @@
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
 	// identification
-	part-number = "BB-UART2";
+	part-number = "BB-UART2-RTSCTS";
 	version = "00A0";
 
 	// resources this cape uses
