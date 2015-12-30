@@ -41,6 +41,7 @@ fi
 if [ ! -f /sys/bus/w1/devices/28-*/w1_slave ] ; then
 	modprobe w1-gpio
 	echo 'BB-W1-P9.12' > /sys/devices/platform/bone_capemgr/slots
+	sleep 1
 fi
 
 if [ -f /sys/bus/w1/devices/28-*/w1_slave ] ; then
