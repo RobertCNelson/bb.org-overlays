@@ -38,18 +38,30 @@
 		"P8.33",	/* lcd: lcd_data13 */
 		"P8.31",	/* lcd: lcd_data14 */
 		"P8.32",	/* lcd: lcd_data15 */
+
+		"P8.15",	/* gpmc_ad15.lcd_data16 */
+		"P8.16",	/* gpmc_ad14.lcd_data17 */
+		"P8.11",	/* gpmc_ad13.lcd_data18 */
+		"P8.12",	/* gpmc_ad12.lcd_data19 */
+		"P8.17",	/* gpmc_ad11.lcd_data20 */
+		"P8.14",	/* gpmc_ad10.lcd_data21 */
+		"P8.13",	/* gpmc_ad9.lcd_data22 */
+		"P8.19",	/* gpmc_ad8.lcd_data23 */
+
 		"P8.27",	/* lcd: lcd_vsync */
 		"P8.29",	/* lcd: lcd_hsync */
 		"P8.28",	/* lcd: lcd_pclk */
 		"P8.30",	/* lcd: lcd_ac_bias_en */
+
 		"P9.27",	/* lcd: gpio3_19 */
 		"P9.12",	/* led: gpio1_28 */
+
 		"P9.14",	/* pwm: ehrpwm1a */
+
 		"P9.15",	/* keys: gpio1_16 */
 		"P9.23",	/* keys: gpio1_17 */
 		"P9.16",	/* keys: gpio1_19 */
 		"P9.21",	/* keys: gpio0_3 */
-
 
 		"gpio3_19",
 		"gpio1_28",
@@ -96,6 +108,15 @@
 					BONE_P8_33 (PIN_OUTPUT | MUX_MODE0) /* lcd_data13.lcd_data13 */
 					BONE_P8_31 (PIN_OUTPUT | MUX_MODE0) /* lcd_data14.lcd_data14 */
 					BONE_P8_32 (PIN_OUTPUT | MUX_MODE0) /* lcd_data15.lcd_data15 */
+
+					BONE_P8_15 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad15.lcd_data16 */
+					BONE_P8_16 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad14.lcd_data17 */
+					BONE_P8_11 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad13.lcd_data18 */
+					BONE_P8_12 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad12.lcd_data19 */
+					BONE_P8_17 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad11.lcd_data20 */
+					BONE_P8_14 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad10.lcd_data21 */
+					BONE_P8_13 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad9.lcd_data22 */
+					BONE_P8_19 (PIN_OUTPUT | MUX_MODE1) /* gpmc_ad8.lcd_data23 */
 
 					BONE_P8_27 (PIN_OUTPUT | MUX_MODE0) /* lcd_vsync.lcd_vsync */
 					BONE_P8_29 (PIN_OUTPUT | MUX_MODE0) /* lcd_hsync.lcd_hsync */
