@@ -19,7 +19,7 @@
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
 	// identification
-	part-number = "bone_eqep2";
+	part-number = "bone_eqep2b";
 	version	    = "00A0";
 
 	// resources this cape uses
