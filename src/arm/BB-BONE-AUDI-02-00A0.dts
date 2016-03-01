@@ -8,6 +8,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
@@ -22,28 +25,21 @@
 		"P9.29",	/* mcasp0: mcasp0_fsx */
 		"P9.28",	/* mcasp0: mcasp0_axr2 */
 		"P9.25",	/* mcasp0: mcasp0_ahclkx */
+		"P9.30",	/* mcasp0: mcasp0_axr0 */
 		/* the hardware ip uses */
-		"gpio1_18", "gpio1_19",
+		"gpio3_21",
 		"mcasp0";
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-
-			i2c2_pins: pinmux_i2c2_pins {
-				pinctrl-single,pins = <
-					0x150 0x72 	/*spi0_scl.i2c2_sda,SLEWCTRL_SLOW | INPUT_PULLUP |MODE2*/
-					0x154 0x72	/*spi0_d0.i2c2_scl,SLEWCTRL_SLOW | INPUT_PULLUP | MODE2*/
-				>;
-			};
-
 			bone_audio_cape_audio_pins: pinmux_bone_audio_cape_audio_pins {
 				pinctrl-single,pins = <
-					0x1ac 0x00      /* mcasp0_ahclkx,             MODE0 | INPUT */
-					0x19c 0x22		/* mcasp0_ahclkr, */
-					0x194 0x20      /* mcasp0_fsx,         	      MODE0 | OUTPUT  */
-					0x190 0x20      /* mcasp0_aclkr.mcasp0_aclkx, MODE0 | OUTPUT_PULLDOWN */
-					0x198 0x20
+					0x190 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_aclkx.mcasp0_aclkx */
+					0x194 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_fsx.mcasp0_fsx, INPUT */
+					0x198 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_axr0.mcasp0_axr0 */
+					0x19c (PIN_INPUT_PULLDOWN | MUX_MODE2)	/* mcasp0_ahclkr.mcasp0_axr2 */
+					0x1ac (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* MCASP0_AHCLKX -> MCASP0_AHCLKX (I2S_MCLK_OUT)- in */
 				>;
 			};
 		};
@@ -59,16 +55,10 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&i2c2_pins>;
 
-
 			tlv320aic3104: tlv320aic3104@18 {
 				#sound-dai-cells = <0>;
 				compatible = "ti,tlv320aic3104";
 				reg = <0x18>;
-
-				AVDD-supply = <&ldo4_reg>;
-				IOVDD-supply = <&ldo4_reg>;
-				DRVDD-supply = <&ldo4_reg>;
-				DVDD-supply = <&ldo4_reg>;
 			};
 		};
 	};
@@ -79,9 +69,7 @@
 			#sound-dai-cells = <0>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&bone_audio_cape_audio_pins>;
-
 			status = "okay";
-
 			op-mode = <0>;          /* MCASP_IIS_MODE */
 			tdm-slots = <2>;
 			num-serializer = <16>;
@@ -119,9 +107,11 @@
 					sound-dai = <&mcasp0>;
 				};
 
-				sound_master: simple-audio-card,codec {
+		                sound_master: simple-audio-card,codec {
+					#sound-dai-cells = <0>;
 					sound-dai = <&tlv320aic3104>;
-					system-clock-frequency = <12000000>;
+					clocks = <&clk_mcasp0>;
+					clock-names = "mclk";
 				};
 			};
 		};
