@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Copyright (c) 2015 Robert Nelson <robertcnelson@gmail.com>
+# Copyright (c) 2015-2016 Robert Nelson <robertcnelson@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,8 @@ pkg="build-essential"
 check_dpkg
 
 if [ ! -f /usr/share/initramfs-tools/hooks/dtbo ] ; then
-	deb_pkgs="${deb_pkgs}bb-customizations "
+	sudo cp -v ./tools/dtbo /usr/share/initramfs-tools/hooks/dtbo
+	sudo chmod +x /usr/share/initramfs-tools/hooks/dtbo
 else
 	if [ ! -x /usr/share/initramfs-tools/hooks/dtbo ] ; then
 		sudo chmod +x /usr/share/initramfs-tools/hooks/dtbo
