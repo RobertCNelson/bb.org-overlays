@@ -12,8 +12,8 @@
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
-	/* identification */
-	part-number = "test1";
+	// identification
+	part-number = "am33xx_pwm";
 	version = "00A0";
 
 	fragment@0 {
