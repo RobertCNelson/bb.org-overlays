@@ -46,8 +46,14 @@
 
 		"P9.28",	/* pwm: eCAP2_in_PWM2_out */
 
+		"P9.19",	/* i2c2_sda */
+		"P9.20",	/* i2c2_scl */
+
+		"P9.29",	/* ft5336: gpio3_15 */
+
 		"lcd",
-		"ecap2";
+		"ecap2",
+		"i2c2";
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
@@ -84,6 +90,19 @@
 					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd_ac_bias_en.lcd_ac_bias_en */
 				>;
 			};
+
+			bb_i2c2_pins: pinmux_bb_i2c2_pins {
+				pinctrl-single,pins = <
+					BONE_P9_19 0x73	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					BONE_P9_20 0x73	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+				>;
+			};
+
+			edt_ft5336_ts_pins: pinmux_edt_ft5336_ts_pins {
+				pinctrl-single,pins = <
+					BONE_P9_29 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* mcasp0_fsx.gpio3_15 */
+				>;
+			};
 		};
 	};
 
@@ -107,6 +126,35 @@
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
+		};
+	};
+
+	fragment@4 {
+		target = <&i2c2>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_i2c2_pins>;
+
+			/* this is the configuration part */
+			clock-frequency = <100000>;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			edt-ft5336@38 {
+				status = "okay";
+				compatible = "edt,edt-ft5336", "edt,edt-ft5306", "edt,edt-ft5x06";
+				pinctrl-names = "default";
+				pinctrl-0 = <&edt_ft5336_ts_pins>;
+
+				reg = <0x38>;
+				interrupt-parent = <&gpio3>;
+				interrupts = <15 0>;
+
+				touchscreen-size-x = <480>;
+				touchscreen-size-y = <272>;
+			};
 		};
 	};
 
