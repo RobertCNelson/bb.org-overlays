@@ -205,18 +205,19 @@
 					raster-order      = <0>;
 					fifo-th           = <0>;
 				};
+				/* ILI6480 */
 				display-timings {
 					native-mode = <&timing0>;
 					timing0: 480x272 {
-						clock-frequency = <30000000>;
+						clock-frequency = <9000000>;
 						hactive = <480>;
 						vactive = <272>;
-						hfront-porch = <40>;
+						hfront-porch = <5>;
 						hback-porch = <40>;
-						hsync-len = <48>;
-						vback-porch = <30>;
-						vfront-porch = <13>;
-						vsync-len = <3>;
+						hsync-len = <1>;
+						vback-porch = <8>;
+						vfront-porch = <8>;
+						vsync-len = <1>;
 						hsync-active = <0>;
 						vsync-active  = <0>;
 					};
