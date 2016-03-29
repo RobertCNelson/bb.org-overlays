@@ -147,7 +147,7 @@
 					ac-bias           = <255>;
 					ac-bias-intrpt    = <0>;
 					dma-burst-sz      = <16>;
-					bpp               = <24>;
+					bpp               = <16>;
 					fdd               = <0x80>;
 					tft-alt-mode      = <0>;
 					stn-565-mode      = <0>;
