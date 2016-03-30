@@ -156,6 +156,7 @@
 
 				touchscreen-size-x = <480>;
 				touchscreen-size-y = <272>;
+				touchscreen-swapped-x-y;
 			};
 		};
 	};
