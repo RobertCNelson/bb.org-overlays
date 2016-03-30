@@ -101,6 +101,7 @@
 			edt_ft5336_ts_pins: pinmux_edt_ft5336_ts_pins {
 				pinctrl-single,pins = <
 					BONE_P9_29 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* mcasp0_fsx.gpio3_15 */
+					BONE_P9_31 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* mcasp0_aclkx.gpio3_14 */
 				>;
 			};
 		};
@@ -151,6 +152,7 @@
 				reg = <0x38>;
 				interrupt-parent = <&gpio3>;
 				interrupts = <15 0>;
+				reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
 
 				touchscreen-size-x = <480>;
 				touchscreen-size-y = <272>;
