@@ -46,13 +46,15 @@
 	fragment@1 {
 		target = <&spi0>;
 		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
 			pinctrl-names = "default";
 			pinctrl-0 = <&bb_spi0_pins>;
 			status = "okay";
+			ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 			/* shut up DTC warnings */
-			#address-cells = <1>;
-			#size-cells = <0>;
 
 			mcp3x0x@0 {
 				spi-max-frequency = <1000000>;

@@ -14,7 +14,7 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
+	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
 	/* identification */
 	part-number = "BB-BONE-CRYPTO";
@@ -29,10 +29,15 @@
 		"P9.23",	/* gpio1_17 */
 		/* As the AUTHO Input from the AES132 */
 		"P8.11",	/* gpio1_13 */
+
+		"P9.19",	/* i2c2_sda */
+		"P9.20",	/* i2c2_scl */
+
 		/* the hardware ip uses */
 		"uart4",
 		"gpio1_13",
-		"gpio1_17";
+		"gpio1_17",
+		"i2c2";
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
@@ -41,6 +46,13 @@
 				pinctrl-single,pins = <
 					0x044 0x17	/* gpio1_17 FAST | OUTPUT | PULLUP | MODE7 */
 					0x034 0x2F	/* gpio1_13 FAST | INPUT | PULLDOWN | MODE7 */
+				>;
+			};
+
+			bb_i2c2_pins: pinmux_bb_i2c2_pins {
+				pinctrl-single,pins = <
+					BONE_P9_19 0x73	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					BONE_P9_20 0x73	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
 				>;
 			};
 
@@ -65,6 +77,14 @@
 	fragment@2 {
 		target = <&i2c2>;
 		__overlay__ {
+
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_i2c2_pins>;
+
+			/* this is the configuration part */
+			clock-frequency = <100000>;
+
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -74,9 +94,8 @@
 				reg = <0x68>;
 			};
 
-			/* TPM - Driver currently only available in 3.13.x */
-			tpm_i2c_atmel@29 {
-				compatible = "tpm_i2c_atmel";
+			tpm@29 {
+				compatible = "atmel,at97sc3204t";
 				reg = <0x29>;
 			};
 		};

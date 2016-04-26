@@ -33,7 +33,7 @@
 		"P9.22",	/* shift: gpio0_2 CLOCK */
 		/* the hardware ip uses */
 		"tscadc",
-		"gpio0_23",
+		"gpio0_22",
 		"ehrpwm1A",
 		"ehrpwm1B",
 		"eCAP0_in_PWM0_out",
