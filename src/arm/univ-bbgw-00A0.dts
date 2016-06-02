@@ -88,7 +88,7 @@
 		/* "P9.9", PWR_BUT */
 		/* "P9.10", RESETn */
 		"P9.11",
-		"P9.12",
+		/* "P9.12", bt_en */
 		"P9.13",
 		"P9.14",
 		"P9.15",
@@ -903,13 +903,6 @@
 				P9_11 {
 					gpio-name = "P9_11";
 					gpio = <&gpio0 30 0>;
-					input;
-					dir-changeable;
-				};
-
-				P9_12 {
-					gpio-name = "P9_12";
-					gpio = <&gpio1 28 0>;
 					input;
 					dir-changeable;
 				};
