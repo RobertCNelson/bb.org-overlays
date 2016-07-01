@@ -23,7 +23,7 @@
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
 	// identification
-	part-number = "am33xx_pruss_rproc";
+	part-number = "am33_pruss_rproc";
 	version = "00A0";
 
 	fragment@0 {

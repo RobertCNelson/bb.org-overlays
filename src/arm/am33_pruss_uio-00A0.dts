@@ -25,7 +25,7 @@
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
 	// identification
-	part-number = "am33xx_pruss_uio";
+	part-number = "am33_pruss_uio";
 	version = "00A0";
 
 	fragment@0 {
