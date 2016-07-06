@@ -185,38 +185,43 @@
 
                 switch_x1 {
                     label               = "Replic:End-stop-X1";
-                    debounce_interval   = <50>;
+                    debounce_interval   = <5>;
                     linux,code          = <112>;
                     gpios               = <&gpio3 21 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };				
                 switch_x2 {
                     label               = "Replic:End-stop-X2";
-                    debounce_interval   = <50>;
+                    debounce_interval   = <5>;
                     linux,code          = <113>;
                     gpios               = <&gpio0 30 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };
                 switch_y1 {
                     label               = "Replic:End-stop-Y1";
-                    debounce_interval   = <50>;
+                    debounce_interval   = <5>;
                     linux,code          = <114>;
                     gpios               = <&gpio1 17 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };				
                 switch_y2 {
                     label               = "Replic:End-stop-Y2";
-                    debounce_interval   = <50>;
+                    debounce_interval   = <5>;
                     linux,code          = <115>;
                     gpios               = <&gpio3 17 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };				
                 switch_z1 {
                     label               = "Replic:End-stop-Z1";
-                    debounce_interval   = <50>;
+                    debounce_interval   = <5>;
                     linux,code          = <116>;
                     gpios               = <&gpio0 31 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };				
                 switch_z2 {
                     label               = "Replic:End-stop-Z2";
@@ -224,6 +229,7 @@
                     linux,code          = <117>;
                     gpios               = <&gpio0 4 0x5>;
                     gpio-key,wakeup;
+		    linux,can-disable;
                 };				
                 fault_x {
                     label               = "Replic:Fault-X";
