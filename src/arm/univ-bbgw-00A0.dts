@@ -88,7 +88,7 @@
 		/* "P9.9", PWR_BUT */
 		/* "P9.10", RESETn */
 		"P9.11",
-		"P9.12",
+		/* "P9.12", bt_en */
 		"P9.13",
 		"P9.14",
 		"P9.15",
@@ -485,16 +485,6 @@
 				pinctrl-2 = <&P9_11_gpio_pu_pin>;
 				pinctrl-3 = <&P9_11_gpio_pd_pin>;
 				pinctrl-4 = <&P9_11_uart_pin>;
-			};
-
-			P9_12_pinmux {
-				compatible = "bone-pinmux-helper";
-				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd";
-				pinctrl-0 = <&P9_12_default_pin>;
-				pinctrl-1 = <&P9_12_gpio_pin>;
-				pinctrl-2 = <&P9_12_gpio_pu_pin>;
-				pinctrl-3 = <&P9_12_gpio_pd_pin>;
 			};
 
 			P9_13_pinmux {
@@ -913,13 +903,6 @@
 				P9_11 {
 					gpio-name = "P9_11";
 					gpio = <&gpio0 30 0>;
-					input;
-					dir-changeable;
-				};
-
-				P9_12 {
-					gpio-name = "P9_12";
-					gpio = <&gpio1 28 0>;
 					input;
 					dir-changeable;
 				};
