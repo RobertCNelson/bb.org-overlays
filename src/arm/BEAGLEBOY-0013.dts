@@ -227,14 +227,16 @@
 					label = "right";
 					debounce_interval = <20>;
 					linux,code = <0x111>; /* BTN_RIGHT */
-					gpios = <&gpio2 29 0x5>; /* gpio1_29 */
+					/*gpios = <&gpio2 29 0x5>; /* gpio1_29 */
+					gpios = <&gpio1 29 0x5>; /* gpio1_29 */
 				};
 
 				sw2 {
 					label = "left";
 					debounce_interval = <20>;
 					linux,code = <0x110>; /* BTN_LEFT */
-					gpios = <&gpio2 17 0x5>; /* gpio1_17 */
+					/*gpios = <&gpio2 17 0x5>; /* gpio1_17 */
+					gpios = <&gpio1 17 0x5>; /* gpio1_17 */
 				};
 			};
 		};
