@@ -8,6 +8,10 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
@@ -53,7 +57,7 @@
 		"P8.26",	/* sw1: gpio1_29 */
 		"P9.23",	/* sw2: gpio1_17 */
 		/* the hardware IP uses */
-		"lcd",
+		"lcdc",
 		"ehrpwm1a",
 		"tscadc",
 		"mcasp0";
@@ -61,37 +65,35 @@
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-
 			pwm_bl_pins: pinmux_pwm_bl_pins {
 				pinctrl-single,pins = <
-					0x48 0x06       /* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_a2.ehrpwm1a */
 				>;
 			};
 
 			bone_lcd3_cape_lcd_pins: pinmux_bone_lcd3_cape_lcd_pins {
 				pinctrl-single,pins = <
-					0xa0 0x08	/* lcd_data0.lcd_data0, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xa4 0x08	/* lcd_data1.lcd_data1, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xa8 0x08	/* lcd_data2.lcd_data2, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xac 0x08	/* lcd_data3.lcd_data3, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb0 0x08	/* lcd_data4.lcd_data4, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb4 0x08	/* lcd_data5.lcd_data5, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb8 0x08	/* lcd_data6.lcd_data6, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xbc 0x08	/* lcd_data7.lcd_data7, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc0 0x08	/* lcd_data8.lcd_data8, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc4 0x08	/* lcd_data9.lcd_data9, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc8 0x08	/* lcd_data10.lcd_data10, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xcc 0x08	/* lcd_data11.lcd_data11, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd0 0x08	/* lcd_data12.lcd_data12, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd4 0x08	/* lcd_data13.lcd_data13, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd8 0x08	/* lcd_data14.lcd_data14, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xdc 0x08	/* lcd_data15.lcd_data15, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xe0 0x00	/* lcd_vsync.lcd_vsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xe4 0x00	/* lcd_hsync.lcd_hsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xe8 0x00	/* lcd_pclk.lcd_pclk, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					// 0xec 0x00    /* lcd_ac_bias_en.lcd_ac_bias_en, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xec 0x07       /* lcd_ac_bias_en.gpio2_25 OMAP_MUX_MODE7 | AM33XX_PIN_OUTPUT */
+					BONE_P8_45 (PIN_OUTPUT | MUX_MODE0) /* lcd_data0.lcd_data0 */
+					BONE_P8_46 (PIN_OUTPUT | MUX_MODE0) /* lcd_data1.lcd_data1 */
+					BONE_P8_43 (PIN_OUTPUT | MUX_MODE0) /* lcd_data2.lcd_data2 */
+					BONE_P8_44 (PIN_OUTPUT | MUX_MODE0) /* lcd_data3.lcd_data3 */
+					BONE_P8_41 (PIN_OUTPUT | MUX_MODE0) /* lcd_data4.lcd_data4 */
+					BONE_P8_42 (PIN_OUTPUT | MUX_MODE0) /* lcd_data5.lcd_data5 */
+					BONE_P8_39 (PIN_OUTPUT | MUX_MODE0) /* lcd_data6.lcd_data6 */
+					BONE_P8_40 (PIN_OUTPUT | MUX_MODE0) /* lcd_data7.lcd_data7 */
+					BONE_P8_37 (PIN_OUTPUT | MUX_MODE0) /* lcd_data8.lcd_data8 */
+					BONE_P8_38 (PIN_OUTPUT | MUX_MODE0) /* lcd_data9.lcd_data9 */
+					BONE_P8_36 (PIN_OUTPUT | MUX_MODE0) /* lcd_data10.lcd_data10 */
+					BONE_P8_34 (PIN_OUTPUT | MUX_MODE0) /* lcd_data11.lcd_data11 */
+					BONE_P8_35 (PIN_OUTPUT | MUX_MODE0) /* lcd_data12.lcd_data12 */
+					BONE_P8_33 (PIN_OUTPUT | MUX_MODE0) /* lcd_data13.lcd_data13 */
+					BONE_P8_31 (PIN_OUTPUT | MUX_MODE0) /* lcd_data14.lcd_data14 */
+					BONE_P8_32 (PIN_OUTPUT | MUX_MODE0) /* lcd_data15.lcd_data15 */
 
+					BONE_P8_27 (PIN_OUTPUT | MUX_MODE0) /* lcd_vsync.lcd_vsync */
+					BONE_P8_29 (PIN_OUTPUT | MUX_MODE0) /* lcd_hsync.lcd_hsync */
+					BONE_P8_28 (PIN_OUTPUT | MUX_MODE0) /* lcd_pclk.lcd_pclk */
+					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd_ac_bias_en.lcd_ac_bias_en */
 				>;
 			};
 			
@@ -107,8 +109,10 @@
 
 			button_pins: pinmux_button_pins {
 				pinctrl-single,pins = <
-					0x044 0x37	/* 49, gpio1_17, INPUT | PULLUP | MODE7 */
-					0x07c 0x37	/* 61, gpio1_29, INPUT | PULLUP | MODE7 */
+					/*0x044 0x37	/* 49, gpio1_17, INPUT | PULLUP | MODE7 */
+					BONE_P9_23 (PIN_INPUT | MUX_MODE7) /* gpio1_17 (49) */
+					/*0x07c 0x37	/* 61, gpio1_29, INPUT | PULLUP | MODE7 */
+					BONE_P8_26 (PIN_INPUT | MUX_MODE7) /* gpio1_29 (61) */
 				>;
 			};
 		};
@@ -220,6 +224,7 @@
 				compatible = "gpio-keys";
 				pinctrl-names = "default";
 				pinctrl-0 = <&button_pins>;
+				status = "okay";
 				#address-cells = <1>;
 				#size-cells = <0>;
 
@@ -227,20 +232,21 @@
 					label = "right";
 					debounce_interval = <20>;
 					linux,code = <0x111>; /* BTN_RIGHT */
-					/*gpios = <&gpio2 29 0x5>; /* gpio1_29 */
-					gpios = <&gpio1 29 0x5>; /* gpio1_29 */
+					gpios = <&gpio2 29 0x5>; /* gpio1_29 */
+					/*gpios = <&gpio1 29 0x5>; /* gpio1_29 */
 				};
 
 				sw2 {
 					label = "left";
 					debounce_interval = <20>;
 					linux,code = <0x110>; /* BTN_LEFT */
-					/*gpios = <&gpio2 17 0x5>; /* gpio1_17 */
-					gpios = <&gpio1 17 0x5>; /* gpio1_17 */
+					gpios = <&gpio2 17 0x5>; /* gpio1_17 */
+					/*gpios = <&gpio1 17 0x5>; /* gpio1_17 */
 				};
 			};
 		};
 	};
+	
 	fragment@4 {
 		target = <&i2c2>;
 		__overlay__ {
@@ -278,6 +284,7 @@
 			};
 		};
 	};
+	
 	fragment@5 {
 		target = <&mcasp0>;
 		__overlay__ {
@@ -315,6 +322,13 @@
 					"LINE1L",               "Line In",
 					"LINE1R",               "Line In";
 			};
+		};
+	};
+		
+	fragment@7 {
+		target = <&lcdc>;
+		__overlay__ {
+			status = "okay";
 		};
 	};
 };
