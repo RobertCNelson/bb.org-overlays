@@ -133,7 +133,7 @@
 	};
 
 	fragment@3 {
-		target = <&ocp>;
+		target-path="/";
 
 		__overlay__ {
 
@@ -153,19 +153,6 @@
 				status = "okay";
  			};
 
-			tscadc {
-				compatible = "ti,ti-tscadc";
-				reg = <0x44e0d000 0x1000>;
-
-				interrupt-parent = <&intc>;
-				interrupts = <16>;
-				ti,hwmods = "adc_tsc";
-				status = "okay";
-
-				adc {
-					ti,adc-channels = <0 1 2 3 4 5 6 7>;
-				};
-			};
 
 			test_helper: helper {
 				compatible = "bone-iio-helper";
@@ -228,20 +215,22 @@
 				#address-cells = <1>;
 				#size-cells = <0>;
 
-				sw1 {
+				sw1@1 {
 					label = "right";
 					debounce_interval = <20>;
 					linux,code = <0x111>; /* BTN_RIGHT */
-					gpios = <&gpio2 29 0x5>; /* gpio1_29 */
-					/*gpios = <&gpio1 29 0x5>; /* gpio1_29 */
+					/*gpios = <&gpio2 29 0x5>; /* gpio1_29 */
+					gpios = <&gpio1 29 0x5>; /* gpio1_29 */
+					gpio-key,wakeup;
 				};
 
-				sw2 {
+				sw2@2 {
 					label = "left";
 					debounce_interval = <20>;
 					linux,code = <0x110>; /* BTN_LEFT */
-					gpios = <&gpio2 17 0x5>; /* gpio1_17 */
-					/*gpios = <&gpio1 17 0x5>; /* gpio1_17 */
+					/*gpios = <&gpio2 17 0x5>; /* gpio1_17 */
+					gpios = <&gpio1 17 0x5>; /* gpio1_17 */
+					gpio-key,wakeup;
 				};
 			};
 		};
@@ -252,6 +241,8 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
+			clock-frequency = <100000>;
+			status = "okay";
 
 			tlv320aic3x: tlv320aic3x@1b {
 				compatible = "ti,tlv320aic3x";
@@ -329,6 +320,23 @@
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
+		};
+	};
+	
+	fragment@8 {
+		target = <&tscadc>;
+		__overlay__ {
+			tsc {
+				status = "okay";
+
+				interrupt-parent = <&intc>;
+				interrupts = <16>;
+				ti,hwmods = "adc_tsc";
+
+				adc {
+					ti,adc-channels = <0 1 2 3 4 5 6 7>;
+				};
+			};
 		};
 	};
 };
