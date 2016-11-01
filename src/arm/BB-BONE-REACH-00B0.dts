@@ -26,7 +26,7 @@
         "P9.15", /* STEP_A	*/
         "P9.17", /* DIR_A	*/
         "P9.26", /* DIR_B	*/
-        "P9.21", /* FAULT_REACH	*/
+        "P9.21"; /* FAULT_REACH	*/
 
     fragment@0 {
         target = <&am33xx_pinmux>;
