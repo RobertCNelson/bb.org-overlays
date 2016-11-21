@@ -155,8 +155,8 @@
 				interrupts = <15 0>;
 				reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
 
-				touchscreen-size-x = <480>;
-				touchscreen-size-y = <272>;
+				touchscreen-size-x = <272>;
+				touchscreen-size-y = <480>;
 				touchscreen-swapped-x-y;
 			};
 		};
