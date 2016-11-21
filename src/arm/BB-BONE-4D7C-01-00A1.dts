@@ -134,7 +134,7 @@
 					100
 				>;
 				default-brightness-level = <100>;
-			};	
+			};
 
 			panel {
 				status = "okay";
@@ -173,7 +173,7 @@
 					};
 				};
 			};
-						
+
 			fb {
 				compatible = "ti,am33xx-tilcdc";
 				reg = <0x4830e000 0x1000>;
@@ -183,7 +183,7 @@
 			};
 		};
 	};
-	
+
 	fragment@4 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
@@ -201,7 +201,7 @@
 			};
 		};
 	};
-	
+
 	fragment@5 {
 		target = <&i2c1>;	// i2c1 is numbered correctly
 		__overlay__ {
@@ -223,9 +223,9 @@
 				interrupt-parent = <&gpio0>;
 				interrupts = <14 2>;
 
-				touchscreen-size-x = <800>;
-				touchscreen-size-y = <480>;
-		        touchscreen-swapped-x-y;
+				touchscreen-size-y = <800>;
+				touchscreen-size-x = <480>;
+				touchscreen-swapped-x-y;
 			};
 		};
 	};
