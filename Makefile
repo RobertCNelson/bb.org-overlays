@@ -1,5 +1,6 @@
 
 DTC ?= /usr/bin/dtc-v4.1.x
+#DTC ?= /usr/bin/dtc-v1.4.2-git
 CPP ?= cpp
 DESTDIR ?=
 
