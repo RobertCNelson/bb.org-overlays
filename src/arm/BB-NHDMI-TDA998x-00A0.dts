@@ -1,9 +1,9 @@
 /*
-* Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License version 2 as
-* published by the Free Software Foundation.
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
 */
 /dts-v1/;
 /plugin/;
@@ -13,7 +13,7 @@
 #include <dt-bindings/display/tda998x.h>
 
 / {
-	compatible = "ti,beaglebone-black";
+	compatible = "ti,beaglebone-black-wireless", "ti,beaglebone-black";
 
 	/* identification */
 	part-number = "BB-NHDMI-TDA998x";
