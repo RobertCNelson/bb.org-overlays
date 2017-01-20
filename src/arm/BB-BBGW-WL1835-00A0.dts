@@ -170,7 +170,7 @@
 				compatible = "ti,wl1835";
 				reg = <2>;
 				interrupt-parent = <&gpio0>;
-				interrupts = <29 IRQ_TYPE_EDGE_RISING>;
+				interrupts = <27 IRQ_TYPE_EDGE_RISING>;
 			};
 		};
 	};
