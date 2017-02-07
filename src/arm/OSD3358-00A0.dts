@@ -1,0 +1,26 @@
+/*
+ * Copyright (C) 2015 SoftPLC Corporation, Dick Hollenbeck <dick@softplc.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone-black-wireless";
+
+	// identification
+	part-number = "OSD3358";
+	version = "00A0";
+
+	fragment@1 {
+		target = <&cpu0_opp_table>;
+		__overlay__ {
+			opp50@300000000 {
+				status = "disabled";
+			};
+		};
+	};
+};
