@@ -5,27 +5,8 @@ Install or Update bb-cape-overlays debian package (pre installed on: Debian Jess
 
     sudo apt update ; sudo apt install bb-cape-overlays
 
-
-Developers:
+Support Kernels:
 ------------
-
-Step 1: Clone this repo:
-
-    git clone https://github.com/beagleboard/bb.org-overlays
-    cd ./bb.org-overlays
-
-Step 2: Verify you have the latest (patched) dtc version: (this is only for v4.4.x+ for v3.8.x dtbo's use the older version)
-
-    dtc --version
-    Version: DTC 1.4.1-gXYZXYZXYZ
-
-Upgrade dtc: (pre installed on: Debian Jessie & Ubuntu Xenial images)
-
-    ./dtc-overlay.sh
-
-Step 3: Install *.dtbo:
-
-    ./install.sh
 
 Kernel with CONFIG_BONE_CAPEMGR support:
 
@@ -68,6 +49,27 @@ v4.9.x mainline:
 v4.9.x mainline + Real Time:
 
     sudo ./update_kernel.sh --lts-4_9 --bone-rt-channel
+
+Developers:
+------------
+
+Step 1: Clone this repo:
+
+    git clone https://github.com/beagleboard/bb.org-overlays
+    cd ./bb.org-overlays
+
+Step 2: Verify you have the latest (patched) dtc version: (this is only for v4.4.x+ for v3.8.x dtbo's use the older version)
+
+    dtc --version
+    Version: DTC 1.4.1-gXYZXYZXYZ
+
+Upgrade dtc: (pre installed on: Debian Jessie & Ubuntu Xenial images)
+
+    ./dtc-overlay.sh
+
+Step 3: Install *.dtbo:
+
+    ./install.sh
 
 capemgr: enable/disable capes on kernel cmdline:
 ------------
