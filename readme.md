@@ -1,4 +1,12 @@
-Requirements:
+Users:
+------------
+
+Install or Update bb-cape-overlays debian package (pre installed on: Debian Jessie & Ubuntu Xenial images)
+
+    sudo apt update ; sudo apt install bb-cape-overlays
+
+
+Developers:
 ------------
 
 Step 1: Clone this repo:
@@ -6,12 +14,12 @@ Step 1: Clone this repo:
     git clone https://github.com/beagleboard/bb.org-overlays
     cd ./bb.org-overlays
 
-Step 2: Verify you have the latest (patched) dtc version: (this is only for v4.1.x+ for v3.8.x dtbo's use the older version)
+Step 2: Verify you have the latest (patched) dtc version: (this is only for v4.4.x+ for v3.8.x dtbo's use the older version)
 
     dtc --version
     Version: DTC 1.4.1-gXYZXYZXYZ
 
-Upgrade dtc:
+Upgrade dtc: (pre installed on: Debian Jessie & Ubuntu Xenial images)
 
     ./dtc-overlay.sh
 
@@ -29,21 +37,13 @@ Pre-built kernels: (there are multiple options avaiable)
     cd /opt/scripts/tools
     git pull
 
-v4.1.x-ti:
+v4.4.x-ti:
 
-    sudo ./update_kernel.sh --lts-4_1 --ti-channel
+    sudo ./update_kernel.sh --lts-4_4 --ti-channel
 
-v4.1.x-ti + Real Time:
+v4.4.x-ti + Real Time:
 
-    sudo ./update_kernel.sh --lts-4_1 --ti-rt-channel
-
-v4.1.x mainline:
-
-    sudo ./update_kernel.sh --lts-4_1 --bone-channel
-
-v4.1.x mainline + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_1 --bone-rt-channel
+    sudo ./update_kernel.sh --lts-4_4 --ti-rt-channel
 
 v4.4.x mainline:
 
@@ -53,9 +53,21 @@ v4.4.x mainline + Real Time:
 
     sudo ./update_kernel.sh --lts-4_4 --bone-rt-channel
 
-v4.3.x mainline:
+v4.9.x-ti:
 
-    sudo ./update_kernel.sh --testing --bone-channel
+    sudo ./update_kernel.sh --lts-4_9 --ti-channel
+
+v4.9.x-ti + Real Time:
+
+    sudo ./update_kernel.sh --lts-4_9 --ti-rt-channel
+
+v4.9.x mainline:
+
+    sudo ./update_kernel.sh --lts-4_9 --bone-channel
+
+v4.9.x mainline + Real Time:
+
+    sudo ./update_kernel.sh --lts-4_9 --bone-rt-channel
 
 capemgr: enable/disable capes on kernel cmdline:
 ------------
