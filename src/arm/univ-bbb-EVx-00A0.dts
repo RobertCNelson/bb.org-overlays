@@ -15,6 +15,7 @@
  */
 
 #define BBB_ALLOCATE_FOR_EMMC
+//#define BBB_ALLOCATE_FOR_HDMI_AUDIO
 
 /dts-v1/;
 /plugin/;
@@ -104,13 +105,19 @@
 		"P9.22",
 		"P9.23",
 		"P9.24",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		"P9.25", /* Audio */
+#endif
 		"P9.26",
 		"P9.27",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		"P9.28", /* Audio */
 		"P9.29", /* Audio */
+#endif
 		"P9.30",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		"P9.31", /* Audio */
+#endif
 		/* "P9.32", VADC */
 		/* "P9.33", AIN4 */
 		/* "P9.34", AGND */
@@ -741,6 +748,7 @@
 			P9_27_pruin_pin: pinmux_P9_27_pruin_pin {
 				pinctrl-single,pins = <0x1a4  0x26>; };	/* Mode 6, Pull-Down, RxActive */
 
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			/* P9_28 (ZCZ ball C12) Audio   */
 			P9_28_default_pin: pinmux_P9_28_default_pin {
 				pinctrl-single,pins = <0x19c  0x27>; };	/* Mode 7, Pull-Down, RxActive */
@@ -760,7 +768,9 @@
 				pinctrl-single,pins = <0x19c  0x25>; };	/* Mode 5, Pull-Down, RxActive */
 			P9_28_pruin_pin: pinmux_P9_28_pruin_pin {
 				pinctrl-single,pins = <0x19c  0x26>; };	/* Mode 6, Pull-Down, RxActive */
+#endif
 
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			/* P9_29 (ZCZ ball B13) Audio   */
 			P9_29_default_pin: pinmux_P9_29_default_pin {
 				pinctrl-single,pins = <0x194  0x27>; };	/* Mode 7, Pull-Down, RxActive */
@@ -778,6 +788,7 @@
 				pinctrl-single,pins = <0x194  0x25>; };	/* Mode 5, Pull-Down, RxActive */
 			P9_29_pruin_pin: pinmux_P9_29_pruin_pin {
 				pinctrl-single,pins = <0x194  0x26>; };	/* Mode 6, Pull-Down, RxActive */
+#endif
 
 			/* P9_30 (ZCZ ball D12) */
 			P9_30_default_pin: pinmux_P9_30_default_pin {
@@ -797,6 +808,7 @@
 			P9_30_pruin_pin: pinmux_P9_30_pruin_pin {
 				pinctrl-single,pins = <0x198  0x26>; };	/* Mode 6, Pull-Down, RxActive */
 
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			/* P9_31 (ZCZ ball A13) Audio   */
 			P9_31_default_pin: pinmux_P9_31_default_pin {
 				pinctrl-single,pins = <0x190  0x27>; };	/* Mode 7, Pull-Down, RxActive */
@@ -814,6 +826,7 @@
 				pinctrl-single,pins = <0x190  0x25>; };	/* Mode 5, Pull-Down, RxActive */
 			P9_31_pruin_pin: pinmux_P9_31_pruin_pin {
 				pinctrl-single,pins = <0x190  0x26>; };	/* Mode 6, Pull-Down, RxActive */
+#endif
 
 			/* P9_32 VADC */
 			/* P9_33 (ZCZ ball C8 ) AIN4 */
@@ -1350,7 +1363,7 @@
 				pinctrl-7 = <&P9_24_pru_uart_pin>;
 				pinctrl-8 = <&P9_24_pruin_pin>;
 			};
-			/* audio */
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			P9_25_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -1363,6 +1376,7 @@
 				pinctrl-5 = <&P9_25_pruout_pin>;
 				pinctrl-6 = <&P9_25_pruin_pin>;
 			};
+#endif
 
 			P9_26_pinmux {
 				compatible = "bone-pinmux-helper";
@@ -1391,7 +1405,7 @@
 				pinctrl-5 = <&P9_27_pruout_pin>;
 				pinctrl-6 = <&P9_27_pruin_pin>;
 			};
-			/* audio */
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			P9_28_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -1406,7 +1420,9 @@
 				pinctrl-7 = <&P9_28_pruout_pin>;
 				pinctrl-8 = <&P9_28_pruin_pin>;
 			};
-			/* audio */
+#endif
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			P9_29_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -1420,6 +1436,7 @@
 				pinctrl-6 = <&P9_29_pruout_pin>;
 				pinctrl-7 = <&P9_29_pruin_pin>;
 			};
+#endif
 
 			P9_30_pinmux {
 				compatible = "bone-pinmux-helper";
@@ -1434,7 +1451,8 @@
 				pinctrl-6 = <&P9_30_pruout_pin>;
 				pinctrl-7 = <&P9_30_pruin_pin>;
 			};
-			/* audio */
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 			P9_31_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -1448,6 +1466,7 @@
 				pinctrl-6 = <&P9_31_pruout_pin>;
 				pinctrl-7 = <&P9_31_pruin_pin>;
 			};
+#endif
 
 			P9_41_pinmux {
 				compatible = "bone-pinmux-helper";
@@ -1786,13 +1805,15 @@
 					input;
 					dir-changeable;
 				};
-				/* audio */
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 				P9_25 {
 					gpio-name = "P9_25";
 					gpio = <&gpio3 21 0>;
 					input;
 					dir-changeable;
 				};
+#endif
 
 				P9_26 {
 					gpio-name = "P9_26";
@@ -1807,20 +1828,24 @@
 					input;
 					dir-changeable;
 				};
-				/* audio */
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 				P9_28 {
 					gpio-name = "P9_28";
 					gpio = <&gpio3 17 0>;
 					input;
 					dir-changeable;
 				};
-				/* audio */
+#endif
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 				P9_29 {
 					gpio-name = "P9_29";
 					gpio = <&gpio3 15 0>;
 					input;
 					dir-changeable;
 				};
+#endif
 
 				P9_30 {
 					gpio-name = "P9_30";
@@ -1828,13 +1853,15 @@
 					input;
 					dir-changeable;
 				};
-				/* audio */
+
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 				P9_31 {
 					gpio-name = "P9_31";
 					gpio = <&gpio3 14 0>;
 					input;
 					dir-changeable;
 				};
+#endif
 
 				P9_41 {
 					gpio-name = "P9_41";

@@ -15,6 +15,7 @@
  */
 
 //#define BBB_ALLOCATE_FOR_EMMC
+#define BBB_ALLOCATE_FOR_HDMI_AUDIO
 
 /dts-v1/;
 /plugin/;
@@ -104,13 +105,19 @@
 		"P9.22",
 		"P9.23",
 		"P9.24",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		/* "P9.25", Audio */
+#endif
 		"P9.26",
 		"P9.27",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		/* "P9.28", Audio */
 		/* "P9.29", Audio */
+#endif
 		"P9.30",
+#ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
 		/* "P9.31", Audio */
+#endif
 		/* "P9.32", VADC */
 		/* "P9.33", AIN4 */
 		/* "P9.34", AGND */
