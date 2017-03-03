@@ -8,6 +8,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
@@ -52,9 +55,7 @@
 		"gpio0_5",
 		"gpio0_30",
 		"gpmc",
-		"clkout2",
-		/* the reset pin */
-		"eMMC_RSTn";
+		"clkout2";
 
 	#address-cells = <1>;
 	#size-cells = <1>;
@@ -65,35 +66,39 @@
 
 			gpmc_pins: pinmux_gpmc_pins {
 				pinctrl-single,pins = <
-					0x000 0x30	/* gpmc_ad0.gpmc_ad0 MODE0 | INPUT | PULLUP */
-					0x004 0x30	/* gpmc_ad1.gpmc_ad1 MODE0 | INPUT | PULLUP */
-					0x008 0x30	/* gpmc_ad2.gpmc_ad2 MODE0 | INPUT | PULLUP */
-					0x00C 0x30	/* gpmc_ad3.gpmc_ad3 MODE0 | INPUT | PULLUP */
-					0x010 0x30	/* gpmc_ad4.gpmc_ad4 MODE0 | INPUT | PULLUP */
-					0x014 0x30	/* gpmc_ad5.gpmc_ad5 MODE0 | INPUT | PULLUP */
-					0x018 0x30	/* gpmc_ad6.gpmc_ad6 MODE0 | INPUT | PULLUP */
-					0x01C 0x30	/* gpmc_ad7.gpmc_ad7 MODE0 | INPUT | PULLUP */
-					0x020 0x30	/* gpmc_ad8.gpmc_ad8 MODE0 | INPUT | PULLUP */
-					0x024 0x30	/* gpmc_ad9.gpmc_ad9 MODE0 | INPUT | PULLUP */
-					0x028 0x30	/* gpmc_ad10.gpmc_ad10 MODE0 | INPUT | PULLUP */
-					0x02C 0x30	/* gpmc_ad11.gpmc_ad11 MODE0 | INPUT | PULLUP */
-					0x030 0x30	/* gpmc_ad12.gpmc_ad12 MODE0 | INPUT | PULLUP */
-					0x034 0x30	/* gpmc_ad13.gpmc_ad13 MODE0 | INPUT | PULLUP */
-					0x038 0x30	/* gpmc_ad14.gpmc_ad14 MODE0 | INPUT | PULLUP */
-					0x03C 0x30	/* gpmc_ad15.gpmc_ad15 MODE0 | INPUT | PULLUP */
+					AM33XX_IOPAD(0x800, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad0.gpmc_ad0 */
+					AM33XX_IOPAD(0x804, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad1.gpmc_ad1 */
+					AM33XX_IOPAD(0x808, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad2.gpmc_ad2 */
+					AM33XX_IOPAD(0x80c, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad3.gpmc_ad3 */
+					AM33XX_IOPAD(0x810, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad4.gpmc_ad4 */
+					AM33XX_IOPAD(0x814, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad5.gpmc_ad5 */
+					AM33XX_IOPAD(0x818, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad6.gpmc_ad6 */
+					AM33XX_IOPAD(0x81c, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad7.gpmc_ad7 */
+					AM33XX_IOPAD(0x820, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad8.gpmc_ad8 */
+					AM33XX_IOPAD(0x824, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad9.gpmc_ad9 */
+					AM33XX_IOPAD(0x828, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad10.gpmc_ad10 */
+					AM33XX_IOPAD(0x82c, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad11.gpmc_ad11 */
+					AM33XX_IOPAD(0x830, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad12.gpmc_ad12 */
+					AM33XX_IOPAD(0x834, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad13.gpmc_ad13 */
+					AM33XX_IOPAD(0x838, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad14.gpmc_ad14 */
+					AM33XX_IOPAD(0x83c, PIN_INPUT_PULLUP | MUX_MODE0)	/* gpmc_ad15.gpmc_ad15 */
+
 					0x074 0x30	/* gpmc_wpn.gpmc_wpn MODE0 | INPUT | PULLUP */ /* WAS MODE 7 */
-					0x080 0x08	/* gpmc_cscn1.gpmc_cscn1 MODE0 | OUTPUT */
+
+					AM33XX_IOPAD(0x880, PIN_OUTPUT | MUX_MODE0)		/* gpmc_csn1.gpmc_csn1 */
+
 					0x08C 0x28	/* gpmc_clk.gpmc_clk MODE0 | INPUT */
-					0x090 0x08	/* gpmc_advn_ale.gpmc_advn_ale MODE0 | OUTPUT */
-					0x094 0x08	/* gpmc_oen_ren.gpmc_oen_ren MODE0 | OUTPUT */
-					0x098 0x08	/* gpmc_wen.gpmc_wen MODE0 | OUTPUT */
-					0x09C 0x08	/* gpmc_ben0_cle.gpmc_ben0_cle MODE0 | OUTPUT */
+
+					AM33XX_IOPAD(0x890, PIN_OUTPUT | MUX_MODE0)		/* gpmc_advn_ale.gpmc_advn_ale */
+					AM33XX_IOPAD(0x894, PIN_OUTPUT | MUX_MODE0)		/* gpmc_oen_ren.gpmc_oen_ren */
+					AM33XX_IOPAD(0x898, PIN_OUTPUT | MUX_MODE0)		/* gpmc_wen.gpmc_wen */
+					AM33XX_IOPAD(0x89c, PIN_OUTPUT | MUX_MODE0)		/* gpmc_ben0_cle.gpmc_ben0_cle */
 				>;
 			};
 			cssp_camera_pins: pinmux_cssp_camera_pins {
 				pinctrl-single,pins = <
 					/* clkout2 */
-					0x1B4 0x03	/* xdma_event_intr1.clkout2 MODE3 | OUTPUT clkout2 */
+					AM33XX_IOPAD(0x9b4, PIN_OUTPUT_PULLDOWN | MUX_MODE3)	/* xdma_event_intr1.clkout2 */
 
 					/* dmar */
 					0x164 0x2e	/* ecap0_in_pwm0_out.xdma_event_intr2 MODE6 | INPUT */
@@ -109,7 +114,7 @@
 
 	fragment@1 {
 		target = <&gpmc>;
-		depth = <1>;	/* only create devices on depth 1 */
+		depth = <1>;    /* only create devices on depth 1 */
 
 		/* stupid warnings */
 		#address-cells = <1>;
@@ -117,14 +122,15 @@
 		ranges;
 
 		__overlay__ {
-
+			compatible = "ti,am3352-gpmc";
+			ti,hwmods = "gpmc";
 			status = "okay";
+			//gpmc,num-waitpins = <2>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&gpmc_pins>;
 
 			#address-cells = <2>;
 			#size-cells = <1>;
-
-			pinctrl-names = "default";
-			pinctrl-0 = <&gpmc_pins>;
 
 			/* chip select ranges */
 			ranges = <0 0 0x08000000 0x10000000>,	/* bootloader has this enabled */
