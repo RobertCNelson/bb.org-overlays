@@ -65,6 +65,6 @@ make clean
 make
 sudo make install
 update_initramfs
-echo "cape overlays have been built and added to /lib/firmware & /boot/initrd.img-`uname -r`, please reboot"
 sudo cp -v ./tools/beaglebone-universal-io/config-pin /usr/local/bin/
+echo "cape overlays have been built and added to /lib/firmware & /boot/initrd.img-`uname -r`, please reboot"
 #
