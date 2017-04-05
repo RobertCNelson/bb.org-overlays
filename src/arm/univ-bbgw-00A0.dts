@@ -166,7 +166,7 @@
 		__overlay__ {
 
 			/************************/
-			/* P8 Header			*/
+			/* P8 Header */
 			/************************/
 
 			P8_07_pinmux {
@@ -235,7 +235,6 @@
 				pinctrl-4 = <&P8_19_pwm_pin>;
 			};
 
-			/* hdmi */
 			P8_27_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -247,7 +246,7 @@
 				pinctrl-4 = <&P8_27_pruout_pin>;
 				pinctrl-5 = <&P8_27_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_28_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -259,7 +258,7 @@
 				pinctrl-4 = <&P8_28_pruout_pin>;
 				pinctrl-5 = <&P8_28_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_29_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -271,7 +270,7 @@
 				pinctrl-4 = <&P8_29_pruout_pin>;
 				pinctrl-5 = <&P8_29_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_30_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -283,7 +282,7 @@
 				pinctrl-4 = <&P8_30_pruout_pin>;
 				pinctrl-5 = <&P8_30_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_31_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -294,7 +293,7 @@
 				pinctrl-3 = <&P8_31_gpio_pd_pin>;
 				pinctrl-4 = <&P8_31_uart_pin>;
 			};
-			/* hdmi */
+
 			P8_32_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -304,7 +303,7 @@
 				pinctrl-2 = <&P8_32_gpio_pu_pin>;
 				pinctrl-3 = <&P8_32_gpio_pd_pin>;
 			};
-			/* hdmi */
+
 			P8_33_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -314,7 +313,7 @@
 				pinctrl-2 = <&P8_33_gpio_pu_pin>;
 				pinctrl-3 = <&P8_33_gpio_pd_pin>;
 			};
-			/* hdmi */
+
 			P8_34_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -325,7 +324,7 @@
 				pinctrl-3 = <&P8_34_gpio_pd_pin>;
 				pinctrl-4 = <&P8_34_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_35_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -335,7 +334,7 @@
 				pinctrl-2 = <&P8_35_gpio_pu_pin>;
 				pinctrl-3 = <&P8_35_gpio_pd_pin>;
 			};
-			/* hdmi */
+
 			P8_36_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -346,7 +345,7 @@
 				pinctrl-3 = <&P8_36_gpio_pd_pin>;
 				pinctrl-4 = <&P8_36_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_37_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -358,7 +357,7 @@
 				pinctrl-4 = <&P8_37_uart_pin>;
 				pinctrl-5 = <&P8_37_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_38_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -370,7 +369,7 @@
 				pinctrl-4 = <&P8_38_uart_pin>;
 				pinctrl-5 = <&P8_38_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_39_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -382,7 +381,7 @@
 				pinctrl-4 = <&P8_39_pruout_pin>;
 				pinctrl-5 = <&P8_39_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_40_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -394,7 +393,7 @@
 				pinctrl-4 = <&P8_40_pruout_pin>;
 				pinctrl-5 = <&P8_40_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_41_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -406,7 +405,7 @@
 				pinctrl-4 = <&P8_41_pruout_pin>;
 				pinctrl-5 = <&P8_41_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_42_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -418,7 +417,7 @@
 				pinctrl-4 = <&P8_42_pruout_pin>;
 				pinctrl-5 = <&P8_42_pruin_pin>;
 			};
-			/* hdmi */
+
 			P8_43_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -431,7 +430,7 @@
 				pinctrl-5 = <&P8_43_pruin_pin>;
 				pinctrl-6 = <&P8_43_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_44_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -444,7 +443,7 @@
 				pinctrl-5 = <&P8_44_pruin_pin>;
 				pinctrl-6 = <&P8_44_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_45_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -457,7 +456,7 @@
 				pinctrl-5 = <&P8_45_pruin_pin>;
 				pinctrl-6 = <&P8_45_pwm_pin>;
 			};
-			/* hdmi */
+
 			P8_46_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -473,7 +472,7 @@
 
 
 			/************************/
-			/* P9 Header			*/
+			/* P9 Header */
 			/************************/
 
 			P9_11_pinmux {
@@ -534,7 +533,7 @@
 			P9_17_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "i2c", "pwm";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_17_default_pin>;
 				pinctrl-1 = <&P9_17_gpio_pin>;
 				pinctrl-2 = <&P9_17_gpio_pu_pin>;
@@ -542,12 +541,13 @@
 				pinctrl-4 = <&P9_17_spi_pin>;
 				pinctrl-5 = <&P9_17_i2c_pin>;
 				pinctrl-6 = <&P9_17_pwm_pin>;
+				pinctrl-7 = <&P9_17_pru_uart_pin>;
 			};
 
 			P9_18_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "i2c", "pwm";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_18_default_pin>;
 				pinctrl-1 = <&P9_18_gpio_pin>;
 				pinctrl-2 = <&P9_18_gpio_pu_pin>;
@@ -555,6 +555,7 @@
 				pinctrl-4 = <&P9_18_spi_pin>;
 				pinctrl-5 = <&P9_18_i2c_pin>;
 				pinctrl-6 = <&P9_18_pwm_pin>;
+				pinctrl-7 = <&P9_18_pru_uart_pin>;
 			};
 
 			// I2C Pins
@@ -564,7 +565,7 @@
 			P9_21_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "i2c", "pwm";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_21_default_pin>;
 				pinctrl-1 = <&P9_21_gpio_pin>;
 				pinctrl-2 = <&P9_21_gpio_pu_pin>;
@@ -573,12 +574,13 @@
 				pinctrl-5 = <&P9_21_uart_pin>;
 				pinctrl-6 = <&P9_21_i2c_pin>;
 				pinctrl-7 = <&P9_21_pwm_pin>;
+				pinctrl-8 = <&P9_21_pru_uart_pin>;
 			};
 
 			P9_22_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "i2c", "pwm";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_22_default_pin>;
 				pinctrl-1 = <&P9_22_gpio_pin>;
 				pinctrl-2 = <&P9_22_gpio_pu_pin>;
@@ -587,6 +589,7 @@
 				pinctrl-5 = <&P9_22_uart_pin>;
 				pinctrl-6 = <&P9_22_i2c_pin>;
 				pinctrl-7 = <&P9_22_pwm_pin>;
+				pinctrl-8 = <&P9_22_pru_uart_pin>;
 			};
 
 			P9_23_pinmux {
@@ -603,7 +606,7 @@
 			P9_24_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "uart", "can", "i2c", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "uart", "can", "i2c", "pru_uart", "pruin";
 				pinctrl-0 = <&P9_24_default_pin>;
 				pinctrl-1 = <&P9_24_gpio_pin>;
 				pinctrl-2 = <&P9_24_gpio_pu_pin>;
@@ -611,9 +614,10 @@
 				pinctrl-4 = <&P9_24_uart_pin>;
 				pinctrl-5 = <&P9_24_can_pin>;
 				pinctrl-6 = <&P9_24_i2c_pin>;
-				pinctrl-7 = <&P9_24_pruin_pin>;
+				pinctrl-7 = <&P9_24_pru_uart_pin>;
+				pinctrl-8 = <&P9_24_pruin_pin>;
 			};
-			/* audio */
+
 			P9_25_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
@@ -630,7 +634,7 @@
 			P9_26_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "uart", "can", "i2c", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "uart", "can", "i2c", "pru_uart", "pruin";
 				pinctrl-0 = <&P9_26_default_pin>;
 				pinctrl-1 = <&P9_26_gpio_pin>;
 				pinctrl-2 = <&P9_26_gpio_pu_pin>;
@@ -638,7 +642,8 @@
 				pinctrl-4 = <&P9_26_uart_pin>;
 				pinctrl-5 = <&P9_26_can_pin>;
 				pinctrl-6 = <&P9_26_i2c_pin>;
-				pinctrl-7 = <&P9_26_pruin_pin>;
+				pinctrl-7 = <&P9_26_pru_uart_pin>;
+				pinctrl-8 = <&P9_26_pruin_pin>;
 			};
 
 			P9_27_pinmux {
@@ -682,7 +687,7 @@
 			P9_42_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm", "uart", "spics", "spiclk";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm", "uart", "spics", "pru_ecap", "spiclk";
 				pinctrl-0 = <&P9_42_default_pin>;
 				pinctrl-1 = <&P9_42_gpio_pin>;
 				pinctrl-2 = <&P9_42_gpio_pu_pin>;
@@ -690,7 +695,8 @@
 				pinctrl-4 = <&P9_42_pwm_pin>;
 				pinctrl-5 = <&P9_42_uart_pin>;
 				pinctrl-6 = <&P9_42_spics_pin>;
-				pinctrl-7 = <&P9_42_spiclk_pin>;
+				pinctrl-7 = <&P9_42_pru_ecap_pin>;
+				pinctrl-8 = <&P9_42_spiclk_pin>;
 			};
 
 			P9_92_pinmux {
@@ -759,140 +765,139 @@
 					dir-changeable;
 				};
 
-				/* hdmi */
 				P8_27 {
 					gpio-name = "P8_27";
 					gpio = <&gpio2 22 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_28 {
 					gpio-name = "P8_28";
 					gpio = <&gpio2 24 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_29 {
 					gpio-name = "P8_29";
 					gpio = <&gpio2 23 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_30 {
 					gpio-name = "P8_30";
 					gpio = <&gpio2 25 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_31 {
 					gpio-name = "P8_31";
 					gpio = <&gpio0 10 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_32 {
 					gpio-name = "P8_32";
 					gpio = <&gpio0 11 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_33 {
 					gpio-name = "P8_33";
 					gpio = <&gpio0 9 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_34 {
 					gpio-name = "P8_34";
 					gpio = <&gpio2 17 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_35 {
 					gpio-name = "P8_35";
 					gpio = <&gpio0 8 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_36 {
 					gpio-name = "P8_36";
 					gpio = <&gpio2 16 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_37 {
 					gpio-name = "P8_37";
 					gpio = <&gpio2 14 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_38 {
 					gpio-name = "P8_38";
 					gpio = <&gpio2 15 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_39 {
 					gpio-name = "P8_39";
 					gpio = <&gpio2 12 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_40 {
 					gpio-name = "P8_40";
 					gpio = <&gpio2 13 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_41 {
 					gpio-name = "P8_41";
 					gpio = <&gpio2 10 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_42 {
 					gpio-name = "P8_42";
 					gpio = <&gpio2 11 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_43 {
 					gpio-name = "P8_43";
 					gpio = <&gpio2 8 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_44 {
 					gpio-name = "P8_44";
 					gpio = <&gpio2 9 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_45 {
 					gpio-name = "P8_45";
 					gpio = <&gpio2 6 0>;
 					input;
 					dir-changeable;
 				};
-				/* hdmi */
+
 				P8_46 {
 					gpio-name = "P8_46";
 					gpio = <&gpio2 7 0>;
@@ -980,7 +985,7 @@
 					input;
 					dir-changeable;
 				};
-				/* audio */
+
 				P9_25 {
 					gpio-name = "P9_25";
 					gpio = <&gpio3 21 0>;
@@ -1093,9 +1098,9 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <>;
 		};
- };
+	};
 
- fragment@22 {
+	fragment@22 {
 		target = <&ecap0>;
 		__overlay__ {
 			status = "okay";
@@ -1268,6 +1273,61 @@
 		target = <&pruss>;
 		__overlay__ {
 			status = "okay";
+		};
+	};
+
+	/************************/
+	/* eQEP */
+	/************************/
+
+	fragment@50 {
+		target = <&eqep0>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <>;
+
+			count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
+			swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+			invert_qa = <1>; /* Should we invert the channel A input? */
+			invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+			invert_qi = <0>; /* Should we invert the index input? */
+			invert_qs = <0>; /* Should we invert the strobe input? */
+
+		status = "okay";
+		};
+	};
+
+	fragment@51 {
+		target = <&eqep1>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <>;
+
+			count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
+			swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+			invert_qa = <1>; /* Should we invert the channel A input? */
+			invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+			invert_qi = <0>; /* Should we invert the index input? */
+			invert_qs = <0>; /* Should we invert the strobe input? */
+
+		status = "okay";
+		};
+	};
+
+	fragment@52 {
+		target = <&eqep2>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <>;
+
+			count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
+			swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+			invert_qa = <1>; /* Should we invert the channel A input? */
+			invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+			invert_qi = <0>; /* Should we invert the index input? */
+			invert_qs = <0>; /* Should we invert the strobe input? */
+
+		status = "okay";
 		};
 	};
 };
