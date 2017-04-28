@@ -52,7 +52,7 @@
 		"P8.29",	/* lcd: lcd_hsync */
 		"P8.28",	/* lcd: lcd_pclk */
 		"P8.30",	/* lcd: lcd_ac_bias_en */
-		"P9.25",	/* lcd: enable */
+		"P8.18",	/* lcd: enable */
 
 		"P9.14",	/* pwm: ehrpwm1a */
 
@@ -109,7 +109,7 @@
 					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd_ac_bias_en.lcd_ac_bias_en */
 
 					/*LCD enable */
-					BONE_P9_25 (PIN_OUTPUT_PULLUP | MUX_MODE7) /* mcasp0_ahclkx.gpio3_21 */
+					BONE_P8_18 (PIN_OUTPUT_PULLUP | MUX_MODE7) /* gpmc_clk_mux0.gpio2_1 */
 				>;
 			};
 
