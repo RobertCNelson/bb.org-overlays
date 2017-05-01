@@ -9,18 +9,23 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone-black-wireless";
+	compatible = "ti,beaglebone-black";
 
 	// identification
 	part-number = "OSD3358";
 	version = "00A0";
 
-	fragment@1 {
-		target = <&cpu0_opp_table>;
+	fragment@0 {
+		target-path="/";
 		__overlay__ {
-			/* Just temporarily in the v4.4.x-ti tree */
-			opp50@300000000 {
-				status = "disabled";
+
+			cpu0_opp_table: opp_table0 {
+				compatible = "operating-points-v2";
+
+				/* Just temporarily in the v4.4.x-ti tree */
+				opp50@300000000 {
+					status = "disabled";
+				};
 			};
 		};
 	};
