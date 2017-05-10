@@ -14,7 +14,6 @@
  * GNU General Public License for more details.
  * 
  */
-
 /dts-v1/;
 /plugin/;
 
@@ -286,32 +285,35 @@
 			P8_31_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd","uart";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "uart", "qep";
 				pinctrl-0 = <&P8_31_default_pin>;
 				pinctrl-1 = <&P8_31_gpio_pin>;
 				pinctrl-2 = <&P8_31_gpio_pu_pin>;
 				pinctrl-3 = <&P8_31_gpio_pd_pin>;
 				pinctrl-4 = <&P8_31_uart_pin>;
+				pinctrl-5 = <&P8_31_qep_pin>;
 			};
 
 			P8_32_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep";
 				pinctrl-0 = <&P8_32_default_pin>;
 				pinctrl-1 = <&P8_32_gpio_pin>;
 				pinctrl-2 = <&P8_32_gpio_pu_pin>;
 				pinctrl-3 = <&P8_32_gpio_pd_pin>;
+				pinctrl-4 = <&P8_32_qep_pin>;
 			};
 
 			P8_33_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep";
 				pinctrl-0 = <&P8_33_default_pin>;
 				pinctrl-1 = <&P8_33_gpio_pin>;
 				pinctrl-2 = <&P8_33_gpio_pu_pin>;
 				pinctrl-3 = <&P8_33_gpio_pd_pin>;
+				pinctrl-4 = <&P8_33_qep_pin>;
 			};
 
 			P8_34_pinmux {
@@ -328,11 +330,12 @@
 			P8_35_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd","qep";
 				pinctrl-0 = <&P8_35_default_pin>;
 				pinctrl-1 = <&P8_35_gpio_pin>;
 				pinctrl-2 = <&P8_35_gpio_pu_pin>;
 				pinctrl-3 = <&P8_35_gpio_pd_pin>;
+				pinctrl-4 = <&P8_35_qep_pin>;
 			};
 
 			P8_36_pinmux {
@@ -373,49 +376,53 @@
 			P8_39_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin", "qep";
 				pinctrl-0 = <&P8_39_default_pin>;
 				pinctrl-1 = <&P8_39_gpio_pin>;
 				pinctrl-2 = <&P8_39_gpio_pu_pin>;
 				pinctrl-3 = <&P8_39_gpio_pd_pin>;
 				pinctrl-4 = <&P8_39_pruout_pin>;
 				pinctrl-5 = <&P8_39_pruin_pin>;
+				pinctrl-6 = <&P8_39_qep_pin>;
 			};
 
 			P8_40_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin", "qep";
 				pinctrl-0 = <&P8_40_default_pin>;
 				pinctrl-1 = <&P8_40_gpio_pin>;
 				pinctrl-2 = <&P8_40_gpio_pu_pin>;
 				pinctrl-3 = <&P8_40_gpio_pd_pin>;
 				pinctrl-4 = <&P8_40_pruout_pin>;
 				pinctrl-5 = <&P8_40_pruin_pin>;
+				pinctrl-6 = <&P8_40_qep_pin>;
 			};
 
 			P8_41_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin", "qep";
 				pinctrl-0 = <&P8_41_default_pin>;
 				pinctrl-1 = <&P8_41_gpio_pin>;
 				pinctrl-2 = <&P8_41_gpio_pu_pin>;
 				pinctrl-3 = <&P8_41_gpio_pd_pin>;
 				pinctrl-4 = <&P8_41_pruout_pin>;
 				pinctrl-5 = <&P8_41_pruin_pin>;
+				pinctrl-6 = <&P8_41_qep_pin>;
 			};
 
 			P8_42_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pruout", "pruin", "qep";
 				pinctrl-0 = <&P8_42_default_pin>;
 				pinctrl-1 = <&P8_42_gpio_pin>;
 				pinctrl-2 = <&P8_42_gpio_pu_pin>;
 				pinctrl-3 = <&P8_42_gpio_pd_pin>;
 				pinctrl-4 = <&P8_42_pruout_pin>;
 				pinctrl-5 = <&P8_42_pruin_pin>;
+				pinctrl-6 = <&P8_42_qep_pin>;
 			};
 
 			P8_43_pinmux {
@@ -469,7 +476,6 @@
 				pinctrl-5 = <&P8_46_pruin_pin>;
 				pinctrl-6 = <&P8_46_pwm_pin>;
 			};
-
 
 			/************************/
 			/* P9 Header */
@@ -1037,7 +1043,6 @@
 			};
 		};
 	};
-
 
 	/************************/
 	/* UARTs */
