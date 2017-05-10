@@ -148,7 +148,9 @@
 		"spi0",
 		"dcan0",
 		"dcan1",
-
+		"eqep0",
+		"eqep1",
+		"eqep2",
 		"pru0",
 		"pru1",
 		"pruss";
@@ -313,6 +315,8 @@
 				pinctrl-single,pins = <0x03c  0x27>; };	/* Mode 7, Pull-Down, RxActive */
 			P8_15_pruin_pin: pinmux_P8_15_pruin_pin {
 				pinctrl-single,pins = <0x03c  0x26>; };	/* Mode 6, Pull-Down, RxActive */
+			P8_15_pru_ecap_pin: pinmux_P8_15_pru_ecap_pin {
+				pinctrl-single,pins = <0x03c  0x25>; };	/* Mode 5, Pull-Down, RxActive */
 			P8_15_qep_pin: pinmux_P8_15_qep_pin {
 				pinctrl-single,pins = <0x03c  0x24>; };	/* Mode 4, Pull-Down, RxActive */
 
