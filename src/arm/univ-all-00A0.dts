@@ -1121,7 +1121,7 @@
 		__overlay__ {
 
 			/************************/
-			/* P8 Header			*/
+			/* P8 Header */
 			/************************/
 
 			/* emmc */
@@ -1622,7 +1622,7 @@
 
 
 			/************************/
-			/* P9 Header			*/
+			/* P9 Header */
 			/************************/
 
 			P9_11_pinmux {
@@ -2469,9 +2469,9 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <>;
 		};
- };
+	};
 
- fragment@22 {
+	fragment@22 {
 		target = <&ecap0>;
 		__overlay__ {
 			status = "okay";
