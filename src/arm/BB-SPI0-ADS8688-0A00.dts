@@ -60,7 +60,7 @@
 				compatible = "ti,ads8688";
 				/* The ADS8688 device uses SPI serial communication 
 				 * in mode 1 (CPOL = 0, CPHA = 1) with clock speeds
-                                 * up to 17 MHz.
+				 * up to 17 MHz.
 				 */
 				reg = <0>;
 				/* vref-supply = <&vdd_supply>; */ /* not working yet */
