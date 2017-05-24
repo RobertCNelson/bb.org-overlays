@@ -65,9 +65,8 @@
 				reg = <0>;
 				/* vref-supply = <&vdd_supply>; */ /* not working yet */
 				spi-max-frequency = <1000000>;
-
+				spi-cpha;       /* If present then it is set to 1. If it is absent then it is 0. */
 				/* spi-cpol; */ /* If present then it is set to 1. If it is absent then it is 0. */
-				spi-cpha; /* If present then it is set to 1. If it is absent then it is 0. */
 			};
 		};
 	};
