@@ -58,9 +58,16 @@
 			/* add any spi devices connected here */
 			adc@0 {
 				compatible = "ti,ads8688";
+				/* The ADS8688 device uses SPI serial communication 
+				 * in mode 1 (CPOL = 0, CPHA = 1) with clock speeds
+                                 * up to 17 MHz.
+				 */
 				reg = <0>;
 				/* vref-supply = <&vdd_supply>; */ /* not working yet */
 				spi-max-frequency = <1000000>;
+
+				/* spi-cpol; */ /* If present then it is set to 1. If it is absent then it is 0. */
+				spi-cpha; /* If present then it is set to 1. If it is absent then it is 0. */
 			};
 		};
 	};
