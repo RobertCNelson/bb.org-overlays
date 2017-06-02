@@ -155,6 +155,7 @@
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
+			blue-and-red-wiring = "crossed";
 		};
 	};
 
