@@ -1275,9 +1275,17 @@
 	/************************/
 
 	fragment@40 {
-		target = <&pruss>;
+		target-path="/";
 		__overlay__ {
-			status = "okay";
+
+			ocp {
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				pruss: pruss@4a300000 {
+					status = "okay";
+				};
+			};
 		};
 	};
 
