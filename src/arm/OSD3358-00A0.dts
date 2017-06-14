@@ -22,6 +22,10 @@
 			opp50@300000000 {
 				status = "disabled";
 			};
+			/* Just temporarily in the v4.9.x-ti tree */
+			oppnitro@1000000000 {
+				opp-supported-hw = <0x06 0x0100>;
+			};
 		};
 	};
 };
