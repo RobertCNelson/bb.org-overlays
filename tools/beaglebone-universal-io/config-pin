@@ -9,6 +9,7 @@ TI_AM335x_BeagleBone_Blue)
 	#overlays built-in, no slots file...
 	OCPDIR=/sys/devices/platform/ocp/ocp*
 	SLOTS=/sys/devices/platform/bone_capemgr/slots
+	unset SLOTS_LOCATION
 	;;
 *)
 	#4.1.x where lots of things changed...
@@ -16,9 +17,11 @@ TI_AM335x_BeagleBone_Blue)
 	if [ -d /sys/devices/platform/bone_capemgr/ ] ; then
 		OCPDIR=/sys/devices/platform/ocp/ocp*
 		SLOTS=/sys/devices/platform/bone_capemgr/slots
+		unset SLOTS_LOCATION
 	else
 		OCPDIR=/sys/devices/ocp.*
 		SLOTS=/sys/devices/bone_capemgr.*/slots
+		SLOTS_LOCATION="old38kernel"
 	fi
 	;;
 esac
@@ -819,7 +822,7 @@ query_pin () {
 
 	check_pin $PIN
 
-	if [ -d /sys/devices/platform/bone_capemgr/ ] ; then
+	if [ ! "x${SLOTS_LOCATION}" = "xold38kernel" ] ; then
 		# Expand filename using shell globbing
 		for FILE in $OCPDIR${PIN}_pinmux/state ; do
 			if [ -r $FILE ] ; then
@@ -1041,7 +1044,7 @@ config_pin () {
 			fi
 		fi
 
-		if [ -d /sys/devices/platform/bone_capemgr/ ] ; then
+		if [ ! "x${SLOTS_LOCATION}" = "xold38kernel" ] ; then
 			# Expand filename using shell globbing
 			for FILE in $OCPDIR${PIN}_pinmux/state ; do
 				echo_dbg "echo $MODE > $FILE"
