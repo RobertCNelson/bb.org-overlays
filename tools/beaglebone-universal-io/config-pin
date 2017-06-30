@@ -1,16 +1,28 @@
 #!/bin/dash
 
 # Some important directories for use later
-OCPDIR=/sys/devices/ocp.*
 GPIODIR=/sys/class/gpio
-SLOTS=/sys/devices/bone_capemgr.*/slots
 
-#4.1.x where lots of things changed...
-#use the new location of bone_capemgr for detection..
-if [ -d /sys/devices/platform/bone_capemgr/ ] ; then
+machine=$(cat /proc/device-tree/model | sed "s/ /_/g" | tr -d '\000')
+case "${machine}" in
+TI_AM335x_BeagleBone_Blue)
+	#overlays built-in, no slots file...
 	OCPDIR=/sys/devices/platform/ocp/ocp*
 	SLOTS=/sys/devices/platform/bone_capemgr/slots
-fi
+	;;
+*)
+	#4.1.x where lots of things changed...
+	#use the new location of bone_capemgr for detection..
+	if [ -d /sys/devices/platform/bone_capemgr/ ] ; then
+		OCPDIR=/sys/devices/platform/ocp/ocp*
+		SLOTS=/sys/devices/platform/bone_capemgr/slots
+	else
+		OCPDIR=/sys/devices/ocp.*
+		SLOTS=/sys/devices/bone_capemgr.*/slots
+	fi
+	;;
+esac
+
 
 # Create mappings between BeagleBone header pins and kernel gpio
 # numbers.  These could be bash arrays or coded in python, but simple
@@ -869,21 +881,23 @@ show_pin () {
 # Load a installed cape
 # $1 cape to load
 load_cape () {
-	# Make sure required device tree overlay(s) are loaded
-	# cape-bone-iio
-	for DTBO in $1 ; do
+	if [ -d $SLOTS ] ; then
+		# Make sure required device tree overlay(s) are loaded
+		# cape-bone-iio
+		for DTBO in $1 ; do
 
-		if grep -q $DTBO $SLOTS ; then
-			echo_std $DTBO already loaded
-		else
-			# Expand filename using shell globbing
-			for FILE in $SLOTS ; do
-				echo_std Loading $DTBO overlay
-				sudo -A bash -c "echo $DTBO > $SLOTS" || (echo_err "Error loading device tree overlay file: $DTBO" && exit 1)
-				sleep 1
-			done
-		fi
-	done;
+			if grep -q $DTBO $SLOTS ; then
+				echo_std $DTBO already loaded
+			else
+				# Expand filename using shell globbing
+				for FILE in $SLOTS ; do
+					echo_std Loading $DTBO overlay
+					sudo -A bash -c "echo $DTBO > $SLOTS" || (echo_err "Error loading device tree overlay file: $DTBO" && exit 1)
+					sleep 1
+				done
+			fi
+		done;
+	fi
 }
 
 # Check whether support for a specific pin is loaded or not
@@ -900,18 +914,20 @@ check_pin () {
 		# use only first overlay
 		CAPE=`echo "$CAPE" | cut -d' ' -f1`
 
-		if [ $AUTOLOAD -eq 0 ] ; then
-            if grep -q $CAPE $SLOTS ; then
-                echo_err "$CAPE already loaded"
-				echo_err "Please verify your device tree file"
+		if [ -d $SLOTS ] ; then
+			if [ $AUTOLOAD -eq 0 ] ; then
+				if grep -q $CAPE $SLOTS ; then
+					echo_err "$CAPE already loaded"
+					echo_err "Please verify your device tree file"
+				else
+					echo_err "$CAPE overlay not found"
+					echo_err "run \"$(basename $0) overlay $CAPE\" to load the cape"
+				fi
+				exit 1
 			else
-                echo_err "$CAPE overlay not found"
-				echo_err "run \"$(basename $0) overlay $CAPE\" to load the cape"
+				echo_std $1 overlay not found
+				load_cape $CAPE
 			fi
-			exit 1
-		else
-			echo_std $1 overlay not found
-			load_cape $CAPE
 		fi
 	fi
 }
