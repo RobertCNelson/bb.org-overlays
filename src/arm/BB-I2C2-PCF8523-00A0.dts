@@ -33,7 +33,7 @@
 
 			aliases {
 				rtc0 = "/ocp/i2c@4819c000/pcf8523@68";
-				rtc1 = "/ocp/rtc@44e3e00";
+				rtc1 = "/ocp/rtc@44e3e000";
 			};
 		};
 	};
