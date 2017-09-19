@@ -54,8 +54,6 @@
 			status = "okay";
 			ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
-			/* shut up DTC warnings */
-
 			mcp3x0x@0 {
 				spi-max-frequency = <1000000>;
 				reg = <0>;

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Copyright (c) 2015-2016 Robert Nelson <robertcnelson@gmail.com>
+# Copyright (c) 2015-2017 Robert Nelson <robertcnelson@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -65,5 +65,6 @@ make clean
 make
 sudo make install
 update_initramfs
+sudo cp -v ./tools/beaglebone-universal-io/config-pin /usr/local/bin/
 echo "cape overlays have been built and added to /lib/firmware & /boot/initrd.img-`uname -r`, please reboot"
 #

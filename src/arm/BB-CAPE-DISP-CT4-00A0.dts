@@ -50,6 +50,7 @@
 		"P9.20",	/* i2c2_scl */
 
 		"P9.29",	/* ft5336: gpio3_15 */
+		"P9.31",	/* ft5336: gpio3_14 */
 
 		"lcd",
 		"ecap2",
@@ -154,8 +155,8 @@
 				interrupts = <15 0>;
 				reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
 
-				touchscreen-size-x = <480>;
-				touchscreen-size-y = <272>;
+				touchscreen-size-x = <272>;
+				touchscreen-size-y = <480>;
 				touchscreen-swapped-x-y;
 			};
 		};
