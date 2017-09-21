@@ -40,6 +40,15 @@ disable_capemgr_load=$(grep -c bone_capemgr.uboot_capemgr_enabled=1 /proc/cmdlin
 # GPIO: kernel GPIO pin number
 # PRU: PRU pin number
 
+#PocketBeagle
+P1_02_PRU=""
+P1_02_GPIO="38"
+P1_02_PIN="gpio"
+P1_02_PINMUX="default pruin pruout gpio"
+P1_02_INFO=""
+P1_02_CAPE=""
+###
+
 P8_01_PIN="gnd"
 P8_01_INFO="GND"
 P8_01_CAPE=""
@@ -711,19 +720,19 @@ fixup_pin () {
 		exit 1
 		;;
 	# Missing separator, single digit pin number
-	[89][1-9])  
+	[1-9][1-9])
 		PIN=P${X%?}_0${X#?}
 		;;
 	# Missing separator, two digit pin number
-	[89][0-49][0-9])
+	[1-9][0-49][0-9])
 		PIN=P${X%??}_${X#?}
 		;;
 	# Single digit pin number
-	[89][!0-9][1-9])	
+	[1-9][!0-9][1-9])
 		PIN=P${X%??}_0${X#??}
 		;;
 	# Two digit pin number
-	[89][!0-9][0-49][0-9])
+	[1-9][!0-9][0-49][0-9])
 		PIN=P${X%???}_${X#??}
 		;;
 	# Anything else is an error
