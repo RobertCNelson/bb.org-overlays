@@ -5,7 +5,7 @@ GPIODIR=/sys/class/gpio
 
 machine=$(cat /proc/device-tree/model | sed "s/ /_/g" | tr -d '\000')
 case "${machine}" in
-TI_AM335x_BeagleBone_Blue)
+TI_AM335x_BeagleBone_Blue|TI_AM335x_PocketBeagle)
 	#overlays built-in, no slots file...
 	OCPDIR=/sys/devices/platform/ocp/ocp*
 	SLOTS=/sys/devices/platform/bone_capemgr/slots
