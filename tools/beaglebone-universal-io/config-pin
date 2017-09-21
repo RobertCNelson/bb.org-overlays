@@ -41,12 +41,21 @@ disable_capemgr_load=$(grep -c bone_capemgr.uboot_capemgr_enabled=1 /proc/cmdlin
 # PRU: PRU pin number
 
 #PocketBeagle
-P1_02_PRU=""
-P1_02_GPIO="38"
-P1_02_PIN="gpio"
+P1_02_PIN="gpio2_23"
 P1_02_PINMUX="default pruin pruout gpio"
-P1_02_INFO=""
-P1_02_CAPE=""
+P1_02_INFO="gpio2_23 default pruin pruout gpio"
+P1_02_CAPE="UBOOT"
+P1_02_GPIO="87"
+P1_02_PRU="119"
+
+P1_04_PIN="gpio2_25"
+P1_04_PINMUX="default pruin pruout"
+P1_04_INFO="gpio2_25 default pruin pruout"
+P1_04_CAPE="UBOOT"
+P1_04_GPIO="89"
+P1_04_PRU="121"
+
+#yeah, time to script this...
 ###
 
 P8_01_PIN="gnd"
