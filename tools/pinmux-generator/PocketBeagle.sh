@@ -7,6 +7,7 @@ file="PocketBeagle"
 echo "" > ${file}.dts
 echo "" >${file}-pinmux.dts
 echo "" >${file}-gpio.dts
+echo "" >${file}_config-pin.txt
 
 #PocketBeagle
 msg="/* P1_01                VIN-AC */" ; echo_both ; msg="" ; echo_both
@@ -14,13 +15,13 @@ pcbpin="1_02" ; ball="R5" ; find_ball
 msg="/* P1_03 (ZCZ ball F15) usb1_vbus_out */" ; echo_both ; msg="" ; echo_both
 pcbpin="1_04" ; ball="R6" ; find_ball
 msg="/* P1_05 (ZCZ ball T18) usb1_vbus_in */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_06" ; ball="A16" ; find_ball
+default="SPI" ; pcbpin="1_06" ; ball="A16" ; find_ball
 msg="/* P1_07                VIN-USB      */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_08" ; ball="A17" ; find_ball
+default="SPI" ; pcbpin="1_08" ; ball="A17" ; find_ball
 msg="/* P1_09 (ZCZ ball R18) USB1-DN      */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_10" ; ball="B17" ; find_ball
+default="SPI" ; pcbpin="1_10" ; ball="B17" ; find_ball
 msg="/* P1_11 (ZCZ ball R17) USB1-DP      */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_12" ; ball="B16" ; find_ball
+default="SPI" ; pcbpin="1_12" ; ball="B16" ; find_ball
 msg="/* P1_13 (ZCZ ball P17) USB1-ID      */" ; echo_both
 msg="/* P1_14                VOUT-3.3V    */" ; echo_both
 msg="/* P1_15                GND          */" ; echo_both
@@ -44,9 +45,9 @@ default="UART" ; pcbpin="1_32" ; ball="E15" ; find_ball
 pcbpin="1_33" ; ball="B13" ; find_ball
 pcbpin="1_34" ; ball="T11" ; find_ball
 pcbpin="1_35" ; ball="V5" ; find_ball
-pcbpin="1_36" ; ball="A13" ; find_ball
+default="PWM" ; pcbpin="1_36" ; ball="A13" ; find_ball
 msg="" ; echo_both
-pcbpin="2_01" ; ball="U14" ; find_ball
+default="PWM" ; pcbpin="2_01" ; ball="U14" ; find_ball
 pcbpin="2_02" ; ball="V17" ; find_ball
 pcbpin="2_03" ; ball="T10" ; find_ball
 pcbpin="2_04" ; ball="T16" ; find_ball
@@ -70,13 +71,13 @@ msg="/* P2_21                GND */" ; echo_both ; msg="" ; echo_both
 pcbpin="2_22" ; ball="V13" ; find_ball
 msg="/* P2_23                VOUT-3.3V */" ; echo_both ; msg="" ; echo_both
 pcbpin="2_24" ; ball="R13" ; find_ball
-pcbpin="2_25" ; ball="E17" ; find_ball
+default="SPI" ; pcbpin="2_25" ; ball="E17" ; find_ball
 msg="/* P2_26                RESET# */" ; echo_both ; msg="" ; echo_both
-pcbpin="2_27" ; ball="E18" ; find_ball
+default="SPI" ; pcbpin="2_27" ; ball="E18" ; find_ball
 pcbpin="2_28" ; ball="D13" ; find_ball
-pcbpin="2_29" ; ball="C18" ; find_ball
+default="SPI" ; pcbpin="2_29" ; ball="C18" ; find_ball
 pcbpin="2_30" ; ball="C12" ; find_ball
-pcbpin="2_31" ; ball="A15" ; find_ball
+default="SPI" ; pcbpin="2_31" ; ball="A15" ; find_ball
 pcbpin="2_32" ; ball="D12" ; find_ball
 pcbpin="2_33" ; ball="R12" ; find_ball
 pcbpin="2_34" ; ball="C13" ; find_ball

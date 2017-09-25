@@ -58,9 +58,15 @@ echo_pinmux () {
 		cp_list="${cp_list} pruin"
 	fi
 
-	echo "	pinctrl-names = ${list};" >> ${file}-pinmux.dts
+	echo "P${pcbpin}_PRU=\"${cp_pru_gpio_number}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_GPIO=\"${cp_gpio_number}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_PIN=\"gpio\"" >> ${file}_config-pin.txt
 	echo "P${pcbpin}_PINMUX=\"${cp_list}\"" >> ${file}_config-pin.txt
 	echo "P${pcbpin}_INFO=\"${PinID} ${cp_list}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_CAPE=\"uboot\"" >> ${file}_config-pin.txt
+	echo "" >> ${file}_config-pin.txt
+
+	echo "	pinctrl-names = ${list};" >> ${file}-pinmux.dts
 	echo "	pinctrl-0 = <&P${pcbpin}_default_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-1 = <&P${pcbpin}_gpio_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-2 = <&P${pcbpin}_gpio_pu_pin>;" >> ${file}-pinmux.dts
@@ -409,23 +415,40 @@ if [ "x${default}" = "x" ] ; then
 	echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 else
-	if [ "x${default}" = "xUART" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
-		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
-		unset default
-	fi
 	if [ "x${default}" = "xI2C" ] ; then
 		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" >> ${file}.dts
 		unset default
 	fi
+	if [ "x${default}" = "xPWM" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* ${PinID}.${pwm_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xSPI" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xUART" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
+		unset default
+	fi
 fi
+
 echo "P${pcbpin}_gpio_pin: pinmux_P${pcbpin}_gpio_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 echo "P${pcbpin}_gpio_pu_pin: pinmux_P${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 echo "P${pcbpin}_gpio_pd_pin: pinmux_P${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
+
+gpio_mul=$(echo ${gpio_name} | awk -F'_' '{print $1}' | awk -F'gpio' '{print $2}' || true)
+gpio_add=$(echo ${gpio_name} | awk -F'_' '{print $2}' || true)
+cp_gpio_number=$(echo "${gpio_mul} * 32" | bc)
+cp_gpio_number=$(echo "${cp_gpio_number} + ${gpio_add}" | bc)
+cp_pru_gpio_number=$(echo "${cp_gpio_number} + 32" | bc)
 
 if [ ! "x${spi_name}" = "x" ] ; then
 	echo "P${pcbpin}_spi_pin: pinmux_P${pcbpin}_spi_pin { pinctrl-single,pins = <" >> ${file}.dts
