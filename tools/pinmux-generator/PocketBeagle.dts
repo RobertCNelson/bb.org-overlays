@@ -1320,6 +1320,11 @@ P2_35_pinmux {
 
 /* P2_36 (ZCZ ball C9)  AIN7         */
 
+cape-universal {
+	compatible = "gpio-of-helper";
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <>;
 
 	P1_02 {
 		gpio-name = "P1_02";
@@ -1629,3 +1634,4 @@ P2_35_pinmux {
 		dir-changeable;
 	};
 
+};

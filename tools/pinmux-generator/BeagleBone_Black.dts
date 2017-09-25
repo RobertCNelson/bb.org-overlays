@@ -1782,6 +1782,11 @@ P9_92_pinmux {
 	pinctrl-6 = <&P9_92_pruin_pin>;
 };
 
+cape-universal {
+	compatible = "gpio-of-helper";
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <>;
 
 	P8_03 {
 		gpio-name = "P8_03";
@@ -2252,3 +2257,4 @@ P9_92_pinmux {
 		dir-changeable;
 	};
 
+};
