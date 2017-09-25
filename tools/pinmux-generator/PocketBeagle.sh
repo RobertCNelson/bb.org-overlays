@@ -34,13 +34,13 @@ msg="/* P1_22                GND          */" ; echo_both
 msg="/* P1_23 (ZCZ ball B7)  AIN2         */" ; echo_both
 msg="/* P1_24                VOUT-5V      */" ; echo_both
 msg="/* P1_25 (ZCZ ball A7)  AIN3         */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_26" ; ball="D18" ; find_ball
+default="I2C" ; pcbpin="1_26" ; ball="D18" ; find_ball
 msg="/* P1_27 (ZCZ ball C8)  AIN4         */" ; echo_both ; msg="" ; echo_both
-pcbpin="1_28" ; ball="D17" ; find_ball
+default="I2C" ; pcbpin="1_28" ; ball="D17" ; find_ball
 pcbpin="1_29" ; ball="A14" ; find_ball
-pcbpin="1_30" ; ball="E16" ; find_ball
+default="UART" ; pcbpin="1_30" ; ball="E16" ; find_ball
 pcbpin="1_31" ; ball="B12" ; find_ball
-pcbpin="1_32" ; ball="E15" ; find_ball
+default="UART" ; pcbpin="1_32" ; ball="E15" ; find_ball
 pcbpin="1_33" ; ball="B13" ; find_ball
 pcbpin="1_34" ; ball="T11" ; find_ball
 pcbpin="1_35" ; ball="V5" ; find_ball
@@ -50,13 +50,13 @@ pcbpin="2_01" ; ball="U14" ; find_ball
 pcbpin="2_02" ; ball="V17" ; find_ball
 pcbpin="2_03" ; ball="T10" ; find_ball
 pcbpin="2_04" ; ball="T16" ; find_ball
-pcbpin="2_05" ; ball="T17" ; find_ball
+default="UART" ; pcbpin="2_05" ; ball="T17" ; find_ball
 pcbpin="2_06" ; ball="U16" ; find_ball
-pcbpin="2_07" ; ball="U17" ; find_ball
+default="UART" ; pcbpin="2_07" ; ball="U17" ; find_ball
 pcbpin="2_08" ; ball="U18" ; find_ball
-pcbpin="2_09" ; ball="D15" ; find_ball
+default="I2C" ; pcbpin="2_09" ; ball="D15" ; find_ball
 pcbpin="2_10" ; ball="R14" ; find_ball
-pcbpin="2_11" ; ball="D16" ; find_ball
+default="I2C" ; pcbpin="2_11" ; ball="D16" ; find_ball
 msg="/* P2_12                POWER_BUTTON */" ; echo_both
 msg="/* P2_13                VOUT-5V */" ; echo_both
 msg="/* P2_14                BAT-VIN */" ; echo_both

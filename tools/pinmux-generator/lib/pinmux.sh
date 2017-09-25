@@ -16,38 +16,51 @@ echo_pinmux () {
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
 	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\""
+	cp_list="default gpio gpio_pu gpio_pd"
 	if [ "x${got_spi_pin}" = "xenable" ] ; then
 		list="${list}, \"spi\""
+		cp_list="${cp_list} spi"
 	fi
 	if [ "x${got_uart_pin}" = "xenable" ] ; then
 		list="${list}, \"uart\""
+		cp_list="${cp_list} uart"
 	fi
 	if [ "x${got_can_pin}" = "xenable" ] ; then
 		list="${list}, \"can\""
+		cp_list="${cp_list} can"
 	fi
 	if [ "x${got_i2c_pin}" = "xenable" ] ; then
 		list="${list}, \"i2c\""
+		cp_list="${cp_list} i2c"
 	fi
 	if [ "x${got_qep_pin}" = "xenable" ] ; then
 		list="${list}, \"qep\""
+		cp_list="${cp_list} qep"
 	fi
 	if [ "x${got_pwm_pin}" = "xenable" ] ; then
 		list="${list}, \"pwm\""
+		cp_list="${cp_list} pwm"
 	fi
 	if [ "x${got_pru_uart_pin}" = "xenable" ] ; then
 		list="${list}, \"pru_uart\""
+		cp_list="${cp_list} pru_uart"
 	fi
 	if [ "x${got_timer_pin}" = "xenable" ] ; then
 		list="${list}, \"timer\""
+		cp_list="${cp_list} timer"
 	fi
 	if [ "x${got_pruout_pin}" = "xenable" ] ; then
 		list="${list}, \"pruout\""
+		cp_list="${cp_list} pruout"
 	fi
 	if [ "x${got_pruin_pin}" = "xenable" ] ; then
 		list="${list}, \"pruin\""
+		cp_list="${cp_list} pruin"
 	fi
 
 	echo "	pinctrl-names = ${list};" >> ${file}-pinmux.dts
+	echo "P${pcbpin}_PINMUX=\"${cp_list}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_INFO=\"${PinID} ${cp_list}\"" >> ${file}_config-pin.txt
 	echo "	pinctrl-0 = <&P${pcbpin}_default_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-1 = <&P${pcbpin}_gpio_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-2 = <&P${pcbpin}_gpio_pu_pin>;" >> ${file}-pinmux.dts
@@ -310,16 +323,16 @@ unset dcan_name
 			i2c_ioDir=${ioDir}
 			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
-		if [ "x${compare}" = "xUART1" ] || [ "x${compare}" = "xUART2" ] || [ "x${compare}" = "xUART3" ]|| [ "x${compare}" = "xUART4" ] || [ "x${compare}" = "xUART5" ] ; then
+		if [ "x${compare}" = "xUART0" ] || [ "x${compare}" = "xUART1" ] || [ "x${compare}" = "xUART2" ] || [ "x${compare}" = "xUART3" ]|| [ "x${compare}" = "xUART4" ] || [ "x${compare}" = "xUART5" ] ; then
 			get_name_mode
 
-			if [ "x${name}" = "xuart1_rxd" ] || [ "x${name}" = "xuart2_rxd" ] || [ "x${name}" = "xuart3_rxd" ] || [ "x${name}" = "xuart4_rxd" ] || [ "x${name}" = "xuart5_rxd" ] ; then
+			if [ "x${name}" = "xuart0_rxd" ] || [ "x${name}" = "xuart1_rxd" ] || [ "x${name}" = "xuart2_rxd" ] || [ "x${name}" = "xuart3_rxd" ] || [ "x${name}" = "xuart4_rxd" ] || [ "x${name}" = "xuart5_rxd" ] ; then
 				uart_name=${name}
 				uart_mode=${mode}
 				uart_ioDir=${ioDir}
 				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
-			if [ "x${name}" = "xuart1_txd" ] || [ "x${name}" = "xuart2_txd" ] || [ "x${name}" = "xuart3_txd" ] || [ "x${name}" = "xuart4_txd" ] || [ "x${name}" = "xuart5_txd" ] ; then
+			if [ "x${name}" = "xuart0_txd" ] || [ "x${name}" = "xuart1_txd" ] || [ "x${name}" = "xuart2_txd" ] || [ "x${name}" = "xuart3_txd" ] || [ "x${name}" = "xuart4_txd" ] || [ "x${name}" = "xuart5_txd" ] ; then
 				uart_name=${name}
 				uart_mode=${mode}
 				uart_ioDir=${ioDir}
@@ -392,8 +405,21 @@ unset got_pru_uart_pin
 unset got_timer_pin
 
 echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${PinID} */" >> ${file}.dts
-echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
-echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
+if [ "x${default}" = "x" ] ; then
+	echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
+else
+	if [ "x${default}" = "xUART" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xI2C" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" >> ${file}.dts
+		unset default
+	fi
+fi
 echo "P${pcbpin}_gpio_pin: pinmux_P${pcbpin}_gpio_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 echo "P${pcbpin}_gpio_pu_pin: pinmux_P${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" >> ${file}.dts
