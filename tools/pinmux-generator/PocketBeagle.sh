@@ -71,6 +71,7 @@ pcbpin="2_22" ; ball="V13" ; find_ball
 msg="/* P2_23                VOUT-3.3V */" ; echo_both ; msg="" ; echo_both
 pcbpin="2_24" ; ball="R13" ; find_ball
 pcbpin="2_25" ; ball="E17" ; find_ball
+msg="/* P2_26                RESET# */" ; echo_both ; msg="" ; echo_both
 pcbpin="2_27" ; ball="E18" ; find_ball
 pcbpin="2_28" ; ball="D13" ; find_ball
 pcbpin="2_29" ; ball="C18" ; find_ball
