@@ -10,6 +10,7 @@ echo_both () {
 }
 
 echo_pinmux () {
+	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${PinID} */" >> ${file}-pinmux.dts
 	echo "P${pcbpin}_pinmux {" >> ${file}-pinmux.dts
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
@@ -342,10 +343,12 @@ unset dcan_name
 		if [ "x${compare}" = "xUART0_PRUSS1" ] ; then
 			get_name_mode
 
-			uart0_pruss1_name=${name}
-			uart0_pruss1_mode=${mode}
-			uart0_pruss1_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			if [ "x${name}" = "xpr1_uart0_txd" ] || [ "x${name}" = "xpr1_uart0_rxd" ] ; then
+				uart0_pruss1_name=${name}
+				uart0_pruss1_mode=${mode}
+				uart0_pruss1_ioDir=${ioDir}
+				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			fi
 		fi
 		if [ "x${compare}" = "xeCAP0_PRUSS1" ] ; then
 			get_name_mode
@@ -386,89 +389,89 @@ unset got_pru_uart_pin
 unset got_timer_pin
 
 msg="/* P${pcbpin} (ZCZ ball ${found_ball}) ${PinID} */" ; echo_both
-msg="P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${gpio_name}
-msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* Mode 7, Pull-Down, RxActive */" ; echo_both
-msg="P${pcbpin}_gpio_pin: pinmux_P${pcbpin}_gpio_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${gpio_name}
-msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* Mode 7, RxActive */" ; echo_both
-msg="P${pcbpin}_gpio_pu_pin: pinmux_P${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${gpio_name}
-msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* Mode 7, Pull-Up, RxActive */" ; echo_both
-msg="P${pcbpin}_gpio_pd_pin: pinmux_P${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${gpio_name}
-msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* Mode 7, Pull-Down, RxActive */" ; echo_both
+msg="P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" ; echo_both
+msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" ; echo_both
+msg="P${pcbpin}_gpio_pin: pinmux_P${pcbpin}_gpio_pin { pinctrl-single,pins = <" ; echo_both
+msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" ; echo_both
+msg="P${pcbpin}_gpio_pu_pin: pinmux_P${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" ; echo_both
+msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" ; echo_both
+msg="P${pcbpin}_gpio_pd_pin: pinmux_P${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" ; echo_both
+msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" ; echo_both
 
 if [ ! "x${spi_name}" = "x" ] ; then
-	msg="P${pcbpin}_spi_pin: pinmux_P${pcbpin}_spi_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${spi_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* Mode ${spi_mode}, Pull-Up, RxActive */" ; echo_both
+	msg="P${pcbpin}_spi_pin: pinmux_P${pcbpin}_spi_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" ; echo_both
 	got_spi_pin="enable"
 fi
 
 if [ ! "x${i2c_name}" = "x" ] ; then
-	msg="P${pcbpin}_i2c_pin: pinmux_P${pcbpin}_i2c_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${i2c_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* Mode ${i2c_mode}, Pull-Up, RxActive */" ; echo_both
+	msg="P${pcbpin}_i2c_pin: pinmux_P${pcbpin}_i2c_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" ; echo_both
 	got_i2c_pin="enable"
 fi
 
 if [ ! "x${uart_name}" = "x" ] ; then
-	msg="P${pcbpin}_uart_pin: pinmux_P${pcbpin}_uart_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${uart_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* Mode ${uart_mode}, Pull-Down, RxActive */" ; echo_both
+	msg="P${pcbpin}_uart_pin: pinmux_P${pcbpin}_uart_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" ; echo_both
 	got_uart_pin="enable"
 fi
 
 if [ ! "x${dcan_name}" = "x" ] ; then
-	msg="P${pcbpin}_can_pin: pinmux_P${pcbpin}_can_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${dcan_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${dcan_mode}) >; };	/* Mode ${dcan_mode}, Pull-Up, RxActive */" ; echo_both
+	msg="P${pcbpin}_can_pin: pinmux_P${pcbpin}_can_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${dcan_mode}) >; };	/* ${PinID}.${dcan_name} */" ; echo_both
 	got_can_pin="enable"
 fi
 
 if [ ! "x${uart0_pruss1_name}" = "x" ] ; then
-	msg="P${pcbpin}_pru_uart_pin: pinmux_P${pcbpin}_pru_uart_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${uart0_pruss1_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart0_pruss1_mode}) >; };	/* Mode ${uart0_pruss1_mode}, Pull-Up, RxActive */" ; echo_both
+	msg="P${pcbpin}_pru_uart_pin: pinmux_P${pcbpin}_pru_uart_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart0_pruss1_mode}) >; };	/* ${PinID}.${uart0_pruss1_name} */" ; echo_both
 	got_pru_uart_pin="enable"
 fi
 
 if [ ! "x${timer_name}" = "x" ] ; then
-	msg="P${pcbpin}_timer_pin: pinmux_P${pcbpin}_timer_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pwm_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${timer_mode}) >; };	/* Mode ${timer_mode}, Pull-Up, RxActive */" ; echo_both
+	msg="P${pcbpin}_timer_pin: pinmux_P${pcbpin}_timer_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${timer_mode}) >; };	/* ${PinID}.${timer_name} */" ; echo_both
 	got_timer_pin="enable"
 fi
 
 if [ ! "x${pru_mode5_name}" = "x" ] ; then
 	if [ "x${pru_mode5_ioDir}" = "xO" ] ; then
-		msg="P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pru_mode5_name}
-		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* Mode ${pru_mode5_mode}, Pull-Down, RxActive */" ; echo_both
+		msg="P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" ; echo_both
+		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* ${PinID}.${pru_mode5_name} */" ; echo_both
 		got_pruout_pin="enable"
 	else
-		msg="P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pru_mode5_name}
-		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* Mode ${pru_mode5_mode}, Pull-Down, RxActive */" ; echo_both
+		msg="P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" ; echo_both
+		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* ${PinID}.${pru_mode5_name} */" ; echo_both
 		got_pruin_pin="enable"
 	fi
 fi
 
 if [ ! "x${pru_mode6_name}" = "x" ] ; then
 	if [ "x${pru_mode6_ioDir}" = "xO" ] ; then
-		msg="P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pru_mode6_name}
-		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* Mode ${pru_mode6_mode}, Pull-Down, RxActive */" ; echo_both
+		msg="P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" ; echo_both
+		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* ${PinID}.${pru_mode6_name} */" ; echo_both
 		got_pruout_pin="enable"
 	else
-		msg="P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pru_mode6_name}
-		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* Mode ${pru_mode6_mode}, Pull-Down, RxActive */" ; echo_both
+		msg="P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" ; echo_both
+		msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* ${PinID}.${pru_mode6_name} */" ; echo_both
 		got_pruin_pin="enable"
 	fi
 fi
 
 if [ ! "x${pwm_name}" = "x" ] ; then
-	msg="P${pcbpin}_pwm_pin: pinmux_P${pcbpin}_pwm_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${pwm_name} 
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* Mode ${pwm_mode}, Pull-Down, RxActive */" ; echo_both
+	msg="P${pcbpin}_pwm_pin: pinmux_P${pcbpin}_pwm_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* ${PinID}.${pwm_name} */" ; echo_both
 	got_pwm_pin="enable"
 fi
 
 if [ ! "x${ecap0_pruss1_name}" = "x" ] ; then
-msg="P${pcbpin}_pru_ecap_pin: pinmux_P${pcbpin}_pru_ecap_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${ecap0_pruss1_name}
-msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${ecap0_pruss1_mode}) >; };	/* Mode ${ecap0_pruss1_mode}, Pull-Down, RxActive */" ; echo_both
+	msg="P${pcbpin}_pru_ecap_pin: pinmux_P${pcbpin}_pru_ecap_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${ecap0_pruss1_mode}) >; };	/* ${PinID}.${ecap0_pruss1_name} */" ; echo_both
 fi
 
 if [ ! "x${eqep_name}" = "x" ] ; then
-	msg="P${pcbpin}_qep_pin: pinmux_P${pcbpin}_qep_pin { pinctrl-single,pins = <" ; echo_both #, ${PinID}.${eqep_name}
-	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* Mode ${eqep_mode}, Pull-Down, RxActive */" ; echo_both
+	msg="P${pcbpin}_qep_pin: pinmux_P${pcbpin}_qep_pin { pinctrl-single,pins = <" ; echo_both
+	msg="	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* ${PinID}.${eqep_name} */" ; echo_both
 	got_qep_pin="enable"
 fi
 
