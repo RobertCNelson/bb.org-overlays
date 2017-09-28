@@ -53,7 +53,22 @@ pcbpin="8_43" ; ball="R3" ; find_ball
 pcbpin="8_44" ; ball="R4" ; find_ball
 pcbpin="8_45" ; ball="R1" ; find_ball
 pcbpin="8_46" ; ball="R2" ; find_ball
-msg="" ; echo_both
+
+msg="/************************/" ; echo_both
+msg="/* P9 Header */" ; echo_both
+msg="/************************/" ; echo_both ; msg="" ; echo_both
+
+msg="/* P9_01 GND */" ; echo_both
+msg="/* P9_02 GND */" ; echo_both
+msg="/* P9_03 3.3V */" ; echo_both
+msg="/* P9_04 3.3V */" ; echo_both
+msg="/* P9_05 VDD_5V */" ; echo_both
+msg="/* P9_06 VDD_5V */" ; echo_both
+msg="/* P9_07 SYS_5V */" ; echo_both
+msg="/* P9_08 SYS_5V */" ; echo_both
+msg="/* P9_09 PWR_BUT */" ; echo_both
+msg="/* P9_10 (ZCZ ball A10) RESETn */" ; echo_both ; msg="" ; echo_both
+
 pcbpin="9_11" ; ball="T17" ; find_ball
 pcbpin="9_12" ; ball="U18" ; find_ball
 pcbpin="9_13" ; ball="U17" ; find_ball

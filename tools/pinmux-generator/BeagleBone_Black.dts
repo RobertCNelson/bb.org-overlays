@@ -559,6 +559,20 @@ P8_46_pruin_pin: pinmux_P8_46_pruin_pin { pinctrl-single,pins = <
 P8_46_pwm_pin: pinmux_P8_46_pwm_pin { pinctrl-single,pins = <
 	AM33XX_IOPAD(0x08a4, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3) >; };	/* lcd_data1.ehrpwm2B */
 
+/************************/
+/* P9 Header */
+/************************/
+
+/* P9_01 GND */
+/* P9_02 GND */
+/* P9_03 3.3V */
+/* P9_04 3.3V */
+/* P9_05 VDD_5V */
+/* P9_06 VDD_5V */
+/* P9_07 SYS_5V */
+/* P9_08 SYS_5V */
+/* P9_09 PWR_BUT */
+/* P9_10 (ZCZ ball A10) RESETn */
 
 /* P9_11 (ZCZ ball T17) gpmc_wait0 */
 P9_11_default_pin: pinmux_P9_11_default_pin { pinctrl-single,pins = <
@@ -1464,6 +1478,20 @@ P8_46_pinmux {
 	pinctrl-6 = <&P8_46_pruin_pin>;
 };
 
+/************************/
+/* P9 Header */
+/************************/
+
+/* P9_01 GND */
+/* P9_02 GND */
+/* P9_03 3.3V */
+/* P9_04 3.3V */
+/* P9_05 VDD_5V */
+/* P9_06 VDD_5V */
+/* P9_07 SYS_5V */
+/* P9_08 SYS_5V */
+/* P9_09 PWR_BUT */
+/* P9_10 (ZCZ ball A10) RESETn */
 
 /* P9_11 (ZCZ ball T17) gpmc_wait0 */
 P9_11_pinmux {
