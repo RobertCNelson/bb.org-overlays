@@ -105,11 +105,12 @@ echo_pinmux () {
 		echo "	pinctrl-${index} = <&P${pcbpin}_pru_uart_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
-#What do we have that uses timer?
-#	if [ "x${got_timer_pin}" = "xenable" ] ; then
-#		echo "	pinctrl-${index} = <&P${pcbpin}_timer_pin>;" >> ${file}-pinmux.dts
-#		index=$((index + 1))
-#	fi
+	if [ "x${generate_timer}" = "xenable" ] ; then
+		if [ "x${got_timer_pin}" = "xenable" ] ; then
+			echo "	pinctrl-${index} = <&P${pcbpin}_timer_pin>;" >> ${file}-pinmux.dts
+			index=$((index + 1))
+		fi
+	fi
 	if [ "x${got_pruout_pin}" = "xenable" ] ; then
 		echo "	pinctrl-${index} = <&P${pcbpin}_pruout_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
@@ -384,15 +385,16 @@ unset dcan_name
 			ecap0_pruss1_ioDir=${ioDir}
 			echo "${ball}:${name}:${mode}:${ioDir}"
 		fi
-#What do we have that uses timer?
-#		if [ "x${compare}" = "xTIMER4" ] || [ "x${compare}" = "xTIMER5" ] || [ "x${compare}" = "xTIMER6" ] || [ "x${compare}" = "xTIMER7" ] ; then
-#			get_name_mode
-#
-#			timer_name=${name}
-#			timer_mode=${mode}
-#			timer_ioDir=${ioDir}
-#			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
-#		fi
+		if [ "x${generate_timer}" = "xenable" ] ; then
+			if [ "x${compare}" = "xTIMER4" ] || [ "x${compare}" = "xTIMER5" ] || [ "x${compare}" = "xTIMER6" ] || [ "x${compare}" = "xTIMER7" ] ; then
+				get_name_mode
+
+				timer_name=${name}
+				timer_mode=${mode}
+				timer_ioDir=${ioDir}
+				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			fi
+		fi
 		if [ "x${compare}" = "xeQEP0" ] || [ "x${compare}" = "xeQEP1" ] || [ "x${compare}" = "xeQEP2" ] ; then
 			get_name_mode
 
@@ -490,12 +492,13 @@ if [ ! "x${uart0_pruss1_name}" = "x" ] ; then
 	got_pru_uart_pin="enable"
 fi
 
-#What do we have that uses timer?
-#if [ ! "x${timer_name}" = "x" ] ; then
-#	echo "P${pcbpin}_timer_pin: pinmux_P${pcbpin}_timer_pin { pinctrl-single,pins = <" >> ${file}.dts
-#	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${timer_mode}) >; };	/* ${PinID}.${timer_name} */" >> ${file}.dts
-#	got_timer_pin="enable"
-#fi
+if [ "x${generate_timer}" = "xenable" ] ; then
+	if [ ! "x${timer_name}" = "x" ] ; then
+		echo "P${pcbpin}_timer_pin: pinmux_P${pcbpin}_timer_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${timer_mode}) >; };	/* ${PinID}.${timer_name} */" >> ${file}.dts
+		got_timer_pin="enable"
+	fi
+fi
 
 if [ ! "x${pru_mode5_name}" = "x" ] ; then
 	if [ "x${pru_mode5_ioDir}" = "xO" ] ; then

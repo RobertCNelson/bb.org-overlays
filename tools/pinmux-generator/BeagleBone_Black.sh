@@ -4,6 +4,8 @@ source $(dirname "$0")/lib/pinmux.sh
 
 file="BeagleBone_Black"
 
+generate_timer="enable"
+
 echo "" > ${file}.dts
 echo "" >${file}-pinmux.dts
 echo "" >${file}-gpio.dts
