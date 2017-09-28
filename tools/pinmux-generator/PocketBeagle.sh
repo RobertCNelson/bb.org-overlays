@@ -5,6 +5,7 @@ source $(dirname "$0")/lib/pinmux.sh
 file="PocketBeagle"
 
 unset generate_timer
+generate_spi="enable"
 
 echo "" > ${file}.dts
 echo "" >${file}-pinmux.dts

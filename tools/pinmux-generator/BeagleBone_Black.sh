@@ -5,10 +5,12 @@ source $(dirname "$0")/lib/pinmux.sh
 file="BeagleBone_Black"
 
 generate_timer="enable"
+generate_spi="enable"
 
 echo "" > ${file}.dts
 echo "" >${file}-pinmux.dts
 echo "" >${file}-gpio.dts
+echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
@@ -122,6 +124,7 @@ pcbpin="9_41" ; ball="D14" ; find_ball
 msg="/* P9_41.1 */" ; echo_both
 pcbpin="9_91" ; ball="D13" ; find_ball
 pcbpin="9_42" ; ball="C18" ; find_ball
+msg="/* P9_42.1 */" ; echo_both
 pcbpin="9_92" ; ball="B12" ; find_ball
 
 msg="/* P9_43 GND */" ; echo_both
