@@ -21,54 +21,77 @@ echo_pinmux () {
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
 	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\""
-	cp_list="default gpio gpio_pu gpio_pd"
+	cp_pinmux="default gpio gpio_pu gpio_pd"
+	if [ "x${cp_info_default}" = "x" ] ; then
+		cp_info="${gpio_name} default ${gpio_name} ${gpio_name} ${gpio_name}"
+	else
+		cp_info="${cp_info_default} default ${gpio_name} ${gpio_name} ${gpio_name}"
+		unset cp_info_default
+	fi
 	if [ "x${got_spi_pin}" = "xenable" ] ; then
 		list="${list}, \"spi\""
-		cp_list="${cp_list} spi"
+		cp_pinmux="${cp_pinmux} spi"
+		cp_info="${cp_info} ${spi_name}"
 	fi
 	if [ "x${got_uart_pin}" = "xenable" ] ; then
 		list="${list}, \"uart\""
-		cp_list="${cp_list} uart"
+		cp_pinmux="${cp_pinmux} uart"
+		cp_info="${cp_info} ${uart_name}"
 	fi
 	if [ "x${got_can_pin}" = "xenable" ] ; then
 		list="${list}, \"can\""
-		cp_list="${cp_list} can"
+		cp_pinmux="${cp_pinmux} can"
+		cp_info="${cp_info} ${dcan_name}"
 	fi
 	if [ "x${got_i2c_pin}" = "xenable" ] ; then
 		list="${list}, \"i2c\""
-		cp_list="${cp_list} i2c"
+		cp_pinmux="${cp_pinmux} i2c"
+		cp_info="${cp_info} ${i2c_name}"
 	fi
 	if [ "x${got_qep_pin}" = "xenable" ] ; then
 		list="${list}, \"qep\""
-		cp_list="${cp_list} qep"
+		cp_pinmux="${cp_pinmux} qep"
+		cp_info="${cp_info} ${eqep_name}"
 	fi
 	if [ "x${got_pwm_pin}" = "xenable" ] ; then
 		list="${list}, \"pwm\""
-		cp_list="${cp_list} pwm"
+		cp_pinmux="${cp_pinmux} pwm"
+		cp_info="${cp_info} ${pwm_name}"
 	fi
 	if [ "x${got_pru_uart_pin}" = "xenable" ] ; then
 		list="${list}, \"pru_uart\""
-		cp_list="${cp_list} pru_uart"
+		cp_pinmux="${cp_pinmux} pru_uart"
+		cp_info="${cp_info} pru_uart"
 	fi
 	if [ "x${got_timer_pin}" = "xenable" ] ; then
 		list="${list}, \"timer\""
-		cp_list="${cp_list} timer"
+		cp_pinmux="${cp_pinmux} timer"
+		cp_info="${cp_info} ${timer_name}"
 	fi
 	if [ "x${got_pruout_pin}" = "xenable" ] ; then
 		list="${list}, \"pruout\""
-		cp_list="${cp_list} pruout"
+		cp_pinmux="${cp_pinmux} pruout"
+		cp_info="${cp_info} pruout"
 	fi
 	if [ "x${got_pruin_pin}" = "xenable" ] ; then
 		list="${list}, \"pruin\""
-		cp_list="${cp_list} pruin"
+		cp_pinmux="${cp_pinmux} pruin"
+		cp_info="${cp_info} pruin"
 	fi
 
 	echo "P${pcbpin}_PRU=\"${cp_pru_gpio_number}\"" >> ${file}_config-pin.txt
 	echo "P${pcbpin}_GPIO=\"${cp_gpio_number}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_PIN=\"gpio\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_PINMUX=\"${cp_list}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_INFO=\"${PinID} ${cp_list}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_CAPE=\"uboot\"" >> ${file}_config-pin.txt
+
+	if [ "x${cp_default}" = "x" ] ; then
+		echo "P${pcbpin}_PIN=\"gpio\"" >> ${file}_config-pin.txt
+	else
+		echo "P${pcbpin}_PIN=\"${cp_default}\"" >> ${file}_config-pin.txt
+		unset cp_default
+	fi
+
+	echo "P${pcbpin}_PINMUX=\"${cp_pinmux}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_INFO=\"${cp_info}\"" >> ${file}_config-pin.txt
+	echo "P${pcbpin}_CAPE=\"\"" >> ${file}_config-pin.txt
 	echo "" >> ${file}_config-pin.txt
 
 	echo "	pinctrl-names = ${list};" >> ${file}-pinmux.dts
