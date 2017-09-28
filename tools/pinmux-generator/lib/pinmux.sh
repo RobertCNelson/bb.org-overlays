@@ -11,7 +11,12 @@ echo_both () {
 }
 
 echo_pinmux () {
-	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${PinID} */" >> ${file}-pinmux.dts
+	if [ "x${default_name}" = "x" ] ; then
+		echo "/* P${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}-pinmux.dts
+	else
+		echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}-pinmux.dts
+		unset default_name
+	fi
 	echo "P${pcbpin}_pinmux {" >> ${file}-pinmux.dts
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
@@ -410,7 +415,12 @@ unset got_i2c_pin
 unset got_pru_uart_pin
 unset got_timer_pin
 
-echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${PinID} */" >> ${file}.dts
+if [ "x${default_name}" = "x" ] ; then
+	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}.dts
+else
+	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}.dts
+fi
+
 if [ "x${default}" = "x" ] ; then
 	echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
