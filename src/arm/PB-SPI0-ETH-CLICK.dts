@@ -87,7 +87,7 @@
 				reg = <0x0>;
 				interrupt-parent = <&gpio0>;
 				interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-				spi-max-frequency = <20000000>;
+				spi-max-frequency = <16000000>;
 			};
 		};
 	};
