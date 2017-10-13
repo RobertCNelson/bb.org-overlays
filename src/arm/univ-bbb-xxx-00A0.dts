@@ -1083,6 +1083,8 @@
 				AM33XX_IOPAD(0x099c, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE6) >; };	/* mcasp0_ahclkr.pr1_pru0_pru_r31_3 */
 			P9_28_pwm_pin: pinmux_P9_28_pwm_pin { pinctrl-single,pins = <
 				AM33XX_IOPAD(0x099c, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE1) >; };	/* mcasp0_ahclkr.ehrpwm0_synci */
+			P9_28_pwm2_pin: pinmux_P9_28_pwm2_pin { pinctrl-single,pins = <
+				AM33XX_IOPAD(0x099c, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE4) >; };	/* Mode 4, Pull-Down, RxActive */
 #endif
 
 #ifndef BBB_ALLOCATE_FOR_HDMI_AUDIO
@@ -2079,15 +2081,16 @@
 			P9_28_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "pwm", "pruout", "pruin";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "pwm", "pwm2", "pruout", "pruin";
 				pinctrl-0 = <&P9_28_default_pin>;
 				pinctrl-1 = <&P9_28_gpio_pin>;
 				pinctrl-2 = <&P9_28_gpio_pu_pin>;
 				pinctrl-3 = <&P9_28_gpio_pd_pin>;
 				pinctrl-4 = <&P9_28_spi_pin>;
 				pinctrl-5 = <&P9_28_pwm_pin>;
-				pinctrl-6 = <&P9_28_pruout_pin>;
-				pinctrl-7 = <&P9_28_pruin_pin>;
+				pinctrl-6 = <&P9_28_pwm2_pin>;
+				pinctrl-7 = <&P9_28_pruout_pin>;
+				pinctrl-8 = <&P9_28_pruin_pin>;
 			};
 #endif
 
