@@ -250,25 +250,25 @@
 				status = "okay";
 			};
 
-			lsm303dlhc_acc: lsm303dlhc_acc@0x19 {
+			lsm303dlhc_acc: lsm303dlhc_acc@19 {
 				compatible = "lsm303dlhc_acc";
 				reg = <0x19>;
 				status = "okay";
 			};
 
-			lsm303dlhc_mag: lsm303dlhc_mag@0x1e {
+			lsm303dlhc_mag: lsm303dlhc_mag@1e {
 				compatible = "lsm303dlhc_mag";
 				reg = <0x1e>;
 				status = "okay";
 			};
 
-			lsm330_acc: lsm330_acc@0x18 {
+			lsm330_acc: lsm330_acc@18 {
 				compatible = "lsm330_acc";
 				reg = <0x18>;
 				status = "okay";
 			};
 
-			lsm330_gyr: lsm330_gyr@0x6a {
+			lsm330_gyr: lsm330_gyr@6a {
 				compatible = "lsm330_gyr";
 				reg = <0x6a>;
 				status = "okay";

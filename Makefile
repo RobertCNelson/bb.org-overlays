@@ -33,6 +33,7 @@ ifndef KBUILD_VERBOSE
 endif
 
 DTC_FLAGS += -Wno-unit_address_vs_reg
+#DTC_FLAGS += -Wno-gpios_property
 
 # Beautify output
 # ---------------------------------------------------------------------------
