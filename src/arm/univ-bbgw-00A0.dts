@@ -551,12 +551,12 @@
 			P9_17_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "i2c", "pwm", "pru_uart";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi_cs", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_17_default_pin>;
 				pinctrl-1 = <&P9_17_gpio_pin>;
 				pinctrl-2 = <&P9_17_gpio_pu_pin>;
 				pinctrl-3 = <&P9_17_gpio_pd_pin>;
-				pinctrl-4 = <&P9_17_spi_pin>;
+				pinctrl-4 = <&P9_17_spi_cs_pin>;
 				pinctrl-5 = <&P9_17_i2c_pin>;
 				pinctrl-6 = <&P9_17_pwm_pin>;
 				pinctrl-7 = <&P9_17_pru_uart_pin>;
@@ -598,12 +598,12 @@
 			P9_22_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "i2c", "pwm", "pru_uart";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi_sclk", "uart", "i2c", "pwm", "pru_uart";
 				pinctrl-0 = <&P9_22_default_pin>;
 				pinctrl-1 = <&P9_22_gpio_pin>;
 				pinctrl-2 = <&P9_22_gpio_pu_pin>;
 				pinctrl-3 = <&P9_22_gpio_pd_pin>;
-				pinctrl-4 = <&P9_22_spi_pin>;
+				pinctrl-4 = <&P9_22_spi_sclk_pin>;
 				pinctrl-5 = <&P9_22_uart_pin>;
 				pinctrl-6 = <&P9_22_i2c_pin>;
 				pinctrl-7 = <&P9_22_pwm_pin>;
@@ -704,19 +704,23 @@
 				pinctrl-6 = <&P9_91_pruin_pin>;
 			};
 
+			/* P9_42 (ZCZ ball C18) */
 			P9_42_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
-				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi", "uart", "pwm";
+				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi_cs", "spi_sclk", "uart", "pwm";
 				pinctrl-0 = <&P9_42_default_pin>;
 				pinctrl-1 = <&P9_42_gpio_pin>;
 				pinctrl-2 = <&P9_42_gpio_pu_pin>;
 				pinctrl-3 = <&P9_42_gpio_pd_pin>;
-				pinctrl-4 = <&P9_42_spi_pin>;
-				pinctrl-5 = <&P9_42_uart_pin>;
-				pinctrl-6 = <&P9_42_pwm_pin>;
+				pinctrl-4 = <&P9_42_spi_cs_pin>;
+				pinctrl-5 = <&P9_42_spi_sclk_pin>;
+				pinctrl-6 = <&P9_42_uart_pin>;
+				pinctrl-7 = <&P9_42_pwm_pin>;
 			};
 
+			/* P9_42.1 */
+			/* P9_92 (ZCZ ball B12) */
 			P9_92_pinmux {
 				compatible = "bone-pinmux-helper";
 				status = "okay";

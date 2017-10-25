@@ -872,7 +872,7 @@ else
 	P9_17_PRU="37"
 	P9_17_GPIO="5"
 	P9_17_PIN="gpio"
-	P9_17_PINMUX="default gpio gpio_pu gpio_pd spi i2c pwm pru_uart"
+	P9_17_PINMUX="default gpio gpio_pu gpio_pd spi_cs i2c pwm pru_uart"
 	P9_17_INFO="gpio0_5 default gpio0_5 gpio0_5 gpio0_5 spi0_cs0 I2C1_SCL ehrpwm0_synci pru_uart"
 	P9_17_CAPE="cape-universal cape-universala cape-universaln cape-universalh"
 
@@ -905,7 +905,7 @@ else
 	P9_22_PRU="34"
 	P9_22_GPIO="2"
 	P9_22_PIN="gpio"
-	P9_22_PINMUX="default gpio gpio_pu gpio_pd spi uart i2c pwm pru_uart"
+	P9_22_PINMUX="default gpio gpio_pu gpio_pd spi_sclk uart i2c pwm pru_uart"
 	P9_22_INFO="gpio0_2 default gpio0_2 gpio0_2 gpio0_2 spi0_sclk uart2_rxd I2C2_SDA ehrpwm0A pru_uart"
 	P9_22_CAPE="cape-universal cape-universala cape-universaln cape-universalh"
 
@@ -947,8 +947,8 @@ else
 	P9_28_PRU="145"
 	P9_28_GPIO="113"
 	P9_28_PIN="gpio"
-	P9_28_PINMUX="default gpio gpio_pu gpio_pd spi pwm pwm2 pruout pruin"
-	P9_28_INFO="gpio3_17 default gpio3_17 gpio3_17 gpio3_17 spi1_cs0 ehrpwm0_synci eCAP2_in_PWM2_out pruout pruin"
+	P9_28_PINMUX="default gpio gpio_pu gpio_pd spi_cs pwm pruout pruin"
+	P9_28_INFO="gpio3_17 default gpio3_17 gpio3_17 gpio3_17 spi1_cs0 ehrpwm0_synci pruout pruin"
 	P9_28_CAPE="cape-universala cape-universaln cape-universalh cape-univ-audio"
 
 	P9_29_PRU="143"
@@ -968,7 +968,7 @@ else
 	P9_31_PRU="142"
 	P9_31_GPIO="110"
 	P9_31_PIN="gpio"
-	P9_31_PINMUX="default gpio gpio_pu gpio_pd spi pwm pruout pruin"
+	P9_31_PINMUX="default gpio gpio_pu gpio_pd spi_sclk pwm pruout pruin"
 	P9_31_INFO="gpio3_14 default gpio3_14 gpio3_14 gpio3_14 spi1_sclk ehrpwm0A pruout pruin"
 	P9_31_CAPE="cape-universala cape-universaln cape-universalh cape-univ-audio"
 
@@ -1025,8 +1025,8 @@ else
 	P9_42_PRU="39"
 	P9_42_GPIO="7"
 	P9_42_PIN="gpio"
-	P9_42_PINMUX="default gpio gpio_pu gpio_pd spi uart pwm"
-	P9_42_INFO="gpio0_7 default gpio0_7 gpio0_7 gpio0_7 spi1_sclk uart3_txd eCAP0_in_PWM0_out"
+	P9_42_PINMUX="default gpio gpio_pu gpio_pd spi_cs spi_sclk uart pwm"
+	P9_42_INFO="gpio0_7 default gpio0_7 gpio0_7 gpio0_7 spi1_cs1 spi1_sclk uart3_txd eCAP0_in_PWM0_out"
 	P9_42_CAPE="cape-universal cape-universala cape-universaln cape-universalh"
 
 	P9_92_PRU="146"
