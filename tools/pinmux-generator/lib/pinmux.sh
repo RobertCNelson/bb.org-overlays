@@ -475,6 +475,8 @@ unset got_pruout_pin
 unset got_pruin_pin
 unset got_pwm_pin
 unset got_spi_pin
+unset got_spi_cs_pin
+unset got_spi_sclk_pin
 unset got_uart_pin
 unset got_qep_pin
 unset got_can_pin
