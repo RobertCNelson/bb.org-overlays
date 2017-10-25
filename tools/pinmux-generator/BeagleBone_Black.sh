@@ -14,6 +14,9 @@ echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
+#pcbpin="9_42" ; ball="C18" ; find_ball
+#exit 2
+
 msg="/************************/" ; echo_both
 msg="/* P8 Header */" ; echo_both
 msg="/************************/" ; echo_both
