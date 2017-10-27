@@ -463,7 +463,7 @@ unset spi_sclk_ioDir
 		if [ "x${compare}" = "xeQEP0" ] || [ "x${compare}" = "xeQEP1" ] || [ "x${compare}" = "xeQEP2" ] ; then
 			get_name_mode
 
-			eqep_name=${name}
+			eqep_name=$(echo ${name} | awk '{print tolower($0)}')
 			eqep_mode=${mode}
 			eqep_ioDir=${ioDir}
 			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
@@ -494,34 +494,38 @@ if [ "x${default}" = "x" ] ; then
 	echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 else
+	echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 	if [ "x${default}" = "xI2C" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xPWM" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* ${PinID}.${pwm_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xSPI" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xspi_cs" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_cs_mode}) >; };	/* ${PinID}.${spi_cs_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xspi_sclk" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_sclk_mode}) >; };	/* ${PinID}.${spi_sclk_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xUART" ] ; then
-		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xqep" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* ${PinID}.${eqep_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xpruin" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* ${PinID}.${pru_mode6_name} */" >> ${file}.dts
+
 		unset default
 	fi
 fi
@@ -630,7 +634,7 @@ fi
 
 if [ ! "x${eqep_name}" = "x" ] ; then
 	echo "${pcbpin}_qep_pin: pinmux_${pcbpin}_qep_pin { pinctrl-single,pins = <" >> ${file}.dts
-	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* ${PinID}.${eqep_name} */" >> ${file}.dts
+	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* ${PinID}.${eqep_name} */" >> ${file}.dts
 	got_qep_pin="enable"
 fi
 
