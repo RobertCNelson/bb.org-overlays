@@ -397,7 +397,7 @@ unset spi_sclk_ioDir
 		if [ "x${compare}" = "xI2C1" ] || [ "x${compare}" = "xI2C2" ] ; then
 			get_name_mode
 
-			i2c_name=${name}
+			i2c_name=$(echo ${name} | awk '{print tolower($0)}')
 			i2c_mode=${mode}
 			i2c_ioDir=${ioDir}
 			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
@@ -418,7 +418,7 @@ unset spi_sclk_ioDir
 				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 		fi
-		if [ "x${compare}" = "xDCAN1" ] ; then
+		if [ "x${compare}" = "xDCAN0" ] || [ "x${compare}" = "xDCAN1" ] ; then
 			get_name_mode
 
 			dcan_name=${name}
