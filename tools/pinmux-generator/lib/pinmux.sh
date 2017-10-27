@@ -12,12 +12,12 @@ echo_both () {
 
 echo_pinmux () {
 	if [ "x${default_name}" = "x" ] ; then
-		echo "/* P${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}-pinmux.dts
+		echo "/* ${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}-pinmux.dts
 	else
-		echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}-pinmux.dts
+		echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}-pinmux.dts
 		unset default_name
 	fi
-	echo "P${pcbpin}_pinmux {" >> ${file}-pinmux.dts
+	echo "${pcbpin}_pinmux {" >> ${file}-pinmux.dts
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
 	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\""
@@ -92,75 +92,75 @@ echo_pinmux () {
 		cp_info="${cp_info} pruin"
 	fi
 
-	echo "P${pcbpin}_PRU=\"${cp_pru_gpio_number}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_GPIO=\"${cp_gpio_number}\"" >> ${file}_config-pin.txt
+	echo "${pcbpin}_PRU=\"${cp_pru_gpio_number}\"" >> ${file}_config-pin.txt
+	echo "${pcbpin}_GPIO=\"${cp_gpio_number}\"" >> ${file}_config-pin.txt
 
 	if [ "x${cp_default}" = "x" ] ; then
-		echo "P${pcbpin}_PIN=\"gpio\"" >> ${file}_config-pin.txt
+		echo "${pcbpin}_PIN=\"gpio\"" >> ${file}_config-pin.txt
 	else
-		echo "P${pcbpin}_PIN=\"${cp_default}\"" >> ${file}_config-pin.txt
+		echo "${pcbpin}_PIN=\"${cp_default}\"" >> ${file}_config-pin.txt
 		unset cp_default
 	fi
 
-	echo "P${pcbpin}_PINMUX=\"${cp_pinmux}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_INFO=\"${cp_info}\"" >> ${file}_config-pin.txt
-	echo "P${pcbpin}_CAPE=\"\"" >> ${file}_config-pin.txt
+	echo "${pcbpin}_PINMUX=\"${cp_pinmux}\"" >> ${file}_config-pin.txt
+	echo "${pcbpin}_INFO=\"${cp_info}\"" >> ${file}_config-pin.txt
+	echo "${pcbpin}_CAPE=\"\"" >> ${file}_config-pin.txt
 	echo "" >> ${file}_config-pin.txt
 
 	echo "	pinctrl-names = ${list};" >> ${file}-pinmux.dts
-	echo "	pinctrl-0 = <&P${pcbpin}_default_pin>;" >> ${file}-pinmux.dts
-	echo "	pinctrl-1 = <&P${pcbpin}_gpio_pin>;" >> ${file}-pinmux.dts
-	echo "	pinctrl-2 = <&P${pcbpin}_gpio_pu_pin>;" >> ${file}-pinmux.dts
-	echo "	pinctrl-3 = <&P${pcbpin}_gpio_pd_pin>;" >> ${file}-pinmux.dts
+	echo "	pinctrl-0 = <&${pcbpin}_default_pin>;" >> ${file}-pinmux.dts
+	echo "	pinctrl-1 = <&${pcbpin}_gpio_pin>;" >> ${file}-pinmux.dts
+	echo "	pinctrl-2 = <&${pcbpin}_gpio_pu_pin>;" >> ${file}-pinmux.dts
+	echo "	pinctrl-3 = <&${pcbpin}_gpio_pd_pin>;" >> ${file}-pinmux.dts
 	index=4
 	if [ "x${got_spi_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_spi_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_spi_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_spi_cs_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_spi_cs_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_spi_cs_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_spi_sclk_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_spi_sclk_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_spi_sclk_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_uart_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_uart_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_uart_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_can_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_can_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_can_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_i2c_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_i2c_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_i2c_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_qep_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_qep_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_qep_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_pwm_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_pwm_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_pwm_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_pru_uart_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_pru_uart_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_pru_uart_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${generate_timer}" = "xenable" ] ; then
 		if [ "x${got_timer_pin}" = "xenable" ] ; then
-			echo "	pinctrl-${index} = <&P${pcbpin}_timer_pin>;" >> ${file}-pinmux.dts
+			echo "	pinctrl-${index} = <&${pcbpin}_timer_pin>;" >> ${file}-pinmux.dts
 			index=$((index + 1))
 		fi
 	fi
 	if [ "x${got_pruout_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_pruout_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_pruout_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_pruin_pin}" = "xenable" ] ; then
-		echo "	pinctrl-${index} = <&P${pcbpin}_pruin_pin>;" >> ${file}-pinmux.dts
+		echo "	pinctrl-${index} = <&${pcbpin}_pruin_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 
@@ -169,8 +169,8 @@ echo_pinmux () {
 }
 
 echo_gpio () {
-	echo "	P${pcbpin} {" >> ${file}-gpio.dts
-	echo "		gpio-name = \"P${pcbpin}\";" >> ${file}-gpio.dts
+	echo "	${pcbpin} {" >> ${file}-gpio.dts
+	echo "		gpio-name = \"${pcbpin}\";" >> ${file}-gpio.dts
 	echo "		gpio = <&${gpio_pinmux} 0>;" >> ${file}-gpio.dts
 	echo "		input;" >> ${file}-gpio.dts
 	echo "		dir-changeable;" >> ${file}-gpio.dts
@@ -202,7 +202,7 @@ get_name_mode () {
 
 find_ball () {
 	echo "##################"
-	echo "P${pcbpin}"
+	echo "${pcbpin}"
 	#Use "ball" to get devicePinID & powerDomainID
 
 	#cat AM335x.json | jq '.packages .ID_0 .packagePin[0]'
@@ -351,7 +351,7 @@ unset spi_sclk_ioDir
 			gpio_mode=${mode}
 			gpio_ioDir=${ioDir}
 			gpio_pinmux=$(echo ${gpio_name} | sed 's/_/ /g')
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 		if [ "x${compare}" = "xPRU0_PRUSS1" ] || [ "x${compare}" = "xPRU1_PRUSS1" ] ; then
 			get_name_mode
@@ -360,14 +360,14 @@ unset spi_sclk_ioDir
 				pru_mode5_name=${name}
 				pru_mode5_mode=${mode}
 				pru_mode5_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 
 			if [ "x${mode}" = "x6" ] ; then
 				pru_mode6_name=${name}
 				pru_mode6_mode=${mode}
 				pru_mode6_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 		fi
 		if [ "x${compare}" = "xSPI0" ] || [ "x${compare}" = "xSPI1" ]; then
@@ -377,21 +377,21 @@ unset spi_sclk_ioDir
 				spi_name=${name}
 				spi_mode=${mode}
 				spi_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 
 			if [ "x${name}" = "xspi0_cs0" ] || [ "x${name}" = "xspi0_cs1" ] || [ "x${name}" = "xspi1_cs0" ] || [ "x${name}" = "xspi1_cs1" ] ; then
 				spi_cs_name=${name}
 				spi_cs_mode=${mode}
 				spi_cs_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 
 			if [ "x${name}" = "xspi0_sclk" ] || [ "x${name}" = "xspi1_sclk" ] ; then
 				spi_sclk_name=${name}
 				spi_sclk_mode=${mode}
 				spi_sclk_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 		fi
 		if [ "x${compare}" = "xI2C1" ] || [ "x${compare}" = "xI2C2" ] ; then
@@ -400,7 +400,7 @@ unset spi_sclk_ioDir
 			i2c_name=$(echo ${name} | awk '{print tolower($0)}')
 			i2c_mode=${mode}
 			i2c_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 		if [ "x${compare}" = "xUART0" ] || [ "x${compare}" = "xUART1" ] || [ "x${compare}" = "xUART2" ] || [ "x${compare}" = "xUART3" ]|| [ "x${compare}" = "xUART4" ] || [ "x${compare}" = "xUART5" ] ; then
 			get_name_mode
@@ -409,13 +409,13 @@ unset spi_sclk_ioDir
 				uart_name=${name}
 				uart_mode=${mode}
 				uart_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 			if [ "x${name}" = "xuart0_txd" ] || [ "x${name}" = "xuart1_txd" ] || [ "x${name}" = "xuart2_txd" ] || [ "x${name}" = "xuart3_txd" ] || [ "x${name}" = "xuart4_txd" ] || [ "x${name}" = "xuart5_txd" ] ; then
 				uart_name=${name}
 				uart_mode=${mode}
 				uart_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 		fi
 		if [ "x${compare}" = "xDCAN0" ] || [ "x${compare}" = "xDCAN1" ] ; then
@@ -424,7 +424,7 @@ unset spi_sclk_ioDir
 			dcan_name=${name}
 			dcan_mode=${mode}
 			dcan_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 		if [ "x${compare}" = "xeCAP0" ] || [ "x${compare}" = "xeHRPWM0" ] || [ "x${compare}" = "xeHRPWM1" ] || [ "x${compare}" = "xeHRPWM2" ] ; then
 			get_name_mode
@@ -432,7 +432,7 @@ unset spi_sclk_ioDir
 			pwm_name=${name}
 			pwm_mode=${mode}
 			pwm_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 		if [ "x${compare}" = "xUART0_PRUSS1" ] ; then
 			get_name_mode
@@ -440,7 +440,7 @@ unset spi_sclk_ioDir
 			uart0_pruss1_name=${name}
 			uart0_pruss1_mode=${mode}
 			uart0_pruss1_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 		if [ "x${compare}" = "xeCAP0_PRUSS1" ] ; then
 			get_name_mode
@@ -457,7 +457,7 @@ unset spi_sclk_ioDir
 				timer_name=${name}
 				timer_mode=${mode}
 				timer_ioDir=${ioDir}
-				echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+				echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 			fi
 		fi
 		if [ "x${compare}" = "xeQEP0" ] || [ "x${compare}" = "xeQEP1" ] || [ "x${compare}" = "xeQEP2" ] ; then
@@ -466,7 +466,7 @@ unset spi_sclk_ioDir
 			eqep_name=${name}
 			eqep_mode=${mode}
 			eqep_ioDir=${ioDir}
-			echo "P${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
+			echo "${pcbpin}:${ball}:${name}:${mode}:${ioDir}"
 		fi
 
 	done
@@ -485,52 +485,52 @@ unset got_pru_uart_pin
 unset got_timer_pin
 
 if [ "x${default_name}" = "x" ] ; then
-	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}.dts
+	echo "/* ${pcbpin} (ZCZ ball ${found_ball}) */" >> ${file}.dts
 else
-	echo "/* P${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}.dts
+	echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${default_name} */" >> ${file}.dts
 fi
 
 if [ "x${default}" = "x" ] ; then
-	echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 else
 	if [ "x${default}" = "xI2C" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xPWM" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* ${PinID}.${pwm_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xSPI" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xspi_cs" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_cs_mode}) >; };	/* ${PinID}.${spi_cs_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xspi_sclk" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_sclk_mode}) >; };	/* ${PinID}.${spi_sclk_name} */" >> ${file}.dts
 		unset default
 	fi
 	if [ "x${default}" = "xUART" ] ; then
-		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
 		unset default
 	fi
 fi
 
-echo "P${pcbpin}_gpio_pin: pinmux_P${pcbpin}_gpio_pin { pinctrl-single,pins = <" >> ${file}.dts
+echo "${pcbpin}_gpio_pin: pinmux_${pcbpin}_gpio_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
-echo "P${pcbpin}_gpio_pu_pin: pinmux_P${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" >> ${file}.dts
+echo "${pcbpin}_gpio_pu_pin: pinmux_${pcbpin}_gpio_pu_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
-echo "P${pcbpin}_gpio_pd_pin: pinmux_P${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" >> ${file}.dts
+echo "${pcbpin}_gpio_pd_pin: pinmux_${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" >> ${file}.dts
 echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* ${PinID}.${gpio_name} */" >> ${file}.dts
 
 gpio_mul=$(echo ${gpio_name} | awk -F'_' '{print $1}' | awk -F'gpio' '{print $2}' || true)
@@ -540,37 +540,37 @@ cp_gpio_number=$(echo "${cp_gpio_number} + ${gpio_add}" | bc)
 cp_pru_gpio_number=$(echo "${cp_gpio_number} + 32" | bc)
 
 if [ ! "x${spi_name}" = "x" ] ; then
-	echo "P${pcbpin}_spi_pin: pinmux_P${pcbpin}_spi_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_spi_pin: pinmux_${pcbpin}_spi_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" >> ${file}.dts
 	got_spi_pin="enable"
 fi
 
 if [ ! "x${spi_cs_name}" = "x" ] ; then
-	echo "P${pcbpin}_spi_cs_pin: pinmux_P${pcbpin}_spi_cs_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_spi_cs_pin: pinmux_${pcbpin}_spi_cs_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_cs_mode}) >; };	/* ${PinID}.${spi_cs_name} */" >> ${file}.dts
 	got_spi_cs_pin="enable"
 fi
 
 if [ ! "x${spi_sclk_name}" = "x" ] ; then
-	echo "P${pcbpin}_spi_sclk_pin: pinmux_P${pcbpin}_spi_sclk_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_spi_sclk_pin: pinmux_${pcbpin}_spi_sclk_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_sclk_mode}) >; };	/* ${PinID}.${spi_sclk_name} */" >> ${file}.dts
 	got_spi_sclk_pin="enable"
 fi
 
 if [ ! "x${i2c_name}" = "x" ] ; then
-	echo "P${pcbpin}_i2c_pin: pinmux_P${pcbpin}_i2c_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_i2c_pin: pinmux_${pcbpin}_i2c_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${i2c_mode}) >; };	/* ${PinID}.${i2c_name} */" >> ${file}.dts
 	got_i2c_pin="enable"
 fi
 
 if [ ! "x${uart_name}" = "x" ] ; then
-	echo "P${pcbpin}_uart_pin: pinmux_P${pcbpin}_uart_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_uart_pin: pinmux_${pcbpin}_uart_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
 	got_uart_pin="enable"
 fi
 
 if [ ! "x${dcan_name}" = "x" ] ; then
-	echo "P${pcbpin}_can_pin: pinmux_P${pcbpin}_can_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_can_pin: pinmux_${pcbpin}_can_pin { pinctrl-single,pins = <" >> ${file}.dts
 	if [ "x${name}" = "xcan0_tx" ] || [ "x${name}" = "xcan1_tx" ] ; then
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | MUX_MODE${dcan_mode}) >; };		/* ${PinID}.${dcan_name} */" >> ${file}.dts
 	else
@@ -580,14 +580,14 @@ if [ ! "x${dcan_name}" = "x" ] ; then
 fi
 
 if [ ! "x${uart0_pruss1_name}" = "x" ] ; then
-	echo "P${pcbpin}_pru_uart_pin: pinmux_P${pcbpin}_pru_uart_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_pru_uart_pin: pinmux_${pcbpin}_pru_uart_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart0_pruss1_mode}) >; };	/* ${PinID}.${uart0_pruss1_name} */" >> ${file}.dts
 	got_pru_uart_pin="enable"
 fi
 
 if [ "x${generate_timer}" = "xenable" ] ; then
 	if [ ! "x${timer_name}" = "x" ] ; then
-		echo "P${pcbpin}_timer_pin: pinmux_P${pcbpin}_timer_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_timer_pin: pinmux_${pcbpin}_timer_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${timer_mode}) >; };	/* ${PinID}.${timer_name} */" >> ${file}.dts
 		got_timer_pin="enable"
 	fi
@@ -595,11 +595,11 @@ fi
 
 if [ ! "x${pru_mode5_name}" = "x" ] ; then
 	if [ "x${pru_mode5_ioDir}" = "xO" ] ; then
-		echo "P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_pruout_pin: pinmux_${pcbpin}_pruout_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* ${PinID}.${pru_mode5_name} */" >> ${file}.dts
 		got_pruout_pin="enable"
 	else
-		echo "P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_pruin_pin: pinmux_${pcbpin}_pruin_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode5_mode}) >; };	/* ${PinID}.${pru_mode5_name} */" >> ${file}.dts
 		got_pruin_pin="enable"
 	fi
@@ -607,29 +607,29 @@ fi
 
 if [ ! "x${pru_mode6_name}" = "x" ] ; then
 	if [ "x${pru_mode6_ioDir}" = "xO" ] ; then
-		echo "P${pcbpin}_pruout_pin: pinmux_P${pcbpin}_pruout_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_pruout_pin: pinmux_${pcbpin}_pruout_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* ${PinID}.${pru_mode6_name} */" >> ${file}.dts
 		got_pruout_pin="enable"
 	else
-		echo "P${pcbpin}_pruin_pin: pinmux_P${pcbpin}_pruin_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "${pcbpin}_pruin_pin: pinmux_${pcbpin}_pruin_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pru_mode6_mode}) >; };	/* ${PinID}.${pru_mode6_name} */" >> ${file}.dts
 		got_pruin_pin="enable"
 	fi
 fi
 
 if [ ! "x${pwm_name}" = "x" ] ; then
-	echo "P${pcbpin}_pwm_pin: pinmux_P${pcbpin}_pwm_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_pwm_pin: pinmux_${pcbpin}_pwm_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${pwm_mode}) >; };	/* ${PinID}.${pwm_name} */" >> ${file}.dts
 	got_pwm_pin="enable"
 fi
 
 if [ ! "x${ecap0_pruss1_name}" = "x" ] ; then
-	echo "P${pcbpin}_pru_ecap_pin: pinmux_P${pcbpin}_pru_ecap_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_pru_ecap_pin: pinmux_${pcbpin}_pru_ecap_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${ecap0_pruss1_mode}) >; };	/* ${PinID}.${ecap0_pruss1_name} */" >> ${file}.dts
 fi
 
 if [ ! "x${eqep_name}" = "x" ] ; then
-	echo "P${pcbpin}_qep_pin: pinmux_P${pcbpin}_qep_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "${pcbpin}_qep_pin: pinmux_${pcbpin}_qep_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${eqep_mode}) >; };	/* ${PinID}.${eqep_name} */" >> ${file}.dts
 	got_qep_pin="enable"
 fi

@@ -14,7 +14,7 @@ echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
-#pcbpin="9_42" ; ball="C18" ; find_ball
+#pcbpin="P9_42" ; ball="C18" ; find_ball
 #exit 2
 
 msg="/************************/" ; echo_both
@@ -37,50 +37,50 @@ echo "" >>${file}_config-pin.txt
 
 msg="" ; echo_both
 
-cp_info_default="mmc1_dat6" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_03" ; ball="R9" ; find_ball
-cp_info_default="mmc1_dat7" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_04" ; ball="T9" ; find_ball
-cp_info_default="mmc1_dat2" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_05" ; ball="R8" ; find_ball
-cp_info_default="mmc1_dat3" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_06" ; ball="T8" ; find_ball
-pcbpin="8_07" ; ball="R7" ; find_ball
-pcbpin="8_08" ; ball="T7" ; find_ball
-pcbpin="8_09" ; ball="T6" ; find_ball
-pcbpin="8_10" ; ball="U6" ; find_ball
-pcbpin="8_11" ; ball="R12" ; find_ball
-pcbpin="8_12" ; ball="T12" ; find_ball
-pcbpin="8_13" ; ball="T10" ; find_ball
-pcbpin="8_14" ; ball="T11" ; find_ball
-pcbpin="8_15" ; ball="U13" ; find_ball
-pcbpin="8_16" ; ball="V13" ; find_ball
-pcbpin="8_17" ; ball="U12" ; find_ball
-pcbpin="8_18" ; ball="V12" ; find_ball
-pcbpin="8_19" ; ball="U10" ; find_ball
-cp_info_default="mmc1_cmd" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_20" ; ball="V9" ; find_ball
-cp_info_default="mmc1_clk" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_21" ; ball="U9" ; find_ball
-cp_info_default="mmc1_dat5" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_22" ; ball="V8" ; find_ball
-cp_info_default="mmc1_dat4" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_23" ; ball="U8" ; find_ball
-cp_info_default="mmc1_dat1" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_24" ; ball="V7" ; find_ball
-cp_info_default="mmc1_dat0" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="8_25" ; ball="U7" ; find_ball
-pcbpin="8_26" ; ball="V6" ; find_ball
-cp_info_default="lcd_vsync" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_27" ; ball="U5" ; find_ball
-cp_info_default="lcd_pclk" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_28" ; ball="V5" ; find_ball
-cp_info_default="lcd_hsync" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_29" ; ball="R5" ; find_ball
-cp_info_default="lcd_ac_bias_en" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_30" ; ball="R6" ; find_ball
-cp_info_default="lcd_data14" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_31" ; ball="V4" ; find_ball
-cp_info_default="lcd_data15" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_32" ; ball="T5" ; find_ball
-cp_info_default="lcd_data13" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_33" ; ball="V3" ; find_ball
-cp_info_default="lcd_data11" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_34" ; ball="U4" ; find_ball
-cp_info_default="lcd_data12" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_35" ; ball="V2" ; find_ball
-cp_info_default="lcd_data10" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_36" ; ball="U3" ; find_ball
-cp_info_default="lcd_data8" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_37" ; ball="U1" ; find_ball
-cp_info_default="lcd_data9" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_38" ; ball="U2" ; find_ball
-cp_info_default="lcd_data6" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_39" ; ball="T3" ; find_ball
-cp_info_default="lcd_data7" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_40" ; ball="T4" ; find_ball
-cp_info_default="lcd_data4" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_41" ; ball="T1" ; find_ball
-cp_info_default="lcd_data5" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_42" ; ball="T2" ; find_ball
-cp_info_default="lcd_data2" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_43" ; ball="R3" ; find_ball
-cp_info_default="lcd_data3" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_44" ; ball="R4" ; find_ball
-cp_info_default="lcd_data0" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_45" ; ball="R1" ; find_ball
-cp_info_default="lcd_data1" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="8_46" ; ball="R2" ; find_ball
+cp_info_default="mmc1_dat6" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_03" ; ball="R9" ; find_ball
+cp_info_default="mmc1_dat7" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_04" ; ball="T9" ; find_ball
+cp_info_default="mmc1_dat2" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_05" ; ball="R8" ; find_ball
+cp_info_default="mmc1_dat3" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_06" ; ball="T8" ; find_ball
+pcbpin="P8_07" ; ball="R7" ; find_ball
+pcbpin="P8_08" ; ball="T7" ; find_ball
+pcbpin="P8_09" ; ball="T6" ; find_ball
+pcbpin="P8_10" ; ball="U6" ; find_ball
+pcbpin="P8_11" ; ball="R12" ; find_ball
+pcbpin="P8_12" ; ball="T12" ; find_ball
+pcbpin="P8_13" ; ball="T10" ; find_ball
+pcbpin="P8_14" ; ball="T11" ; find_ball
+pcbpin="P8_15" ; ball="U13" ; find_ball
+pcbpin="P8_16" ; ball="V13" ; find_ball
+pcbpin="P8_17" ; ball="U12" ; find_ball
+pcbpin="P8_18" ; ball="V12" ; find_ball
+pcbpin="P8_19" ; ball="U10" ; find_ball
+cp_info_default="mmc1_cmd" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_20" ; ball="V9" ; find_ball
+cp_info_default="mmc1_clk" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_21" ; ball="U9" ; find_ball
+cp_info_default="mmc1_dat5" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_22" ; ball="V8" ; find_ball
+cp_info_default="mmc1_dat4" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_23" ; ball="U8" ; find_ball
+cp_info_default="mmc1_dat1" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_24" ; ball="V7" ; find_ball
+cp_info_default="mmc1_dat0" ; cp_default="emmc" ; default_name="emmc" ; pcbpin="P8_25" ; ball="U7" ; find_ball
+pcbpin="P8_26" ; ball="V6" ; find_ball
+cp_info_default="lcd_vsync" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_27" ; ball="U5" ; find_ball
+cp_info_default="lcd_pclk" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_28" ; ball="V5" ; find_ball
+cp_info_default="lcd_hsync" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_29" ; ball="R5" ; find_ball
+cp_info_default="lcd_ac_bias_en" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_30" ; ball="R6" ; find_ball
+cp_info_default="lcd_data14" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_31" ; ball="V4" ; find_ball
+cp_info_default="lcd_data15" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_32" ; ball="T5" ; find_ball
+cp_info_default="lcd_data13" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_33" ; ball="V3" ; find_ball
+cp_info_default="lcd_data11" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_34" ; ball="U4" ; find_ball
+cp_info_default="lcd_data12" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_35" ; ball="V2" ; find_ball
+cp_info_default="lcd_data10" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_36" ; ball="U3" ; find_ball
+cp_info_default="lcd_data8" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_37" ; ball="U1" ; find_ball
+cp_info_default="lcd_data9" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_38" ; ball="U2" ; find_ball
+cp_info_default="lcd_data6" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_39" ; ball="T3" ; find_ball
+cp_info_default="lcd_data7" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_40" ; ball="T4" ; find_ball
+cp_info_default="lcd_data4" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_41" ; ball="T1" ; find_ball
+cp_info_default="lcd_data5" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_42" ; ball="T2" ; find_ball
+cp_info_default="lcd_data2" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_43" ; ball="R3" ; find_ball
+cp_info_default="lcd_data3" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_44" ; ball="R4" ; find_ball
+cp_info_default="lcd_data0" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_45" ; ball="R1" ; find_ball
+cp_info_default="lcd_data1" ; cp_default="hdmi" ; default_name="hdmi" ; pcbpin="P8_46" ; ball="R2" ; find_ball
 
 msg="/************************/" ; echo_both
 msg="/* P9 Header */" ; echo_both
@@ -156,14 +156,14 @@ echo "P9_10_INFO=\"RSTn\"" >>${file}_config-pin.txt
 echo "P9_10_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="9_11" ; ball="T17" ; find_ball
-pcbpin="9_12" ; ball="U18" ; find_ball
-pcbpin="9_13" ; ball="U17" ; find_ball
-pcbpin="9_14" ; ball="U14" ; find_ball
-pcbpin="9_15" ; ball="R13" ; find_ball
-pcbpin="9_16" ; ball="T14" ; find_ball
-pcbpin="9_17" ; ball="A16" ; find_ball
-pcbpin="9_18" ; ball="B16" ; find_ball
+pcbpin="P9_11" ; ball="T17" ; find_ball
+pcbpin="P9_12" ; ball="U18" ; find_ball
+pcbpin="P9_13" ; ball="U17" ; find_ball
+pcbpin="P9_14" ; ball="U14" ; find_ball
+pcbpin="P9_15" ; ball="R13" ; find_ball
+pcbpin="P9_16" ; ball="T14" ; find_ball
+pcbpin="P9_17" ; ball="A16" ; find_ball
+pcbpin="P9_18" ; ball="B16" ; find_ball
 
 msg="/* Leave the cape I2C EEPROM bus alone */" ; echo_both
 msg="/* P9_19 (ZCZ ball D17) I2C */" ; echo_both
@@ -183,20 +183,20 @@ echo "P9_20_INFO=\"i2c2_sda\"" >>${file}_config-pin.txt
 echo "P9_20_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-#default="I2C" ; pcbpin="9_19" ; ball="D17" ; find_ball
-#default="I2C" ; pcbpin="9_20" ; ball="D18" ; find_ball
+#default="I2C" ; pcbpin="P9_19" ; ball="D17" ; find_ball
+#default="I2C" ; pcbpin="P9_20" ; ball="D18" ; find_ball
 
-pcbpin="9_21" ; ball="B17" ; find_ball
-pcbpin="9_22" ; ball="A17" ; find_ball
-pcbpin="9_23" ; ball="V14" ; find_ball
-pcbpin="9_24" ; ball="D15" ; find_ball
-default_name="audio" ; pcbpin="9_25" ; ball="A14" ; find_ball
-pcbpin="9_26" ; ball="D16" ; find_ball
-pcbpin="9_27" ; ball="C13" ; find_ball
-default_name="audio" ; pcbpin="9_28" ; ball="C12" ; find_ball
-default_name="audio" ; pcbpin="9_29" ; ball="B13" ; find_ball
-pcbpin="9_30" ; ball="D12" ; find_ball
-default_name="audio" ; pcbpin="9_31" ; ball="A13" ; find_ball
+pcbpin="P9_21" ; ball="B17" ; find_ball
+pcbpin="P9_22" ; ball="A17" ; find_ball
+pcbpin="P9_23" ; ball="V14" ; find_ball
+pcbpin="P9_24" ; ball="D15" ; find_ball
+default_name="audio" ; pcbpin="P9_25" ; ball="A14" ; find_ball
+pcbpin="P9_26" ; ball="D16" ; find_ball
+pcbpin="P9_27" ; ball="C13" ; find_ball
+default_name="audio" ; pcbpin="P9_28" ; ball="C12" ; find_ball
+default_name="audio" ; pcbpin="P9_29" ; ball="B13" ; find_ball
+pcbpin="P9_30" ; ball="D12" ; find_ball
+default_name="audio" ; pcbpin="P9_31" ; ball="A13" ; find_ball
 
 msg="/* P9_32 VADC */" ; echo_both
 
@@ -254,12 +254,12 @@ echo "P9_40_INFO=\"AIN1\"" >>${file}_config-pin.txt
 echo "P9_40_CAPE=\"uboot\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="9_41" ; ball="D14" ; find_ball
+pcbpin="P9_41" ; ball="D14" ; find_ball
 msg="/* P9_41.1 */" ; echo_both
-pcbpin="9_91" ; ball="D13" ; find_ball
-pcbpin="9_42" ; ball="C18" ; find_ball
+pcbpin="P9_91" ; ball="D13" ; find_ball
+pcbpin="P9_42" ; ball="C18" ; find_ball
 msg="/* P9_42.1 */" ; echo_both
-pcbpin="9_92" ; ball="B12" ; find_ball
+pcbpin="P9_92" ; ball="B12" ; find_ball
 
 msg="/* P9_43 GND */" ; echo_both
 echo "P9_43_PIN=\"gnd\"" >>${file}_config-pin.txt

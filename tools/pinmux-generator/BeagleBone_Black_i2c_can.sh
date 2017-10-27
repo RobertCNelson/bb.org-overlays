@@ -13,8 +13,8 @@ echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
-cp_info_default="i2c2_scl" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="9_19" ; ball="D17" ; find_ball
-cp_info_default="i2c2_sda" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="9_20" ; ball="D18" ; find_ball
+cp_info_default="i2c2_scl" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="P9_19" ; ball="D17" ; find_ball
+cp_info_default="i2c2_sda" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="P9_20" ; ball="D18" ; find_ball
 
 msg="" ; echo_both
 
