@@ -172,8 +172,6 @@
 				AM33XX_IOPAD(0x08dc, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* lcd_data15.gpio0_11 */
 			P8_32_gpio_pd_pin: pinmux_P8_32_gpio_pd_pin { pinctrl-single,pins = <
 				AM33XX_IOPAD(0x08dc, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* lcd_data15.gpio0_11 */
-			P8_32_uart_pin: pinmux_P8_32_uart_pin { pinctrl-single,pins = <
-				AM33XX_IOPAD(0x08dc, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE6) >; };	/* Mode 6, Pull-Down, RxActive */
 			P8_32_qep_pin: pinmux_P8_32_qep_pin { pinctrl-single,pins = <
 				AM33XX_IOPAD(0x08dc, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE2) >; };	/* lcd_data15.eQEP1_strobe */
 

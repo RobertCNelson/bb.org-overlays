@@ -509,6 +509,16 @@ else
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_mode}) >; };	/* ${PinID}.${spi_name} */" >> ${file}.dts
 		unset default
 	fi
+	if [ "x${default}" = "xspi_cs" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_cs_mode}) >; };	/* ${PinID}.${spi_cs_name} */" >> ${file}.dts
+		unset default
+	fi
+	if [ "x${default}" = "xspi_sclk" ] ; then
+		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${spi_sclk_mode}) >; };	/* ${PinID}.${spi_sclk_name} */" >> ${file}.dts
+		unset default
+	fi
 	if [ "x${default}" = "xUART" ] ; then
 		echo "P${pcbpin}_default_pin: pinmux_P${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
 		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${uart_mode}) >; };	/* ${PinID}.${uart_name} */" >> ${file}.dts
@@ -561,7 +571,11 @@ fi
 
 if [ ! "x${dcan_name}" = "x" ] ; then
 	echo "P${pcbpin}_can_pin: pinmux_P${pcbpin}_can_pin { pinctrl-single,pins = <" >> ${file}.dts
-	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${dcan_mode}) >; };	/* ${PinID}.${dcan_name} */" >> ${file}.dts
+	if [ "x${name}" = "xcan0_tx" ] || [ "x${name}" = "xcan1_tx" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | MUX_MODE${dcan_mode}) >; };		/* ${PinID}.${dcan_name} */" >> ${file}.dts
+	else
+		echo "	AM33XX_IOPAD(${cro}, PIN_INPUT_PULLUP | MUX_MODE${dcan_mode}) >; };		/* ${PinID}.${dcan_name} */" >> ${file}.dts
+	fi
 	got_can_pin="enable"
 fi
 
