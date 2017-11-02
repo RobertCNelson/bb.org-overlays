@@ -241,7 +241,7 @@ echo "P2_23_INFO=\"VOUT-3.3V\"" >>${file}_config-pin.txt
 echo "P2_23_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="P2_24" ; ball="R13" ; find_ball
+pcbpin="P2_24" ; ball="T12" ; find_ball
 
 cp_info_default="spi1_cs0" ; cp_default="spi" ; default="SPI" ; pcbpin="P2_25" ; ball="E17" ; find_ball
 

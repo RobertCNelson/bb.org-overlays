@@ -538,17 +538,19 @@ P2_22_qep_pin: pinmux_P2_22_qep_pin { pinctrl-single,pins = <
 
 /* P2_23                VOUT-3.3V */
 
-/* P2_24 (ZCZ ball R13) */
+/* P2_24 (ZCZ ball T12) */
 P2_24_default_pin: pinmux_P2_24_default_pin { pinctrl-single,pins = <
-	AM33XX_IOPAD(0x0840, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a0.gpio1_16 */
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad12.gpio1_12 */
 P2_24_gpio_pin: pinmux_P2_24_gpio_pin { pinctrl-single,pins = <
-	AM33XX_IOPAD(0x0840, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a0.gpio1_16 */
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad12.gpio1_12 */
 P2_24_gpio_pu_pin: pinmux_P2_24_gpio_pu_pin { pinctrl-single,pins = <
-	AM33XX_IOPAD(0x0840, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a0.gpio1_16 */
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad12.gpio1_12 */
 P2_24_gpio_pd_pin: pinmux_P2_24_gpio_pd_pin { pinctrl-single,pins = <
-	AM33XX_IOPAD(0x0840, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a0.gpio1_16 */
-P2_24_pwm_pin: pinmux_P2_24_pwm_pin { pinctrl-single,pins = <
-	AM33XX_IOPAD(0x0840, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE6) >; };	/* gpmc_a0.ehrpwm1_tripzone_input */
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad12.gpio1_12 */
+P2_24_pruout_pin: pinmux_P2_24_pruout_pin { pinctrl-single,pins = <
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE6) >; };	/* gpmc_ad12.pr1_pru0_pru_r30_14 */
+P2_24_qep_pin: pinmux_P2_24_qep_pin { pinctrl-single,pins = <
+	AM33XX_IOPAD(0x0830, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* gpmc_ad12.eqep2a_in */
 
 /* P2_25 (ZCZ ball E17) */
 P2_25_default_pin: pinmux_P2_25_default_pin { pinctrl-single,pins = <
@@ -1213,16 +1215,17 @@ P2_22_pinmux {
 
 /* P2_23                VOUT-3.3V */
 
-/* P2_24 (ZCZ ball R13) */
+/* P2_24 (ZCZ ball T12) */
 P2_24_pinmux {
 	compatible = "bone-pinmux-helper";
 	status = "okay";
-	pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "pwm";
+	pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "qep", "pruout";
 	pinctrl-0 = <&P2_24_default_pin>;
 	pinctrl-1 = <&P2_24_gpio_pin>;
 	pinctrl-2 = <&P2_24_gpio_pu_pin>;
 	pinctrl-3 = <&P2_24_gpio_pd_pin>;
-	pinctrl-4 = <&P2_24_pwm_pin>;
+	pinctrl-4 = <&P2_24_qep_pin>;
+	pinctrl-5 = <&P2_24_pruout_pin>;
 };
 
 /* P2_25 (ZCZ ball E17) */
@@ -1611,7 +1614,7 @@ cape-universal {
 
 	P2_24 {
 		gpio-name = "P2_24";
-		gpio = <&gpio1 16 0>;
+		gpio = <&gpio1 12 0>;
 		input;
 		dir-changeable;
 	};
