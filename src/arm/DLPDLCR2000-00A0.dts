@@ -53,9 +53,6 @@
 		"P8.28",	/* lcd: lcd_pclk */
 		"P8.30",	/* lcd: lcd_ac_bias_en */
 
-		"P9.20",        /* i2c2_sda */
-                "P9.19",        /* i2c2_scl */
-
                 "P8.26",	/* GPIO: INIT_DONE /*
 		"P9.15",	/* GPIO: PROJ_ON_EXT /*
 	
@@ -63,20 +60,12 @@
  	
                 "gpio1_29",
                 "gpio1_16",	
- 		"i2c2",
 		"lcd";
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
-			bb_i2c2_pins: pinmux_bb_i2c2_pins {
-                                pinctrl-single,pins = <
-                                        0x178 0x73    // spi0_d1.i2c2_sda,  SLEWCTRL_SLOW | IMPUT_PULLUP | MODE3
-                                        0x17c 0x73    // spi0_cs0.i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3
-                                >;
-                        };
-            
                         bb_dlp_gpio_pins: pinmux_dlp_gpio_pins {
                                  pinctrl-single,pins = <
                                         BONE_P9_15 (PIN_OUTPUT | MUX_MODE7) 
@@ -127,11 +116,9 @@
 
 	
     fragment@1 {
-        target = <&i2c2>;    /* i2c2 is numbered correctly */
+        target = <&i2c2>;
         __overlay__ {
             status = "okay";
-            pinctrl-names = "default";
-            pinctrl-0 = <&bb_i2c2_pins>;
 
             /* this is the configuration part */
             clock-frequency = <100000>;
