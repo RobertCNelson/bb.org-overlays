@@ -56,9 +56,6 @@
 
 		"P9.14",	/* pwm: ehrpwm1a */
 
-		"P9.19",	/* i2c2_sda */
-		"P9.20",	/* i2c2_scl */
-
 		"P9.27",	/* ft5336: gpio3_15 */
 
 		"lcd",
@@ -113,13 +110,6 @@
 				>;
 			};
 
-			bb_i2c2_pins: pinmux_bb_i2c2_pins {
-				pinctrl-single,pins = <
-					BONE_P9_19 0x73 /* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
-					BONE_P9_20 0x73 /* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
-				>;
-			};
-
 			edt_ft5x06_pins: pinmux_edt_ft5x06_pins {
 				pinctrl-single,pins = <
 					BONE_P9_27 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* mcasp0_fsr.gpio3_19 */
@@ -156,8 +146,6 @@
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_i2c2_pins>;
 
 			/* this is the configuration part */
 			clock-frequency = <100000>;
