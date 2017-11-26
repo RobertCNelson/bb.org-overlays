@@ -1316,11 +1316,11 @@ show_pin () {
 # Load a installed cape
 # $1 cape to load
 load_cape () {
-	if [ -d $SLOTS ] ; then
+	if [ -f $SLOTS ] ; then
 		# Make sure required device tree overlay(s) are loaded
 		# cape-bone-iio
 		for DTBO in $1 ; do
-			if [ ! ${disable_capemgr_load} ] ; then
+			if [ ${disable_capemgr_load} -eq 0 ] ; then
 				if grep -q $DTBO $SLOTS ; then
 					echo_std $DTBO already loaded
 				else
@@ -1350,8 +1350,8 @@ check_pin () {
 		# use only first overlay
 		CAPE=`echo "$CAPE" | cut -d' ' -f1`
 
-		if [ ! ${disable_capemgr_load} ] ; then
-			if [ -d $SLOTS ] ; then
+		if [ ${disable_capemgr_load} -eq 0 ] ; then
+			if [ -f $SLOTS ] ; then
 				if [ $AUTOLOAD -eq 0 ] ; then
 					if grep -q $CAPE $SLOTS ; then
 						echo_err "$CAPE already loaded"
