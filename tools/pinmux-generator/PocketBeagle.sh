@@ -243,7 +243,7 @@ echo "" >>${file}_config-pin.txt
 
 pcbpin="P2_24" ; ball="T12" ; find_ball
 
-cp_info_default="spi1_cs0" ; cp_default="spi" ; default="SPI" ; pcbpin="P2_25" ; ball="E17" ; find_ball
+cp_info_default="spi1_d1" ; cp_default="spi" ; default="SPI" ; pcbpin="P2_25" ; ball="E17" ; find_ball
 
 msg="/* P2_26                RESET# */" ; echo_both ; msg="" ; echo_both
 echo "P2_26_PIN=\"system\"" >>${file}_config-pin.txt

@@ -345,7 +345,7 @@ P2_25_PRU="73"
 P2_25_GPIO="41"
 P2_25_PIN="spi"
 P2_25_PINMUX="default gpio gpio_pu gpio_pd spi spi_cs uart can i2c"
-P2_25_INFO="spi1_cs0 default gpio1_9 gpio1_9 gpio1_9 spi1_d1 spi1_cs0 uart4_txd dcan1_rx i2c1_scl"
+P2_25_INFO="spi1_d1 default gpio1_9 gpio1_9 gpio1_9 spi1_d1 spi1_cs0 uart4_txd dcan1_rx i2c1_scl"
 P2_25_CAPE=""
 
 P2_26_PIN="system"
