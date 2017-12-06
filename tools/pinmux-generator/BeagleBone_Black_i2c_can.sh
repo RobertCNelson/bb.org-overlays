@@ -4,8 +4,6 @@ source $(dirname "$0")/lib/pinmux.sh
 
 file="BeagleBone_Black_i2c_can"
 
-generate_timer="enable"
-
 echo "" > ${file}.dts
 echo "" >${file}-pinmux.dts
 echo "" >${file}-gpio.dts
@@ -13,8 +11,8 @@ echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
-cp_info_default="i2c2_scl" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="P9_19" ; ball="D17" ; find_ball
-cp_info_default="i2c2_sda" ; cp_default="i2c" ; default_name="i2c" ; default="I2C" ; pcbpin="P9_20" ; ball="D18" ; find_ball
+default_mode="3" ; cp_default="i2c" ; pcbpin="P9_19" ; ball="D17" ; find_ball
+default_mode="3" ; cp_default="i2c" ; pcbpin="P9_20" ; ball="D18" ; find_ball
 
 msg="" ; echo_both
 
