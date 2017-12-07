@@ -39,9 +39,9 @@ echo_pinmux () {
 	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\", \"gpio_input\""
 	cp_pinmux="default gpio gpio_pu gpio_pd gpio_input"
 	if [ "x${cp_info_default}" = "x" ] ; then
-		cp_info="${gpio_name} default ${gpio_name} ${gpio_name} ${gpio_name}"
+		cp_info="${gpio_name} default ${gpio_name} ${gpio_name} ${gpio_name} ${gpio_name}"
 	else
-		cp_info="${cp_info_default} default ${gpio_name} ${gpio_name} ${gpio_name}"
+		cp_info="${cp_info_default} default ${gpio_name} ${gpio_name} ${gpio_name} ${gpio_name}"
 		unset cp_info_default
 	fi
 	if [ "x${got_spi_pin}" = "xenable" ] ; then
