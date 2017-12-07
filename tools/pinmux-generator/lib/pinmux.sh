@@ -174,17 +174,18 @@ echo_gpio () {
 }
 
 get_json_pkg () {
+	pinmux_version="4.0.1510"
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget http://downloads.ti.com/ccs/esd/pinmux/pinmux-4.0.1496-setup.run
-	chmod +x pinmux-4.0.1496-setup.run
+	wget -c http://software-dl.ti.com/ccs/esd/pinmux/pinmux-${pinmux_version}-setup.run
+	chmod +x pinmux-${pinmux_version}-setup.run
 	mkdir tmp
-	./pinmux-4.0.1496-setup.run --mode unattended --prefix ./tmp
+	./pinmux-${pinmux_version}-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v tmp/pinmux/deviceData/AM335x/AM335x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf pinmux-4.0.1496-setup.run || true
-	rm -rf pinmux_4.0.1496.log || true
+	rm -rf pinmux-${pinmux_version}-setup.run || true
+	rm -rf pinmux_${pinmux_version}.log || true
 }
 
 get_name_mode () {
