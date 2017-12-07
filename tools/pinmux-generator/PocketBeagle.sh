@@ -21,7 +21,7 @@ msg="" ; echo_both
 
 pcbpin="P1_01" ; label_pin="power" ; label_info="VIN-AC" ; echo_label
 
-default_mode="7" ; pcbpin="P1_02" ; ball="R5" ; find_ball
+default_mode="7" ; cp_default="gpio_input" ; pcbpin="P1_02" ; ball="R5" ; find_ball
 
 pcbpin="P1_03" ; ball="F15" label_pin="system" ; label_info="usb1_vbus_out" ; echo_label_analog
 

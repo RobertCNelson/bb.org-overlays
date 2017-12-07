@@ -36,8 +36,8 @@ echo_pinmux () {
 	echo "${pcbpin}_pinmux {" >> ${file}-pinmux.dts
 	echo "	compatible = \"bone-pinmux-helper\";" >> ${file}-pinmux.dts
 	echo "	status = \"okay\";" >> ${file}-pinmux.dts
-	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\""
-	cp_pinmux="default gpio gpio_pu gpio_pd"
+	list="\"default\", \"gpio\", \"gpio_pu\", \"gpio_pd\", \"gpio_input\""
+	cp_pinmux="default gpio gpio_pu gpio_pd gpio_input"
 	if [ "x${cp_info_default}" = "x" ] ; then
 		cp_info="${gpio_name} default ${gpio_name} ${gpio_name} ${gpio_name}"
 	else
@@ -130,7 +130,8 @@ echo_pinmux () {
 	echo "	pinctrl-1 = <&${pcbpin}_gpio_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-2 = <&${pcbpin}_gpio_pu_pin>;" >> ${file}-pinmux.dts
 	echo "	pinctrl-3 = <&${pcbpin}_gpio_pd_pin>;" >> ${file}-pinmux.dts
-	index=4
+	echo "	pinctrl-4 = <&${pcbpin}_gpio_input_pin>;" >> ${file}-pinmux.dts
+	index=5
 	if [ "x${got_spi_pin}" = "xenable" ] ; then
 		echo "	pinctrl-${index} = <&${pcbpin}_spi_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
@@ -385,7 +386,12 @@ unset spi_sclk_ioDir
 	echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${name} */" >> ${file}.dts
 	cp_info_default=${name}
 
+	dtabs=1
 	case "${cp_default}" in
+	gpio_input)
+		dtabs=3
+		pinsetting="PIN_INPUT"
+		;;
 	pwm)
 		pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 		;;
@@ -398,7 +404,13 @@ unset spi_sclk_ioDir
 	esac
 
 	echo "${pcbpin}_default_pin: pinmux_${pcbpin}_default_pin { pinctrl-single,pins = <" >> ${file}.dts
-	echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };	/* ${PinID}.${name} */" >> ${file}.dts
+	if [ "x${dtabs}" = "x1" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };	/* ${PinID}.${name} */" >> ${file}.dts
+	fi
+
+	if [ "x${dtabs}" = "x3" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };			/* ${PinID}.${name} */" >> ${file}.dts
+	fi
 
 	number=${gpio_index}
 	get_name_mode
@@ -409,6 +421,8 @@ unset spi_sclk_ioDir
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE${mode}) >; };	/* ${PinID}.${name} */" >> ${file}.dts
 	echo "${pcbpin}_gpio_pd_pin: pinmux_${pcbpin}_gpio_pd_pin { pinctrl-single,pins = <" >> ${file}.dts
 	echo "	AM33XX_IOPAD(${cro}, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE${mode}) >; };	/* ${PinID}.${name} */" >> ${file}.dts
+	echo "${pcbpin}_gpio_input_pin: pinmux_${pcbpin}_gpio_input_pin { pinctrl-single,pins = <" >> ${file}.dts
+	echo "	AM33XX_IOPAD(${cro}, PIN_INPUT | MUX_MODE${mode}) >; };			/* ${PinID}.${name} */" >> ${file}.dts
 
 	gpio_mul=$(echo ${name} | awk -F'_' '{print $1}' | awk -F'gpio' '{print $2}' || true)
 	gpio_add=$(echo ${name} | awk -F'_' '{print $2}' || true)
