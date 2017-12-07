@@ -22,7 +22,7 @@ echo "P1_01_INFO=\"VIN-AC\"" >>${file}_config-pin.txt
 echo "P1_01_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="P1_02" ; ball="R5" ; find_ball
+default_mode="7" ; pcbpin="P1_02" ; ball="R5" ; find_ball
 
 msg="/* P1_03 (ZCZ ball F15) usb1_vbus_out */" ; echo_both ; msg="" ; echo_both
 echo "P1_03_PIN=\"system\"" >>${file}_config-pin.txt
@@ -30,7 +30,7 @@ echo "P1_03_INFO=\"usb1_vbus_out\"" >>${file}_config-pin.txt
 echo "P1_03_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="P1_04" ; ball="R6" ; find_ball
+default_mode="7" ; pcbpin="P1_04" ; ball="R6" ; find_ball
 
 msg="/* P1_05 (ZCZ ball T18) usb1_vbus_in */" ; echo_both ; msg="" ; echo_both
 echo "P1_05_PIN=\"system\"" >>${file}_config-pin.txt
@@ -38,7 +38,7 @@ echo "P1_05_INFO=\"usb1_vbus_in\"" >>${file}_config-pin.txt
 echo "P1_05_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="spi0_cs0" ; cp_default="spi_cs" ; default="spi_cs" ; pcbpin="P1_06" ; ball="A16" ; find_ball
+default_mode="0" ; cp_default="spi_cs" ; pcbpin="P1_06" ; ball="A16" ; find_ball
 
 msg="/* P1_07                VIN-USB      */" ; echo_both ; msg="" ; echo_both
 echo "P1_07_PIN=\"system\"" >>${file}_config-pin.txt
@@ -46,7 +46,7 @@ echo "P1_07_INFO=\"VIN-USB\"" >>${file}_config-pin.txt
 echo "P1_07_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="spi0_sclk" ; cp_default="spi_sclk" ; default="spi_sclk" ; pcbpin="P1_08" ; ball="A17" ; find_ball
+default_mode="0" ; cp_default="spi_sclk" ; pcbpin="P1_08" ; ball="A17" ; find_ball
 
 msg="/* P1_09 (ZCZ ball R18) USB1-DN      */" ; echo_both ; msg="" ; echo_both
 echo "P1_09_PIN=\"system\"" >>${file}_config-pin.txt
@@ -54,7 +54,7 @@ echo "P1_09_INFO=\"USB1-DN\"" >>${file}_config-pin.txt
 echo "P1_09_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="spi0_d0" ; cp_default="spi" ; default="SPI" ; pcbpin="P1_10" ; ball="B17" ; find_ball
+default_mode="0" ; cp_default="spi" ;  pcbpin="P1_10" ; ball="B17" ; find_ball
 
 msg="/* P1_11 (ZCZ ball R17) USB1-DP      */" ; echo_both ; msg="" ; echo_both
 echo "P1_11_PIN=\"system\"" >>${file}_config-pin.txt
@@ -62,7 +62,7 @@ echo "P1_11_INFO=\"USB1-DP\"" >>${file}_config-pin.txt
 echo "P1_11_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="spi0_d1" ; cp_default="spi" ; default="SPI" ; pcbpin="P1_12" ; ball="B16" ; find_ball
+default_mode="0" ; cp_default="spi" ; pcbpin="P1_12" ; ball="B16" ; find_ball
 
 msg="/* P1_13 (ZCZ ball P17) USB1-ID      */" ; echo_both
 echo "P1_13_PIN=\"system\"" >>${file}_config-pin.txt
@@ -106,7 +106,9 @@ echo "P1_19_INFO=\"AIN0\"" >>${file}_config-pin.txt
 echo "P1_19_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-pcbpin="P1_20" ; ball="D14" ; find_ball
+default_mode="7" ; pcbpin="P1_20" ; ball="D14" ; find_ball
+
+exit
 
 msg="/* P1_21 (ZCZ ball C7)  AIN1         */" ; echo_both
 echo "P1_21_PIN=\"adc\"" >>${file}_config-pin.txt
@@ -138,7 +140,7 @@ echo "P1_25_INFO=\"AIN3\"" >>${file}_config-pin.txt
 echo "P1_25_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="I2C2_SDA" ; cp_default="i2c" ; default="I2C" ; pcbpin="P1_26" ; ball="D18" ; find_ball
+default_mode="3" ; cp_default="i2c" ; pcbpin="P1_26" ; ball="D18" ; find_ball
 
 msg="/* P1_27 (ZCZ ball C8)  AIN4         */" ; echo_both ; msg="" ; echo_both
 echo "P1_27_PIN=\"adc\"" >>${file}_config-pin.txt
@@ -146,15 +148,17 @@ echo "P1_27_INFO=\"AIN4\"" >>${file}_config-pin.txt
 echo "P1_27_CAPE=\"\"" >>${file}_config-pin.txt
 echo "" >>${file}_config-pin.txt
 
-cp_info_default="I2C2_SCL" ; cp_default="i2c" ; default="I2C" ; pcbpin="P1_28" ; ball="D17" ; find_ball
+default_mode="3" ; cp_default="i2c" ; pcbpin="P1_28" ; ball="D17" ; find_ball
 
-pcbpin="P1_29" ; ball="A14" ; find_ball
+default_mode="7" ; pcbpin="P1_29" ; ball="A14" ; find_ball
 
-cp_info_default="uart0_txd" ; cp_default="uart" ; default="UART" ; pcbpin="P1_30" ; ball="E16" ; find_ball
+default_mode="0" ; cp_default="uart" ;  pcbpin="P1_30" ; ball="E16" ; find_ball
 
-pcbpin="P1_31" ; ball="B12" ; find_ball
+default_mode="7" ; pcbpin="P1_31" ; ball="B12" ; find_ball
 
-cp_info_default="uart0_rxd" ; cp_default="uart" ; default="UART" ; pcbpin="P1_32" ; ball="E15" ; find_ball
+default_mode="0" ; cp_default="uart" ; pcbpin="P1_32" ; ball="E15" ; find_ball
+
+exit
 
 pcbpin="P1_33" ; ball="B13" ; find_ball
 pcbpin="P1_34" ; ball="T11" ; find_ball

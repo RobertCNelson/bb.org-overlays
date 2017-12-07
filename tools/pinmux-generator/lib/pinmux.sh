@@ -397,81 +397,91 @@ unset spi_sclk_ioDir
 
 			unset valid_pin_mode
 
-			if [ "x${name}" = "xdcan0_rx" ] || [ "x${name}" = "xdcan1_rx" ] ; then
+			case "${name}" in 
+			dcan*_rx)
 				can_name=${name}
 				valid_pin_mode="can"
 				pinsetting="PIN_INPUT_PULLUP"
 				got_can_pin="enable"
 				tabs=2
-			fi
-			if [ "x${name}" = "xdcan0_tx" ] || [ "x${name}" = "xdcan1_tx" ] ; then
+				;;
+			dcan*_tx)
 				can_name=${name}
 				valid_pin_mode="can"
 				pinsetting="PIN_OUTPUT_PULLUP"
 				got_can_pin="enable"
 				tabs=2
-			fi
-
-			if [ "x${name}" = "xi2c0_sda" ] || [ "x${name}" = "xi2c0_scl" ] ; then
+				;;
+			ehrpwm*)
+				valid_pin_mode="pwm"
+				pwm_name=${name}
+				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+				got_pwm_pin="enable"
+				tabs=1
+				;;
+			i2c*_sda|i2c*_scl)
 				valid_pin_mode="i2c"
 				i2c_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_i2c_pin="enable"
 				tabs=1
-			fi
-			if [ "x${name}" = "xi2c1_sda" ] || [ "x${name}" = "xi2c1_scl" ] ; then
-				valid_pin_mode="i2c"
-				i2c_name=${name}
-				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
-				got_i2c_pin="enable"
-				tabs=1
-			fi
-			if [ "x${name}" = "xi2c2_sda" ] || [ "x${name}" = "xi2c2_scl" ] ; then
-				valid_pin_mode="i2c"
-				i2c_name=${name}
-				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
-				got_i2c_pin="enable"
-				tabs=1
-			fi
-
-			if [ "x${name}" = "xpr1_uart0_rts_n" ] || [ "x${name}" = "xpr1_uart0_cts_n" ] ; then
+				;;
+			pr1_uart0*)
 				valid_pin_mode="pru_uart"
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_pru_uart_pin="enable"
 				tabs=1
-			fi
-
-			if [ "x${name}" = "xspi0_d0" ] || [ "x${name}" = "xspi0_d1" ] || [ "x${name}" = "xspi1_d0" ] || [ "x${name}" = "xspi1_d1" ] ; then
+				;;
+			pr1_pru*_pru_r30*)
+				valid_pin_mode="pruout"
+				pruout_name=${name}
+				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+				got_pruout_pin="enable"
+				tabs=1
+				;;
+			pr1_pru*_pru_r31*)
+				valid_pin_mode="pruin"
+				pruin_name=${name}
+				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+				got_pruin_pin="pruin"
+				tabs=1
+				;;
+			spi0_d*|spi1_d*)
 				valid_pin_mode="spi"
 				spi_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_spi_pin="enable"
 				tabs=1
-			fi
-
-			if [ "x${name}" = "xspi0_cs0" ] || [ "x${name}" = "xspi0_cs1" ] || [ "x${name}" = "xspi1_cs0" ] || [ "x${name}" = "xspi1_cs1" ] ; then
+				;;
+			spi0_cs*|spi1_cs*)
 				valid_pin_mode="spi_cs"
 				spi_cs_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_spi_cs_pin="enable"
 				tabs=1
-			fi
-
-			if [ "x${name}" = "xspi0_sclk" ] || [ "x${name}" = "xspi1_sclk" ] ; then
+				;;
+			spi*_sclk)
 				valid_pin_mode="spi_sclk"
 				spi_sclk_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_spi_sclk_pin="enable"
 				tabs=1
-			fi
-
-			if [ "x${name}" = "xtimer4" ] || [ "x${name}" = "xtimer5" ] || [ "x${name}" = "xtimer6" ] || [ "x${name}" = "xtimer7" ] ; then
+				;;
+			timer*)
 				valid_pin_mode="timer"
 				timer_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_timer_pin="enable"
 				tabs=1
-			fi
+				;;
+			uart*_rxd|uart*_txd)
+				valid_pin_mode="uart"
+				uart_name=${name}
+				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
+				got_uart_pin="enable"
+				tabs=1
+				;;
+			esac
 
 			if [ ! "x${valid_pin_mode}" = "x" ] ; then
 				echo "${pcbpin}_${valid_pin_mode}_pin: pinmux_${pcbpin}_${valid_pin_mode}_pin { pinctrl-single,pins = <" >> ${file}.dts
