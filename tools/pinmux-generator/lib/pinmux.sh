@@ -102,12 +102,12 @@ echo_pinmux () {
 	if [ "x${got_pruout_pin}" = "xenable" ] ; then
 		list="${list}, \"pruout\""
 		cp_pinmux="${cp_pinmux} pruout"
-		cp_info="${cp_info} pruout"
+		cp_info="${cp_info} ${pruout_name}"
 	fi
 	if [ "x${got_pruin_pin}" = "xenable" ] ; then
 		list="${list}, \"pruin\""
 		cp_pinmux="${cp_pinmux} pruin"
-		cp_info="${cp_info} pruin"
+		cp_info="${cp_info} ${pruin_name}"
 	fi
 
 	echo "${pcbpin}_PRU=\"${cp_pru_gpio_number}\"" >> ${file}_config-pin.txt
@@ -342,26 +342,6 @@ find_ball () {
 	#  ]
 	#}
 
-unset gpio_name
-unset pru_mode5_name
-unset pru_mode6_name
-unset spi_name
-unset i2c_name
-unset uart_name
-unset pwm_name
-unset uart0_pruss1_name
-unset ecap0_pruss1_name
-unset timer_name
-unset eqep_name
-unset can_name
-
-unset spi_cs_name
-unset spi_cs_mode
-unset spi_cs_ioDir
-unset spi_sclk_name
-unset spi_sclk_mode
-unset spi_sclk_ioDir
-
 	for number in {0..7}
 	do
 		cat AM335x.json | jq '.pinCommonInfos .'${found_devicePinID}' .pinModeInfo['$number'] .interfaceName'
@@ -383,12 +363,20 @@ unset spi_sclk_ioDir
 	number=${default_index}
 	get_name_mode
 	echo ${pcbpin}:${ball}:${name}:${mode}:${ioDir}:${number}
+
+	case "${cp_default}" in
+	pruin)
+		pruin_tmp=$(echo ${name} | sed 's/pr1_//g' | sed 's/pru_r31_/in/g')
+		name=${pruin_tmp}
+		;;
+	esac
+
 	echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${name} */" >> ${file}.dts
 	cp_info_default=${name}
 
 	dtabs=1
 	case "${cp_default}" in
-	gpio_input)
+	gpio_input|pruin)
 		dtabs=3
 		pinsetting="PIN_INPUT"
 		;;
@@ -407,7 +395,9 @@ unset spi_sclk_ioDir
 	if [ "x${dtabs}" = "x1" ] ; then
 		echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };	/* ${PinID}.${name} */" >> ${file}.dts
 	fi
-
+	if [ "x${dtabs}" = "x2" ] ; then
+		echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };		/* ${PinID}.${name} */" >> ${file}.dts
+	fi
 	if [ "x${dtabs}" = "x3" ] ; then
 		echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };			/* ${PinID}.${name} */" >> ${file}.dts
 	fi
@@ -503,15 +493,18 @@ unset spi_sclk_ioDir
 				;;
 			pr1_pru*_pru_r30*)
 				valid_pin_mode="pruout"
-				pruout_name=${name}
+				pruout_name=$(echo ${name} | sed 's/pr1_//g' | sed 's/pru_r30_/out/g')
+				name=${pruout_name}
 				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 				got_pruout_pin="enable"
 				;;
 			pr1_pru*_pru_r31*)
 				valid_pin_mode="pruin"
-				pruin_name=${name}
-				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+				pruin_name=$(echo ${name} | sed 's/pr1_//g' | sed 's/pru_r31_/in/g')
+				name=${pruin_name}
+				pinsetting="PIN_INPUT"
 				got_pruin_pin="enable"
+				tabs=3
 				;;
 			spi0_d*|spi1_d*)
 				valid_pin_mode="spi"
@@ -555,7 +548,9 @@ unset spi_sclk_ioDir
 				if [ "x${tabs}" = "x2" ] ; then
 					echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };		/* ${PinID}.${name} */" >> ${file}.dts
 				fi
-
+				if [ "x${tabs}" = "x3" ] ; then
+					echo "	AM33XX_IOPAD(${cro}, ${pinsetting} | MUX_MODE${mode}) >; };			/* ${PinID}.${name} */" >> ${file}.dts
+				fi
 			fi
 		fi
 	done
