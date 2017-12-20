@@ -11,8 +11,11 @@ echo "" >${file}_config-pin.txt
 
 #BeagleBone Black
 
-default_mode="3" ; cp_default="i2c" ; pcbpin="P9_19" ; ball="D17" ; find_ball
-default_mode="3" ; cp_default="i2c" ; pcbpin="P9_20" ; ball="D18" ; find_ball
+#PocketBeagle
+gpio_index="7"
+
+pcbpin="P9_19" ; ball="D17" ; default_mode="3" ; cp_default="i2c" ; find_ball
+pcbpin="P9_20" ; ball="D18" ; default_mode="3" ; cp_default="i2c" ; find_ball
 
 msg="" ; echo_both
 
