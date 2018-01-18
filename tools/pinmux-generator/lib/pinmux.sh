@@ -371,7 +371,12 @@ find_ball () {
 		;;
 	esac
 
-	echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${name} */" >> ${file}.dts
+	if [ ! "x${use_name}" = "x" ] ; then
+		echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${use_name} */" >> ${file}.dts
+		unset use_name
+	else
+		echo "/* ${pcbpin} (ZCZ ball ${found_ball}) ${name} */" >> ${file}.dts
+	fi
 	cp_info_default=${name}
 
 	dtabs=1
