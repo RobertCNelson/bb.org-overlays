@@ -223,8 +223,10 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&ar1021_pins>;
 				interrupts = <14 2>;
-		        	interrupt-parent = <&gpio0>;
+				interrupt-parent = <&gpio0>;
 				touchscreen-inverted-y;
+				touchscreen-offset-x=<250>;
+				touchscreen-offset-y=<300>;
 			};
 		};
 	};
