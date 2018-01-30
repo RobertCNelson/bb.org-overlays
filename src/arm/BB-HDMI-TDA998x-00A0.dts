@@ -5,6 +5,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -13,76 +14,36 @@
 #include <dt-bindings/display/tda998x.h>
 
 / {
-	compatible = "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BB-HDMI-TDA998x";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.25",	/* mcasp0: mcasp0_ahclkx */
-		"P9.28",	/* mcasp0: mcasp0_axr2 */
-		"P9.29",	/* mcasp0: mcasp0_fsx */
-		"P9.31",	/* mcasp0: mcasp0_aclkx */
-		"P8.45",	/* lcd: lcd_data0 */
-		"P8.46",	/* lcd: lcd_data1 */
-		"P8.43",	/* lcd: lcd_data2 */
-		"P8.44",	/* lcd: lcd_data3 */
-		"P8.41",	/* lcd: lcd_data4 */
-		"P8.42",	/* lcd: lcd_data5 */
-		"P8.39",	/* lcd: lcd_data6 */
-		"P8.40",	/* lcd: lcd_data7 */
-		"P8.37",	/* lcd: lcd_data8 */
-		"P8.38",	/* lcd: lcd_data9 */
-		"P8.36",	/* lcd: lcd_data10 */
-		"P8.34",	/* lcd: lcd_data11 */
-		"P8.35",	/* lcd: lcd_data12 */
-		"P8.33",	/* lcd: lcd_data13 */
-		"P8.31",	/* lcd: lcd_data14 */
-		"P8.32",	/* lcd: lcd_data15 */
-		"P8.27",	/* lcd: lcd_vsync */
-		"P8.29",	/* lcd: lcd_hsync */
-		"P8.28",	/* lcd: lcd_pclk */
-		"P8.30",	/* lcd: lcd_ac_bias_en */
-		/* the hardware IP uses */
-		"gpio1_27",
-		"mcasp0",
-		"lcd";
-
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
-		target-path="/";
+		target = <&ocp>;
 		__overlay__ {
-			clk_mcasp0_fixed: clk_mcasp0_fixed {
-				#clock-cells = <0>;
-				compatible = "fixed-clock";
-				clock-frequency = <24576000>;
-			};
-
-			clk_mcasp0: clk_mcasp0 {
-				#clock-cells = <0>;
-				compatible = "gpio-gate-clock";
-				clocks = <&clk_mcasp0_fixed>;
-				enable-gpios = <&gpio1 27 0>; /* BeagleBone Black Clk enable on GPIO1_27 */
-			};
-
-			sound {
-				compatible = "simple-audio-card";
-				simple-audio-card,name = "TI BeagleBone Black";
-				simple-audio-card,format = "i2s";
-				simple-audio-card,bitclock-master = <&dailink0_master>;
-				simple-audio-card,frame-master = <&dailink0_master>;
-
-				dailink0_master: simple-audio-card,cpu {
-					sound-dai = <&mcasp0>;
-					clocks = <&clk_mcasp0>;
-				};
-
-				simple-audio-card,codec {
-					sound-dai = <&tda19988>;
-				};
-			};
+			P9_25_pinmux { status = "disabled"; };	/* mcasp0_ahclkx */
+			P9_28_pinmux { status = "disabled"; };	/* mcasp0_axr2 */
+			P9_29_pinmux { status = "disabled"; };	/* mcasp0_fsx */
+			P9_31_pinmux { status = "disabled"; };	/* mcasp0_aclkx */
+			P8_45_pinmux { status = "disabled"; };	/* lcd_data0 */
+			P8_46_pinmux { status = "disabled"; };	/* lcd_data1 */
+			P8_43_pinmux { status = "disabled"; };	/* lcd_data2 */
+			P8_44_pinmux { status = "disabled"; };	/* lcd_data3 */
+			P8_41_pinmux { status = "disabled"; };	/* lcd_data4 */
+			P8_42_pinmux { status = "disabled"; };	/* lcd_data5 */
+			P8_39_pinmux { status = "disabled"; };	/* lcd_data6 */
+			P8_40_pinmux { status = "disabled"; };	/* lcd_data7 */
+			P8_37_pinmux { status = "disabled"; };	/* lcd_data8 */
+			P8_38_pinmux { status = "disabled"; };	/* lcd_data9 */
+			P8_36_pinmux { status = "disabled"; };	/* lcd_data10 */
+			P8_34_pinmux { status = "disabled"; };	/* lcd_data11 */
+			P8_35_pinmux { status = "disabled"; };	/* lcd_data12 */
+			P8_33_pinmux { status = "disabled"; };	/* lcd_data13 */
+			P8_31_pinmux { status = "disabled"; };	/* lcd_data14 */
+			P8_32_pinmux { status = "disabled"; };	/* lcd_data15 */
+			P8_27_pinmux { status = "disabled"; };	/* lcd_vsync */
+			P8_29_pinmux { status = "disabled"; };	/* lcd_hsync */
+			P8_28_pinmux { status = "disabled"; };	/* lcd_pclk */
+			P8_30_pinmux { status = "disabled"; };	/* lcd_ac_bias_en */
 		};
 	};
 
@@ -134,6 +95,41 @@
 	};
 
 	fragment@2 {
+		target-path="/";
+		__overlay__ {
+			clk_mcasp0_fixed: clk_mcasp0_fixed {
+				#clock-cells = <0>;
+				compatible = "fixed-clock";
+				clock-frequency = <24576000>;
+			};
+
+			clk_mcasp0: clk_mcasp0 {
+				#clock-cells = <0>;
+				compatible = "gpio-gate-clock";
+				clocks = <&clk_mcasp0_fixed>;
+				enable-gpios = <&gpio1 27 0>; /* BeagleBone Black Clk enable on GPIO1_27 */
+			};
+
+			sound {
+				compatible = "simple-audio-card";
+				simple-audio-card,name = "TI BeagleBone Black";
+				simple-audio-card,format = "i2s";
+				simple-audio-card,bitclock-master = <&dailink0_master>;
+				simple-audio-card,frame-master = <&dailink0_master>;
+
+				dailink0_master: simple-audio-card,cpu {
+					sound-dai = <&mcasp0>;
+					clocks = <&clk_mcasp0>;
+				};
+
+				simple-audio-card,codec {
+					sound-dai = <&tda19988>;
+				};
+			};
+		};
+	};
+
+	fragment@3 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
@@ -153,10 +149,9 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c0>;
 		__overlay__ {
-
 			#address-cells = <1>;
 			#size-cells = <0>;
 			tda19988: tda19988 {
@@ -184,7 +179,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&mcasp0>;
 		__overlay__ {
 			#sound-dai-cells = <0>;
