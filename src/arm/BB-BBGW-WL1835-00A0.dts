@@ -20,8 +20,8 @@
 	fragment@0 {
 		target = <&ocp>;
 		__overlay__ {
-			P9_20_pinmux { status = "disabled"; };	/* gpmc_ad12.gpio1_28 BT_EN */
-			P9_19_pinmux { status = "disabled"; };	/* gpmc_csn0.gpio1_29 LS_BUF_EN */
+			P9_12_pinmux { status = "disabled"; };	/* gpmc_ad12.gpio1_28 BT_EN */
+			P8_26_pinmux { status = "disabled"; };	/* gpmc_csn0.gpio1_29 LS_BUF_EN */
 			P8_12_pinmux { status = "disabled"; };	/* gpmc_ad12.mmc2_dat0 */
 			P8_11_pinmux { status = "disabled"; };	/* gpmc_ad13.mmc2_dat1 */
 			P8_16_pinmux { status = "disabled"; };	/* gpmc_ad14.mmc2_dat2 */
