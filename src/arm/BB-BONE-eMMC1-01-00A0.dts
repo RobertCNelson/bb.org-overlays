@@ -1,10 +1,11 @@
 /*
-* Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License version 2 as
-* published by the Free Software Foundation.
-*/
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
 /dts-v1/;
 /plugin/;
 
@@ -12,29 +13,26 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-BONE-eMMC1-01";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P8.21",	/* mmc1: mmc1_clk */
-		"P8.20",	/* mmc1: mmc1_cmd */
-		"P8.25",	/* mmc1: mmc1_dat0 */
-		"P8.24",	/* mmc1: mmc1_dat1 */
-		"P8.5",		/* mmc1: mmc1_dat2 */
-		"P8.6",		/* mmc1: mmc1_dat3 */
-		"P8.23",	/* mmc1: mmc1_dat4 */
-		"P8.22",	/* mmc1: mmc1_dat5 */
-		"P8.3",		/* mmc1: mmc1_dat6 */
-		"P8.4",		/* mmc1: mmc1_dat7 */
-		/* the hardware IP uses */
-		"mmc1";
-
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_21_pinmux { status = "disabled"; };	/* mmc1_clk */
+			P8_20_pinmux { status = "disabled"; };	/* mmc1_cmd */
+			P8_25_pinmux { status = "disabled"; };	/* mmc1_dat0 */
+			P8_24_pinmux { status = "disabled"; };	/* mmc1_dat1 */
+			P8_05_pinmux { status = "disabled"; };	/* mmc1_dat2 */
+			P8_06_pinmux { status = "disabled"; };	/* mmc1_dat3 */
+			P8_23_pinmux { status = "disabled"; };	/* mmc1_dat4 */
+			P8_22_pinmux { status = "disabled"; };	/* mmc1_dat5 */
+			P8_03_pinmux { status = "disabled"; };	/* mmc1_dat6 */
+			P8_04_pinmux { status = "disabled"; };	/* mmc1_dat7 */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			emmc_pins: pinmux_emmc_pins {
@@ -53,7 +51,8 @@
 			};
 		};
 	};
-	fragment@1 {
+
+	fragment@2 {
 		target = <&mmc2>;
 		__overlay__ {
 			vmmc-supply = <&vmmcsd_fixed>;
