@@ -130,26 +130,8 @@ pcbpin="P9_16" ; ball="T14" ; default_mode="7" ; find_ball
 pcbpin="P9_17" ; ball="A16" ; default_mode="7" ; find_ball
 pcbpin="P9_18" ; ball="B16" ; default_mode="7" ; find_ball
 
-msg="/* Leave the cape I2C EEPROM bus alone */" ; echo_both
-msg="/* P9_19 (ZCZ ball D17) I2C */" ; echo_both
-msg="/* P9_20 (ZCZ ball D18) I2C */" ; echo_both ; msg="" ; echo_both
-
-echo "P9_19_PRU=\"45\"" >>${file}_config-pin.txt
-echo "P9_19_GPIO=\"13\"" >>${file}_config-pin.txt
-echo "P9_19_PIN=\"i2c\"" >>${file}_config-pin.txt
-echo "P9_19_INFO=\"i2c2_scl\"" >>${file}_config-pin.txt
-echo "P9_19_CAPE=\"\"" >>${file}_config-pin.txt
-echo "" >>${file}_config-pin.txt
-
-echo "P9_20_PRU=\"44\"" >>${file}_config-pin.txt
-echo "P9_20_GPIO=\"12\"" >>${file}_config-pin.txt
-echo "P9_20_PIN=\"i2c\"" >>${file}_config-pin.txt
-echo "P9_20_INFO=\"i2c2_sda\"" >>${file}_config-pin.txt
-echo "P9_20_CAPE=\"\"" >>${file}_config-pin.txt
-echo "" >>${file}_config-pin.txt
-
-#default="I2C" ; pcbpin="P9_19" ; ball="D17" ; find_ball
-#default="I2C" ; pcbpin="P9_20" ; ball="D18" ; find_ball
+pcbpin="P9_19" ; ball="D17" ; default_mode="3" ; cp_default="i2c" ; find_ball
+pcbpin="P9_20" ; ball="D18" ; default_mode="3" ; cp_default="i2c" ; find_ball
 
 pcbpin="P9_21" ; ball="B17" ; default_mode="7" ; find_ball
 pcbpin="P9_22" ; ball="A17" ; default_mode="7" ; find_ball

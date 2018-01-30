@@ -200,7 +200,7 @@ echo_gpio () {
 }
 
 get_json_pkg () {
-	pinmux_version="4.0.1510"
+	pinmux_version="4.0.1511"
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
