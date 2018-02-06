@@ -52,7 +52,7 @@
 				status = "disabled";
 			};
 
-			mikroe_mmc-slot: mikroe_mmc-slot@0{
+			mikroe_microsd: mikroe_microsd@0{
 				compatible = "mmc-spi-slot";
 				reg = <0>;
 				voltage-ranges = <3300 3300>;
