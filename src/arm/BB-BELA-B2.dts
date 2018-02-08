@@ -165,7 +165,7 @@
 	};
 
 	fragment@5 {
-		target = <&mcasp0>;
+		target = <&spi0>;
 		__overlay__ {
 			pinctrl-names = "default";
 			pinctrl-0 = <&bela_spi0_pins>;
