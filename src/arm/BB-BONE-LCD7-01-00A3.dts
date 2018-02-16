@@ -42,7 +42,7 @@
 			P8_28_pinmux { status = "disabled"; };	/* lcd: lcd_pclk */
 			P8_30_pinmux { status = "disabled"; };	/* lcd: lcd_ac_bias_en */
 
-			P9_27_pinmux { status = "disabled"; };	/* lcd: gpio3_19 DISPEN */
+			P9_22_pinmux { status = "disabled"; };	/* lcd: gpio0_2 DISPEN */
 			P9_12_pinmux { status = "disabled"; };	/* led: gpio1_28 LED */
 
 			P9_14_pinmux { status = "disabled"; };	/* pwm: ehrpwm1a PWM_BL */
@@ -95,7 +95,7 @@
 					BONE_P8_28 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_pclk.lcd_pclk */
 					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_ac_bias_en.lcd_ac_bias_en */
 
-					BONE_P9_27 (PIN_OUTPUT_PULLUP | MUX_MODE7) /* mcasp0_fsr.gpio3_19 */
+					BONE_P9_22 (PIN_OUTPUT_PULLUP | MUX_MODE7) /* gpio0_2 */
 				>;
 			};
 
