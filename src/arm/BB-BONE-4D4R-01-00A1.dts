@@ -122,13 +122,42 @@
 	};
 
 	fragment@4 {
+		target = <&i2c1>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_i2c1_pins>;
+
+			// configuration start
+			clock-frequency = <100000>;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			ar1021: ar1021@4d {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				compatible = "microchip,ar1021-i2c";
+				reg = <0x4d>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&ar1021_pins>;
+				interrupts = <14 2>;
+				interrupt-parent = <&gpio0>;
+				touchscreen-inverted-y;
+				touchscreen-offset-x=<250>;
+				touchscreen-offset-y=<300>;
+			};
+		};
+	};
+
+	fragment@5 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 
@@ -193,42 +222,13 @@
 					};
 				};
 			};
-			
+
 			fb {
 				compatible = "ti,am33xx-tilcdc";
 				reg = <0x4830e000 0x1000>;
 				interrupt-parent = <&intc>;
 				interrupts = <36>;
 				ti,hwmods = "lcdc";
-			};
-		};
-	};
-	
-	fragment@4 {
-		target = <&i2c1>;
-		__overlay__ {
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_i2c1_pins>;
-
-			// configuration start
-			clock-frequency = <100000>;
-
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			ar1021: ar1021@4d {
-				#address-cells = <1>;
-				#size-cells = <0>;
-				compatible = "microchip,ar1021-i2c";
-				reg = <0x4d>;
-				pinctrl-names = "default";
-				pinctrl-0 = <&ar1021_pins>;
-				interrupts = <14 2>;
-				interrupt-parent = <&gpio0>;
-				touchscreen-inverted-y;
-				touchscreen-offset-x=<250>;
-				touchscreen-offset-y=<300>;
 			};
 		};
 	};
