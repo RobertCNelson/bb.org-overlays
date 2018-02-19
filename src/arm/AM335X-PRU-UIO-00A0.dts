@@ -5,16 +5,11 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "AM335X-PRU-UIO";
-	version = "00A0";
-
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
@@ -22,6 +17,16 @@
 			ocp {
 				#address-cells = <1>;
 				#size-cells = <1>;
+
+				//v4.14.x-ti
+				pruss_soc_bus@4a326004 {
+					status = "disabled";
+
+					//v4.14.x-ti
+					pruss@0 {
+						status = "disabled";
+					};
+				};
 
 				pruss: pruss@4a300000 {
 					status = "okay";
