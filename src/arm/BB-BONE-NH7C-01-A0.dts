@@ -37,7 +37,7 @@
 			P8_31_pinmux { status = "disabled"; };	/* lcd: lcd_data14 */
 			P8_32_pinmux { status = "disabled"; };	/* lcd: lcd_data15 */
 
-			P8.15_pinmux { status = "disabled"; };	/* gpmc_ad15.lcd_data16 */
+			P8_15_pinmux { status = "disabled"; };	/* gpmc_ad15.lcd_data16 */
 			P8_16_pinmux { status = "disabled"; };	/* gpmc_ad14.lcd_data17 */
 			P8_11_pinmux { status = "disabled"; };	/* gpmc_ad13.lcd_data18 */
 			P8_12_pinmux { status = "disabled"; };	/* gpmc_ad12.lcd_data19 */
