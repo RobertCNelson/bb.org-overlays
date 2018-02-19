@@ -4,6 +4,7 @@
 GPIODIR=/sys/class/gpio
 BOARD="original"
 
+disable_capemgr_load=$(grep -c bone_capemgr.uboot_capemgr_enabled=1 /proc/cmdline)
 machine=$(cat /proc/device-tree/model | sed "s/ /_/g" | tr -d '\000')
 case "${machine}" in
 TI_AM335x_BeagleBone_Blue)
@@ -27,14 +28,18 @@ TI_AM335x_PocketBeagle)
 		SLOTS=/sys/devices/platform/bone_capemgr/slots
 		unset SLOTS_LOCATION
 	else
-		OCPDIR=/sys/devices/ocp.*
-		SLOTS=/sys/devices/bone_capemgr.*/slots
-		SLOTS_LOCATION="old38kernel"
+		if [ ${disable_capemgr_load} -eq 1 ] ; then
+			OCPDIR=/sys/devices/platform/ocp/ocp*
+			SLOTS=/sys/devices/platform/bone_capemgr/slots
+			unset SLOTS_LOCATION
+		else
+			OCPDIR=/sys/devices/ocp.*
+			SLOTS=/sys/devices/bone_capemgr.*/slots
+			SLOTS_LOCATION="old38kernel"
+		fi
 	fi
 	;;
 esac
-
-disable_capemgr_load=$(grep -c bone_capemgr.uboot_capemgr_enabled=1 /proc/cmdline)
 
 # Create mappings between BeagleBone header pins and kernel gpio
 # numbers.  These could be bash arrays or coded in python, but simple
