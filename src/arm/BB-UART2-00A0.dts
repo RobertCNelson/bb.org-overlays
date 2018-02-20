@@ -7,6 +7,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -14,22 +15,18 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART2";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P9.21",		// uart2_txd
-		"P9.22",		// uart2_rxd
-	//	"P8.38",		// uart2_rtsn  conflict with uart5
-	//	"P8.37",		// uart2_ctsn  conflict with uart5
-
-		"uart2";		// hardware ip used
-
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_21_pinmux { status = "disabled"; };	/* uart2_txd */
+			P9_22_pinmux { status = "disabled"; };	/* uart2_rxd */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_uart2_pins: pinmux_bb_uart2_pins {
@@ -43,7 +40,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&uart2>;
 		__overlay__ {
 			status = "okay";

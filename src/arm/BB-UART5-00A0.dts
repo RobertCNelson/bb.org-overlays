@@ -7,6 +7,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -14,21 +15,18 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART5";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P8.37",		// uart5_txd
-		"P8.38",		// uart5_rxd
-
-		"uart5";		// hardware ip used
-
-
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_37_pinmux { status = "disabled"; };	/* uart5_txd */
+			P8_38_pinmux { status = "disabled"; };	/* uart5_rxd */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_uart5_pins: pinmux_bb_uart5_pins {
@@ -40,7 +38,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&uart5>;
 		__overlay__ {
 			status = "okay";
