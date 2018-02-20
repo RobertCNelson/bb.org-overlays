@@ -21,8 +21,8 @@
 	fragment@0 {
 		target = <&ocp>;
 		__overlay__ {
-			P8_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
-			P8_18_pinmux { status = "disabled"; };	/* spi0_d1 */
+			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
 			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
 			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
 		};
