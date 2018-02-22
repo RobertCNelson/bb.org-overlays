@@ -5,6 +5,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -13,19 +14,6 @@
 #include <dt-bindings/interrupt-controller/irq.h>
 
 / {
-	compatible = "ti,am335x-bone-black-wireless";
-
-	/* identification */
-	part-number = "BB-BBBW-WL1835";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		/* the hardware IP uses */
-		"mmc3",
-		"uart3";
-
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
