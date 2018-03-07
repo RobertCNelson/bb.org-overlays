@@ -5,8 +5,13 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
@@ -40,65 +45,117 @@
 		"P8.30",	/* lcd: lcd_ac_bias_en */
 		"P9.27",	/* lcd: gpio3_19 DISPEN */
 		"P9.14",	/* pwm: ehrpwm1a PWM_BL */
-	
+
 		"P9.18",	/* i2c1_sda */
 		"P9.17",	/* i2c1_scl */
 		"P9.26",	/* touch interrupt on gpio0_14 */
-		
+
 		/* the hardware IP uses */
 		"i2c1",
 		"gpio0_14", /* touch interrupt on gpio0_14 */
 		"gpio3_19",	/* lcd: gpio3_19 DISPEN */
 		"ehrpwm1a",
 		"lcdc";
-		
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_45_pinmux { status = "disabled"; };	/* lcd: lcd_data0 */
+			P8_46_pinmux { status = "disabled"; };	/* lcd: lcd_data1 */
+			P8_43_pinmux { status = "disabled"; };	/* lcd: lcd_data2 */
+			P8_44_pinmux { status = "disabled"; };	/* lcd: lcd_data3 */
+			P8_41_pinmux { status = "disabled"; };	/* lcd: lcd_data4 */
+			P8_42_pinmux { status = "disabled"; };	/* lcd: lcd_data5 */
+			P8_39_pinmux { status = "disabled"; };	/* lcd: lcd_data6 */
+			P8_40_pinmux { status = "disabled"; };	/* lcd: lcd_data7 */
+			P8_37_pinmux { status = "disabled"; };	/* lcd: lcd_data8 */
+			P8_38_pinmux { status = "disabled"; };	/* lcd: lcd_data9 */
+			P8_36_pinmux { status = "disabled"; };	/* lcd: lcd_data10 */
+			P8_34_pinmux { status = "disabled"; };	/* lcd: lcd_data11 */
+			P8_35_pinmux { status = "disabled"; };	/* lcd: lcd_data12 */
+			P8_33_pinmux { status = "disabled"; };	/* lcd: lcd_data13 */
+			P8_31_pinmux { status = "disabled"; };	/* lcd: lcd_data14 */
+			P8_32_pinmux { status = "disabled"; };	/* lcd: lcd_data15 */
+
+			P8_27_pinmux { status = "disabled"; };	/* lcd: lcd_vsync */
+			P8_29_pinmux { status = "disabled"; };	/* lcd: lcd_hsync */
+			P8_28_pinmux { status = "disabled"; };	/* lcd: lcd_pclk */
+			P8_30_pinmux { status = "disabled"; };	/* lcd: lcd_ac_bias_en */
+
+			P9_27_pinmux { status = "disabled"; };	/* lcd: gpio3_19 DISPEN */
+
+			P9_14_pinmux { status = "disabled"; };	/* pwm: ehrpwm1a PWM_BL */
+
+			P9_18_pinmux { status = "disabled"; };	/* i2c1_sda */
+			P9_17_pinmux { status = "disabled"; };	/* i2c1_scl */
+			P9_26_pinmux { status = "disabled"; };	/* touch interrupt on gpio0_14 */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
 			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 				pinctrl-single,pins = <
-					0x48 0x06       /* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+					BONE_P9_14 0x06	/* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
 				>;
 			};
 
 			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 				pinctrl-single,pins = <
-					0xa0 0x08	/* lcd_data0.lcd_data0, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xa4 0x08	/* lcd_data1.lcd_data1, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xa8 0x08	/* lcd_data2.lcd_data2, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xac 0x08	/* lcd_data3.lcd_data3, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb0 0x08	/* lcd_data4.lcd_data4, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb4 0x08	/* lcd_data5.lcd_data5, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xb8 0x08	/* lcd_data6.lcd_data6, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xbc 0x08	/* lcd_data7.lcd_data7, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc0 0x08	/* lcd_data8.lcd_data8, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc4 0x08	/* lcd_data9.lcd_data9, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xc8 0x08	/* lcd_data10.lcd_data10, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xcc 0x08	/* lcd_data11.lcd_data11, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd0 0x08	/* lcd_data12.lcd_data12, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd4 0x08	/* lcd_data13.lcd_data13, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xd8 0x08	/* lcd_data14.lcd_data14, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xdc 0x08	/* lcd_data15.lcd_data15, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
-					0xe0 0x00	/* lcd_vsync.lcd_vsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xe4 0x00	/* lcd_hsync.lcd_hsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xe8 0x00	/* lcd_pclk.lcd_pclk, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
-					0xec 0x00	/* lcd_ac_bias_en.lcd_ac_bias_en, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
+					BONE_P8_45 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data0.lcd_data0 */
+					BONE_P8_46 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data1.lcd_data1 */
+					BONE_P8_43 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data2.lcd_data2 */
+					BONE_P8_44 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data3.lcd_data3 */
+					BONE_P8_41 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data4.lcd_data4 */
+					BONE_P8_42 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data5.lcd_data5 */
+					BONE_P8_39 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data6.lcd_data6 */
+					BONE_P8_40 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data7.lcd_data7 */
+					BONE_P8_37 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data8.lcd_data8 */
+					BONE_P8_38 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data9.lcd_data9 */
+					BONE_P8_36 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data10.lcd_data10 */
+					BONE_P8_34 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data11.lcd_data11 */
+					BONE_P8_35 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data12.lcd_data12 */
+					BONE_P8_33 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data13.lcd_data13 */
+					BONE_P8_31 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data14.lcd_data14 */
+					BONE_P8_32 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_data15.lcd_data15 */
+
+					BONE_P8_27 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_vsync.lcd_vsync */
+					BONE_P8_29 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_hsync.lcd_hsync */
+					BONE_P8_28 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_pclk.lcd_pclk */
+					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd: lcd_ac_bias_en.lcd_ac_bias_en */
+
 					0x1a4 0x17	/* mcasp0_fsr.gpio3_19, OUTPUT | MODE7  LCD DISEN */
+				>;
+			};
+
+			bb_i2c1_pins: pinmux_bb_i2c1_pins {
+				pinctrl-single,pins = <
+					0x158 0x72	// spi0_d1.i2c1_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
+					0x15C 0x72	// spi0_cs0.i2c1_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
+				>;
+			};
+
+			edt_ft5x06_pins: pinmux_edt_ft5x06_pins {
+				pinctrl-single,pins = <
+					0x180 0x37	// INPUT_PULLUP | MODE7
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -107,8 +164,43 @@
 		};
 	};
 
-	
-	fragment@3 {
+	fragment@4 {
+		target = <&i2c1>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_i2c1_pins>;
+
+			// configuration start
+			clock-frequency = <100000>;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			polytouch: edt-ft5x06@38 {
+				compatible = "edt,edt-ft5x06";
+				reg = <0x38>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&edt_ft5x06_pins>;
+				interrupt-parent = <&gpio0>;
+				interrupts = <14 2>;
+
+				touchscreen-size-y = <800>;
+				touchscreen-size-x = <480>;
+
+				touchscreen-swapped-x-y;
+			};
+		};
+	};
+
+	fragment@5 {
+		target = <&lcdc>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 
@@ -180,52 +272,6 @@
 				interrupt-parent = <&intc>;
 				interrupts = <36>;
 				ti,hwmods = "lcdc";
-			};
-		};
-	};
-
-	fragment@4 {
-		target = <&am33xx_pinmux>;
-		__overlay__ {
-			bb_i2c1_pins: pinmux_bb_i2c1_pins {
-				pinctrl-single,pins = <
-					0x158 0x72	// spi0_d1.i2c1_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
-					0x15C 0x72	// spi0_cs0.i2c1_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
-				>;
-			};
-			
-			edt_ft5x06_pins: pinmux_edt_ft5x06_pins {
-				pinctrl-single,pins = <
-					0x180 0x37	// INPUT_PULLUP | MODE7
-				>;
-			};
-		};
-	};
-
-	fragment@5 {
-		target = <&i2c1>;	// i2c1 is numbered correctly
-		__overlay__ {
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_i2c1_pins>;
-
-			// configuration start
-			clock-frequency = <100000>;
-
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			polytouch: edt-ft5x06@38 {
-				compatible = "edt,edt-ft5x06";
-				reg = <0x38>;
-				pinctrl-names = "default";
-				pinctrl-0 = <&edt_ft5x06_pins>;
-				interrupt-parent = <&gpio0>;
-				interrupts = <14 2>;
-
-				touchscreen-size-y = <800>;
-				touchscreen-size-x = <480>;
-				touchscreen-swapped-x-y;
 			};
 		};
 	};
