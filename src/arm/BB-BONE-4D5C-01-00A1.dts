@@ -189,6 +189,7 @@
 				touchscreen-size-x = <480>;
 
 				touchscreen-swapped-x-y;
+				touchscreen-inverted-x;
 			};
 		};
 	};
