@@ -187,8 +187,8 @@
 				interrupts = <14 2>;
 				interrupt-parent = <&gpio0>;
 
-				//touchscreen-offset-x=<250>;
-				//touchscreen-offset-y=<300>;
+				touchscreen-offset-x=<250>;
+				touchscreen-offset-y=<300>;
 
 				touchscreen-inverted-y;
 			};
