@@ -9,6 +9,7 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
@@ -180,12 +181,13 @@
 			ar1021: ar1021@4d {
 				#address-cells = <1>;
 				#size-cells = <0>;
-				compatible = "microchip,ar1021-i2c";
-				reg = <0x4d>;
 				pinctrl-names = "default";
 				pinctrl-0 = <&ar1021_pins>;
-				interrupts = <14 2>;
+
+				compatible = "microchip,ar1021-i2c";
+				reg = <0x4d>;
 				interrupt-parent = <&gpio0>;
+				interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
 
 				//touchscreen-offset-x=<250>;
 				//touchscreen-offset-y=<300>;
