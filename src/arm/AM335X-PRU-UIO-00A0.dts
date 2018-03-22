@@ -26,6 +26,7 @@
 				pruss: pruss@4a300000 {
 					status = "okay";
 					compatible = "ti,pruss-v2";
+					ti,hwmods = "pruss";
 					ti,deassert-hard-reset = "pruss", "pruss";
 					reg = <0x4a300000 0x080000>;
 					ti,pintc-offset = <0x20000>;
