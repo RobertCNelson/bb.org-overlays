@@ -7,37 +7,51 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
+
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
-	/* identification */
+	// identification
 	part-number = "BB-I2C2";
 	version = "00A0";
 
-	/* state the resources this cape uses */
+	// resources this cape uses
 	exclusive-use =
-		/* the pin header uses */
-		"P9.19",	/* i2c2_sda */
-		"P9.20",	/* i2c2_scl */
-		/* the hardware ip uses */
-		"i2c2";
+		"P9.19",	// i2c2_sda
+		"P9.20",	// i2c2_scl
 
+		"i2c2";		// hardware ip used
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_19_pinmux { status = "disabled"; };	/* i2c2_scl */
+			P9_20_pinmux { status = "disabled"; };	/* i2c2_sda */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_i2c2_pins: pinmux_bb_i2c2_pins {
 				pinctrl-single,pins = <
-					0x178 0x73	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
-					0x17c 0x73	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					BONE_P9_20 0x73	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					BONE_P9_19 0x73	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";
