@@ -7,6 +7,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -26,7 +27,17 @@
 		/* the pin header uses */
 		"P9.12";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_12_pinmux { status = "disabled"; };
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -38,7 +49,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 
