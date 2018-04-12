@@ -1,0 +1,59 @@
+/*
+ * Copyright (C) 2018 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.mikroe.com/gnss-5-click
+ * https://download.mikroe.com/documents/add-on-boards/click/gnss-5/gnss-5-click-schematic-v101.pdf
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P1_04_pinmux { status = "disabled"; };	/* gpio2_25 - RST */
+			P2_01_pinmux { status = "disabled"; };	/* gpio1_18 - EXTINT */
+			P2_03_pinmux { status = "disabled"; };	/* gpio0_23 - PULSE */
+			P2_05_pinmux { status = "disabled"; };	/* gpio0_30 - TXD */
+			P2_07_pinmux { status = "disabled"; };	/* gpio0_31 - RXD */
+		};
+	};
+
+	fragment@1 {
+		target = <&uart4>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <
+				&P2_05_uart_pin
+				&P2_07_uart_pin
+			>;
+		};
+	};
+
+	fragment@2 {
+		target-path="/";
+		__overlay__ {
+			pps {
+				status = "okay";
+				compatible = "pps-gpio";
+				pinctrl-names = "default";
+				pinctrl-0 = <&P2_03_gpio_pin>;
+
+				gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+			};
+		};
+	};
+};
