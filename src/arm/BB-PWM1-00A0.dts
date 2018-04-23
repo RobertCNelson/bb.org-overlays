@@ -31,7 +31,7 @@
 	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-			pinctrl_spec: Panel_Pins {
+			bb_pwm1_pin: pinmux-pwm1-pin {
 				pinctrl-single,pins = <
 					0x48 0x06 /* (U14) gpmc_a2.ehrpwm1A */
 					0x4c 0x06 /* (T14) gpmc_a3.ehrpwm1B */
@@ -46,7 +46,7 @@
 			test_helper: helper {
 				compatible = "bone-pinmux-helper";
 				pinctrl-names = "default";
-				pinctrl-0 = <&pinctrl_spec>;
+				pinctrl-0 = <&bb_pwm1_pin>;
 				status = "okay";
 			};
 		};

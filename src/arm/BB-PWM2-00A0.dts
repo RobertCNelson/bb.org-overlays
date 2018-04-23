@@ -31,7 +31,7 @@
 	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-			pinctrl_spec: Panel_Pins {
+			bb_pwm2_pin: pinmux-pwm2-pin {
 				pinctrl-single,pins = <
 					0x020 0x04 /* P8_19 MODE4 ehrpwm2A PWM */
 					0x024 0x04 /* P8_13 MODE4 EHRPWM2B PWM */
@@ -46,7 +46,7 @@
 			test_helper: helper {
 				compatible = "bone-pinmux-helper";
 				pinctrl-names = "default";
-				pinctrl-0 = <&pinctrl_spec>;
+				pinctrl-0 = <&bb_pwm2_pin>;
 				status = "okay";
 			};
 		};
