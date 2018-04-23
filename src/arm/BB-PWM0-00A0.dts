@@ -43,7 +43,7 @@
 	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
-			test_helper: helper {
+			bb_pwm0_test_helper: bb_pwm0_helper {
 				compatible = "bone-pinmux-helper";
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_pwm0_pin>;
