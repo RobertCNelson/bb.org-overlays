@@ -5,6 +5,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -28,10 +29,22 @@
 		/* the hardware ip uses */
 		"spi0";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
+			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
+			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-
 			bb_spi0_pins: pinmux_bb_spi0_pins {
 				pinctrl-single,pins = <
 					BONE_P9_22 (PIN_INPUT_PULLUP | MUX_MODE0) /* spi0_sclk.spi0_sclk */
@@ -43,15 +56,15 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
+			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <&bb_spi0_pins>;
-			status = "okay";
 			ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 			mcp3x0x@0 {

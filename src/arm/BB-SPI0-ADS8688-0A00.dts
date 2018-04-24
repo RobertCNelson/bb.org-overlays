@@ -9,8 +9,12 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
+
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
@@ -29,7 +33,20 @@
 		/* the hardware ip uses */
 		"spi0";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
+			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
+			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			/* default state has all gpios released and mode set to uart1 */
@@ -44,7 +61,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;
