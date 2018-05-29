@@ -19,13 +19,32 @@
 	fragment@0 {
 		target = <&ocp>;
 		__overlay__ {
+			P2_09_pinmux { status = "disabled"; }; 
+			P2_11_pinmux { status = "disabled"; }; 
+			P2_26_pinmux { status = "disabled"; };
+			P2_30_pinmux { status = "disabled"; };
+			P2_32_pinmux { status = "disabled"; };
+			P2_33_pinmux { status = "disabled"; };
+			P2_34_pinmux { status = "disabled"; };
+			P1_05_pinmux { status = "disabled"; };
+			P1_06_pinmux { status = "disabled"; };
+			P1_08_pinmux { status = "disabled"; };
+			P1_09_pinmux { status = "disabled"; };
+			P1_10_pinmux { status = "disabled"; };
+			P1_11_pinmux { status = "disabled"; };
+			P1_12_pinmux { status = "disabled"; };
+			P1_26_pinmux { status = "disabled"; };
+			P1_28_pinmux { status = "disabled"; };
+			P1_29_pinmux { status = "disabled"; };
+			P1_33_pinmux { status = "disabled"; };
+			P1_36_pinmux { status = "disabled"; };
 			P9_25_pinmux { status = "disabled"; }; /* mcasp0_ahclkx */
 			P9_28_pinmux { status = "disabled"; }; /* mcasp0_axr2 */
 			P9_29_pinmux { status = "disabled"; }; /* mcasp0_fsx */
 			P9_31_pinmux { status = "disabled"; }; /* mcasp0_ahclk */
 			P9_30_pinmux { status = "disabled"; }; /* mcasp0_axr0 */
 
-			P9_22_pinmux { status = "disabled"; }; /* spi0_sclk * /
+			P9_22_pinmux { status = "disabled"; }; /* spi0_sclk */
 			P9_21_pinmux { status = "disabled"; }; /* spi0_d0 */
 			P9_18_pinmux { status = "disabled"; }; /* spi0_d1 */
 			P9_17_pinmux { status = "disabled"; }; /* spi0_cs0 */
@@ -33,6 +52,15 @@
 	};
 
 	fragment@1 {
+		target = <&i2c0>;
+		__overlay__ {
+			tda19988 {
+				status = "disabled";
+			};
+		};
+	};
+
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			/* Pinmux for McASP0 (audio i/o) */
@@ -52,7 +80,7 @@
 					0x150 0x30 /* spi0_sclk, 			P9_22 | MODE0 | INPUT_PULLUP */
 					0x154 0x30 /* spi0_d0, 				P9_21 | MODE0 | INPUT_PULLUP */
 					0x158 0x10 /* spi0_d1, 				P9_18 | MODE0 | OUTPUT_PULLUP */
-					0x15c 0x10 /* spi0_cs0, 			P9_17 | MODE0 | OUTPUT_PULLUP */
+					0x15c 0x27 /* spi0_cs0, 			P9_17 | MODE0 | OUTPUT_PULLUP */
 				>;
 			};
 
@@ -69,6 +97,24 @@
 					// if there is no driver associated with it
 					/* Is needed for pin multiplexing Bela button correctly */
 					0x1a4 0x37 /* gpio3[19], 			P9_27 | MODE7 | INPUT_PULLUP */
+				>;
+			};
+
+			P2_01_bela: pinmux_default_bela {
+				pinctrl-single,pins = <0x48 0x27>;
+			};
+
+			/* Pinmux for i2c on Bela header */
+			i2c1_pins: pinmux_i2c1_pins {
+				pinctrl-single,pins = <
+					0x180 0x33 /* i2c1_sda, 	P9_26 | MODE3 | INPUT_PULLUP */
+					0x184 0x33 /* i2c1_scl,		P9_24 | MODE3 | INPUT_PULLUP */
+				>;
+			};
+
+			/* pinmux for BB digitals */
+			bb_digitals: pinmux_bb_digitals {
+				pinctrl-single,pins = <
 					/* Pinmux for GPIO (digital i/o) */
 					0x090 0x27 /* gpio2[2], 			P8_07 | MODE7 | INPUT_PULLDOWN */
 					0x094 0x27 /* gpio2[3], 			P8_08 | MODE7 | INPUT_PULLDOWN */
@@ -87,19 +133,11 @@
 					0x0e4 0x27 /* gpio2[23],			P8_29 | MODE7 | INPUT_PULLDOWN */
 					0x0ec 0x27 /* gpio2[25],			P8_30 | MODE7 | INPUT_PULLDOWN */
 				>;
-			};
-
-			/* Pinmux for i2c on Bela header */
-			i2c1_pins: pinmux_i2c1_pins {
-				pinctrl-single,pins = <
-					0x180 0x33 /* i2c1_sda, 	P9_26 | MODE3 | INPUT_PULLUP */
-					0x184 0x33 /* i2c1_scl,		P9_24 | MODE3 | INPUT_PULLUP */
-				>;
-			};
+			};	
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -111,7 +149,7 @@
 	};
 
 	/* McASP config */
-	fragment@3 {
+	fragment@4 {
 		target = <&mcasp0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -135,7 +173,7 @@
 	};
 
 	/* PRU config */
-	fragment@4 {
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 			ocp {
@@ -164,7 +202,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&spi0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -173,4 +211,26 @@
 			status = "okay";
 		};
 	};
+
+	fragment@7 {
+		target = <&ocp>;
+		__overlay__ {
+			P2_01_pinmux{
+				pinctrl-0 = <&P2_01_bela>;
+			};
+		};
+	};
+
+	fragment@8 {
+		target-path="/";
+		__overlay__ {
+			bela_digitals {
+				compatible = "gpio-leds";
+				pinctrl-0 = <&bb_digitals>;
+				pinctrl-1 = <&bb_digitals>;
+				pinctrl-names = "default", "sleep";
+			};
+		};
+	};
+			
 };
