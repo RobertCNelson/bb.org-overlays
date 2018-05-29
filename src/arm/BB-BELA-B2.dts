@@ -116,6 +116,8 @@
 			P1_35_bela: pinmux_default_bela13 { pinctrl-single,pins = <0xe8 0x27>; };
 			P1_32_bela: pinmux_default_bela14 { pinctrl-single,pins = <0x170 0x27>; };
 			P1_30_bela: pinmux_default_bela15 { pinctrl-single,pins = <0x174 0x27>; };
+			P1_02_bela: pinmux_default_led0 { pinctrl-single,pins = <0xe4 0x27>; };
+			P1_04_bela: pinmux_default_led1 { pinctrl-single,pins = <0xec 0x27>; };
 
 			/* Pinmux for i2c on Bela header */
 			i2c1_pins: pinmux_i2c1_pins {
@@ -244,6 +246,8 @@
 			P1_35_pinmux{ pinctrl-0 = <&P1_35_bela>; };
 			P1_32_pinmux{ pinctrl-0 = <&P1_32_bela>; };
 			P1_30_pinmux{ pinctrl-0 = <&P1_30_bela>; };
+			P1_02_pinmux{ pinctrl-0 = <&P1_02_bela>; };
+			P1_04_pinmux{ pinctrl-0 = <&P1_04_bela>; };
 		};
 	};
 
