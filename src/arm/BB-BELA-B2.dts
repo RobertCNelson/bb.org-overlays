@@ -100,9 +100,22 @@
 				>;
 			};
 
-			P2_01_bela: pinmux_default_bela {
-				pinctrl-single,pins = <0x48 0x27>;
-			};
+			P2_01_bela: pinmux_default_bela0 { pinctrl-single,pins = <0x48 0x27>; };
+			P2_02_bela: pinmux_default_bela1 { pinctrl-single,pins = <0x6c 0x27>; };
+			P2_04_bela: pinmux_default_bela2 { pinctrl-single,pins = <0x68 0x27>; };
+			P2_06_bela: pinmux_default_bela3 { pinctrl-single,pins = <0x64 0x27>; };
+			P2_08_bela: pinmux_default_bela4 { pinctrl-single,pins = <0x78 0x27>; };
+			P2_10_bela: pinmux_default_bela5 { pinctrl-single,pins = <0x50 0x27>; };
+			P2_18_bela: pinmux_default_bela6 { pinctrl-single,pins = <0x3c 0x27>; };
+			P2_20_bela: pinmux_default_bela7 { pinctrl-single,pins = <0x88 0x27>; };
+			P2_22_bela: pinmux_default_bela8 { pinctrl-single,pins = <0x38 0x27>; };
+			P2_24_bela: pinmux_default_bela9 { pinctrl-single,pins = <0x30 0x27>; };
+			P2_25_bela: pinmux_default_bela10 { pinctrl-single,pins = <0x16c 0x27>; };
+			P2_27_bela: pinmux_default_bela11 { pinctrl-single,pins = <0x168 0x27>; };
+			P2_35_bela: pinmux_default_bela12 { pinctrl-single,pins = <0xe0 0x27>; };
+			P1_35_bela: pinmux_default_bela13 { pinctrl-single,pins = <0xe8 0x27>; };
+			P1_32_bela: pinmux_default_bela14 { pinctrl-single,pins = <0x170 0x27>; };
+			P1_30_bela: pinmux_default_bela15 { pinctrl-single,pins = <0x174 0x27>; };
 
 			/* Pinmux for i2c on Bela header */
 			i2c1_pins: pinmux_i2c1_pins {
@@ -215,9 +228,22 @@
 	fragment@7 {
 		target = <&ocp>;
 		__overlay__ {
-			P2_01_pinmux{
-				pinctrl-0 = <&P2_01_bela>;
-			};
+			P2_01_pinmux{ pinctrl-0 = <&P2_01_bela>; };
+			P2_02_pinmux{ pinctrl-0 = <&P2_02_bela>; };
+			P2_04_pinmux{ pinctrl-0 = <&P2_04_bela>; };
+			P2_06_pinmux{ pinctrl-0 = <&P2_06_bela>; };
+			P2_08_pinmux{ pinctrl-0 = <&P2_08_bela>; };
+			P2_10_pinmux{ pinctrl-0 = <&P2_10_bela>; };
+			P2_18_pinmux{ pinctrl-0 = <&P2_18_bela>; };
+			P2_20_pinmux{ pinctrl-0 = <&P2_20_bela>; };
+			P2_22_pinmux{ pinctrl-0 = <&P2_22_bela>; };
+			P2_24_pinmux{ pinctrl-0 = <&P2_24_bela>; };
+			P2_25_pinmux{ pinctrl-0 = <&P2_25_bela>; };
+			P2_27_pinmux{ pinctrl-0 = <&P2_27_bela>; };
+			P2_35_pinmux{ pinctrl-0 = <&P2_35_bela>; };
+			P1_35_pinmux{ pinctrl-0 = <&P1_35_bela>; };
+			P1_32_pinmux{ pinctrl-0 = <&P1_32_bela>; };
+			P1_30_pinmux{ pinctrl-0 = <&P1_30_bela>; };
 		};
 	};
 
