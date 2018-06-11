@@ -954,8 +954,8 @@ else
 	P9_28_PRU="145"
 	P9_28_GPIO="113"
 	P9_28_PIN="audio"
-	P9_28_PINMUX="default gpio gpio_pu gpio_pd gpio_input spi_cs pwm pruout pruin"
-	P9_28_INFO="gpio3_17 default gpio3_17 gpio3_17 gpio3_17 gpio3_17 spi1_cs0 ehrpwm0_synci pru0_out3 pru0_in3"
+	P9_28_PINMUX="default gpio gpio_pu gpio_pd gpio_input spi_cs pwm pwm2 pruout pruin"
+	P9_28_INFO="gpio3_17 default gpio3_17 gpio3_17 gpio3_17 gpio3_17 spi1_cs0 ehrpwm0_synci ecap2_in_pwm2_out pru0_out3 pru0_in3"
 	P9_28_CAPE=""
 
 	P9_29_PRU="143"

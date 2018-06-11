@@ -84,6 +84,11 @@ echo_pinmux () {
 		cp_pinmux="${cp_pinmux} pwm"
 		cp_info="${cp_info} ${pwm_name}"
 	fi
+	if [ "x${got_pwm2_pin}" = "xenable" ] ; then
+		list="${list}, \"pwm2\""
+		cp_pinmux="${cp_pinmux} pwm2"
+		cp_info="${cp_info} ${pwm2_name}"
+	fi
 	if [ "x${got_pru_uart_pin}" = "xenable" ] ; then
 		list="${list}, \"pru_uart\""
 		cp_pinmux="${cp_pinmux} pru_uart"
@@ -162,6 +167,10 @@ echo_pinmux () {
 	fi
 	if [ "x${got_pwm_pin}" = "xenable" ] ; then
 		echo "	pinctrl-${index} = <&${pcbpin}_pwm_pin>;" >> ${file}-pinmux.dts
+		index=$((index + 1))
+	fi
+	if [ "x${got_pwm2_pin}" = "xenable" ] ; then
+		echo "	pinctrl-${index} = <&${pcbpin}_pwm2_pin>;" >> ${file}-pinmux.dts
 		index=$((index + 1))
 	fi
 	if [ "x${got_pru_uart_pin}" = "xenable" ] ; then
@@ -386,7 +395,7 @@ find_ball () {
 		dtabs=3
 		pinsetting="PIN_INPUT"
 		;;
-	pwm)
+	pwm|pwm2)
 		pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 		;;
 	uart|i2c|spi|spi_cs|spi_sclk)
@@ -432,6 +441,7 @@ find_ball () {
 	unset got_can_pin
 	unset got_eqep_pin
 	unset got_pwm_pin
+	unset got_pwm2_pin
 	unset got_i2c_pin
 	unset got_pru_ecap_pin
 	unset got_pru_uart_pin
@@ -480,6 +490,12 @@ find_ball () {
 				pwm_name=${name}
 				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 				got_pwm_pin="enable"
+				;;
+			ecap2_in_pwm2_out)
+				valid_pin_mode="pwm2"
+				pwm2_name=${name}
+				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+				got_pwm2_pin="enable"
 				;;
 			i2c*_sda|i2c*_scl)
 				valid_pin_mode="i2c"
