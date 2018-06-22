@@ -23,8 +23,5 @@ git pull || true
 git checkout ${git_tag} -b ${git_tag}-build
 
 make clean
-make PREFIX=/usr/local/ CC=gcc CROSS_COMPILE= all
-echo "Installing into: /usr/local/bin/"
-sudo make PREFIX=/usr/local/ install
-sudo ln -sf /usr/local/bin/dtc /usr/bin/dtc
-echo "dtc: `/usr/local/bin/dtc --version`"
+make CC=gcc CROSS_COMPILE= all
+echo "dtc: `/var/lib/jenkins/git/dtc --version`"
