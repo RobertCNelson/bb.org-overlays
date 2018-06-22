@@ -1,3 +1,8 @@
+Build Status
+
+ [![Build Status](http://rcn-ee.online:8080/buildStatus/icon?job=beagleboard_overlays/master)](http://rcn-ee.online:8080/job/beagleboard_overlays/job/master/)
+
+
 Users:
 ------------
 
