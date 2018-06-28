@@ -1,0 +1,111 @@
+/*
+ * Copyright (C) 2018 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.mikroe.com/eth-click
+ * https://download.mikroe.com/documents/add-on-boards/click/eth/eth-click-manual-v100.pdf
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_16_pinmux { status = "disabled"; };	/* RESET - gpio1[14] */
+
+			/* Click 1 */
+			P9_28_pinmux { status = "disabled"; };	/* CS - spi1_cs0 */
+
+			/* Click 2 */
+			P9_42_pinmux { status = "disabled"; };	/* CS - spi1_cs1 */
+
+			/* Click 4 */
+			P8_10_pinmux { status = "disabled"; };  /* CS - gpmc_wen.gpio2_4 */
+
+			P9_31_pinmux { status = "disabled"; };	/* SCK - spi1_sclk */
+			P9_29_pinmux { status = "disabled"; };	/* MISO - spi1_d0 */
+			P9_30_pinmux { status = "disabled"; };	/* MOSI - spi1_d1 */
+
+			// P8_13_pinmux { status = "disabled"; };	/* PWM - ehrpwm2b */
+			P8_17_pinmux { status = "disabled"; };	/* INT - gpio0[27] */
+			//P9_22_pinmux { status = "disabled"; };	/* RX3 */
+			//P9_21_pinmux { status = "disabled"; };	/* TX3 */
+			//P9_19_pinmux { status = "disabled"; };	/* SCL */
+			//P9_20_pinmux { status = "disabled"; };	/* SDA */
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			mbc4_gpio_pins: pinmux-mbc4-gpio-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x082C, PIN_INPUT | MUX_MODE7 ) /* P8_17 (U12) gpmc_ad11.gpio0[27] INT */
+					AM33XX_IOPAD(0x0838, PIN_INPUT | MUX_MODE7 ) /* P8_16 (V13) gpmc_ad14.gpio1[14] RESET */
+				>;
+			};
+
+			mbc_spi1_pins: pinmux-mbc-spi1-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x0990, PIN_INPUT | MUX_MODE3 ) /* P9_31 (A13) mcasp0_aclkx.spi1_sclk */
+					AM33XX_IOPAD(0x0994, PIN_INPUT | MUX_MODE3 ) /* P9_29 (B13) mcasp0_fsx.spi1_d0 */
+					AM33XX_IOPAD(0x0998, PIN_INPUT | MUX_MODE3 ) /* P9_30 (D12) mcasp0_axr0.spi1_d1 */
+
+					/* Click 1 */
+					AM33XX_IOPAD(0x099C, PIN_INPUT | MUX_MODE3 ) /* P9_28 (C12) mcasp0_ahclkr.spi1_cs0 */
+					/* Click 2 */
+					AM33XX_IOPAD(0x0964, PIN_INPUT | MUX_MODE2 ) /* P9_42 (C18) eCAP0_in_PWM0_out.spi1_cs1 */
+					/* Click 4 */
+					AM33XX_IOPAD(0x0898, PIN_INPUT | MUX_MODE7 ) /* P8_10 (U6) gpmc_wen.gpio2_4 */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&spi1>;
+		__overlay__ {
+			status = "okay";
+			cs-gpios = <0>, <0>, <&gpio2 4 GPIO_ACTIVE_HIGH>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&mbc_spi1_pins>;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			channel@0{ status = "disabled"; };
+			channel@1{ status = "disabled"; };
+		};
+	};
+
+	fragment@3 {
+		target = <&spi1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			enc28j60: ethernet@3 {
+				compatible = "microchip,enc28j60";
+				pinctrl-names = "default";
+				pinctrl-0 = <&mbc4_gpio_pins>;
+				reg = <0x2>;
+				interrupt-parent = <&gpio0>;
+				interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
+				spi-max-frequency = <16000000>;
+				local-mac-address = [ 00 00 00 00 00 00 ];
+			};
+		};
+	};
+};
