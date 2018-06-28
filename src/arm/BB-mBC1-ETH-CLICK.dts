@@ -31,6 +31,9 @@
 			/* Click 2 */
 			P9_42_pinmux { status = "disabled"; };	/* CS - spi1_cs1 */
 
+			/* Click 4 */
+			P8_10_pinmux { status = "disabled"; };  /* CS - gpmc_wen.gpio2_4 */
+
 			P9_31_pinmux { status = "disabled"; };	/* SCK - spi1_sclk */
 			P9_29_pinmux { status = "disabled"; };	/* MISO - spi1_d0 */
 			P9_30_pinmux { status = "disabled"; };	/* MOSI - spi1_d1 */
@@ -64,6 +67,8 @@
 					AM33XX_IOPAD(0x099C, PIN_INPUT | MUX_MODE3 ) /* P9_28 (C12) mcasp0_ahclkr.spi1_cs0 */
 					/* Click 2 */
 					AM33XX_IOPAD(0x0964, PIN_INPUT | MUX_MODE2 ) /* P9_42 (C18) eCAP0_in_PWM0_out.spi1_cs1 */
+					/* Click 4 */
+					AM33XX_IOPAD(0x0898, PIN_INPUT | MUX_MODE7 ) /* P8_10 (U6) gpmc_wen.gpio2_4 */
 				>;
 			};
 		};
@@ -73,6 +78,7 @@
 		target = <&spi1>;
 		__overlay__ {
 			status = "okay";
+			cs-gpios = <0>, <0>, <&gpio2 4 GPIO_ACTIVE_HIGH>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&mbc_spi1_pins>;
 
