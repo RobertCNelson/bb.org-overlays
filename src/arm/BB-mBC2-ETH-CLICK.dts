@@ -24,7 +24,13 @@
 		target = <&ocp>;
 		__overlay__ {
 			P9_23_pinmux { status = "disabled"; };	/* RESET - gpio1[17] */
+
+			/* Click 1 */
+			P9_28_pinmux { status = "disabled"; };	/* CS - spi1_cs0 */
+
+			/* Click 2 */
 			P9_42_pinmux { status = "disabled"; };	/* CS - spi1_cs1 */
+
 			P9_31_pinmux { status = "disabled"; };	/* SCK - spi1_sclk */
 			P9_29_pinmux { status = "disabled"; };	/* MISO - spi1_d0 */
 			P9_30_pinmux { status = "disabled"; };	/* MOSI - spi1_d1 */
@@ -42,7 +48,7 @@
 	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-			enc28j60_pins: pinmux_enc28j60_pins {
+			mbc2_gpio_pins: pinmux-mbc2-gpio-pins {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x09B4, PIN_INPUT | MUX_MODE7 ) /* P9_41 (D14) xdma_event_intr1.gpio0[20] INT */
 					AM33XX_IOPAD(0x09A8, PIN_INPUT | MUX_MODE7 ) /* P9_91 Shared with P9_41 mcasp0_axr1.gpio3_20 */
@@ -50,11 +56,15 @@
 				>;
 			};
 
-			bb_spi1_pins: pinmux_bb_spi1_pins {
+			mbc_spi1_pins: pinmux-mbc-spi1-pins {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x0990, PIN_INPUT | MUX_MODE3 ) /* P9_31 (A13) mcasp0_aclkx.spi1_sclk */
 					AM33XX_IOPAD(0x0994, PIN_INPUT | MUX_MODE3 ) /* P9_29 (B13) mcasp0_fsx.spi1_d0 */
 					AM33XX_IOPAD(0x0998, PIN_INPUT | MUX_MODE3 ) /* P9_30 (D12) mcasp0_axr0.spi1_d1 */
+
+					/* Click 1 */
+					AM33XX_IOPAD(0x099C, PIN_INPUT | MUX_MODE3 ) /* P9_28 (C12) mcasp0_ahclkr.spi1_cs0 */
+					/* Click 2 */
 					AM33XX_IOPAD(0x0964, PIN_INPUT | MUX_MODE2 ) /* P9_42 (C18) eCAP0_in_PWM0_out.spi1_cs1 */
 				>;
 			};
@@ -66,22 +76,32 @@
 		__overlay__ {
 			status = "okay";
 			pinctrl-names = "default";
-			pinctrl-0 = <&bb_spi1_pins>;
+			pinctrl-0 = <&mbc_spi1_pins>;
 
 			#address-cells = <1>;
 			#size-cells = <0>;
 
 			channel@0{ status = "disabled"; };
 			channel@1{ status = "disabled"; };
+		};
+	};
 
-			enc28j60: ethernet@0 {
+	fragment@3 {
+		target = <&spi1>;
+		__overlay__ {
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			enc28j60: ethernet@1 {
 				compatible = "microchip,enc28j60";
 				pinctrl-names = "default";
-				pinctrl-0 = <&enc28j60_pins>;
+				pinctrl-0 = <&mbc2_gpio_pins>;
 				reg = <0x1>;
 				interrupt-parent = <&gpio0>;
 				interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
 				spi-max-frequency = <16000000>;
+				local-mac-address = [ 00 00 00 00 00 00 ];
 			};
 		};
 	};

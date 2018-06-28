@@ -75,6 +75,7 @@
 				interrupt-parent = <&gpio0>;
 				interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
 				spi-max-frequency = <16000000>;
+				local-mac-address = [ 00 00 00 00 00 00 ];
 			};
 		};
 	};
