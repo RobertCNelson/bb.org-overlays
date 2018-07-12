@@ -5,6 +5,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -30,63 +31,52 @@
 		"gpio3_21",
 		"mcasp0";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_25_pinmux { status = "disabled"; };	/* mcasp0_ahclkx */
+			P9_28_pinmux { status = "disabled"; };	/* mcasp0_axr2 */
+			P9_29_pinmux { status = "disabled"; };	/* mcasp0_fsx */
+			P9_30_pinmux { status = "disabled"; };	/* mcasp0_axr0 */
+			P9_31_pinmux { status = "disabled"; };	/* mcasp0_aclkx */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bone_audio_cape_audio_pins: pinmux_bone_audio_cape_audio_pins {
 				pinctrl-single,pins = <
-					0x190 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_aclkx.mcasp0_aclkx */
-					0x194 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_fsx.mcasp0_fsx, INPUT */
-					0x198 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_axr0.mcasp0_axr0 */
-					0x19c (PIN_INPUT_PULLDOWN | MUX_MODE2)	/* mcasp0_ahclkr.mcasp0_axr2 */
-					0x1ac (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* MCASP0_AHCLKX -> MCASP0_AHCLKX (I2S_MCLK_OUT)- in */
+					AM33XX_IOPAD(0x990, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_aclkx.mcasp0_aclkx */
+					AM33XX_IOPAD(0x994, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_fsx.mcasp0_fsx, INPUT */
+					AM33XX_IOPAD(0x998, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_axr0.mcasp0_axr0 */
+					AM33XX_IOPAD(0x99c, PIN_INPUT_PULLDOWN | MUX_MODE2)	/* mcasp0_ahclkr.mcasp0_axr2 */
+					AM33XX_IOPAD(0x9ac, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* MCASP0_AHCLKX -> MCASP0_AHCLKX (I2S_MCLK_OUT)- in */
+					AM33XX_IOPAD(0x86c, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a11.GPIO1_27 */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
-		target = <&i2c2>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clock-frequency = <100000>;
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&i2c2_pins>;
-
-			tlv320aic3104: tlv320aic3104@18 {
-				#sound-dai-cells = <0>;
-				compatible = "ti,tlv320aic3104";
-				reg = <0x18>;
-			};
-		};
-	};
-
 	fragment@2 {
-		target = <&mcasp0>;
-		__overlay__ {
-			#sound-dai-cells = <0>;
-			pinctrl-names = "default";
-			pinctrl-0 = <&bone_audio_cape_audio_pins>;
-			status = "okay";
-			op-mode = <0>;          /* MCASP_IIS_MODE */
-			tdm-slots = <2>;
-			num-serializer = <16>;
-			serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-				2 0 1 0
-				0 0 0 0
-				0 0 0 0
-				0 0 0 0
-			>;
-			tx-num-evt = <1>;
-			rx-num-evt = <1>;
-		};
-	};
-
-	fragment@3 {
 		target-path="/";
 		__overlay__ {
+			clk_mcasp0_fixed: clk_mcasp0_fixed {
+				#clock-cells = <0>;
+				compatible = "fixed-clock";
+				clock-frequency = <24576000>;
+			};
+
+			clk_mcasp0: clk_mcasp0 {
+				#clock-cells = <0>;
+				compatible = "gpio-gate-clock";
+				clocks = <&clk_mcasp0_fixed>;
+				enable-gpios = <&gpio1 27 0>; /* BeagleBone Black Clk enable on GPIO1_27 */
+			};
+
 			sound {
 				compatible = "simple-audio-card";
 				simple-audio-card,name = "AudioCape Rev B";
@@ -107,7 +97,7 @@
 					sound-dai = <&mcasp0>;
 				};
 
-		                sound_master: simple-audio-card,codec {
+				sound_master: simple-audio-card,codec {
 					#sound-dai-cells = <0>;
 					sound-dai = <&tlv320aic3104>;
 					clocks = <&clk_mcasp0>;
@@ -115,6 +105,42 @@
 				};
 			};
 		};
+	};
 
+	fragment@3 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clock-frequency = <100000>;
+			status = "okay";
+
+			tlv320aic3104: tlv320aic3104@18 {
+				#sound-dai-cells = <0>;
+				compatible = "ti,tlv320aic3104";
+				reg = <0x18>;
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&mcasp0>;
+		__overlay__ {
+			#sound-dai-cells = <0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&bone_audio_cape_audio_pins>;
+			status = "okay";
+			op-mode = <0>;	/* MCASP_IIS_MODE */
+			tdm-slots = <2>;
+			num-serializer = <16>;
+			serial-dir = <	/* 0: INACTIVE, 1: TX, 2: RX */
+					2 0 1 0
+					0 0 0 0
+					0 0 0 0
+					0 0 0 0
+				>;
+			tx-num-evt = <1>;
+			rx-num-evt = <1>;
+		};
 	};
 };
