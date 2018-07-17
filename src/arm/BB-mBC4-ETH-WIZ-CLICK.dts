@@ -82,9 +82,6 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&mbc_spi1_pins>;
 
-			#address-cells = <1>;
-			#size-cells = <0>;
-
 			channel@0{ status = "disabled"; };
 			channel@1{ status = "disabled"; };
 		};
