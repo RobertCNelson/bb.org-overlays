@@ -3179,9 +3179,6 @@
 		__overlay__ {
 
 			ocp {
-				#address-cells = <1>;
-				#size-cells = <1>;
-
 				pruss: pruss@4a300000 {
 					status = "okay";
 				};
