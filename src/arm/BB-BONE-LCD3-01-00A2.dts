@@ -205,9 +205,6 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_lcd_keymap_pins>;
 
-				#address-cells = <1>;
-				#size-cells = <0>;
-
 				button@1 {
 					debounce_interval = <50>;
 					linux,code = <105>;

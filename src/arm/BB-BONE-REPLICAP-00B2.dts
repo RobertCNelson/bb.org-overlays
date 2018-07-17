@@ -186,8 +186,6 @@
                 pinctrl-names = "default";
                 pinctrl-0 = <&end_stop_pins>;
                 pinctrl-1 = <&stepper_fault_pins>;
-                #address-cells = <1>;
-                #size-cells = <0>;
 
                 switch_x1 {
                     label               = "Replic:End-stop-X1";

@@ -78,9 +78,7 @@
                 compatible = "gpio-keys";
                 pinctrl-names = "default";
                 pinctrl-0 = <&stepper_fault_pins_reach>;
-                #address-cells = <1>;
-                #size-cells = <0>;
-               
+
                 fault_reach {
                     label               = "Reach:Fault";
                     debounce_interval   = <50>;

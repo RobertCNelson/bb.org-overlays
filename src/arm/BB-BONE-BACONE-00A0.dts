@@ -86,10 +86,6 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_gpio0_22_pins>;
 
-				/* avoid stupid warning */
-				#address-cells = <1>;
-				#size-cells = <0>;
-
 				button@1 {
 					debounce_interval = <50>;
 					linux,code = <143>; /* System Wake Up */

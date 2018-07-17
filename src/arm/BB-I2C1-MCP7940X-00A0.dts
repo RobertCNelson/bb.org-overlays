@@ -80,10 +80,6 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_gpio1_29_pins>;
 
-				/* avoid stupid warning */
-				#address-cells = <1>;
-				#size-cells = <0>;
-
 				rtc_mfp@1 {
 					label = "rtc_mfp";
 					gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;

@@ -79,17 +79,15 @@
 
     fragment@2 {
         target = <&ocp>;
-        __overlay__ {			
+        __overlay__ {
             #address-cells = <1>;
-            #size-cells = <1>;							
+            #size-cells = <1>;
 
             gpio_keys {
                 compatible = "gpio-keys";
                 pinctrl-names = "default";
                 pinctrl-0 = <&stepper_fault_pins_reach>;
-                #address-cells = <1>;
-                #size-cells = <0>;
-               
+
                 fault_reach {
                     label               = "Reach:Fault";
                     debounce_interval   = <50>;
@@ -103,7 +101,7 @@
 
     fragment@3 {
         target = <&tscadc>;
-        __overlay__ {			
+        __overlay__ {
             status = "okay";
             adc {
                 ti,adc-channels = <0 1 2 3 4 5 6 7>;
