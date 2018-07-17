@@ -102,14 +102,10 @@
 			status = "okay";
 		};
 	};
-	
+
 	fragment@2 {
 		target-path="/";
-		
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <1>;
-			
 			gpio_keys {
 				compatible = "gpio-keys";
 				pinctrl-names = "default";
@@ -123,7 +119,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
-				
+
 				button@2 {
 					debounce_interval = <50>;
 					linux,code = <106>;
@@ -132,7 +128,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
-				
+
 				button@3 {
 					debounce_interval = <50>;
 					linux,code = <103>;
@@ -141,7 +137,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
-				
+
 				button@4 {
 					debounce_interval = <50>;
 					linux,code = <108>;
@@ -150,7 +146,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
-				
+
 				button@5 {
 					debounce_interval = <50>;
 					linux,code = <28>;
@@ -159,7 +155,6 @@
 					gpio-key,wakeup;
 				};
 			};
-
 
 			panel {
 				status = "okay";

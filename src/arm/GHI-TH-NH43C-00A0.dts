@@ -88,11 +88,7 @@
 
 	fragment@2 {
 		target-path="/";
-		
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <1>;
-			
 			panel {
 				status = "okay";
 				compatible = "ti,tilcdc,panel";

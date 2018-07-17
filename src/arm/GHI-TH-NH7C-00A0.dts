@@ -40,7 +40,7 @@
 		"P8.27", /* lcd: lcd_vsync */
 		"P8.29", /* lcd: lcd_hsync */
 		"P8.28", /* lcd: lcd_pclk */
-		"P8.30", /* lcd: lcd_ac_bias_en */		
+		"P8.30", /* lcd: lcd_ac_bias_en */
 		"lcd";
 
 	fragment@0 {
@@ -73,7 +73,7 @@
 			};
 
 			edt_ft5x06_pins:pinmux_edt_ft5x06_pins  {
-			   pinctrl-single,pins = <0x02C (PIN_OUTPUT | MUX_MODE7) 0x19C (PIN_INPUT | MUX_MODE7)>;
+				pinctrl-single,pins = <0x02C (PIN_OUTPUT | MUX_MODE7) 0x19C (PIN_INPUT | MUX_MODE7)>;
 			};
 		};
 	};
@@ -88,11 +88,7 @@
 
 	fragment@2 {
 		target-path="/";
-		
-		__overlay__ {			
-			#address-cells = <1>;
-			#size-cells = <1>;
-
+		__overlay__ {
 			panel {
 				status = "okay";
 				compatible = "ti,tilcdc,panel";
@@ -113,7 +109,7 @@
 					raster-order      = <0>;
 					fifo-th           = <0>;
 				};
-				
+
 				display-timings {
 					native-mode = <&timing0>;
 					

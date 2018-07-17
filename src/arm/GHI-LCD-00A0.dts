@@ -195,10 +195,6 @@
 		target-path="/";
 		__overlay__ {
 
-			/* avoid stupid warning */
-			#address-cells = <1>;
-			#size-cells = <1>;
-
 /*
 			backlight {
 				status = "okay";
@@ -247,9 +243,6 @@
 				compatible = "gpio-keys";
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_lcd_keymap_pins>;
-
-				#address-cells = <1>;
-				#size-cells = <0>;
 
 				button@1 {
 					debounce_interval = <50>;

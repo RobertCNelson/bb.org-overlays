@@ -212,8 +212,6 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&button_pins>;
 				status = "okay";
-				#address-cells = <1>;
-				#size-cells = <0>;
 
 				sw1@1 {
 					label = "right";

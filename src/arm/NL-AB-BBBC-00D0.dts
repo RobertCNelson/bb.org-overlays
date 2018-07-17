@@ -126,8 +126,6 @@
 	fragment@4 {
 		target-path="/";
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <1>;
 			gpio {
 				compatible = "skywire-gpio";
 				status = "okay";

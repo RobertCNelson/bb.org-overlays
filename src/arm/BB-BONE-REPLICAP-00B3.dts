@@ -177,9 +177,7 @@
 
     fragment@3 {
         target = <&ocp>;
-        __overlay__ {			
-            #address-cells = <1>;
-            #size-cells = <1>;							
+        __overlay__ {
 
             gpio_keys {
                 compatible = "gpio-keys";

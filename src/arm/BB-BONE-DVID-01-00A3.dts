@@ -96,11 +96,6 @@
 	fragment@1 {
 		target-path="/";
 		__overlay__ {
-
-			/* avoid stupid warning */
-			#address-cells = <1>;
-			#size-cells = <1>;
-
 			gpio-leds-cape-dvi {
 				compatible = "gpio-leds";
 				pinctrl-names = "default";
