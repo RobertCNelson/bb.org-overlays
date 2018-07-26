@@ -5,12 +5,13 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
@@ -51,7 +52,7 @@
 		"P8.12",	/* keys: gpio1_12 ENTER */
 
 		"gpio3_19",	/* DISPEN */
-		"gpio1_28",	/* LED */ 
+		"gpio1_28",	/* LED */
 		"gpio1_16",	/* LEFT */
 		"gpio1_17",	/* RIGHT */
 		"gpio1_19",	/* UP */
@@ -160,8 +161,8 @@
 	fragment@5 {
 		target = <&tscadc>;
 		__overlay__ {
-
 			status = "okay";
+
 			tsc {
 				ti,wires = <4>;
 				ti,x-plate-resistance = <200>;
