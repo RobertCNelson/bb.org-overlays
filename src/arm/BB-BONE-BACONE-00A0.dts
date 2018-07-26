@@ -42,42 +42,61 @@
 		"gpio0_4",
 		"gpio0_2";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_19_pinmux { status = "disabled"; };	/* P8_19: gpmc_ad8.gpio0_22 */
+
+			P9_14_pinmux { status = "disabled"; };	/* P9_14: (ZCZ ball U14) | MODE 6 */
+			P9_16_pinmux { status = "disabled"; };	/* P9_16: (ZCZ ball T14) | MODE 6 */
+
+			P9_42_pinmux { status = "disabled"; };	/* P9_42: (ZCZ ball C18) | MODE 0 */
+
+			P9_15_pinmux { status = "disabled"; };	/* P9_15: .gpio1_16 | MODE7 | OUTPUT */
+			P9_17_pinmux { status = "disabled"; };	/* P9_17: spi0_cs0.gpio0_5 | MODE7 | OUTPUT */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18: spi0_d1.gpio0_4 | MODE7 | OUTPUT */
+			P9_22_pinmux { status = "disabled"; };	/* P9_22: spi0_sclk.gpio0_2 | MODE7 | OUTPUT */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
 			bb_gpio0_22_pins: pinmux_bb_gpio0_22_pins {
 				pinctrl-single,pins = <
-					BONE_P8_19 (PIN_INPUT | MUX_MODE7) /* gpmc_ad8.gpio0_22 */
+					BONE_P8_19 (PIN_INPUT | MUX_MODE7)	/* P8_19: gpmc_ad8.gpio0_22 */
 				>;
 			};
 
 			bb_ehrpwm1_pins: pinmux_bb_ehrpwm1_pins {
 				pinctrl-single,pins = <
-					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* P9_14 (ZCZ ball U14) | MODE 6 */
-					BONE_P9_16 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* P9_16 (ZCZ ball T14) | MODE 6 */
+					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* P9_14: (ZCZ ball U14) | MODE 6 */
+					BONE_P9_16 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* P9_16: (ZCZ ball T14) | MODE 6 */
 				>;
 			};
 
 			bb_ecap0_pins: pinmux_bb_ecap0_pins {
 				pinctrl-single,pins = <
-					BONE_P9_42A (PIN_OUTPUT_PULLDOWN | MUX_MODE0) /* P9_42 (ZCZ ball C18) | MODE 0 */
+					BONE_P9_42 (PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* P9_42: (ZCZ ball C18) | MODE 0 */
 				>;
 			};
 
 			bacon_gpiohelp_pins: pinmux_bacon_gpio_helper_pins {
 				pinctrl-single,pins = <
-					0x020 0x2f /* gpmc_ad8.gpio0_22, INPUT | PULLDIS | MODE7 */
-					0x040 0x0f /* P9 15 .gpio1_16 | MODE7 | OUTPUT */
-					0x15c 0x0f /* P9 17 spi0_cs0.gpio0_5 | MODE7 | OUTPUT */
-					0x158 0x0f /* P9 18 spi0_d1.gpio0_4 | MODE7 | OUTPUT */
-					0x150 0x0f /* P9 22 spi0_sclk.gpio0_2 | MODE7 | OUTPUT */
+					0x040 0x0f	/* P9_15: .gpio1_16 | MODE7 | OUTPUT */
+					0x15c 0x0f	/* P9_17: spi0_cs0.gpio0_5 | MODE7 | OUTPUT */
+					0x158 0x0f	/* P9_18: spi0_d1.gpio0_4 | MODE7 | OUTPUT */
+					0x150 0x0f	/* P9_22: spi0_sclk.gpio0_2 | MODE7 | OUTPUT */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 
@@ -97,7 +116,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&tscadc>;
 		__overlay__ {
 
@@ -108,14 +127,14 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&epwmss0>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&ecap0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -124,14 +143,14 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -140,7 +159,7 @@
 		};
 	};
 
-	fragment@7 {
+	fragment@8 {
 		target = <&i2c2>;
 		__overlay__ {
 			#address-cells = <1>;
