@@ -28,7 +28,23 @@
 		"P9.26", /* FAULT_REACH	*/
 		"P9.27"; /* DIR_EXT_5	*/
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_07_pinmux { status = "disabled"; };
+			P9_14_pinmux { status = "disabled"; };
+			P9_15_pinmux { status = "disabled"; };
+			P9_17_pinmux { status = "disabled"; };
+			P9_21_pinmux { status = "disabled"; };
+			P9_26_pinmux { status = "disabled"; };
+			P9_27_pinmux { status = "disabled"; };
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pruicss_stepper_pins_reach: pinmux_pruicss_stepper_pins_reach{
@@ -50,7 +66,7 @@
 		};
 	};
 
-	fragment@1{
+	fragment@2 {
 		target = <&pruss>;
 		__overlay__{
 			status = "okay";
@@ -77,7 +93,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -97,7 +113,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&tscadc>;
 		__overlay__ {
 			status = "okay";
