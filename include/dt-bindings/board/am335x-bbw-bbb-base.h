@@ -93,12 +93,16 @@
 #define BONE_P9_31 0x190
 
 /* Shared P21 of P11 */
+#define BONE_P9_41 0x1B4
 #define BONE_P9_41A 0x1B4
 #define BONE_P9_41B 0x1A8
+#define BONE_P9_91 0x1A8
 
 /* Shared P22 of P11 */
+#define BONE_P9_42 0x164
 #define BONE_P9_42A 0x164
 #define BONE_P9_42B 0x1A0
+#define BONE_P9_92 0x1A0
 
 #endif
 

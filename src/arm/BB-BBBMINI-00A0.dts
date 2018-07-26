@@ -34,10 +34,10 @@
 		"P8.45",	/* pru1: pr1_pru1_pru_r30_0, CH_12 */
 
 		/* SPI0 */
-		"P9.22",    /* spi0: spi0_sclk, SPI0_SCLK */
-		"P9.21",    /* spi0: spi0_d0, SPI0_MISO */
-		"P9.18",    /* spi0: spi0_d1, SPI0_MOSI */
-		"P9.17",    /* spi0: spi0_cs0, CS0 */
+		"P9.22",	/* spi0: spi0_sclk, SPI0_SCLK */
+		"P9.21",	/* spi0: spi0_d0, SPI0_MISO */
+		"P9.18",	/* spi0: spi0_d1, SPI0_MOSI */
+		"P9.17",	/* spi0: spi0_cs0, CS0 */
 
 		/* SPI1 */
 		"P9.31",	/* spi1: spi1_sclk, SPI1_SCLK */
@@ -65,74 +65,119 @@
 		"uart5",
 		"dcan1";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_15_pinmux { status = "disabled"; };	/* P8_15: ecap0_in_pwm0_out.pr1_ecap0_ecap_capin, MODE5 | INPUT_PULLUP | PRU, PPM-sum, SBUS, DSM  */
+
+			P8_28_pinmux { status = "disabled"; };	/* P8_28: lcd_pclk.pr1_pru1_pru_r30_10, MODE5 | OUTPUT | PRU, CH_1 */
+			P8_27_pinmux { status = "disabled"; };	/* P8_27: lcd_vsync.pr1_pru1_pru_r30_8, MODE5 | OUTPUT | PRU, CH_2 */
+			P8_30_pinmux { status = "disabled"; };	/* P8_30: lcd_ac_bias_en.pr1_pru1_pru_r30_11, MODE5 | OUTPUT | PRU, CH_3 */
+			P8_29_pinmux { status = "disabled"; };	/* P8_29: lcd_hsync.pr1_pru1_pru_r30_9, MODE5 | OUTPUT | PRU, CH_4 */
+			P8_40_pinmux { status = "disabled"; };	/* P8_40: lcd_data7.pr1_pru1_pru_r30_7, MODE5 | OUTPUT | PRU, CH_5 */
+			P8_39_pinmux { status = "disabled"; };	/* P8_39: lcd_data6.pr1_pru1_pru_r30_6, MODE5 | OUTPUT | PRU, CH_6 */
+			P8_42_pinmux { status = "disabled"; };	/* P8_42: lcd_data5.pr1_pru1_pru_r30_5, MODE5 | OUTPUT | PRU, CH_7 */
+			P8_41_pinmux { status = "disabled"; };	/* P8_41: lcd_data4.pr1_pru1_pru_r30_4, MODE5 | OUTPUT | PRU, CH_8 */
+			P8_44_pinmux { status = "disabled"; };	/* P8_44: lcd_data3.pr1_pru1_pru_r30_3, MODE5 | OUTPUT | PRU, CH_9 */
+			P8_43_pinmux { status = "disabled"; };	/* P8_43: lcd_data2.pr1_pru1_pru_r30_2, MODE5 | OUTPUT | PRU, CH_10 */
+			P8_46_pinmux { status = "disabled"; };	/* P8_46: lcd_data1.pr1_pru1_pru_r30_1, MODE5 | OUTPUT | PRU, CH_11 */
+			P8_45_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.pr1_pru1_pru_r30_0, MODE5 | OUTPUT | PRU, CH_12 */
+
+			P9_22_pinmux { status = "disabled"; };	/* P9_22: spi0_sclk.spi0_sclk, MODE0 | INPUT_PULLUP | SPI0_SCLK P9_22 */
+			P9_21_pinmux { status = "disabled"; };	/* P9_21: spi0_d0.spi0_d0, MODE0 | INPUT_PULLUP | SPI0_MISO P9_21 */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18: spi0_d0.spi0_d1, MODE0 | OUTPUT_PULLUP | SPI0_MOSI P9_18 */
+			P9_17_pinmux { status = "disabled"; };	/* P9_17: spi0_cs0.spi0_cs0, MODE0 | OUTPUT_PULLUP | SPI0_CS0 P9_17 */
+
+			P9_31_pinmux { status = "disabled"; };	/* P9_31: mcasp0_aclkx.spi1_sclk, MODE3 | INPUT_PULLUP | SPI1_SCLK P9_31 */
+			P9_29_pinmux { status = "disabled"; };	/* P9_29: mcasp0_fsx.spi1_d0, MODE3 | INPUT_PULLUP | SPI1_MISO P9_29 */
+			P9_30_pinmux { status = "disabled"; };	/* P9_30: mcasp0_axr0.spi1_d1, MODE3 | OUTPUT_PULLUP | SPI1_MOSI P9_30 */
+			P9_28_pinmux { status = "disabled"; };	/* P9_28: mcasp0_ahclkr.spi1_cs0, MODE3 | OUTPUT_PULLUP | MPU9250 CS0 P9_28 */
+			P9_42_pinmux { status = "disabled"; };	/* P9_42: ecap0_in_pwm0_out.spi1_cs1, MODE2 | OUTPUT_PULLUP | MS5611 CS1 P9_42 */
+
+			P9_92_pinmux { status = "disabled"; };	/* P9_92: Mcasp0_aclkr P9_42 */
+
+			P9_11_pinmux { status = "disabled"; };	/* P9_11: gpmc_wait0.uart4_rxd_mux2 */
+			P9_13_pinmux { status = "disabled"; };	/* P9_13: gpmc_wpn.uart4_txd_mux2 */
+
+			P8_38_pinmux { status = "disabled"; };	/* P8_38: lcd_data9.uart5_rxd */
+			P8_37_pinmux { status = "disabled"; };	/* P8_37: lcd_data8.uart5_txd */
+
+			P9_24_pinmux { status = "disabled"; };	/* P9_24: uart1_txd.d_can1_rx */
+			P9_26_pinmux { status = "disabled"; };	/* P9_26: uart1_rxd.d_can1_tx */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
-            pru_pru_pins: pinmux_pru_pru_pins {
-                pinctrl-single,pins = <
-                    0x03c 0x35	/* ecap0_in_pwm0_out.pr1_ecap0_ecap_capin, MODE5 | INPUT_PULLUP | PRU, PPM-sum, SBUS, DSM  */
+			pru_pru_pins: pinmux_pru_pru_pins {
+				pinctrl-single,pins = <
+					0x03c 0x35	/* P8_15: ecap0_in_pwm0_out.pr1_ecap0_ecap_capin, MODE5 | INPUT_PULLUP | PRU, PPM-sum, SBUS, DSM  */
 
-                    0x0e8 0x25	/* lcd_pclk.pr1_pru1_pru_r30_10, MODE5 | OUTPUT | PRU, CH_1 */
-                    0x0e0 0x25	/* lcd_vsync.pr1_pru1_pru_r30_8, MODE5 | OUTPUT | PRU, CH_2 */
-                    0x0ec 0x25	/* lcd_ac_bias_en.pr1_pru1_pru_r30_11, MODE5 | OUTPUT | PRU, CH_3 */
-                    0x0e4 0x25	/* lcd_hsync.pr1_pru1_pru_r30_9, MODE5 | OUTPUT | PRU, CH_4 */
-                    0x0bc 0x25	/* lcd_data7.pr1_pru1_pru_r30_7, MODE5 | OUTPUT | PRU, CH_5 */
-                    0x0b8 0x25	/* lcd_data6.pr1_pru1_pru_r30_6, MODE5 | OUTPUT | PRU, CH_6 */
-                    0x0b4 0x25	/* lcd_data5.pr1_pru1_pru_r30_5, MODE5 | OUTPUT | PRU, CH_7 */
-                    0x0b0 0x25	/* lcd_data4.pr1_pru1_pru_r30_4, MODE5 | OUTPUT | PRU, CH_8 */
-                    0x0ac 0x25	/* lcd_data3.pr1_pru1_pru_r30_3, MODE5 | OUTPUT | PRU, CH_9 */
-                    0x0a8 0x25	/* lcd_data2.pr1_pru1_pru_r30_2, MODE5 | OUTPUT | PRU, CH_10 */
-                    0x0a4 0x25	/* lcd_data1.pr1_pru1_pru_r30_1, MODE5 | OUTPUT | PRU, CH_11 */
-                    0x0a0 0x25	/* lcd_data0.pr1_pru1_pru_r30_0, MODE5 | OUTPUT | PRU, CH_12 */
-                >;
-            };
+					0x0e8 0x25	/* P8_28: lcd_pclk.pr1_pru1_pru_r30_10, MODE5 | OUTPUT | PRU, CH_1 */
+					0x0e0 0x25	/* P8_27: lcd_vsync.pr1_pru1_pru_r30_8, MODE5 | OUTPUT | PRU, CH_2 */
+					0x0ec 0x25	/* P8_30: lcd_ac_bias_en.pr1_pru1_pru_r30_11, MODE5 | OUTPUT | PRU, CH_3 */
+					0x0e4 0x25	/* P8_29: lcd_hsync.pr1_pru1_pru_r30_9, MODE5 | OUTPUT | PRU, CH_4 */
+					0x0bc 0x25	/* P8_40: lcd_data7.pr1_pru1_pru_r30_7, MODE5 | OUTPUT | PRU, CH_5 */
+					0x0b8 0x25	/* P8_39: lcd_data6.pr1_pru1_pru_r30_6, MODE5 | OUTPUT | PRU, CH_6 */
+					0x0b4 0x25	/* P8_42: lcd_data5.pr1_pru1_pru_r30_5, MODE5 | OUTPUT | PRU, CH_7 */
+					0x0b0 0x25	/* P8_41: lcd_data4.pr1_pru1_pru_r30_4, MODE5 | OUTPUT | PRU, CH_8 */
+					0x0ac 0x25	/* P8_44: lcd_data3.pr1_pru1_pru_r30_3, MODE5 | OUTPUT | PRU, CH_9 */
+					0x0a8 0x25	/* P8_43: lcd_data2.pr1_pru1_pru_r30_2, MODE5 | OUTPUT | PRU, CH_10 */
+					0x0a4 0x25	/* P8_46: lcd_data1.pr1_pru1_pru_r30_1, MODE5 | OUTPUT | PRU, CH_11 */
+					0x0a0 0x25	/* P8_45: lcd_data0.pr1_pru1_pru_r30_0, MODE5 | OUTPUT | PRU, CH_12 */
+				>;
+			};
 
-            bb_spi0_pins: pinmux_bb_spi0_pins {
-                pinctrl-single,pins = <
-                    0x150 0x30  /* spi0_sclk.spi0_sclk, MODE0 | INPUT_PULLUP | SPI0_SCLK P9_22 */
-                    0x154 0x30  /* spi0_d0.spi0_d0, MODE0 | INPUT_PULLUP | SPI0_MISO P9_21 */
-                    0x158 0x10  /* spi0_d0.spi0_d1, MODE0 | OUTPUT_PULLUP | SPI0_MOSI P9_18 */
-                    0x15c 0x10  /* spi0_cs0.spi0_cs0, MODE0 | OUTPUT_PULLUP | SPI0_CS0 P9_17 */
-                >;
-            };
+			bb_spi0_pins: pinmux_bb_spi0_pins {
+				pinctrl-single,pins = <
+					0x150 0x30	/* P9_22: spi0_sclk.spi0_sclk, MODE0 | INPUT_PULLUP | SPI0_SCLK P9_22 */
+					0x154 0x30	/* P9_21: spi0_d0.spi0_d0, MODE0 | INPUT_PULLUP | SPI0_MISO P9_21 */
+					0x158 0x10	/* P9_18: spi0_d0.spi0_d1, MODE0 | OUTPUT_PULLUP | SPI0_MOSI P9_18 */
+					0x15c 0x10	/* P9_17: spi0_cs0.spi0_cs0, MODE0 | OUTPUT_PULLUP | SPI0_CS0 P9_17 */
+				>;
+			};
 
-            bb_spi1_pins: pinmux_bb_spi1_pins {
-                pinctrl-single,pins = <
-                    0x190 0x33	/* mcasp0_aclkx.spi1_sclk, MODE3 | INPUT_PULLUP | SPI1_SCLK P9_31 */
-                    0x194 0x33	/* mcasp0_fsx.spi1_d0, MODE3 | INPUT_PULLUP | SPI1_MISO P9_29 */
-                    0x198 0x13	/* mcasp0_axr0.spi1_d1, MODE3 | OUTPUT_PULLUP | SPI1_MOSI P9_30 */
-                    0x19c 0x13	/* mcasp0_ahclkr.spi1_cs0, MODE3 | OUTPUT_PULLUP | MPU9250 CS0 P9_28 */
-                    0x164 0x12	/* ecap0_in_pwm0_out.spi1_cs1, MODE2 | OUTPUT_PULLUP | MS5611 CS1 P9_42 */
+			bb_spi1_pins: pinmux_bb_spi1_pins {
+				pinctrl-single,pins = <
+					0x190 0x33	/* P9_31: mcasp0_aclkx.spi1_sclk, MODE3 | INPUT_PULLUP | SPI1_SCLK P9_31 */
+					0x194 0x33	/* P9_29: mcasp0_fsx.spi1_d0, MODE3 | INPUT_PULLUP | SPI1_MISO P9_29 */
+					0x198 0x13	/* P9_30: mcasp0_axr0.spi1_d1, MODE3 | OUTPUT_PULLUP | SPI1_MOSI P9_30 */
+					0x19c 0x13	/* P9_28: mcasp0_ahclkr.spi1_cs0, MODE3 | OUTPUT_PULLUP | MPU9250 CS0 P9_28 */
+					0x164 0x12	/* P9_42: ecap0_in_pwm0_out.spi1_cs1, MODE2 | OUTPUT_PULLUP | MS5611 CS1 P9_42 */
 
-                    0x1a0 0x30  /* Mcasp0_aclkr P9_42 */
-                >;
-            };
+					0x1a0 0x30	/* P9_92: Mcasp0_aclkr P9_42 */
+				>;
+			};
 
 			bb_uart4_pins: pinmux_bb_uart4_pins {
 				pinctrl-single,pins = <
-					BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6) /* gpmc_wait0.uart4_rxd_mux2 */
-					BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_wpn.uart4_txd_mux2 */
+					BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6)	/* P9_11: gpmc_wait0.uart4_rxd_mux2 */
+					BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* P9_13: gpmc_wpn.uart4_txd_mux2 */
 				>;
 			};
 
 			bb_uart5_pins: pinmux_bb_uart5_pins {
 				pinctrl-single,pins = <
-					BONE_P8_38 (PIN_INPUT_PULLUP | MUX_MODE4) /* lcd_data9.uart5_rxd */
-					BONE_P8_37 (PIN_OUTPUT_PULLDOWN | MUX_MODE4) /* lcd_data8.uart5_txd */
+					BONE_P8_38 (PIN_INPUT_PULLUP | MUX_MODE4)	/* P8_38: lcd_data9.uart5_rxd */
+					BONE_P8_37 (PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* P8_37: lcd_data8.uart5_txd */
 				>;
 			};
 
 			bb_dcan1_pins: pinmux_dcan1_pins {
 				pinctrl-single,pins = <
-					BONE_P9_24 (PIN_INPUT_PULLUP | MUX_MODE2) /* uart1_txd.d_can1_rx */
-					BONE_P9_26 (PIN_OUTPUT_PULLUP | MUX_MODE2) /* uart1_rxd.d_can1_tx */
+					BONE_P9_24 (PIN_INPUT_PULLUP | MUX_MODE2)	/* P9_24: uart1_txd.d_can1_rx */
+					BONE_P9_26 (PIN_OUTPUT_PULLUP | MUX_MODE2)	/* P9_26: uart1_rxd.d_can1_tx */
 				>;
 			};
 		};
 	};
 
-/*    fragment@1 { */
+/*    fragment@2 { */
 /*        target = <&pruss>; */
 /*        __overlay__ { */
 /*            status = "okay"; */
@@ -141,7 +186,7 @@
 /*        }; */
 /*    }; */
 
-/*    fragment@2 { */
+/*    fragment@3 { */
 /*        target = <&spi0>; */
 /*        __overlay__ { */
 /*            status = "okay"; */
@@ -161,7 +206,7 @@
 /*        }; */
 /*    }; */
 
-/*    fragment@3 { */
+/*    fragment@4 { */
 /*        target = <&spi1>; */
 /*        __overlay__ { */
 /*            status = "okay"; */
@@ -191,7 +236,7 @@
 /*        }; */
 /*    }; */
 
-	fragment@4 {
+	fragment@5 {
 		target = <&uart4>;
 		__overlay__ {
 			status = "okay";
@@ -200,7 +245,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&uart5>;
 		__overlay__ {
 			status = "okay";
@@ -209,7 +254,7 @@
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&dcan1>;
 		__overlay__ {
 			status = "okay";

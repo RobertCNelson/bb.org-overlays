@@ -63,23 +63,23 @@
 
 			mmc3_pins: pinmux_mmc3_pins {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x93c, PIN_INPUT_PULLUP | MUX_MODE6 ) /* (L15) gmii1_rxd1.mmc2_clk */
-					AM33XX_IOPAD(0x914, PIN_INPUT_PULLUP | MUX_MODE6 ) /* (J16) gmii1_txen.mmc2_cmd */
-					AM33XX_IOPAD(0x918, PIN_INPUT_PULLUP | MUX_MODE5 ) /* (J17) gmii1_rxdv.mmc2_dat0 */
-					AM33XX_IOPAD(0x91c, PIN_INPUT_PULLUP | MUX_MODE5 ) /* (J18) gmii1_txd3.mmc2_dat1 */
-					AM33XX_IOPAD(0x920, PIN_INPUT_PULLUP | MUX_MODE5 ) /* (K15) gmii1_txd2.mmc2_dat2 */
-					AM33XX_IOPAD(0x908, PIN_INPUT_PULLUP | MUX_MODE5 ) /* (H16) gmii1_col.mmc2_dat3 */
+					AM33XX_IOPAD(0x93c, PIN_INPUT_PULLUP | MUX_MODE6 )	/* (L15) gmii1_rxd1.mmc2_clk */
+					AM33XX_IOPAD(0x914, PIN_INPUT_PULLUP | MUX_MODE6 )	/* (J16) gmii1_txen.mmc2_cmd */
+					AM33XX_IOPAD(0x918, PIN_INPUT_PULLUP | MUX_MODE5 )	/* (J17) gmii1_rxdv.mmc2_dat0 */
+					AM33XX_IOPAD(0x91c, PIN_INPUT_PULLUP | MUX_MODE5 )	/* (J18) gmii1_txd3.mmc2_dat1 */
+					AM33XX_IOPAD(0x920, PIN_INPUT_PULLUP | MUX_MODE5 )	/* (K15) gmii1_txd2.mmc2_dat2 */
+					AM33XX_IOPAD(0x908, PIN_INPUT_PULLUP | MUX_MODE5 )	/* (H16) gmii1_col.mmc2_dat3 */
 				>;
 			};
 
 			mmc3_pins_sleep: pinmux_mmc3_pins_sleep {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x93c, PIN_INPUT_PULLDOWN | MUX_MODE6 ) /* (L15) gmii1_rxd1.mmc2_clk */
-					AM33XX_IOPAD(0x914, PIN_INPUT_PULLDOWN | MUX_MODE6 ) /* (J16) gmii1_txen.mmc2_cmd */
-					AM33XX_IOPAD(0x918, PIN_INPUT_PULLDOWN | MUX_MODE5 ) /* (J17) gmii1_rxdv.mmc2_dat0 */
-					AM33XX_IOPAD(0x91c, PIN_INPUT_PULLDOWN | MUX_MODE5 ) /* (J18) gmii1_txd3.mmc2_dat1 */
-					AM33XX_IOPAD(0x920, PIN_INPUT_PULLDOWN | MUX_MODE5 ) /* (K15) gmii1_txd2.mmc2_dat2 */
-					AM33XX_IOPAD(0x908, PIN_INPUT_PULLDOWN | MUX_MODE5 ) /* (H16) gmii1_col.mmc2_dat3 */
+					AM33XX_IOPAD(0x93c, PIN_INPUT_PULLDOWN | MUX_MODE6 )	/* (L15) gmii1_rxd1.mmc2_clk */
+					AM33XX_IOPAD(0x914, PIN_INPUT_PULLDOWN | MUX_MODE6 )	/* (J16) gmii1_txen.mmc2_cmd */
+					AM33XX_IOPAD(0x918, PIN_INPUT_PULLDOWN | MUX_MODE5 )	/* (J17) gmii1_rxdv.mmc2_dat0 */
+					AM33XX_IOPAD(0x91c, PIN_INPUT_PULLDOWN | MUX_MODE5 )	/* (J18) gmii1_txd3.mmc2_dat1 */
+					AM33XX_IOPAD(0x920, PIN_INPUT_PULLDOWN | MUX_MODE5 )	/* (K15) gmii1_txd2.mmc2_dat2 */
+					AM33XX_IOPAD(0x908, PIN_INPUT_PULLDOWN | MUX_MODE5 )	/* (H16) gmii1_col.mmc2_dat3 */
 				>;
 			};
 
