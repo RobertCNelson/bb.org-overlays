@@ -72,7 +72,7 @@
 
 			P9_14_pinmux { status = "disabled"; };	/* P9_14: gpmc_a2.ehrpwm1a */
 
-			P9_27_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
+			P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr.gpio3_19 */
 
 			P8_45_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
 			P8_46_pinmux { status = "disabled"; };	/* P8_46: lcd_data1.lcd_data1 */
@@ -95,7 +95,6 @@
 			P8_29_pinmux { status = "disabled"; };	/* P8_29: lcd_hsync.lcd_hsync */
 			P8_28_pinmux { status = "disabled"; };	/* P8_28: lcd_pclk.lcd_pclk */
 			P8_30_pinmux { status = "disabled"; };	/* P8_30: lcd_ac_bias_en.lcd_ac_bias_en */
-
 
 			P9_15_pinmux { status = "disabled"; };	/* P9_15: gpmc_a0.gpio1_16 */
 			P9_23_pinmux { status = "disabled"; };	/* P9_23: gpmc_a1.gpio1_17 */

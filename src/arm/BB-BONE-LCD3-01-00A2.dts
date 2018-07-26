@@ -92,7 +92,6 @@
 			P8_28_pinmux { status = "disabled"; };	/* P8_28: lcd_pclk.lcd_pclk */
 			P8_30_pinmux { status = "disabled"; };	/* P8_30: lcd_ac_bias_en.lcd_ac_bias_en */
 
-
 			P9_15_pinmux { status = "disabled"; };	/* P9_15: gpmc_a0.gpio1_16 */
 			P9_23_pinmux { status = "disabled"; };	/* P9_23: gpmc_a1.gpio1_17 */
 			P9_16_pinmux { status = "disabled"; };	/* P9_16: gpmc_a3.gpio1_19 */
