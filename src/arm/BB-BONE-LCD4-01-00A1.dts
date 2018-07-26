@@ -62,70 +62,113 @@
 		"lcdc",
 		"tscadc";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_12_pinmux { status = "disabled"; };	/* P9_12: gpmc_ben1.gpio1_28, INPUT | PULLDIS | MODE7 */
+
+			P9_14_pinmux { status = "disabled"; };	/* P9_14: gpmc_a2.ehrpwm1a */
+
+			P9_27_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
+
+			P8_45_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
+			P8_46_pinmux { status = "disabled"; };	/* P8_46: lcd_data1.lcd_data1 */
+			P8_43_pinmux { status = "disabled"; };	/* P8_43: lcd_data2.lcd_data2 */
+			P8_44_pinmux { status = "disabled"; };	/* P8_44: lcd_data3.lcd_data3 */
+			P8_41_pinmux { status = "disabled"; };	/* P8_41: lcd_data4.lcd_data4 */
+			P8_42_pinmux { status = "disabled"; };	/* P8_42: lcd_data5.lcd_data5 */
+			P8_39_pinmux { status = "disabled"; };	/* P8_39: lcd_data6.lcd_data6 */
+			P8_40_pinmux { status = "disabled"; };	/* P8_40: lcd_data7.lcd_data7 */
+			P8_37_pinmux { status = "disabled"; };	/* P8_37: lcd_data8.lcd_data8 */
+			P8_38_pinmux { status = "disabled"; };	/* P8_38: lcd_data9.lcd_data9 */
+			P8_36_pinmux { status = "disabled"; };	/* P8_36: lcd_data10.lcd_data10 */
+			P8_34_pinmux { status = "disabled"; };	/* P8_34: lcd_data11.lcd_data11 */
+			P8_35_pinmux { status = "disabled"; };	/* P8_35: lcd_data12.lcd_data12 */
+			P8_33_pinmux { status = "disabled"; };	/* P8_33: lcd_data13.lcd_data13 */
+			P8_31_pinmux { status = "disabled"; };	/* P8_31: lcd_data14.lcd_data14 */
+			P8_32_pinmux { status = "disabled"; };	/* P8_32: lcd_data15.lcd_data15 */
+
+			P8_27_pinmux { status = "disabled"; };	/* P8_27: lcd_vsync.lcd_vsync */
+			P8_29_pinmux { status = "disabled"; };	/* P8_29: lcd_hsync.lcd_hsync */
+			P8_28_pinmux { status = "disabled"; };	/* P8_28: lcd_pclk.lcd_pclk */
+			P8_30_pinmux { status = "disabled"; };	/* P8_30: lcd_ac_bias_en.lcd_ac_bias_en */
+
+
+			P9_15_pinmux { status = "disabled"; };	/* P9_15: gpmc_a0.gpio1_16 */
+			P9_23_pinmux { status = "disabled"; };	/* P9_23: gpmc_a1.gpio1_17 */
+			P9_16_pinmux { status = "disabled"; };	/* P9_16: gpmc_a3.gpio1_19 */
+			P9_30_pinmux { status = "disabled"; };	/* P9_30: mcasp0_axr0.gpio3_16 */
+			P9_24_pinmux { status = "disabled"; };	/* P9_24: uart1_txd.gpio0_15 */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
 			bb_lcd_led_pins: pinmux_bb_lcd_led_pins {
 				pinctrl-single,pins = <
-					BONE_P9_12 (PIN_INPUT | MUX_MODE7) /* gpmc_ben1.gpio1_28, INPUT | PULLDIS | MODE7 */
+					BONE_P9_12 (PIN_INPUT | MUX_MODE7)	/* P9_12: gpmc_ben1.gpio1_28, INPUT | PULLDIS | MODE7 */
 				>;
 			};
 
 			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 				pinctrl-single,pins = <
-					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6) /* gpmc_a2.ehrpwm1a */
+					BONE_P9_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* P9_14: gpmc_a2.ehrpwm1a */
 				>;
 			};
 
 			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 				pinctrl-single,pins = <
-					BONE_P9_27 (PIN_OUTPUT_PULLUP | MUX_MODE7) /* mcasp0_fsr.gpio3_19 */
+					BONE_P9_27 (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P9_27: mcasp0_fsr.gpio3_19 */
 
-					BONE_P8_45 (PIN_OUTPUT | MUX_MODE0) /* lcd_data0.lcd_data0 */
-					BONE_P8_46 (PIN_OUTPUT | MUX_MODE0) /* lcd_data1.lcd_data1 */
-					BONE_P8_43 (PIN_OUTPUT | MUX_MODE0) /* lcd_data2.lcd_data2 */
-					BONE_P8_44 (PIN_OUTPUT | MUX_MODE0) /* lcd_data3.lcd_data3 */
-					BONE_P8_41 (PIN_OUTPUT | MUX_MODE0) /* lcd_data4.lcd_data4 */
-					BONE_P8_42 (PIN_OUTPUT | MUX_MODE0) /* lcd_data5.lcd_data5 */
-					BONE_P8_39 (PIN_OUTPUT | MUX_MODE0) /* lcd_data6.lcd_data6 */
-					BONE_P8_40 (PIN_OUTPUT | MUX_MODE0) /* lcd_data7.lcd_data7 */
-					BONE_P8_37 (PIN_OUTPUT | MUX_MODE0) /* lcd_data8.lcd_data8 */
-					BONE_P8_38 (PIN_OUTPUT | MUX_MODE0) /* lcd_data9.lcd_data9 */
-					BONE_P8_36 (PIN_OUTPUT | MUX_MODE0) /* lcd_data10.lcd_data10 */
-					BONE_P8_34 (PIN_OUTPUT | MUX_MODE0) /* lcd_data11.lcd_data11 */
-					BONE_P8_35 (PIN_OUTPUT | MUX_MODE0) /* lcd_data12.lcd_data12 */
-					BONE_P8_33 (PIN_OUTPUT | MUX_MODE0) /* lcd_data13.lcd_data13 */
-					BONE_P8_31 (PIN_OUTPUT | MUX_MODE0) /* lcd_data14.lcd_data14 */
-					BONE_P8_32 (PIN_OUTPUT | MUX_MODE0) /* lcd_data15.lcd_data15 */
+					BONE_P8_45 (PIN_OUTPUT | MUX_MODE0)	/* P8_45: lcd_data0.lcd_data0 */
+					BONE_P8_46 (PIN_OUTPUT | MUX_MODE0)	/* P8_46: lcd_data1.lcd_data1 */
+					BONE_P8_43 (PIN_OUTPUT | MUX_MODE0)	/* P8_43: lcd_data2.lcd_data2 */
+					BONE_P8_44 (PIN_OUTPUT | MUX_MODE0)	/* P8_44: lcd_data3.lcd_data3 */
+					BONE_P8_41 (PIN_OUTPUT | MUX_MODE0)	/* P8_41: lcd_data4.lcd_data4 */
+					BONE_P8_42 (PIN_OUTPUT | MUX_MODE0)	/* P8_42: lcd_data5.lcd_data5 */
+					BONE_P8_39 (PIN_OUTPUT | MUX_MODE0)	/* P8_39: lcd_data6.lcd_data6 */
+					BONE_P8_40 (PIN_OUTPUT | MUX_MODE0)	/* P8_40: lcd_data7.lcd_data7 */
+					BONE_P8_37 (PIN_OUTPUT | MUX_MODE0)	/* P8_37: lcd_data8.lcd_data8 */
+					BONE_P8_38 (PIN_OUTPUT | MUX_MODE0)	/* P8_38: lcd_data9.lcd_data9 */
+					BONE_P8_36 (PIN_OUTPUT | MUX_MODE0)	/* P8_36: lcd_data10.lcd_data10 */
+					BONE_P8_34 (PIN_OUTPUT | MUX_MODE0)	/* P8_34: lcd_data11.lcd_data11 */
+					BONE_P8_35 (PIN_OUTPUT | MUX_MODE0)	/* P8_35: lcd_data12.lcd_data12 */
+					BONE_P8_33 (PIN_OUTPUT | MUX_MODE0)	/* P8_33: lcd_data13.lcd_data13 */
+					BONE_P8_31 (PIN_OUTPUT | MUX_MODE0)	/* P8_31: lcd_data14.lcd_data14 */
+					BONE_P8_32 (PIN_OUTPUT | MUX_MODE0)	/* P8_32: lcd_data15.lcd_data15 */
 
-					BONE_P8_27 (PIN_OUTPUT | MUX_MODE0) /* lcd_vsync.lcd_vsync */
-					BONE_P8_29 (PIN_OUTPUT | MUX_MODE0) /* lcd_hsync.lcd_hsync */
-					BONE_P8_28 (PIN_OUTPUT | MUX_MODE0) /* lcd_pclk.lcd_pclk */
-					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0) /* lcd_ac_bias_en.lcd_ac_bias_en */
+					BONE_P8_27 (PIN_OUTPUT | MUX_MODE0)	/* P8_27: lcd_vsync.lcd_vsync */
+					BONE_P8_29 (PIN_OUTPUT | MUX_MODE0)	/* P8_29: lcd_hsync.lcd_hsync */
+					BONE_P8_28 (PIN_OUTPUT | MUX_MODE0)	/* P8_28: lcd_pclk.lcd_pclk */
+					BONE_P8_30 (PIN_OUTPUT | MUX_MODE0)	/* P8_30: lcd_ac_bias_en.lcd_ac_bias_en */
 				>;
 			};
 
 			bb_lcd_keymap_pins: pinmux_bb_lcd_keymap_pins {
 				pinctrl-single,pins = <
-					BONE_P9_15 (PIN_INPUT | MUX_MODE7) /* gpmc_a0.gpio1_16 */
-					BONE_P9_23 (PIN_INPUT | MUX_MODE7) /* gpmc_a1.gpio1_17 */
-					BONE_P9_16 (PIN_INPUT | MUX_MODE7) /* gpmc_a3.gpio1_19 */
-					BONE_P9_30 (PIN_INPUT | MUX_MODE7) /* mcasp0_axr0.gpio3_16 */
-					BONE_P9_24 (PIN_INPUT | MUX_MODE7) /* uart1_txd.gpio0_15 */
+					BONE_P9_15 (PIN_INPUT | MUX_MODE7)	/* P9_15: gpmc_a0.gpio1_16 */
+					BONE_P9_23 (PIN_INPUT | MUX_MODE7)	/* P9_23: gpmc_a1.gpio1_17 */
+					BONE_P9_16 (PIN_INPUT | MUX_MODE7)	/* P9_16: gpmc_a3.gpio1_19 */
+					BONE_P9_30 (PIN_INPUT | MUX_MODE7)	/* P9_30: mcasp0_axr0.gpio3_16 */
+					BONE_P9_24 (PIN_INPUT | MUX_MODE7)	/* P9_24: uart1_txd.gpio0_15 */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -134,14 +177,14 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&tscadc>;
 		__overlay__ {
 
@@ -163,10 +206,9 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
-
 			backlight {
 				status = "okay";
 				compatible = "pwm-backlight";
