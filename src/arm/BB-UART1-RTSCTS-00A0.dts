@@ -20,41 +20,52 @@
 /plugin/;
 
 /{
-  compatible = "ti,beaglebone", "ti,beaglebone-black";
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
-  part-number = "BB-UART1-RTSCTS";
-  version = "00A0";
+	part-number = "BB-UART1-RTSCTS";
+	version = "00A0";
 
-  exclusive-use =
-    "P9.19",    // uart1_rtsn     conflict with I2C2_SCL  i.e. cape EEPROM
-    "P9.20";    // uart1_ctsn     conflict with I2C2_SDA  i.e. cape EEPROM
+	exclusive-use =
+		"P9.19",    // uart1_rtsn     conflict with I2C2_SCL  i.e. cape EEPROM
+		"P9.20";    // uart1_ctsn     conflict with I2C2_SDA  i.e. cape EEPROM
 
-  fragment@0 {
-    /* Sets pinmux for flow control pins. */
-    target = <&am33xx_pinmux>;
-    __overlay__ {
-      u1_rtscts_pins: pinmux_u1_rtscts_pins {
-        pinctrl-single,pins = <
-          0x17c 0x08      /* mode 0 (uart1_rtsn) */
-          0x178 0x30      /* mode 0 (uart1_ctsn) */
-        >;
-      };
-    };
-  };
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_19_pinmux { status = "disabled"; };	/* P9_19: mode 0 (uart1_rtsn) */
+			P9_20_pinmux { status = "disabled"; };	/* P9_20: mode 0 (uart1_ctsn) */
+		};
+	};
 
-  fragment@1 {
-    /* Enable pinmux-helper driver for setting mux configuration. */
-    target = <&ocp>; /* On-Chip Peripherals */
-    __overlay__ {
-      uart1-rtscts-pinmux {
-        compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
-        status="okay";
-        /* Define custom names for indexes in pinctrl array: */
-        pinctrl-names = "default";
-        /* Set the elements of the pinctrl array to the pinmux overlays
-           defined above: */
-        pinctrl-0 = <&u1_rtscts_pins>;
-      };
-    };
-  };
+	fragment@1 {
+		/* Sets pinmux for flow control pins. */
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			u1_rtscts_pins: pinmux_u1_rtscts_pins {
+				pinctrl-single,pins = <
+					0x17c 0x08	/* P9_19: mode 0 (uart1_rtsn) */
+					0x178 0x30	/* P9_20: mode 0 (uart1_ctsn) */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		/* Enable pinmux-helper driver for setting mux configuration. */
+		target = <&ocp>; /* On-Chip Peripherals */
+		__overlay__ {
+			uart1-rtscts-pinmux {
+				compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
+				status="okay";
+				/* Define custom names for indexes in pinctrl array: */
+				pinctrl-names = "default";
+				/* Set the elements of the pinctrl array to the pinmux overlays
+				defined above: */
+				pinctrl-0 = <&u1_rtscts_pins>;
+			};
+		};
+	};
 };
