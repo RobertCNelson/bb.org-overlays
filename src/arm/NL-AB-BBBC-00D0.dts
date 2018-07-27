@@ -45,9 +45,27 @@
 		"gpio2_3",
 		"gpio2_5";
 
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_24_pinmux { status = "disabled"; };
+			P9_26_pinmux { status = "disabled"; };
+			P9_21_pinmux { status = "disabled"; };
+			P8_22_pinmux { status = "disabled"; };
+			P8_13_pinmux { status = "disabled"; };
+			P9_11_pinmux { status = "disabled"; };
+			P9_08_pinmux { status = "disabled"; };
+			P9_09_pinmux { status = "disabled"; };
+		};
+	};
+
 	/*Mux the Pins */
 
-	fragment@0 {
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			/*CONFIGURE CAN1*/
@@ -90,7 +108,7 @@
 /*BTW. The compatible field should match the driver you want to use.*/
 
 	/*Turn on CAN1*/
-	fragment@1 {
+	fragment@2 {
 		target = <&dcan1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -103,7 +121,7 @@
 	};
 
 	/*Turn on UART2*/
-	fragment@2 {
+	fragment@3 {
 		target = <&uart2>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -113,7 +131,7 @@
 	};
 
 	/*Turn on UART4*/
-	fragment@3 {
+	fragment@4 {
 		target = <&uart4>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -123,7 +141,7 @@
 	};
 
 	/*Turn on GPIO*/
-	fragment@4 {
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 			gpio {
