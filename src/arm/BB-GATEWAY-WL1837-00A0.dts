@@ -48,7 +48,42 @@
 		"uart1",
 		"i2c1";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_21_pinmux { status = "disabled"; };	/* P9_21: gpio0_3 BT_EN */
+
+			P8_26_pinmux { status = "disabled"; };	/* P8_26: gpmc_csn0.gpio1_29 LS_BUF_EN */
+
+			P9_15_pinmux { status = "disabled"; };	/* P9_15: EEPROM Disable */
+
+			P8_21_pinmux { status = "disabled"; };	/* P8_21: gpmc_csn1.mmc1_clk */
+			P8_20_pinmux { status = "disabled"; };	/* P8_20: gpmc_csn2.mmc1_cmd */
+			P8_25_pinmux { status = "disabled"; };	/* P8_25: gpmc_ad0.mmc1_dat0 */
+			P8_24_pinmux { status = "disabled"; };	/* P8_24: gpmc_ad1.mmc1_dat1 */
+			P8_05_pinmux { status = "disabled"; };	/* P8_05: gpmc_ad2.mmc1_dat2 */
+			P8_06_pinmux { status = "disabled"; };	/* P8_06: gpmc_ad3.mmc1_dat3 */
+
+			P8_22_pinmux { status = "disabled"; };	/* P8_22: gpio0_2 WL_EN */
+			P9_42_pinmux { status = "disabled"; };	/* P9_42: gpio0_7 WL_IRQ */
+			P8_07_pinmux { status = "disabled"; };	/* P8_07: gpmc_advn_ale.gpio2_2 Audio_sync */
+
+
+			P9_26_pinmux { status = "disabled"; };	/* P9_26: (D16) uart1_rxd.uart1_rxd */
+			P9_24_pinmux { status = "disabled"; };	/* P9_24: (D15) uart1_txd.uart1_txd */
+			P9_20_pinmux { status = "disabled"; };	/* P9_20: (D18) uart1_ctsn.uart1_ctsn */
+			P9_19_pinmux { status = "disabled"; };	/* P9_19: (D17) uart1_rtsn.uart1_rtsn */
+
+
+			P9_17_pinmux { status = "disabled"; };	/* P9_17: i2c1 */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18: i2c1 */
+		};
+	};
+
+	fragment@1 {
 		target-path="/";
 		__overlay__ {
 			model = "TI AM335x BeagleBone Black Gateway Cape";
@@ -80,102 +115,102 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			wl18xx_pins: pinmux_wl18xx_pins {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x954, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpio0_3 BT_EN */
+					AM33XX_IOPAD(0x954, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P9_21: gpio0_3 BT_EN */
 				>;
 			};
 
 			wlbtbuf_pin: pinmux_wlbtbuf_pin {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x87C, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpmc_csn0.gpio1_29 LS_BUF_EN */
+					AM33XX_IOPAD(0x87C, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P8_26: gpmc_csn0.gpio1_29 LS_BUF_EN */
 				>;
 			};
 
 			btbuf_pin: pinmux_btbuf_pin {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x840, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* EEPROM Disable */
+					AM33XX_IOPAD(0x840, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* P9_15: EEPROM Disable */
 				>;
 			};
 
 			mmc2_pins: pinmux_mmc2_pins {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x880, PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn1.mmc1_clk */
-					AM33XX_IOPAD(0x884, PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn2.mmc1_cmd */
-					AM33XX_IOPAD(0x800, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad0.mmc1_dat0 */
-					AM33XX_IOPAD(0x804, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad1.mmc1_dat1 */
-					AM33XX_IOPAD(0x808, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad2.mmc1_dat2 */
-					AM33XX_IOPAD(0x80c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad3.mmc1_dat3 */
+					AM33XX_IOPAD(0x880, PIN_INPUT_PULLUP | MUX_MODE2)	/* P8_21: gpmc_csn1.mmc1_clk */
+					AM33XX_IOPAD(0x884, PIN_INPUT_PULLUP | MUX_MODE2)	/* P8_20: gpmc_csn2.mmc1_cmd */
+					AM33XX_IOPAD(0x800, PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_25: gpmc_ad0.mmc1_dat0 */
+					AM33XX_IOPAD(0x804, PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_24: gpmc_ad1.mmc1_dat1 */
+					AM33XX_IOPAD(0x808, PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_05: gpmc_ad2.mmc1_dat2 */
+					AM33XX_IOPAD(0x80c, PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_06: gpmc_ad3.mmc1_dat3 */
 				>;
 			};
 
 			mmc2_pins_sleep: pinmux_mmc2_pins_sleep {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x880, PIN_INPUT_PULLDOWN | MUX_MODE2) /* gpmc_csn1.mmc1_clk */
-					AM33XX_IOPAD(0x884, PIN_INPUT_PULLDOWN | MUX_MODE2) /* gpmc_csn2.mmc1_cmd */
-					AM33XX_IOPAD(0x800, PIN_INPUT_PULLDOWN | MUX_MODE1) /* gpmc_ad0.mmc1_dat0 */
-					AM33XX_IOPAD(0x804, PIN_INPUT_PULLDOWN | MUX_MODE1) /* gpmc_ad1.mmc1_dat1 */
-					AM33XX_IOPAD(0x808, PIN_INPUT_PULLDOWN | MUX_MODE1) /* gpmc_ad2.mmc1_dat2 */
-					AM33XX_IOPAD(0x80c, PIN_INPUT_PULLDOWN | MUX_MODE1) /* gpmc_ad3.mmc1_dat3 */
+					AM33XX_IOPAD(0x880, PIN_INPUT_PULLDOWN | MUX_MODE2)	/* P8_21: gpmc_csn1.mmc1_clk */
+					AM33XX_IOPAD(0x884, PIN_INPUT_PULLDOWN | MUX_MODE2)	/* P8_20: gpmc_csn2.mmc1_cmd */
+					AM33XX_IOPAD(0x800, PIN_INPUT_PULLDOWN | MUX_MODE1)	/* P8_25: gpmc_ad0.mmc1_dat0 */
+					AM33XX_IOPAD(0x804, PIN_INPUT_PULLDOWN | MUX_MODE1)	/* P8_24: gpmc_ad1.mmc1_dat1 */
+					AM33XX_IOPAD(0x808, PIN_INPUT_PULLDOWN | MUX_MODE1)	/* P8_05: gpmc_ad2.mmc1_dat2 */
+					AM33XX_IOPAD(0x80c, PIN_INPUT_PULLDOWN | MUX_MODE1)	/* P8_06: gpmc_ad3.mmc1_dat3 */
 				>;
 			};
 
 			/* wl18xx card enable/irq GPIOs. */
 			wlan_pins: pinmux_wlan_pins {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x814, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpio0_2 WL_EN */
-					AM33XX_IOPAD(0x964, PIN_INPUT_PULLUP | MUX_MODE7)	/* gpio0_7 WL_IRQ */
-					AM33XX_IOPAD(0x890, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_advn_ale.gpio2_2 Audio_sync */
+					AM33XX_IOPAD(0x814, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P8_22: gpio0_2 WL_EN */
+					AM33XX_IOPAD(0x964, PIN_INPUT_PULLUP | MUX_MODE7)	/* P9_42: gpio0_7 WL_IRQ */
+					AM33XX_IOPAD(0x890, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* P8_07: gpmc_advn_ale.gpio2_2 Audio_sync */
 				>;
 			};
 
 			/* wl18xx card enable/irq GPIOs. */
 			wlan_pins_sleep: pinmux_wlan_pins_sleep {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x814, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpio0_2 WL_EN */
-					AM33XX_IOPAD(0x964, PIN_INPUT_PULLUP | MUX_MODE7)	/* gpio0_7 WL_IRQ */
-					AM33XX_IOPAD(0x890, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_advn_ale.gpio2_2 Audio_sync */
+					AM33XX_IOPAD(0x814, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P8_22: gpio0_2 WL_EN */
+					AM33XX_IOPAD(0x964, PIN_INPUT_PULLUP | MUX_MODE7)	/* P9_42: gpio0_7 WL_IRQ */
+					AM33XX_IOPAD(0x890, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* P8_07: gpmc_advn_ale.gpio2_2 Audio_sync */
 				>;
 			};
 
 			uart1_pins_default: pinmux_uart1_pins_default {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x980, PIN_INPUT_PULLUP | MUX_MODE0)	/* (D16) uart1_rxd.uart1_rxd */
-					AM33XX_IOPAD(0x984, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* (D15) uart1_txd.uart1_txd */
-					AM33XX_IOPAD(0x978, PIN_INPUT | MUX_MODE0)		/* (D18) uart1_ctsn.uart1_ctsn */
-					AM33XX_IOPAD(0x97c, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* (D17) uart1_rtsn.uart1_rtsn */
+					AM33XX_IOPAD(0x980, PIN_INPUT_PULLUP | MUX_MODE0)	/* P9_26: (D16) uart1_rxd.uart1_rxd */
+					AM33XX_IOPAD(0x984, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* P9_24: (D15) uart1_txd.uart1_txd */
+					AM33XX_IOPAD(0x978, PIN_INPUT | MUX_MODE0)		/* P9_20: (D18) uart1_ctsn.uart1_ctsn */
+					AM33XX_IOPAD(0x97c, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* P9_19: (D17) uart1_rtsn.uart1_rtsn */
 				>;
 			};
 
 			uart1_pins_sleep: pinmux_uart1_pins_sleep {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x980, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (D16) uart1_rxd.uart1_rxd */
-					AM33XX_IOPAD(0x984, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (D15) uart1_txd.uart1_txd */
-					AM33XX_IOPAD(0x978, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (D18) uart1_ctsn.uart1_ctsn */
-					AM33XX_IOPAD(0x97c, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (D17) uart1_rtsn.uart1_rtsn */
+					AM33XX_IOPAD(0x980, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P9_26: (D16) uart1_rxd.uart1_rxd */
+					AM33XX_IOPAD(0x984, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P9_24: (D15) uart1_txd.uart1_txd */
+					AM33XX_IOPAD(0x978, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P9_20: (D18) uart1_ctsn.uart1_ctsn */
+					AM33XX_IOPAD(0x97c, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P9_19: (D17) uart1_rtsn.uart1_rtsn */
 				>;
 			};
 
 			bb_i2c1_pins: pinmux_bb_i2c1_pins {
 				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x95c, PIN_INPUT_PULLUP | MUX_MODE2)	/* i2c1 */
-					AM33XX_IOPAD(0x958, PIN_INPUT_PULLUP | MUX_MODE2)	/* i2c1 */
+					AM33XX_IOPAD(0x95c, PIN_INPUT_PULLUP | MUX_MODE2)	/* P9_17: i2c1 */
+					AM33XX_IOPAD(0x958, PIN_INPUT_PULLUP | MUX_MODE2)	/* P9_18: i2c1 */
 				>;
 			};
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "disabled";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&mmc2>;
 		__overlay__ {
 			status = "okay";
@@ -200,7 +235,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&uart1>;
 		__overlay__ {
 			pinctrl-names = "default", "sleep";
@@ -210,7 +245,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&gpio1>;
 		__overlay__ {
 			eeprom_disable {
@@ -234,7 +269,7 @@
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&i2c1>;
 		__overlay__ {
 			pinctrl-names = "default";
