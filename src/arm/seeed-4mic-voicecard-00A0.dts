@@ -9,6 +9,7 @@
  *   https://github.com/respeaker/seeed-voicecard
  * 
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -33,21 +34,34 @@
 		"gpio3_21",
 		"mcasp0";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr.mcasp0_fsr */
+			P9_28_pinmux { status = "disabled"; };	/* P9_28: mcasp0_ahclkr.mcasp0_ahclkr */
+			P9_30_pinmux { status = "disabled"; };	/* P9_30: mcasp0_axr0.mcasp0_axr0 */
+			P9_92_pinmux { status = "disabled"; };	/* P9_92: mcasp0_aclkr.mcasp0_aclkr */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bone_audio_cape_audio_pins: pinmux_bone_audio_cape_audio_pins {
 				pinctrl-single,pins = <
-					0x1A4 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_fsr.mcasp0_fsr */
-					0x19C (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_ahclkr.mcasp0_ahclkr */
-					0x198 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_axr0.mcasp0_axr0 */
-					0x1A0 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_aclkr.mcasp0_aclkr */
+					0x1A4 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* P9_27: mcasp0_fsr.mcasp0_fsr */
+					0x19C (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* P9_28: mcasp0_ahclkr.mcasp0_ahclkr */
+					0x198 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* P9_30: mcasp0_axr0.mcasp0_axr0 */
+					0x1A0 (PIN_INPUT_PULLDOWN | MUX_MODE0)	/* P9_92: mcasp0_aclkr.mcasp0_aclkr */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&scm_clocks>;
 		__overlay__ {
 			ac108_mclk: codec-mclk {
@@ -59,7 +73,7 @@
 	};
 
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c2>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -78,7 +92,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&mcasp0>;
 		__overlay__ {
 			#sound-dai-cells = <0>;
@@ -99,7 +113,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 			sound {
@@ -127,7 +141,7 @@
 					sound-dai = <&mcasp0>;
 				};
 
-		                sound_master: simple-audio-card,codec {
+			sound_master: simple-audio-card,codec {
 					#sound-dai-cells = <0>;
 					sound-dai = <&ac108_b>;
 					clocks = <&ac108_mclk>;
@@ -135,6 +149,5 @@
 				};
 			};
 		};
-
 	};
 };
