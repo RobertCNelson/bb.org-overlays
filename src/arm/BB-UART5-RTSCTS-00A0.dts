@@ -20,41 +20,52 @@
 /plugin/;
 
 /{
-  compatible = "ti,beaglebone", "ti,beaglebone-black";
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
-  part-number = "BB-UART5-RTSCTS";
-  version = "00A0";
+	part-number = "BB-UART5-RTSCTS";
+	version = "00A0";
 
-  exclusive-use =
-    "P8.32",    // uart5_rtsn     conflict with HDMI pin
-    "P8.31";    // uart5_ctsn     conflict with HDMI pin
+	exclusive-use =
+		"P8.32",    // uart5_rtsn     conflict with HDMI pin
+		"P8.31";    // uart5_ctsn     conflict with HDMI pin
 
-  fragment@0 {
-    /* Sets pinmux for flow control pins. */
-    target = <&am33xx_pinmux>;
-    __overlay__ {
-      u5_rtscts_pins: pinmux_u5_rtscts_pins {
-        pinctrl-single,pins = <
-          0x0dc 0x0e      /* mode 6 (uart5_rtsn) */
-          0x0d8 0x36      /* mode 6 (uart5_ctsn) */
-        >;
-      };
-    };
-  };
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_32_pinmux { status = "disabled"; };	/* P8_32: mode 6 (uart5_rtsn) */
+			P8_31_pinmux { status = "disabled"; };	/* P8_31: mode 6 (uart5_ctsn) */
+		};
+	};
 
-  fragment@1 {
-    /* Enable pinmux-helper driver for setting mux configuration. */
-    target = <&ocp>; /* On-Chip Peripherals */
-    __overlay__ {
-      uart5-rtscts-pinmux {
-        compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
-        status="okay";
-        /* Define custom names for indexes in pinctrl array: */
-        pinctrl-names = "default";
-        /* Set the elements of the pinctrl array to the pinmux overlays
-           defined above: */
-        pinctrl-0 = <&u5_rtscts_pins>;
-      };
-    };
-  };
+	fragment@1 {
+		/* Sets pinmux for flow control pins. */
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			u5_rtscts_pins: pinmux_u5_rtscts_pins {
+				pinctrl-single,pins = <
+					0x0dc 0x0e	/* P8_32: mode 6 (uart5_rtsn) */
+					0x0d8 0x36	/* P8_31: mode 6 (uart5_ctsn) */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		/* Enable pinmux-helper driver for setting mux configuration. */
+		target = <&ocp>; /* On-Chip Peripherals */
+		__overlay__ {
+			uart5-rtscts-pinmux {
+				compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
+				status="okay";
+				/* Define custom names for indexes in pinctrl array: */
+				pinctrl-names = "default";
+				/* Set the elements of the pinctrl array to the pinmux overlays
+				defined above: */
+				pinctrl-0 = <&u5_rtscts_pins>;
+			};
+		};
+	};
 };
