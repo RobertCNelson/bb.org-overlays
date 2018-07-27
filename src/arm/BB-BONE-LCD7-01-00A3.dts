@@ -255,6 +255,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
+
 				button@2 {
 					debounce_interval = <50>;
 					linux,code = <106>;
@@ -263,6 +264,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
+
 				button@3 {
 					debounce_interval = <50>;
 					linux,code = <103>;
@@ -271,6 +273,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
+
 				button@4 {
 					debounce_interval = <50>;
 					linux,code = <108>;
@@ -279,6 +282,7 @@
 					gpio-key,wakeup;
 					autorepeat;
 				};
+
 				button@5 {
 					debounce_interval = <50>;
 					linux,code = <28>;
