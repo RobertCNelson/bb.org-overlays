@@ -51,7 +51,6 @@
 		"P9.36", /* AIN5        */
 		"P9.42"; /* SPI1_CS1	*/
 
-
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */

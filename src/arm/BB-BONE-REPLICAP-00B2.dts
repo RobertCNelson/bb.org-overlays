@@ -51,6 +51,48 @@
 		"P9.41", /* ENABLE_PWM  */
 		"P9.42"; /* SPI1_CS1	*/
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_31_pinmux { status = "disabled"; };	/* P9_31: = mcasp0_aclkx.spi1_sclk		 , OUTPUT_PULLUP | MODE3 */
+			P9_29_pinmux { status = "disabled"; };	/* P9_29: = mcasp0_fsx.spi1_d0			 , INPUT_PULLUP  | MODE3 */
+			P9_30_pinmux { status = "disabled"; };	/* P9_30: = mcasp0_axr0.spi1_d1			 , OUTPUT_PULLUP | MODE3 */
+			P9_42_pinmux { status = "disabled"; };	/* P9_42: = GPIO0_7 = eCAP0_in_PWM0_out.gpio0[7] , OUTPUT_PULLUP | MODE2 */
+
+			P8_16_pinmux { status = "disabled"; };	/* P8_16: (3)  = DIR_H		= GPIO1_14 */
+			P8_15_pinmux { status = "disabled"; };	/* P8_15: (4)  = DIR_E		= GPIO1_15 */
+			P8_14_pinmux { status = "disabled"; };	/* P8_14: (5)  = DIR_Z		= GPIO0_26 */
+			P8_17_pinmux { status = "disabled"; };	/* P8_17: (6)  = STEP_X		= GPIO0_27 */
+			P8_11_pinmux { status = "disabled"; };	/* P8_11: (22) = step_H		= GPIO1_13 */
+			P8_12_pinmux { status = "disabled"; };	/* P8_12: (23) = Step_y		= GPIO1_12 */
+			P8_13_pinmux { status = "disabled"; };	/* P8_13: (24) = Step_z		= GPIO0_23 */
+			P8_19_pinmux { status = "disabled"; };	/* P8_19: (25) = Dir_y		= GPIO0_22 */
+			P8_26_pinmux { status = "disabled"; };	/* P8_26:      = Dir_x		= GPIO1_29 */
+			P9_12_pinmux { status = "disabled"; };	/* P9_12:      = step E		= GPIO1_28 */
+
+			P8_08_pinmux { status = "disabled"; };	/* P8_08: = FAULT H = GPIO2_3 */
+			P8_09_pinmux { status = "disabled"; };	/* P8_09: = FAYLT Y = GPIO2_5 */
+			P8_10_pinmux { status = "disabled"; };	/* P8_10: = FAULT X = GPIO2_4 */
+			P8_18_pinmux { status = "disabled"; };	/* P8_18: = FAULT E = GPIO2_1 */
+			P9_24_pinmux { status = "disabled"; };	/* P9_24: = FAULT Z = GPIO0_15 */
+
+			P9_25_pinmux { status = "disabled"; };	/* P9_25: = End stop X1 = GPIO3_21 */
+			P9_11_pinmux { status = "disabled"; };	/* P9_11: = End stop X2 = GPIO0_30 */
+			P9_23_pinmux { status = "disabled"; };	/* P9_23: = End stop Y1 = GPIO1_17 */
+			P9_13_pinmux { status = "disabled"; };	/* P9_13: = End stop Z1 = GPIO0_31 */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18: = End stop Z2 = GPIO0_4 */
+			P9_28_pinmux { status = "disabled"; };	/* P9_28: = End stop Y2 = GPIO3_17 */
+
+			P9_22_pinmux { status = "disabled"; };	/* P9_22: Dallas 1W */
+
+			P9_14_pinmux { status = "disabled"; };	/* P9_14: = Servo 0 = GPIO1_18 */
+			P9_16_pinmux { status = "disabled"; };	/* P9_16: = Servo 1 = GPIO1_19 */
+		};
+	};
+
 	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
