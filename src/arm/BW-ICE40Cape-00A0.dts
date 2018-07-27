@@ -5,6 +5,7 @@
 * it under the terms of the GNU General Public License version 2 as
 * published by the Free Software Foundation.
 */
+
 /dts-v1/;
 /plugin/;
 
@@ -48,51 +49,90 @@
 		"gpmc",
 		"spi1";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_31_pinmux { status = "disabled"; };	/* P9_31: mcasp0_aclkx.spi1_sclk, INPUT_PULLUP | MODE3 */
+			P9_29_pinmux { status = "disabled"; };	/* P9_29: mcasp0_fsx.spi1_d0, INPUT_PULLUP | MODE3 */
+			P9_30_pinmux { status = "disabled"; };	/* P9_30: mcasp0_axr0.spi1_d1, OUTPUT_PULLUP | MODE3 */
+			P9_28_pinmux { status = "disabled"; };	/* P9_28: mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
+			P9_25_pinmux { status = "disabled"; };	/* P9_25: CRESET GPIO OUTPUT | MODE7 */
+			P9_21_pinmux { status = "disabled"; };	/* P9_21: CDONE GPIO INPUT | MODE7 */
+
+			P8_25_pinmux { status = "disabled"; };	/* P8_25: gpmc_ad0.gpmc_ad0 MODE0 | INPUT | PULLUP */
+			P8_24_pinmux { status = "disabled"; };	/* P8_24: gpmc_ad1.gpmc_ad1 MODE0 | INPUT | PULLUP */
+			P8_05_pinmux { status = "disabled"; };	/* P8_05: gpmc_ad2.gpmc_ad2 MODE0 | INPUT | PULLUP */
+			P8_06_pinmux { status = "disabled"; };	/* P8_06: gpmc_ad3.gpmc_ad3 MODE0 | INPUT | PULLUP */
+			P8_23_pinmux { status = "disabled"; };	/* P8_23: gpmc_ad4.gpmc_ad4 MODE0 | INPUT | PULLUP */
+			P8_22_pinmux { status = "disabled"; };	/* P8_22: gpmc_ad5.gpmc_ad5 MODE0 | INPUT | PULLUP */
+			P8_03_pinmux { status = "disabled"; };	/* P8_03: gpmc_ad6.gpmc_ad6 MODE0 | INPUT | PULLUP */
+			P8_04_pinmux { status = "disabled"; };	/* P8_04: gpmc_ad7.gpmc_ad7 MODE0 | INPUT | PULLUP */
+			P8_19_pinmux { status = "disabled"; };	/* P8_19: gpmc_ad8.gpmc_ad8 MODE0 | INPUT | PULLUP */
+			P8_13_pinmux { status = "disabled"; };	/* P8_13: gpmc_ad9.gpmc_ad9 MODE0 | INPUT | PULLUP */
+			P8_14_pinmux { status = "disabled"; };	/* P8_14: gpmc_ad10.gpmc_ad10 MODE0 | INPUT | PULLUP */
+			P8_17_pinmux { status = "disabled"; };	/* P8_17: gpmc_ad11.gpmc_ad11 MODE0 | INPUT | PULLUP */
+			P8_12_pinmux { status = "disabled"; };	/* P8_12: gpmc_ad12.gpmc_ad12 MODE0 | INPUT | PULLUP */
+			P8_11_pinmux { status = "disabled"; };	/* P8_11: gpmc_ad13.gpmc_ad13 MODE0 | INPUT | PULLUP */
+			P8_16_pinmux { status = "disabled"; };	/* P8_16: gpmc_ad14.gpmc_ad14 MODE0 | INPUT | PULLUP */
+			P8_15_pinmux { status = "disabled"; };	/* P8_15: gpmc_ad15.gpmc_ad15 MODE0 | INPUT | PULLUP */
+			P8_21_pinmux { status = "disabled"; };	/* P8_21: gpmc_cscn1.gpmc_cscn1 MODE0 | OUTPUT */
+			P8_18_pinmux { status = "disabled"; };	/* P8_18: gpmc_clk.gpmc_clk MODE0 | INPUT */
+			P8_07_pinmux { status = "disabled"; };	/* P8_07: gpmc_advn_ale.gpmc_advn_ale MODE0 | OUTPUT */
+			P8_08_pinmux { status = "disabled"; };	/* P8_08: gpmc_oen_ren.gpmc_oen_ren MODE0 | OUTPUT */
+			P8_10_pinmux { status = "disabled"; };	/* P8_10: gpmc_wen.gpmc_wen MODE0 | OUTPUT */
+			P8_09_pinmux { status = "disabled"; };	/* P8_09: gpmc_ben0_cle.gpmc_ben0_cle MODE0 | OUTPUT */
+			P9_12_pinmux { status = "disabled"; };	/* P9_12: gpmc_ben1_cle.gpmc_ben1_cle MODE0 | OUTPUT */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bw_spi1_pins: pinmux_bw_spi1_pins {
 				pinctrl-single,pins = <
-					0x190 0x33	/* mcasp0_aclkx.spi1_sclk, INPUT_PULLUP | MODE3 */
-					0x194 0x33	/* mcasp0_fsx.spi1_d0, INPUT_PULLUP | MODE3 */
-					0x198 0x13	/* mcasp0_axr0.spi1_d1, OUTPUT_PULLUP | MODE3 */
-					0x19c 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
-					0x1ac 0x07	/* CRESET GPIO OUTPUT | MODE7 */
-					0x154 0x27	/* CDONE GPIO INPUT | MODE7 */
+					0x190 0x33	/* P9_31: mcasp0_aclkx.spi1_sclk, INPUT_PULLUP | MODE3 */
+					0x194 0x33	/* P9_29: mcasp0_fsx.spi1_d0, INPUT_PULLUP | MODE3 */
+					0x198 0x13	/* P9_30: mcasp0_axr0.spi1_d1, OUTPUT_PULLUP | MODE3 */
+					0x19c 0x13	/* P9_28: mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
+					0x1ac 0x07	/* P9_25: CRESET GPIO OUTPUT | MODE7 */
+					0x154 0x27	/* P9_21: CDONE GPIO INPUT | MODE7 */
 				>;
 			};
 
 			bw_gpmc_pins: pinmux_bw_gpmc_pins {
 				pinctrl-single,pins = <
-					0x000 0x30	/* gpmc_ad0.gpmc_ad0 MODE0 | INPUT | PULLUP */
-					0x004 0x30	/* gpmc_ad1.gpmc_ad1 MODE0 | INPUT | PULLUP */
-					0x008 0x30	/* gpmc_ad2.gpmc_ad2 MODE0 | INPUT | PULLUP */
-					0x00C 0x30	/* gpmc_ad3.gpmc_ad3 MODE0 | INPUT | PULLUP */
-					0x010 0x30	/* gpmc_ad4.gpmc_ad4 MODE0 | INPUT | PULLUP */
-					0x014 0x30	/* gpmc_ad5.gpmc_ad5 MODE0 | INPUT | PULLUP */
-					0x018 0x30	/* gpmc_ad6.gpmc_ad6 MODE0 | INPUT | PULLUP */
-					0x01C 0x30	/* gpmc_ad7.gpmc_ad7 MODE0 | INPUT | PULLUP */
-					0x020 0x30	/* gpmc_ad8.gpmc_ad8 MODE0 | INPUT | PULLUP */
-					0x024 0x30	/* gpmc_ad9.gpmc_ad9 MODE0 | INPUT | PULLUP */
-					0x028 0x30	/* gpmc_ad10.gpmc_ad10 MODE0 | INPUT | PULLUP */
-					0x02C 0x30	/* gpmc_ad11.gpmc_ad11 MODE0 | INPUT | PULLUP */
-					0x030 0x30	/* gpmc_ad12.gpmc_ad12 MODE0 | INPUT | PULLUP */
-					0x034 0x30	/* gpmc_ad13.gpmc_ad13 MODE0 | INPUT | PULLUP */
-					0x038 0x30	/* gpmc_ad14.gpmc_ad14 MODE0 | INPUT | PULLUP */
-					0x03C 0x30	/* gpmc_ad15.gpmc_ad15 MODE0 | INPUT | PULLUP */
-					0x080 0x08	/* gpmc_cscn1.gpmc_cscn1 MODE0 | OUTPUT */
-					0x08C 0x28	/* gpmc_clk.gpmc_clk MODE0 | INPUT */
-					0x090 0x08	/* gpmc_advn_ale.gpmc_advn_ale MODE0 | OUTPUT */
-					0x094 0x08	/* gpmc_oen_ren.gpmc_oen_ren MODE0 | OUTPUT */
-					0x098 0x08	/* gpmc_wen.gpmc_wen MODE0 | OUTPUT */
-					0x09C 0x08	/* gpmc_ben0_cle.gpmc_ben0_cle MODE0 | OUTPUT */
-					0x078 0x08	/* gpmc_ben1_cle.gpmc_ben1_cle MODE0 | OUTPUT */
+					0x000 0x30	/* P8_25: gpmc_ad0.gpmc_ad0 MODE0 | INPUT | PULLUP */
+					0x004 0x30	/* P8_24: gpmc_ad1.gpmc_ad1 MODE0 | INPUT | PULLUP */
+					0x008 0x30	/* P8_05: gpmc_ad2.gpmc_ad2 MODE0 | INPUT | PULLUP */
+					0x00C 0x30	/* P8_06: gpmc_ad3.gpmc_ad3 MODE0 | INPUT | PULLUP */
+					0x010 0x30	/* P8_23: gpmc_ad4.gpmc_ad4 MODE0 | INPUT | PULLUP */
+					0x014 0x30	/* P8_22: gpmc_ad5.gpmc_ad5 MODE0 | INPUT | PULLUP */
+					0x018 0x30	/* P8_03: gpmc_ad6.gpmc_ad6 MODE0 | INPUT | PULLUP */
+					0x01C 0x30	/* P8_04: gpmc_ad7.gpmc_ad7 MODE0 | INPUT | PULLUP */
+					0x020 0x30	/* P8_19: gpmc_ad8.gpmc_ad8 MODE0 | INPUT | PULLUP */
+					0x024 0x30	/* P8_13: gpmc_ad9.gpmc_ad9 MODE0 | INPUT | PULLUP */
+					0x028 0x30	/* P8_14: gpmc_ad10.gpmc_ad10 MODE0 | INPUT | PULLUP */
+					0x02C 0x30	/* P8_17: gpmc_ad11.gpmc_ad11 MODE0 | INPUT | PULLUP */
+					0x030 0x30	/* P8_12: gpmc_ad12.gpmc_ad12 MODE0 | INPUT | PULLUP */
+					0x034 0x30	/* P8_11: gpmc_ad13.gpmc_ad13 MODE0 | INPUT | PULLUP */
+					0x038 0x30	/* P8_16: gpmc_ad14.gpmc_ad14 MODE0 | INPUT | PULLUP */
+					0x03C 0x30	/* P8_15: gpmc_ad15.gpmc_ad15 MODE0 | INPUT | PULLUP */
+					0x080 0x08	/* P8_21: gpmc_cscn1.gpmc_cscn1 MODE0 | OUTPUT */
+					0x08C 0x28	/* P8_18: gpmc_clk.gpmc_clk MODE0 | INPUT */
+					0x090 0x08	/* P8_07: gpmc_advn_ale.gpmc_advn_ale MODE0 | OUTPUT */
+					0x094 0x08	/* P8_08: gpmc_oen_ren.gpmc_oen_ren MODE0 | OUTPUT */
+					0x098 0x08	/* P8_10: gpmc_wen.gpmc_wen MODE0 | OUTPUT */
+					0x09C 0x08	/* P8_09: gpmc_ben0_cle.gpmc_ben0_cle MODE0 | OUTPUT */
+					0x078 0x08	/* P9_12: gpmc_ben1_cle.gpmc_ben1_cle MODE0 | OUTPUT */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -111,7 +151,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&gpmc>;
 		depth = <1>;	/* only create devices on depth 1 */
 
@@ -133,16 +173,16 @@
 			ranges = <1 0 0x01000000 0x1000000>;
 
 			nor {
-				reg = <1 0 0x01000000>;			/*CSn1*/
-				bank-width = <2>;			/* GPMC_CONFIG1_DEVICESIZE(1) */
+				reg = <1 0 0x01000000>;		/*CSn1*/
+				bank-width = <2>;		/* GPMC_CONFIG1_DEVICESIZE(1) */
 				/*gpmc,burst-write;
 				gpmc,burst-read;
 				gpmc,burst-wrap;*/
-				gpmc,sync-read;				/* GPMC_CONFIG1_READTYPE_ASYNC */
-				gpmc,sync-write;			/* GPMC_CONFIG1_WRITETYPE_ASYNC */
-				gpmc,clk-activation-ns = <0>;		/* GPMC_CONFIG1_CLKACTIVATIONTIME(2) */
-				gpmc,burst-length = <16>;		/* GPMC_CONFIG1_PAGE_LEN(2) */
-				gpmc,mux-add-data = <2>;		/* GPMC_CONFIG1_MUXTYPE(2) */
+				gpmc,sync-read;			/* GPMC_CONFIG1_READTYPE_ASYNC */
+				gpmc,sync-write;		/* GPMC_CONFIG1_WRITETYPE_ASYNC */
+				gpmc,clk-activation-ns = <0>;	/* GPMC_CONFIG1_CLKACTIVATIONTIME(2) */
+				gpmc,burst-length = <16>;	/* GPMC_CONFIG1_PAGE_LEN(2) */
+				gpmc,mux-add-data = <2>;	/* GPMC_CONFIG1_MUXTYPE(2) */
 
 				/* CONFIG2 */
 				gpmc,sync-clk-ps = <40000>;
