@@ -20,41 +20,52 @@
 /plugin/;
 
 /{
-  compatible = "ti,beaglebone", "ti,beaglebone-black";
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
-  part-number = "BB-UART4-RTSCTS";
-  version = "00A0";
+	part-number = "BB-UART4-RTSCTS";
+	version = "00A0";
 
-  exclusive-use =
-    "P8.33",    // uart4_rtsn     conflict with HDMI pin
-    "P8.35";    // uart4_ctsn     conflict with HDMI pin
+	exclusive-use =
+		"P8.33",    // uart4_rtsn     conflict with HDMI pin
+		"P8.35";    // uart4_ctsn     conflict with HDMI pin
 
-  fragment@0 {
-    /* Sets pinmux for flow control pins. */
-    target = <&am33xx_pinmux>;
-    __overlay__ {
-      u4_rtscts_pins: pinmux_u4_rtscts_pins {
-        pinctrl-single,pins = <
-          0x0d4 0x0e      /* mode 6 (uart4_rtsn) */
-          0x0d0 0x36      /* mode 6 (uart4_ctsn) */
-        >;
-      };
-    };
-  };
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_33_pinmux { status = "disabled"; };	/* P8_33: mode 6 (uart4_rtsn) */
+			P8_35_pinmux { status = "disabled"; };	/* P8_35: mode 6 (uart4_ctsn) */
+		};
+	};
 
-  fragment@1 {
-    /* Enable pinmux-helper driver for setting mux configuration. */
-    target = <&ocp>; /* On-Chip Peripherals */
-    __overlay__ {
-      uart4-rtscts-pinmux {
-        compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
-        status="okay";
-        /* Define custom names for indexes in pinctrl array: */
-        pinctrl-names = "default";
-        /* Set the elements of the pinctrl array to the pinmux overlays
-           defined above: */
-        pinctrl-0 = <&u4_rtscts_pins>;
-      };
-    };
-  };
+	fragment@1 {
+		/* Sets pinmux for flow control pins. */
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			u4_rtscts_pins: pinmux_u4_rtscts_pins {
+				pinctrl-single,pins = <
+					0x0d4 0x0e	/* P8_33: mode 6 (uart4_rtsn) */
+					0x0d0 0x36	/* P8_35: mode 6 (uart4_ctsn) */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		/* Enable pinmux-helper driver for setting mux configuration. */
+		target = <&ocp>; /* On-Chip Peripherals */
+		__overlay__ {
+			uart4-rtscts-pinmux {
+				compatible = "bone-pinmux-helper"; /* Use the pinmux helper */
+				status="okay";
+				/* Define custom names for indexes in pinctrl array: */
+				pinctrl-names = "default";
+				/* Set the elements of the pinctrl array to the pinmux overlays
+				defined above: */
+				pinctrl-0 = <&u4_rtscts_pins>;
+			};
+		};
+	};
 };
