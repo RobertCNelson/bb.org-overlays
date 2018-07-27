@@ -24,36 +24,50 @@
 
 	// resources this cape uses
 	exclusive-use =
-		"P8.12",		// EQEP2A_in
-		"P8.11",		// EQEP2B_in
-		"P8.16",		// EQEP2_index
-		"P8.15",		// EQEP2_strobe
+		"P8.12",	// EQEP2A_in
+		"P8.11",	// EQEP2B_in
+		"P8.16",	// EQEP2_index
+		"P8.15",	// EQEP2_strobe
 
-		"eqep2";		// hardware ip used
+		"eqep2";	// hardware ip used
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_12_pinmux { status = "disabled"; };	/* P8_12: GPIO1_12 = EQEP2A_in */
+			P8_11_pinmux { status = "disabled"; };	/* P8_11: GPIO1_13 = EQEP2B_in */
+			P8_16_pinmux { status = "disabled"; };	/* P8_16: GPIO1_14 = EQEP2_index */
+			P8_15_pinmux { status = "disabled"; };	/* P8_15: GPIO1_15 = EQEP2_strobe */
+		};
+	};
+
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pinctrl_eqep2: pinctrl_eqep2_pins {
 				pinctrl-single,pins = <
-					BONE_P8_12 (PIN_INPUT | MUX_MODE4)	// GPIO1_12 = EQEP2A_in
-					BONE_P8_11 (PIN_INPUT | MUX_MODE4)	// GPIO1_13 = EQEP2B_in
-					BONE_P8_16 (PIN_INPUT | MUX_MODE4)	// GPIO1_14 = EQEP2_index
-					BONE_P8_15 (PIN_INPUT | MUX_MODE4)	// GPIO1_15 = EQEP2_strobe
+					BONE_P8_12 (PIN_INPUT | MUX_MODE4)	/* P8_12: GPIO1_12 = EQEP2A_in */
+					BONE_P8_11 (PIN_INPUT | MUX_MODE4)	/* P8_11: GPIO1_13 = EQEP2B_in */
+					BONE_P8_16 (PIN_INPUT | MUX_MODE4)	/* P8_16: GPIO1_14 = EQEP2_index */
+					BONE_P8_15 (PIN_INPUT | MUX_MODE4)	/* P8_15: GPIO1_15 = EQEP2_strobe */
 					// From: https://groups.google.com/forum/#!searchin/beagleboard/eQep/beagleboard/Orp3tFcNgCc/mYacP_GkCQQJ
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&epwmss2>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&eqep2>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -66,10 +80,10 @@
 			// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
 
 			swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
-			invert_qa = <0>;		// invert channel A input?
-			invert_qb = <0>;		// invert channel B input?
-			invert_qi = <0>;		// invert index input?
-			invert_qs = <0>;		// invert strobe input?
+			invert_qa = <0>;	// invert channel A input?
+			invert_qb = <0>;	// invert channel B input?
+			invert_qi = <0>;	// invert index input?
+			invert_qs = <0>;	// invert strobe input?
 			omit_interrupt = <0>;	// 1 -> do not install interrupt handler, 0 -> do install
 
 			status = "okay";
