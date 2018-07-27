@@ -178,7 +178,7 @@
 		};
 	};
 
-	fragment@3{
+	fragment@3 {
 		target = <&pruss>;
 		__overlay__{
 			status = "okay";
@@ -186,32 +186,32 @@
 			pinctrl-0 = <&pruicss_stepper_pins>;
 
 			stepper_x {
-				pin-names 	= "Replic:pru-step_x", "Replic:pru-dir_x";
-				gpios 		= <&gpio0 27 0
-						  &gpio1 29 0>;
+				pin-names	= "Replic:pru-step_x", "Replic:pru-dir_x";
+				gpios		= <&gpio0 27 0
+						   &gpio1 29 0>;
 			};
 
 			stepper_y {
-				pin-names 	= "Replic:pru-step_y", "Replic:pru-dir_y";
-				gpios 		=<&gpio1 12 0
-						  &gpio0 22 0>;
+				pin-names	= "Replic:pru-step_y", "Replic:pru-dir_y";
+				gpios		= <&gpio1 12 0
+						   &gpio0 22 0>;
 			};
 
 			stepper_z {
-				pin-names 	= "Replic:pru-step_z", "Replic:pru-dir_z";
-				gpios 		= <&gpio0 23 0
+				pin-names	= "Replic:pru-step_z", "Replic:pru-dir_z";
+				gpios		= <&gpio0 23 0
 						   &gpio0 26 0>;
 			};
 
 			stepper_ext_1 {
-				pin-names 	= "Replic:pru-step_ext_1", "Replic:pru-dir_ext_1";
-				gpios 		= <&gpio1 28 0
+				pin-names	= "Replic:pru-step_ext_1", "Replic:pru-dir_ext_1";
+				gpios		= <&gpio1 28 0
 						   &gpio1 15 0>;
 			};
 
 			stepper_ext_2 {
-				pin-names 	= "Replic:pru-step_ext_2", "Replic:pru-dir_ext_2";
-				gpios 		= <&gpio1 13 0
+				pin-names	= "Replic:pru-step_ext_2", "Replic:pru-dir_ext_2";
+				gpios		= <&gpio1 13 0
 						   &gpio1 14 0>;
 			};
 		};
