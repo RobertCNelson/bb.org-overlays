@@ -5,6 +5,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
@@ -48,94 +49,94 @@
 		"uart1",
 		"i2c1";
 
-	fragment@0 {
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
-		 	bt_pins_default: pinmux_bt_pins_default {
-		 		pinctrl-single,pins = <
-					BONE_P9_21 (PIN_OUTPUT_PULLUP   | MUX_MODE7) /* gpio0_3 BT_EN*/
+			bt_pins_default: pinmux_bt_pins_default {
+				pinctrl-single,pins = <
+					BONE_P9_21 (PIN_OUTPUT_PULLUP   | MUX_MODE7)	/* P9_21: gpio0_3 BT_EN*/
 				>;
 			};
 
-		 	bt_pins_sleep: pinmux_bt_pins_sleep {
-		 		pinctrl-single,pins = <
-					BONE_P9_21 (PIN_OUTPUT_PULLDOWN   | MUX_MODE7) /* gpio0_3 BT_EN*/
+			bt_pins_sleep: pinmux_bt_pins_sleep {
+				pinctrl-single,pins = <
+					BONE_P9_21 (PIN_OUTPUT_PULLDOWN   | MUX_MODE7)	/* P9_21: gpio0_3 BT_EN*/
 				>;
 			};
 
 			bb_mmc2_pins: pinmux_bb_mmc2_pins {
 		 		pinctrl-single,pins = <
-					BONE_P8_21 (PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn1.mmc1_clk */
-		 			BONE_P8_20 (PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn2.mmc1_cmd */
-					BONE_P8_25 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad0.mmc1_dat0 */
-					BONE_P8_24 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad1.mmc1_dat1 */
-					BONE_P8_05 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad2.mmc1_dat2 */
-					BONE_P8_06 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad3.mmc1_dat3 */
+					BONE_P8_21 (PIN_INPUT_PULLUP | MUX_MODE2)	/* P8_21: gpmc_csn1.mmc1_clk */
+		 			BONE_P8_20 (PIN_INPUT_PULLUP | MUX_MODE2)	/* P8_20: gpmc_csn2.mmc1_cmd */
+					BONE_P8_25 (PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_25: gpmc_ad0.mmc1_dat0 */
+					BONE_P8_24 (PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_24: gpmc_ad1.mmc1_dat1 */
+					BONE_P8_05 (PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_05: gpmc_ad2.mmc1_dat2 */
+					BONE_P8_06 (PIN_INPUT_PULLUP | MUX_MODE1)	/* P8_06: gpmc_ad3.mmc1_dat3 */
 				>;
 			};
 
 			bb_mmc2_pins_sleep: pinmux_bb_mmc2_pins_sleep {
 				pinctrl-single,pins = <
-					BONE_P8_21 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_csn1.mmc1_clk */
-					BONE_P8_20 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_csn2.mmc1_cmd */
-					BONE_P8_25 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad0.mmc1_dat0 */
-					BONE_P8_24 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad1.mmc1_dat1 */
-					BONE_P8_05 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad2.mmc1_dat2 */
-					BONE_P8_06 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad3.mmc1_dat3 */
+					BONE_P8_21 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_21: gpmc_csn1.mmc1_clk */
+					BONE_P8_20 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_20: gpmc_csn2.mmc1_cmd */
+					BONE_P8_25 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_25: gpmc_ad0.mmc1_dat0 */
+					BONE_P8_24 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_24: gpmc_ad1.mmc1_dat1 */
+					BONE_P8_05 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_05: gpmc_ad2.mmc1_dat2 */
+					BONE_P8_06 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* P8_06: gpmc_ad3.mmc1_dat3 */
 				>;
 			};
 
 			/* wl18xx card enable/irq GPIOs. */
 			bb_wlan_pins: pinmux_bb_wlan_pins {
 				pinctrl-single,pins = <
-					BONE_P9_22  (PIN_OUTPUT_PULLUP | MUX_MODE7)  /* gpio0_2 WL_EN */
-					BONE_P9_42A (PIN_INPUT_PULLUP | MUX_MODE7)   /* gpio0_7 WL_IRQ */
-					BONE_P8_26  (PIN_OUTPUT_PULLUP | MUX_MODE0)  /* gpmc_csn0.gpio1_29 BF_EN*/
-					BONE_P8_07  (PIN_OUTPUT_PULLDOWN | MUX_MODE7)/* gpmc_advn_ale.gpio2_2  Audio_sync*/
-					BONE_P9_15  (PIN_OUTPUT_PULLUP | MUX_MODE7)  /* EEPROM Enable */
+					BONE_P9_22  (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P8_22: gpio0_2 WL_EN */
+					BONE_P9_42A (PIN_INPUT_PULLUP | MUX_MODE7)	/* P8_42: gpio0_7 WL_IRQ */
+					BONE_P8_26  (PIN_OUTPUT_PULLUP | MUX_MODE0)	/* P8_26: gpmc_csn0.gpio1_29 BF_EN*/
+					BONE_P8_07  (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* P8_07: gpmc_advn_ale.gpio2_2  Audio_sync*/
+					BONE_P9_15  (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P9_15: EEPROM Enable */
 				>;
 			};
 
 			/* wl18xx card enable/irq GPIOs. */
 			bb_wlan_pins_sleep: pinmux_bb_wlan_pins_sleep {
 				pinctrl-single,pins = <
-					BONE_P9_22  (PIN_OUTPUT_PULLUP | MUX_MODE7)  /* gpio0_2 WL_EN */
-					BONE_P9_42A (PIN_INPUT_PULLUP | MUX_MODE7)   /* gpio0_7 WL_IRQ */
-					BONE_P8_26  (PIN_OUTPUT_PULLUP | MUX_MODE0)  /* gpmc_csn0.gpio1_29 BF_EN*/
-					BONE_P8_07  (PIN_OUTPUT_PULLDOWN | MUX_MODE7)/* gpmc_advn_ale.gpio2_2  Audio_sync*/
-					BONE_P9_15  (PIN_OUTPUT_PULLUP | MUX_MODE7)  /* EEPROM Enable */				
+					BONE_P9_22  (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P8_22: gpio0_2 WL_EN */
+					BONE_P9_42A (PIN_INPUT_PULLUP | MUX_MODE7)	/* P8_42: gpio0_7 WL_IRQ */
+					BONE_P8_26  (PIN_OUTPUT_PULLUP | MUX_MODE0)	/* P8_26: gpmc_csn0.gpio1_29 BF_EN*/
+					BONE_P8_07  (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* P8_07: gpmc_advn_ale.gpio2_2  Audio_sync*/
+					BONE_P9_15  (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* P9_15: EEPROM Enable */
 				>;
 			};
 
 			bb_uart1_pins_default: pinmux_bb_uart1_pins_default {
 				pinctrl-single,pins = <
-					BONE_P9_26 ( PIN_INPUT  | MUX_MODE0 ) /* (D16) uart1_rxd.uart1_rxd */
-					BONE_P9_24 ( PIN_OUTPUT | MUX_MODE0 ) /* (D15) uart1_txd.uart1_txd */
-                                        BONE_P9_20 ( PIN_INPUT  | MUX_MODE0 ) /* (D18) uart1_ctsn.uart1_ctsn */
-                                        BONE_P9_20 ( PIN_OUTPUT | MUX_MODE0 ) /* (D17) uart1_rtsn.uart1_rtsn  */
+					BONE_P9_26 ( PIN_INPUT  | MUX_MODE0 )	/* P9_20: (D16) uart1_rxd.uart1_rxd */
+					BONE_P9_24 ( PIN_OUTPUT | MUX_MODE0 )	/* P9_20: (D15) uart1_txd.uart1_txd */
+					BONE_P9_20 ( PIN_INPUT  | MUX_MODE0 )	/* P9_20: (D18) uart1_ctsn.uart1_ctsn */
+					BONE_P9_19 ( PIN_OUTPUT | MUX_MODE0 )	/* P9_19: (D17) uart1_rtsn.uart1_rtsn  */
 				>;
 			};
 
 			bb_uart1_pins_sleep: pinmux_bb_uart1_pins_sleep {
 				pinctrl-single,pins = <
-					BONE_P9_26 ( PIN_INPUT  | MUX_MODE0 ) /* (D16) uart1_rxd.uart1_rxd */
-					BONE_P9_24 ( PIN_OUTPUT | MUX_MODE0 ) /* (D15) uart1_txd.uart1_txd */
-                                        BONE_P9_20 ( PIN_INPUT  | MUX_MODE0 ) /* (D18) uart1_ctsn.uart1_ctsn */
-                                        BONE_P9_20 ( PIN_OUTPUT | MUX_MODE0 ) /* (D17) uart1_rtsn.uart1_rtsn  */
+					BONE_P9_26 ( PIN_INPUT  | MUX_MODE0 )	/* P9_20: (D16) uart1_rxd.uart1_rxd */
+					BONE_P9_24 ( PIN_OUTPUT | MUX_MODE0 )	/* P9_20: (D15) uart1_txd.uart1_txd */
+					BONE_P9_20 ( PIN_INPUT  | MUX_MODE0 )	/* P9_20: (D18) uart1_ctsn.uart1_ctsn */
+					BONE_P9_19 ( PIN_OUTPUT | MUX_MODE0 )	/* P9_19: (D17) uart1_rtsn.uart1_rtsn  */
 				>;
 			};
 
 			bb_i2c1_pins: pinmux_bb_i2c1_pins {
 				pinctrl-single,pins = <
-					BONE_P9_17 (PIN_INPUT_PULLUP | MUX_MODE2)	/* i2c1 */
-					BONE_P9_18 (PIN_INPUT_PULLUP | MUX_MODE2)	/* i2c1 */
+					BONE_P9_17 (PIN_INPUT_PULLUP | MUX_MODE2)	/* P9_17: i2c1 */
+					BONE_P9_18 (PIN_INPUT_PULLUP | MUX_MODE2)	/* P9_18: i2c1 */
 				>;
 			};
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 			wlan_en_reg: fixedregulator@1 {
@@ -153,10 +154,10 @@
 		};
 	};
 
-        fragment@2 {
-                target-path="/";
-                __overlay__ {
- 			kim {
+	fragment@3 {
+		target-path="/";
+		__overlay__ {
+				kim {
 				compatible = "kim";
 				nshutdown_gpio = <3>; /* Bank0, pin3 */
 				dev_name = "/dev/ttyS1";
@@ -166,16 +167,16 @@
 		};
 	};
 
-        fragment@3 {
-                target-path="/";
-                __overlay__ {
- 			btwilink {
+	fragment@4 {
+		target-path="/";
+		__overlay__ {
+			btwilink {
 				compatible = "btwilink";
 			};
 		};	
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&mmc2>;
 		__overlay__ {
 			status = "okay";
@@ -200,14 +201,14 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "disabled";
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&uart1>;
 		__overlay__ {
 			pinctrl-names = "default", "sleep";
@@ -217,7 +218,7 @@
 		};
 	};
 
-	fragment@7 {
+	fragment@8 {
 		target = <&gpio1>;
 		__overlay__ {
 			emmc_rst {
@@ -235,7 +236,7 @@
 		};
 	};
 
-	fragment@8 {
+	fragment@9 {
 		target = <&i2c1>;
 		__overlay__ {
 			pinctrl-names = "default";
