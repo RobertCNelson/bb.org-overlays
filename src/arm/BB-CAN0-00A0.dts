@@ -1,0 +1,51 @@
+/*
+ * Copyright (C) 2015 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * Virtual cape for CAN0 on connector pins P9.19 P9.20
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
+
+	/* identification */
+	part-number = "BB-CAN0";
+	version = "00A0";
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.19",	/* dcan0_rx */
+		"P9.20",	/* dcan0_tx */
+		/* the hardware ip uses */
+		"dcan0";
+
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			bb_dcan0_pins: pinmux_dcan0_pins {
+				pinctrl-single,pins = <
+					BONE_P9_19 (PIN_INPUT_PULLUP | MUX_MODE2) /* i2c2_scl.d_can0_rx */
+					BONE_P9_20 (PIN_OUTPUT_PULLUP | MUX_MODE2) /* i2c2_sda.d_can0_tx */
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&dcan0>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_dcan0_pins>;
+		};
+	};
+};
