@@ -28,14 +28,16 @@
 			P2_01_pinmux { status = "disabled"; };	/* LCD - LED */
 			P2_17_pinmux { status = "disabled"; };	/* LCD - DC */
 			P2_19_pinmux { status = "disabled"; };	/* LCD - RST */
-			P2_02_pinmux { status = "disabled"; };	/* keys - down */
-			P2_04_pinmux { status = "disabled"; };	/* keys - right */
-			P2_06_pinmux { status = "disabled"; };	/* keys - up */
-	 		P2_08_pinmux { status = "disabled"; };	/* keys - left */
-			P2_18_pinmux { status = "disabled"; };	/* keys - enter */
-			P2_20_pinmux { status = "disabled"; };	/* keys - one */
-			P2_22_pinmux { status = "disabled"; };	/* keys - esc */
-			P2_24_pinmux { status = "disabled"; };	/* keys - five */
+			P2_02_pinmux { status = "disabled"; };	/* keys - left-pad down (down) */
+			P2_04_pinmux { status = "disabled"; };	/* keys - left-pad right (right) */
+			P2_06_pinmux { status = "disabled"; };	/* keys - left-pad up (up) */
+			P2_08_pinmux { status = "disabled"; };	/* keys - left-pad left (left) */
+			P2_18_pinmux { status = "disabled"; };	/* keys - right pad down (enter) */
+			P2_20_pinmux { status = "disabled"; };	/* keys - right-pad right (tab) */
+			P2_22_pinmux { status = "disabled"; };	/* keys - right-pad up (esc)*/
+			P2_24_pinmux { status = "disabled"; };	/* keys - right-pad left (p) */
+			P1_31_pinmux { status = "disabled"; };	/* keys - select (five) */
+			P1_35_pinmux { status = "disabled"; };	/* keys - start (one) */
 		};
 	};
 
@@ -103,13 +105,6 @@
 					dir-changeable;
 				};
 
-				P1_31 {
-					gpio-name = "P1_31";
-					gpio = <&gpio3 18 0>;
-					input;
-					dir-changeable;
-				};
-
 				P1_32 {
 					gpio-name = "P1_32";
 					gpio = <&gpio1 10 0>;
@@ -127,13 +122,6 @@
 				P1_34 {
 					gpio-name = "P1_34";
 					gpio = <&gpio0 26 0>;
-					input;
-					dir-changeable;
-				};
-
-				P1_35 {
-					gpio-name = "P1_35";
-					gpio = <&gpio2 24 0>;
 					input;
 					dir-changeable;
 				};
@@ -309,62 +297,76 @@
 
 				pinctrl-names = "default";
 				pinctrl-0 = <
-					&P2_02_gpio_pu_pin	/* down */
-					&P2_04_gpio_pu_pin	/* right */
-					&P2_06_gpio_pu_pin	/* up */
-					&P2_08_gpio_pu_pin	/* left */
-					&P2_18_gpio_pu_pin	/* enter */
-					&P2_20_gpio_pu_pin	/* one */
-					&P2_22_gpio_pu_pin	/* esc */
-					&P2_24_gpio_pu_pin	/* five */
+					&P2_02_gpio_pu_pin	/* left-pad down */
+					&P2_04_gpio_pu_pin	/* left-pad right */
+					&P2_06_gpio_pu_pin	/* left-pad up */
+					&P2_08_gpio_pu_pin	/* left-pad left */
+					&P2_18_gpio_pu_pin	/* right-pad down */
+					&P2_20_gpio_pu_pin	/* right-pad right */
+					&P2_22_gpio_pu_pin	/* right-pad up */
+					&P2_24_gpio_pu_pin	/* right-pad left */
+					&P1_31_gpio_pu_pin	/* select */
+					&P1_35_gpio_pu_pin	/* start */
 				>;
 		
-				left {
+				lp-left {
 					label = "left";
 					linux,code = <105>;
 					gpios = <&gpio1 28 GPIO_ACTIVE_LOW>;
 				};
 		
-				right {
+				lp-right {
 					label = "right";
 					linux,code = <106>;
 					gpios = <&gpio1 26 GPIO_ACTIVE_LOW>;
 				};
 		
-				up {
+				lp-up {
 					label = "up";
 					linux,code = <103>;
 					gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
 				};
 		
-				down {
+				lp-down {
 					label = "down";
 					linux,code = <108>;
 					gpios = <&gpio1 27 GPIO_ACTIVE_LOW>;
 				};
 		
-				five {
-					label = "five";
-					linux,code = <6>;
+				rp-left {
+					label = "p";
+					linux,code = <25>;
 					gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
 				};
 		
-				one {
-					label = "one";
-					linux,code = <2>;
+				rp-right {
+					label = "tab";
+					linux,code = <15>;
 					gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
 				};
 		
-				esc {
+				rp-up {
 					label = "esc";
 					linux,code = <1>;
 					gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
 				};
 		
-				enter {
+				rp-down {
 					label = "enter";
 					linux,code = <28>;
 					gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+				};
+
+				select {
+					label = "five";
+					linux,code = <6>;
+					gpios = <&gpio3 18 GPIO_ACTIVE_LOW>;
+				};
+
+				start {
+					label = "one";
+					linux,code = <2>;
+					gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
 				};
 			};
 		
@@ -378,13 +380,13 @@
 				>;
 		
 				led@1 {
-					label = "gamingpocketcape::left";
+					label = "gamepup::left";
 					gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
 					default-state = "off";
 				};
 		
 				led@2 {
-					label = "gamingpocketcape::right";
+					label = "gamepup::right";
 					gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
 					default-state = "off";
 				};
