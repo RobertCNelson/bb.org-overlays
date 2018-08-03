@@ -393,5 +393,19 @@
 			};
 		};
 	};
+
+	/*
+	 * Load ALSA driver for piezo
+	 */
+	fragment@5 {
+		target-path="/";
+		__overlay__ {
+			sndpwm {
+				compatible = "snd-pwmsp";
+				pwms = <&ehrpwm0 1 0 0>;
+				status = "okay";
+			};
+		};
+	};
 };
 						
