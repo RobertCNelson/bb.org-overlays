@@ -1,0 +1,55 @@
+/*
+ * Copyright (C) 2018 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.mikroe.com/rtc6-click
+ * https://download.mikroe.com/documents/add-on-boards/click/rtc-6/rtc-6-click-user-manual-v100.pdf
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_41_pinmux { status = "disabled"; };	/* MFP - gpio0[20] */
+			P9_91_pinmux { status = "disabled"; };	/* Shared with P9_41 */
+		};
+	};
+
+	fragment@1 {
+		target-path="/";
+		__overlay__ {
+
+			aliases {
+				rtc0 = "/ocp/i2c@4819c000/mcp7941x@6f";
+				rtc1 = "/ocp/rtc@44e3e000";
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&i2c2>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			mcp7941x@6f {
+				compatible = "microchip,mcp7941x";
+				reg = <0x6f>;
+			};
+		};
+	};
+};
