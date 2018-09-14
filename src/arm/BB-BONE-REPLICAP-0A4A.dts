@@ -158,7 +158,7 @@
 			pinctrl-0	= <&bone_replicape_spi1_pins>;
 			cs-gpios	= <&gpio3 17 0>, <&gpio0 7 0>;
 
-			stepper_control {
+			stepper_control@0 {
 				#address-cells	  = <1>;
 				#size-cells	  = <0>;
 				compatible	  = "spidev";
@@ -167,7 +167,7 @@
 				spi-cpha;	  // Stepper control has mode 1 (CPOL = 0, CPHA = 1)
 			};
 
-			stepper_current {
+			stepper_current@1 {
 				#address-cells	  = <1>;
 				#size-cells	  = <0>;
 				compatible	  = "spidev";
