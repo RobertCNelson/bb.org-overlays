@@ -433,7 +433,7 @@ fragment@32 {
              #size-cells = <0>;
              status = "okay";
 
-             spidev@1 {
+             spidev@0 {
                  spi-max-frequency = <24000000>;
                  reg = <0>;
                  compatible = "linux,spidev";
