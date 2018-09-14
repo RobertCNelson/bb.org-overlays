@@ -31,24 +31,24 @@
 			P1_08_pinmux { status = "disabled"; };	/* CLK - gpio0_2 */
 			P1_06_pinmux { status = "disabled"; };	/* CS - gpio0_5 */
 			P1_04_pinmux { status = "disabled"; };	/* RST - gpio2_25 */
-			cape-universal { status = "disabled"; };
-			cape-universal@1 { status = "disabled"; };
 		};
 	};
 
 	fragment@1 {
 		target = <&spi0>;
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			status = "okay";
 
-			channel@0 {
-				status = "disabled";
-			};
-			channel@1 {
-				status = "disabled";
-			};
+			channel@0 { status = "disabled"; };
+			channel@1 { status = "disabled"; };
+		};
+	};
+
+	fragment@2 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			mikroe_oledc: mikroe_oledc@0{
 				compatible = "solomon,ssd1351";
@@ -74,10 +74,9 @@
 				dc-gpios = <&gpio1 18 0>;
 			};
 		};
-		
 	};
-	
-	fragment@2 {
+
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal@1 {
