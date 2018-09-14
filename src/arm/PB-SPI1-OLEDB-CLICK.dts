@@ -29,26 +29,26 @@
 			P2_29_pinmux { status = "disabled"; };	/* CLK - gpio0_7 */
 			P2_31_pinmux { status = "disabled"; };	/* CS - gpio0_19 */
 			P2_33_pinmux { status = "disabled"; };	/* RST - gpio1_13 */
-			cape-universal { status = "disabled"; };
-			cape-universal@1 { status = "disabled"; };
 		};
 	};
 
 	fragment@1 {
 		target = <&spi1>;
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			status = "okay";
 
-			channel@0 {
-				status = "disabled";
-			};
-			channel@1 {
-				status = "disabled";
-			};
+			channel@0{ status = "disabled"; };
+			channel@1{ status = "disabled"; };
+		};
+	};
 
-			mikroe_oledb: mikroe_oledb@0{
+	fragment@2 {
+		target = <&spi1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			mikroe_oledb: mikroe_oledb@1{
 				compatible = "solomon,ssd1306";
 				pinctrl-names = "default";
 				pinctrl-0 = <
