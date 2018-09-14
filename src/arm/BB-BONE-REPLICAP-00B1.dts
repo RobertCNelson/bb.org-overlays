@@ -166,7 +166,7 @@
 			pinctrl-0	= <&bone_replicape_spi1_pins>;
 			cs-gpios	= <&gpio0 7 0>;
 
-			stepper_control {
+			stepper_control@1 {
 				#address-cells	  = <1>;
 				#size-cells	  = <0>;
 				compatible	  = "spidev";
