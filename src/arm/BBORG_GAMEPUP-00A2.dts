@@ -247,16 +247,21 @@
 	fragment@3 {
 		target = <&spi0>;
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			status = "okay";
 
-			channel@0 {
-				status = "disabled";
-			};
-			channel@1 {
-				status = "disabled";
-			};
+			channel@0 { status = "disabled"; };
+			channel@1 { status = "disabled"; };
+		};
+	};
+
+	/*
+	 * Free up the SPI port used by the cape and reallocate it for the LCD.
+	 */
+	fragment@4 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			adafruit18: adafruit18@0{
 				compatible = "sitronix,st7735r";
@@ -283,11 +288,11 @@
 			};
 		};
 	};
-	
+
 	/*
 	 * Load the drivers for the buttons and LEDs.
 	 */
-	fragment@4 {
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 
@@ -397,7 +402,7 @@
 	/*
 	 * Load ALSA driver for piezo
 	 */
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 			sndpwm {
