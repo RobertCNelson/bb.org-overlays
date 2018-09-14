@@ -106,7 +106,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			mcp795: rtc@0 {
+			mcp795: rtc@1 {
 				compatible = "maxim,mcp795";
 				pinctrl-names = "default";
 				pinctrl-0 = <&mbc2_gpio_pins>;
