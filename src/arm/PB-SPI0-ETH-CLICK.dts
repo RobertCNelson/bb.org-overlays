@@ -12,7 +12,6 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -61,11 +60,16 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&pb_spi0_pins>;
 
-			#address-cells = <1>;
-			#size-cells = <0>;
-
 			channel@0{ status = "disabled"; };
 			channel@1{ status = "disabled"; };
+		};
+	};
+
+	fragment@3 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			enc28j60: ethernet@0 {
 				compatible = "microchip,enc28j60";
