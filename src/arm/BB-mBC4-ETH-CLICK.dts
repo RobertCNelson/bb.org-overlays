@@ -93,7 +93,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			enc28j60: ethernet@3 {
+			enc28j60: ethernet@2 {
 				compatible = "microchip,enc28j60";
 				pinctrl-names = "default";
 				pinctrl-0 = <&mbc4_gpio_pins>;
