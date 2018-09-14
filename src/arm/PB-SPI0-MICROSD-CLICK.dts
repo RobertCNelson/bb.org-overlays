@@ -34,8 +34,6 @@
 	fragment@1 {
 		target = <&spi0>;
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <
@@ -45,12 +43,16 @@
 				&P1_12_spi_pin
 			>;
 
-			channel@0 {
-				status = "disabled";
-			};
-			channel@1 {
-				status = "disabled";
-			};
+			channel@0{ status = "disabled"; };
+			channel@1{ status = "disabled"; };
+		};
+	};
+
+	fragment@2 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			mikroe_microsd: mikroe_microsd@0{
 				compatible = "mmc-spi-slot";
@@ -63,4 +65,3 @@
 		};
 	};
 };
-

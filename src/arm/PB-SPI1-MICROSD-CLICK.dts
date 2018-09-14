@@ -34,8 +34,6 @@
 	fragment@1 {
 		target = <&spi1>;
 		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
 			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <
@@ -45,22 +43,25 @@
 				&P2_25_spi_pin
 			>;
 
-			channel@0 {
-				status = "disabled";
-			};
-			channel@1 {
-				status = "disabled";
-			};
+			channel@0{ status = "disabled"; };
+			channel@1{ status = "disabled"; };
+		};
+	};
+
+	fragment@2 {
+		target = <&spi1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			mikroe_microsd: mikroe_microsd@1{
 				compatible = "mmc-spi-slot";
 				reg = <1>;
 				voltage-ranges = <3300 3300>;
 				spi-max-frequency = <50000000>;
-				//gpios = <&gpio3 14 0>;
+				//gpios = <&gpio3 14 0>; /* Currently not working */
 				broken-cd;
 			};
 		};
 	};
 };
-

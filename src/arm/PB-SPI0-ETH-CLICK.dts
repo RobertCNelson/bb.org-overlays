@@ -24,10 +24,10 @@
 		target = <&ocp>;
 		__overlay__ {
 			P1_04_pinmux { status = "disabled"; };
-			P1_06_pinmux { status = "disabled"; };
-			P1_08_pinmux { status = "disabled"; };
-			P1_10_pinmux { status = "disabled"; };
-			P1_12_pinmux { status = "disabled"; };
+			P1_12_pinmux { status = "disabled"; };	/* MOSI - gpio0_4 */
+			P1_10_pinmux { status = "disabled"; };	/* MISO - gpio0_3 */
+			P1_08_pinmux { status = "disabled"; };	/* CLK - gpio0_2 */
+			P1_06_pinmux { status = "disabled"; };	/* CS - gpio0_5 */
 			P2_03_pinmux { status = "disabled"; };
 		};
 	};
