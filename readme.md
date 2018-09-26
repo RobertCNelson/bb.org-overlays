@@ -82,3 +82,4 @@ U-Boot Overlays:
 ------------
 
 https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays
+
