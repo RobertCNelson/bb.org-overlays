@@ -189,8 +189,9 @@
 				interrupt-parent = <&gpio0>;
 				interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
 
-				//touchscreen-offset-x=<250>;
-				//touchscreen-offset-y=<300>;
+				//https://forum.digikey.com/t/calibration-of-touchscreen-for-4d-systems-gen4-lcd-for-bbb/1886/2
+				touchscreen-offset-x=<100>;
+				touchscreen-offset-y=<275>;
 
 				touchscreen-inverted-y;
 			};
