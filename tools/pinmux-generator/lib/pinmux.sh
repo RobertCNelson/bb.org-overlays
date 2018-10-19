@@ -519,10 +519,13 @@ find_ball () {
 				got_pwm_pin="enable"
 				;;
 			ecap2_in_pwm2_out)
-				valid_pin_mode="pwm2"
-				pwm2_name=${name}
-				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
-				got_pwm2_pin="enable"
+				#ignore PocketBeagle...
+				if [ ! "x${file}" = "xPocketBeagle" ] ; then
+					valid_pin_mode="pwm2"
+					pwm2_name=${name}
+					pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+					got_pwm2_pin="enable"
+				fi
 				;;
 			i2c*_sda|i2c*_scl)
 				valid_pin_mode="i2c"
