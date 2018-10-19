@@ -524,11 +524,25 @@ find_ball () {
 				pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 				got_pwm2_pin="enable"
 				;;
-			i2c*_sda|i2c*_scl)
+			i2c0_sda|i2c0_scl)
 				valid_pin_mode="i2c"
 				i2c_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 				got_i2c_pin="enable"
+				;;
+			i2c1_sda|i2c1_scl)
+				valid_pin_mode="i2c"
+				i2c_name=${name}
+				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
+				got_i2c_pin="enable"
+				;;
+			i2c2_sda|i2c2_scl)
+				#BeagleBone Black, use 0x3B...
+				valid_pin_mode="i2c"
+				i2c_name=${name}
+				pinsetting="PIN_OUTPUT | INPUT_EN"
+				got_i2c_pin="enable"
+				tabs=2
 				;;
 			pr1_ecap0*)
 				valid_pin_mode="pru_ecap"
@@ -608,13 +622,23 @@ echo "" >> ${file}.dts
 echo_pinmux
 echo_gpio
 
+#   0000 0000
+# 2-0     |||	= GPIO_MODE
+# 3      |	= PULLUDEN
+#   0000 0000
+# 4    |	= PULLTYPSEL
+# 5   |		= RXACTIVE
+# 6  |		= SLEWCTRL
+
 #0x05 = 0000 0101
 #0x26 = 0010 0110
 #0x27 = 0010 0111
 #0x2F = 0010 1111
 #0x30 = 0011 0000
 #0x32 = 0011 0010
+#0x33 = 0011 0011
 #0x37 = 0011 0111
+#0x3B = 0011 1011
 
 #0x05 : PIN_OUTPUT_PULLDOWN | MUX_MODE5
 #0x24 : PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE4
@@ -623,7 +647,9 @@ echo_gpio
 #0x2F : PIN_OUTPUT | INPUT_EN | MUX_MODE7
 #0x30 : PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE0
 #0x32 : PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE2
+#0x33 : PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE3
 #0x37 : PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7
+#0x3B : PIN_OUTPUT | INPUT_EN | MUX_MODE7
 
 #			P9_17_default_pin: pinmux_P9_17_default_pin {
 #				pinctrl-single,pins = <0x15c  0x37>; };	/* Mode 7, Pull-Up, RxActive */
