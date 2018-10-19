@@ -410,7 +410,7 @@ find_ball () {
 	uart|i2c|spi|spi_cs|spi_sclk)
 		pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 		;;
-	emmc|hdmi|audio)
+	emmc|hdmi|audio|qep)
 		pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 		;;
 	*)
@@ -521,10 +521,12 @@ find_ball () {
 			ecap2_in_pwm2_out)
 				#ignore PocketBeagle...
 				if [ ! "x${file}" = "xPocketBeagle" ] ; then
+				if [ ! "x${file}" = "xBeagleBone_Blue" ] ; then
 					valid_pin_mode="pwm2"
 					pwm2_name=${name}
 					pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 					got_pwm2_pin="enable"
+				fi
 				fi
 				;;
 			i2c*_sda|i2c*_scl)
