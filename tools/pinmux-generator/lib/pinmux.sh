@@ -292,6 +292,14 @@ find_ball () {
 	cro=$(cat AM335x.json | jq '.pinCommonInfos .'${found_devicePinID}' .controlRegisterOffset' | sed 's/\"//g' || true)
 	echo "controlRegisterOffset=${cro}"
 
+	unset pupdStateDuringHHV
+	pupdStateDuringHHV=$(cat AM335x.json | jq '.pinCommonInfos .'${found_devicePinID}' .pupdStateDuringHHV' | sed 's/\"//g' || true)
+	echo "pupdStateDuringHHV=${pupdStateDuringHHV}"
+
+	unset pupdStateAfterHHV
+	pupdStateAfterHHV=$(cat AM335x.json | jq '.pinCommonInfos .'${found_devicePinID}' .pupdStateAfterHHV' | sed 's/\"//g' || true)
+	echo "pupdStateAfterHHV=${pupdStateAfterHHV}"
+
 	#  "pinModeInfo": [
 	#    {
 	#      "peripheralPinID": "ID_1986",
@@ -390,6 +398,7 @@ find_ball () {
 	cp_info_default=${name}
 
 	dtabs=1
+	echo cp_default=${cp_default}
 	case "${cp_default}" in
 	gpio_input|pruin)
 		dtabs=3
@@ -401,8 +410,26 @@ find_ball () {
 	uart|i2c|spi|spi_cs|spi_sclk)
 		pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 		;;
-	*)
+	emmc|hdmi|audio)
 		pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+		;;
+	*)
+		if [ ! "x$cp_default" = "x" ] ; then
+			exit 2
+		fi
+		case "${pupdStateAfterHHV}" in
+		PU)
+			pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
+		;;
+		PD)
+			pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
+		;;
+		*)
+			echo "pupdStateAfterHHV was not defined [${pupdStateAfterHHV}]"
+			exit 2
+		;;
+
+		esac
 		;;
 	esac
 
