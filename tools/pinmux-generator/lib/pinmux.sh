@@ -210,7 +210,7 @@ echo_gpio () {
 
 get_json_pkg () {
 	###Offline: http://processors.wiki.ti.com/index.php/TI_PinMux_Tool
-	pinmux_version="4.0.1519"
+	pinmux_version="4.0.1526"
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
