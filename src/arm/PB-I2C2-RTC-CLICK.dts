@@ -18,7 +18,7 @@
 		__overlay__ {
 
 			aliases {
-				rtc0 = "/ocp/i2c@4819c000/pcf8583@50";
+				rtc0 = &extrtc;
 				rtc1 = "/ocp/rtc@44e3e000";
 			};
 		};
@@ -32,7 +32,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			pcf8583@50 {
+			extrtc: pcf8583@50 {
 				compatible = "nxp,pcf8583";
 				reg = <0x50>;
 			};

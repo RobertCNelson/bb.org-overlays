@@ -42,7 +42,6 @@
 	fragment@1 {
 		target-path="/";
 		__overlay__ {
-
 			aliases {
 				rtc0 = &extrtc;
 				rtc1 = "/ocp/rtc@44e3e000";

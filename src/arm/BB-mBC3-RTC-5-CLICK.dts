@@ -47,9 +47,8 @@
 	fragment@1 {
 		target-path="/";
 		__overlay__ {
-
 			aliases {
-				rtc0 = "/ocp/spi@48030000/rtc@0";
+				rtc0 = &extrtc;
 				rtc1 = "/ocp/rtc@44e3e000";
 			};
 		};
@@ -96,7 +95,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			mcp795: rtc@0 {
+			extrtc: mcp795@0 {
 				compatible = "maxim,mcp795";
 				pinctrl-names = "default";
 				pinctrl-0 = <&mbc3_gpio_pins>;
