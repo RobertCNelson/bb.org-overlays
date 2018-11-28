@@ -66,6 +66,22 @@ v4.14.x mainline + Real Time:
 
     sudo ./update_kernel.sh --lts-4_14 --bone-rt-channel
 
+v4.19.x-ti:
+
+    sudo ./update_kernel.sh --lts-4_19 --ti-channel
+
+v4.19.x-ti + Real Time:
+
+    sudo ./update_kernel.sh --lts-4_19 --ti-rt-channel
+
+v4.19.x mainline:
+
+    sudo ./update_kernel.sh --lts-4_19 --bone-channel
+
+v4.19.x mainline + Real Time:
+
+    sudo ./update_kernel.sh --lts-4_19 --bone-rt-channel
+
 Developers:
 ------------
 
