@@ -9,10 +9,13 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
-	/* Identification */
+	/* identification */
 	part-number = "BB-BONE-MRF24J40";
 	version = "00A0";
 
@@ -26,13 +29,30 @@
 		"P9.29",	/* spi1_d0 */
 		"P9.30",	/* spi1_d1 */
 		"P9.28",	/* spi1_cs0 */
-		/* the hardware IP uses */
+		/* the hardware ip uses */
 		"gpio1_13",
 		"gpio1_14",
 		"gpio1_29",
 		"spi1";
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_11_pinmux { status = "disabled"; };
+			P8_16_pinmux { status = "disabled"; };
+			P8_26_pinmux { status = "disabled"; };
+
+			P9_28_pinmux { status = "disabled"; };	/* spi1_cs0 */
+			P9_30_pinmux { status = "disabled"; };	/* spi1_d1 */
+			P9_29_pinmux { status = "disabled"; };	/* spi1_d0 */
+			P9_31_pinmux { status = "disabled"; };	/* spi1_sclk */
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			mrf24j40_cape_pins: pinmux_mrf24j40_cape_pins {
@@ -46,6 +66,7 @@
 					0x7c 0x2f /* gpmc_csn0.gpio1_29 input, no pull, mode 7 */
 				>;
 			};
+
 			bone_mrf24j40_spi1_pins: pinmux_bone_mrf24j40_spi1_pins {
 				pinctrl-single,pins = <
 					0x190 0x33	/* mcasp0_aclkx.spi1_sclk, RX_ENABLED | PULLUP | MODE3 */
@@ -57,12 +78,9 @@
 		};
 	};
 
-
-	fragment@1 {
+	fragment@2 {
 		target = <&spi1>;
-
 		__overlay__ {
-			/* needed to avoid DTC warnings */
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -78,7 +96,7 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&mrf24j40_cape_pins>;
 
-				interrupt-parent = <&gpio2>;
+				interrupt-parent = <&gpio1>;
 				interrupts = <29>;
 
 				//mrf24j40-wake = <&gpio4 19>;
