@@ -18,69 +18,81 @@ Pre-built kernels: (there are multiple options avaiable)
     cd /opt/scripts/tools
     git pull
 
-v4.4.x-ti:
-
-    sudo ./update_kernel.sh --lts-4_4 --ti-channel
-
-v4.4.x-ti + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_4 --ti-rt-channel
-
-v4.4.x mainline:
-
-    sudo ./update_kernel.sh --lts-4_4 --bone-channel
-
-v4.4.x mainline + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_4 --bone-rt-channel
-
-v4.9.x-ti:
-
-    sudo ./update_kernel.sh --lts-4_9 --ti-channel
-
-v4.9.x-ti + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_9 --ti-rt-channel
-
-v4.9.x mainline:
-
-    sudo ./update_kernel.sh --lts-4_9 --bone-channel
-
-v4.9.x mainline + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_9 --bone-rt-channel
-
-v4.14.x-ti:
-
-    sudo ./update_kernel.sh --lts-4_14 --ti-channel
-
-v4.14.x-ti + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_14 --ti-rt-channel
-
-v4.14.x mainline:
-
-    sudo ./update_kernel.sh --lts-4_14 --bone-channel
-
-v4.14.x mainline + Real Time:
-
-    sudo ./update_kernel.sh --lts-4_14 --bone-rt-channel
+Support Kernels v4.19.x:
+------------
 
 v4.19.x-ti:
 
-    sudo ./update_kernel.sh --lts-4_19 --ti-channel
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_19 --ti-channel
 
 v4.19.x-ti + Real Time:
 
-    sudo ./update_kernel.sh --lts-4_19 --ti-rt-channel
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_19 --ti-rt-channel
 
 v4.19.x mainline:
 
-    sudo ./update_kernel.sh --lts-4_19 --bone-channel
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_19 --bone-channel
 
 v4.19.x mainline + Real Time:
 
-    sudo ./update_kernel.sh --lts-4_19 --bone-rt-channel
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_19 --bone-rt-channel
+
+Support Kernels v4.14.x:
+------------
+
+v4.14.x-ti:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --ti-channel
+
+v4.14.x-ti + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --ti-rt-channel
+
+v4.14.x mainline:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --bone-channel
+
+v4.14.x mainline + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --bone-rt-channel
+
+Support Kernels v4.9.x:
+------------
+
+v4.9.x-ti:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --ti-channel
+
+v4.9.x-ti + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --ti-rt-channel
+
+v4.9.x mainline:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --bone-channel
+
+v4.9.x mainline + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --bone-rt-channel
+
+Support Kernels v4.4.x:
+------------
+
+v4.4.x-ti:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --ti-channel
+
+v4.4.x-ti + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --ti-rt-channel
+
+v4.4.x mainline:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --bone-channel
+
+v4.4.x mainline + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --bone-rt-channel
 
 Developers:
 ------------
