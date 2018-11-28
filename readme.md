@@ -10,7 +10,7 @@ Install or Update bb-cape-overlays debian package (pre installed on: Debian Jess
 
     sudo apt update ; sudo apt install bb-cape-overlays
 
-Support Kernels:
+Supported Linux Kernels:
 ------------
 
 Pre-built kernels: (there are multiple options avaiable)
@@ -18,7 +18,7 @@ Pre-built kernels: (there are multiple options avaiable)
     cd /opt/scripts/tools
     git pull
 
-Support Kernels v4.19.x:
+Supported Linux Kernels: v4.19.x:
 ------------
 
 v4.19.x-ti:
@@ -37,7 +37,7 @@ v4.19.x mainline + Real Time:
 
     sudo /opt/scripts/tools/update_kernel.sh --lts-4_19 --bone-rt-channel
 
-Support Kernels v4.14.x:
+Supported Linux Kernels: v4.14.x:
 ------------
 
 v4.14.x-ti:
@@ -56,7 +56,7 @@ v4.14.x mainline + Real Time:
 
     sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --bone-rt-channel
 
-Support Kernels v4.9.x:
+Supported Linux Kernels: v4.9.x:
 ------------
 
 v4.9.x-ti:
@@ -75,7 +75,7 @@ v4.9.x mainline + Real Time:
 
     sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --bone-rt-channel
 
-Support Kernels v4.4.x:
+Supported Linux Kernels: v4.4.x:
 ------------
 
 v4.4.x-ti:
