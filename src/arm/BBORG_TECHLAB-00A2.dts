@@ -19,50 +19,16 @@
 #include <dt-bindings/interrupt-controller/irq.h>
 
 / {
-#if 0
-	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
-	 */
 	fragment@0 {
-		target = <&ocp>;
-		__overlay__ {
-			P2_25_pinmux { status = "disabled"; };
-			P2_27_pinmux { status = "disabled"; };
-			P2_29_pinmux { status = "disabled"; };
-			P2_31_pinmux { status = "disabled"; };
-		};
-	};
-
-	fragment@2 {
-		target = <&am33xx_pinmux>;
-		__overlay__ {
-			pb_spi1_pins: pinmux_pb_spi1_pins {
-				pinctrl-single,pins = <
-					AM33XX_IOPAD(0x0964, PIN_INPUT | MUX_MODE4 ) /* (C18) eCAP0_in_PWM0_out.spi1_sclk */
-					AM33XX_IOPAD(0x0968, PIN_INPUT | MUX_MODE4 ) /* (E18) uart0_ctsn.spi1_d0 */
-					AM33XX_IOPAD(0x096c, PIN_INPUT | MUX_MODE4 ) /* (E17) uart0_rtsn.spi1_d1 */
-					AM33XX_IOPAD(0x09b0, PIN_INPUT | MUX_MODE4 ) /* (A15) xdma_event_intr0.spi1_cs1 */
-				>;
-			};
-		};
-	};
-#endif
-
-	fragment@3 {
 		target = <&spi1>;
 		__overlay__ {
 			status = "okay";
-#if 0
-			pinctrl-names = "default";
-			pinctrl-0 = <&pb_spi1_pins>;
-#endif
-
 			channel@0{ status = "disabled"; };
 			channel@1{ status = "disabled"; };
 		};
 	};
 
-	fragment@4 {
+	fragment@1 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -84,106 +50,141 @@
 	/*
 	 * Load the drivers for the LEDs.
 	 */
-	fragment@5 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
-			sevenseg_leds {
+			techlab_sevenseg {
 				compatible = "gpio-leds";
 
-				led@0 {
-					label = "sevenseg::0";
+				techlab_sevenseg@0 {
+					label = "techlab::seg0";
 					gpios = <&sevenseg 0 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@1 {
-					label = "sevenseg::1";
+				techlab_sevenseg@1 {
+					label = "techlab::seg1";
 					gpios = <&sevenseg 1 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@2 {
-					label = "sevenseg::2";
+				techlab_sevenseg@2 {
+					label = "techlab::seg2";
 					gpios = <&sevenseg 2 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@3 {
-					label = "sevenseg::3";
+				techlab_sevenseg@3 {
+					label = "techlab::seg3";
 					gpios = <&sevenseg 3 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@4 {
-					label = "sevenseg::4";
+				techlab_sevenseg@4 {
+					label = "techlab::seg4";
 					gpios = <&sevenseg 4 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@5 {
-					label = "sevenseg::5";
+				techlab_sevenseg@5 {
+					label = "techlab::seg5";
 					gpios = <&sevenseg 5 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@6 {
-					label = "sevenseg::6";
+				techlab_sevenseg@6 {
+					label = "techlab::seg6";
 					gpios = <&sevenseg 6 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@7 {
-					label = "sevenseg::7";
+				techlab_sevenseg@7 {
+					label = "techlab::seg7";
 					gpios = <&sevenseg 7 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@8 {
-					label = "sevenseg::8";
+				techlab_sevenseg@8 {
+					label = "techlab::seg8";
 					gpios = <&sevenseg 8 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@9 {
-					label = "sevenseg::9";
+				techlab_sevenseg@9 {
+					label = "techlab::seg9";
 					gpios = <&sevenseg 9 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@10 {
-					label = "sevenseg::10";
+				techlab_sevenseg@10 {
+					label = "techlab::seg10";
 					gpios = <&sevenseg 10 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@11 {
-					label = "sevenseg::11";
+				techlab_sevenseg@11 {
+					label = "techlab::seg11";
 					gpios = <&sevenseg 11 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@12 {
-					label = "sevenseg::12";
+				techlab_sevenseg@12 {
+					label = "techlab::seg12";
 					gpios = <&sevenseg 12 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@13 {
-					label = "sevenseg::13";
+				techlab_sevenseg@13 {
+					label = "techlab::seg13";
 					gpios = <&sevenseg 13 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@14 {
-					label = "sevenseg::14";
+				techlab_sevenseg@14 {
+					label = "techlab::seg14";
 					gpios = <&sevenseg 14 GPIO_ACTIVE_LOW>;
 					default-state = "off";
 				};
 
-				led@15 {
-					label = "sevenseg::15";
+				techlab_sevenseg@15 {
+					label = "techlab::seg15";
 					gpios = <&sevenseg 15 GPIO_ACTIVE_LOW>;
 					default-state = "off";
+				};
+			};
+
+			techlab_rgb {
+				compatible = "pwm-leds";
+
+				techlab_pwm_red {
+					// P1_33
+					// ehrpwm0B
+					//gpios = <&gpio3 15 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::red";
+					pwms = <&ehrpwm0 1 500000 0>;
+					max-brightness = <255>;
+				};
+
+
+				techlab_pwm_green {
+					// P2_1
+					// ehrpwm1A
+					//gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::green";
+					pwms = <&ehrpwm1 0 500000 0>;
+					max-brightness = <255>;
+				};
+
+				techlab_pwm_blue {
+					// P1_36
+					// ehrpwm0A
+					//gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::blue";
+					pwms = <&ehrpwm0 0 500000 0>;
+					max-brightness = <255>;
 				};
 			};
 		};
