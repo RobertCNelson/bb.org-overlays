@@ -182,6 +182,14 @@ pcbpin="P9_44" ; label_pin="gnd" ; label_info="GND" ; echo_label
 pcbpin="P9_45" ; label_pin="gnd" ; label_info="GND" ; echo_label
 pcbpin="P9_46" ; label_pin="gnd" ; label_info="GND" ; echo_label
 
+msg="/************************/" ; echo_both
+msg="/* Special */" ; echo_both
+msg="/************************/" ; echo_both ; msg="" ; echo_both
+
+#gpio_index="6"
+#pcbpin="A15" ; ball="A15" ; default_mode="3" ; find_ball
+#gpio_index="7"
+
 msg="" ; echo_both
 
 cat ${file}-pinmux.dts >> ${file}.dts
