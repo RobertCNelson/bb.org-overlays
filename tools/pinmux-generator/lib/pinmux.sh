@@ -560,7 +560,14 @@ find_ball () {
 				got_pruin_pin="enable"
 				tabs=3
 				;;
-			spi0_d*|spi1_d*)
+			spi0_d0|spi1_d0)
+				valid_pin_mode="spi"
+				spi_name=${name}
+				pinsetting="PIN_INPUT_PULLUP"
+				got_spi_pin="enable"
+				tabs=2
+				;;
+			spi0_d1|spi1_d1)
 				valid_pin_mode="spi"
 				spi_name=${name}
 				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
@@ -573,10 +580,14 @@ find_ball () {
 				got_spi_cs_pin="enable"
 				;;
 			spi*_sclk)
+				# See: https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf page 4855
+				# (1) This output signal is also used as a re-timing input. The associated CONF_<module>_<pin>_RXACTIVE bit for the output clock
+				# must be set to 1 to enable the clock input back to the module.
 				valid_pin_mode="spi_sclk"
 				spi_sclk_name=${name}
-				pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
+				pinsetting="PIN_INPUT_PULLUP"
 				got_spi_sclk_pin="enable"
+				tabs=2
 				;;
 			timer*)
 				if [ "x${disable_timer}" = "x" ] ; then
