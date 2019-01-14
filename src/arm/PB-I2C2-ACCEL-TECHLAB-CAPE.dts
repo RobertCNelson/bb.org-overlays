@@ -1,0 +1,37 @@
+/*
+ * Copyright (C) 2017 Robert Nelson <robertcnelson@gmail.com>
+ * Copyright (C) 2019 Texas Instruments, Jason Kridner <jdk@ti.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * For PocketBeagle BaconBits and TechLab capes. Based on
+ * PB-SPI1-RTC-5-CLICK.dts and
+ * https://github.com/e-ale/Code/blob/master/RESOURCES/spi-drivers/spi-gpio.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Load driver for accelerometer
+	 */
+	fragment@0 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			mma8453@1c {
+				status = "okay";
+				compatible = "fsl,mma8453";
+				reg = <0x1c>;
+			};
+		};
+	};
+};

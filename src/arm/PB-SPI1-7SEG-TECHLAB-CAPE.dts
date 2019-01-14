@@ -1,0 +1,157 @@
+/*
+ * Copyright (C) 2017 Robert Nelson <robertcnelson@gmail.com>
+ * Copyright (C) 2019 Texas Instruments, Jason Kridner <jdk@ti.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * For PocketBeagle BaconBits and TechLab capes. Based on
+ * PB-SPI1-RTC-5-CLICK.dts and
+ * https://github.com/e-ale/Code/blob/master/RESOURCES/spi-drivers/spi-gpio.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	fragment@0 {
+		target = <&spi1>;
+		__overlay__ {
+			status = "okay";
+			channel@0{ status = "disabled"; };
+			channel@1{ status = "disabled"; };
+		};
+	};
+
+	fragment@1 {
+		target = <&spi1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			sevenseg: mcp23s18@1 {
+				#address-cells = <1>;
+				#size-cells = <1>;
+				#gpio-cells = <2>;
+				compatible = "microchip,mcp23s18";
+				gpio-controller;
+				microchip,spi-present-mask = <0x01>;
+				reg = <1>;
+				spi-max-frequency = <1000000>;
+			};
+		};
+	};
+
+	/*
+	 * Load the drivers for the LEDs.
+	 */
+	fragment@2 {
+		target-path="/";
+		__overlay__ {
+			techlab_sevenseg {
+				compatible = "gpio-leds";
+
+				techlab_sevenseg@0 {
+					label = "techlab::seg0";
+					gpios = <&sevenseg 0 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@1 {
+					label = "techlab::seg1";
+					gpios = <&sevenseg 1 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@2 {
+					label = "techlab::seg2";
+					gpios = <&sevenseg 2 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@3 {
+					label = "techlab::seg3";
+					gpios = <&sevenseg 3 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@4 {
+					label = "techlab::seg4";
+					gpios = <&sevenseg 4 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@5 {
+					label = "techlab::seg5";
+					gpios = <&sevenseg 5 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@6 {
+					label = "techlab::seg6";
+					gpios = <&sevenseg 6 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@7 {
+					label = "techlab::seg7";
+					gpios = <&sevenseg 7 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@8 {
+					label = "techlab::seg8";
+					gpios = <&sevenseg 8 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@9 {
+					label = "techlab::seg9";
+					gpios = <&sevenseg 9 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@10 {
+					label = "techlab::seg10";
+					gpios = <&sevenseg 10 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@11 {
+					label = "techlab::seg11";
+					gpios = <&sevenseg 11 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@12 {
+					label = "techlab::seg12";
+					gpios = <&sevenseg 12 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@13 {
+					label = "techlab::seg13";
+					gpios = <&sevenseg 13 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@14 {
+					label = "techlab::seg14";
+					gpios = <&sevenseg 14 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+
+				techlab_sevenseg@15 {
+					label = "techlab::seg15";
+					gpios = <&sevenseg 15 GPIO_ACTIVE_LOW>;
+					default-state = "off";
+				};
+			};
+		};
+	};
+};

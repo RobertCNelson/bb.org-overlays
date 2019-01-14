@@ -1,0 +1,64 @@
+/*
+ * Copyright (C) 2017 Robert Nelson <robertcnelson@gmail.com>
+ * Copyright (C) 2019 Texas Instruments, Jason Kridner <jdk@ti.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * For PocketBeagle BaconBits and TechLab capes. Based on
+ * PB-SPI1-RTC-5-CLICK.dts and
+ * https://github.com/e-ale/Code/blob/master/RESOURCES/spi-drivers/spi-gpio.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Load the drivers for the LEDs.
+	 */
+	fragment@2 {
+		target-path="/";
+		__overlay__ {
+			techlab_rgb {
+				compatible = "pwm-leds";
+
+				techlab_pwm_red {
+					// P1_33
+					// ehrpwm0B
+					//gpios = <&gpio3 15 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::red";
+					pwms = <&ehrpwm0 1 500000 0>;
+					max-brightness = <255>;
+				};
+
+
+				techlab_pwm_green {
+					// P2_1
+					// ehrpwm1A
+					//gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::green";
+					pwms = <&ehrpwm1 0 500000 0>;
+					max-brightness = <255>;
+				};
+
+				techlab_pwm_blue {
+					// P1_36
+					// ehrpwm0A
+					//gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
+					//default-state = "off";
+					label = "techlab::blue";
+					pwms = <&ehrpwm0 0 500000 0>;
+					max-brightness = <255>;
+				};
+			};
+		};
+	};
+};
