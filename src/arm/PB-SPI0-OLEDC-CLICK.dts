@@ -77,19 +77,16 @@
 	};
 
 	fragment@3 {
-		target = <&ocp>;
+		target-path = "/";
 		__overlay__ {
-			cape-universal@1 {
-				compatible = "gpio-of-helper";
+			oledc0-en-led {
+				compatible = "gpio-leds";
 				status = "okay";
-				pinctrl-names = "default";
-				pinctrl-0 = <>;
 
-				P2_03 {
-					gpio-name = "P2_03";
-					gpio = <&gpio0 23 0>;
-					output;
-					init-high;
+				oledc0-en@0 {
+					label = "oledc0::en";
+					gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+					default-state = "on";
 				};
 			};
 		};
