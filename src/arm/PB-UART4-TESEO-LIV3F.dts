@@ -1,0 +1,74 @@
+/*
+ * Copyright (C) 2018 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.mikroe.com/gnss-5-click
+ * https://download.mikroe.com/documents/add-on-boards/click/gnss-5/gnss-5-click-schematic-v101.pdf
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P1_04_pinmux { status = "disabled"; };	/* gpio2_25 - RST */
+			P2_03_pinmux { status = "disabled"; };	/* gpio0_23 - PULSE */
+			P2_05_pinmux { status = "disabled"; };	/* gpio0_30 - TXD */
+			P2_07_pinmux { status = "disabled"; };	/* gpio0_31 - RXD */
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			pb_pps_gpio_pins: pinmux-pb-pps-gpio-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x0824, PIN_INPUT | MUX_MODE7) /* P2_03 (T10) gpmc_ad9.gpio0[23] INT */
+				>;
+			};
+
+			pb_uart4_pins: pinmux-pb-uart4-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x0870, PIN_INPUT | MUX_MODE6 ) /* P2_05 (T17) gpmc_wait0.uart4_rxd */
+					AM33XX_IOPAD(0x0874, PIN_OUTPUT | MUX_MODE6) /* P2_07 (U17) gpmc_wpn.uart4_txd */
+					AM33XX_IOPAD(0x08EC, PIN_INPUT | MUX_MODE7 ) /* P1_04 (R6) lcd_ac_bias_en.gpio2[25] RESET */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&uart4>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&pb_uart4_pins>;
+		};
+	};
+
+	fragment@3 {
+		target-path="/";
+		__overlay__ {
+			pps {
+				status = "okay";
+				compatible = "pps-gpio";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pb_pps_gpio_pins>;
+
+				gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+			};
+		};
+	};
+};
