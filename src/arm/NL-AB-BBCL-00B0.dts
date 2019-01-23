@@ -24,7 +24,7 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-black-wireless", "ti,beaglebone-green", "ti,beaglebone-green-wireless";
+	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-black-wireless", "ti,beaglebone-green";
 	part-number = "NL-AB-BBCL";
 	version = "00B0";
 
