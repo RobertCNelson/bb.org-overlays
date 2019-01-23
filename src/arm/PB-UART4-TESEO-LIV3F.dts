@@ -1,12 +1,11 @@
 /*
- * Copyright (C) 2018 Robert Nelson <robertcnelson@gmail.com>
+ * Copyright (C) 2019 Robert Nelson <robertcnelson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  *
- * https://www.mikroe.com/gnss-5-click
- * https://download.mikroe.com/documents/add-on-boards/click/gnss-5/gnss-5-click-schematic-v101.pdf
+ * https://www.digikey.com/en/maker/projects/c4072044fba34f7b9d5210b973331940
  */
 
 /dts-v1/;
