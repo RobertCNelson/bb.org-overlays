@@ -1,0 +1,75 @@
+/*
+ * Copyright (C) 2019 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.digikey.com/en/maker/projects/c4072044fba34f7b9d5210b973331940
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_23_pinmux { status = "disabled"; };	/* RESET - gpio1[17] */
+			P9_41_pinmux { status = "disabled"; };	/* INT - gpio0[20] */
+			P9_91_pinmux { status = "disabled"; };	/* Shared with P9_41 */
+			P9_24_pinmux { status = "disabled"; };	/* RXD - spi0_sclk.uart2_rxd */
+			P9_26_pinmux { status = "disabled"; };	/* TXD - spi0_d0.uart2_txd */
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			mbc2_gpio_pins: pinmux-mbc2-gpio-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x09B4, PIN_INPUT | MUX_MODE7 ) /* P9_41 (D14) xdma_event_intr1.gpio0[20] INT */
+					AM33XX_IOPAD(0x09A8, PIN_INPUT | MUX_MODE7 ) /* P9_91 Shared with P9_41 mcasp0_axr1.gpio3_20 */
+				>;
+			};
+
+			mbc2_uart1_pins: pinmux-mbc2-uart1-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x0984, PIN_OUTPUT | MUX_MODE0) /* P9_24 (D15) uart1_txd.uart1_txd */
+					AM33XX_IOPAD(0x0980, PIN_INPUT | MUX_MODE0 ) /* P9_26 (D16) uart1_rxd.uart1_rxd */
+					AM33XX_IOPAD(0x0844, PIN_INPUT | MUX_MODE7 ) /* P9_23 (V14) gpmc_a1.gpio1[17] RESET */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&uart1>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&mbc2_uart1_pins>;
+		};
+	};
+
+	fragment@3 {
+		target-path="/";
+		__overlay__ {
+			pps {
+				status = "okay";
+				compatible = "pps-gpio";
+				pinctrl-names = "default";
+				pinctrl-0 = <&mbc2_gpio_pins>;
+
+				gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
+			};
+		};
+	};
+};

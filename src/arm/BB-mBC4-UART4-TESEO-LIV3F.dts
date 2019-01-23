@@ -1,0 +1,74 @@
+/*
+ * Copyright (C) 2019 Robert Nelson <robertcnelson@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * https://www.digikey.com/en/maker/projects/c4072044fba34f7b9d5210b973331940
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_16_pinmux { status = "disabled"; };	/* RESET - gpio1[14] */
+			P8_17_pinmux { status = "disabled"; };	/* INT - gpio0[27] */
+
+			P9_11_pinmux { status = "disabled"; };	/* RXD - gpmc_wait0.uart4_rxd */
+			P9_13_pinmux { status = "disabled"; };	/* TXD - gpmc_wpn.uart4_txd */
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			mbc4_gpio_pins: pinmux-mbc4-gpio-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x082C, PIN_INPUT | MUX_MODE7 ) /* P8_17 (U12) gpmc_ad11.gpio0[27] INT */
+				>;
+			};
+
+			mbc4_uart4_pins: pinmux-mbc4-uart4-pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x0870, PIN_INPUT | MUX_MODE6 )  /* P9_13 (T17) gpmc_wait0.uart4_rxd */
+					AM33XX_IOPAD(0x0874, PIN_OUTPUT | MUX_MODE6 ) /* P9_11 (U17) gpmc_wpn.uart4_txd */
+					AM33XX_IOPAD(0x0838, PIN_INPUT | MUX_MODE7 )  /* P8_16 (V13) gpmc_ad14.gpio1[14] RESET */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&uart4>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&mbc4_uart4_pins>;
+		};
+	};
+
+	fragment@3 {
+		target-path="/";
+		__overlay__ {
+			pps {
+				status = "okay";
+				compatible = "pps-gpio";
+				pinctrl-names = "default";
+				pinctrl-0 = <&mbc4_gpio_pins>;
+
+				gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>;
+			};
+		};
+	};
+};
