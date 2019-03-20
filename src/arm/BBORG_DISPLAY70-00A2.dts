@@ -17,7 +17,7 @@
     compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
     /* identification */
-    part-number = "BB-BONE-DISP70";
+    part-number = "BBORG_DISPLAY70";
     version = "00A2";
 
     /* state the resources this cape uses */
