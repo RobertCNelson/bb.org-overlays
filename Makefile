@@ -87,12 +87,15 @@ export quiet Q KBUILD_VERBOSE
 
 all_%:
 	$(Q)$(MAKE) ARCH=$* all_arch
+	gcc -o config-pin ./tools/pmunts_muntsos/config-pin.c
 
 clean_%:
 	$(Q)$(MAKE) ARCH=$* clean_arch
+	rm config-pin || true
 
 install_%:
 	$(Q)$(MAKE) ARCH=$* install_arch
+	cp config-pin $(DESTDIR)/usb/bin/
 
 ifeq ($(ARCH),)
 
