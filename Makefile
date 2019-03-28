@@ -95,7 +95,7 @@ clean_%:
 
 install_%:
 	$(Q)$(MAKE) ARCH=$* install_arch
-	cp config-pin $(DESTDIR)/usb/bin/
+	install config-pin $(DESTDIR)/usr/bin/
 
 ifeq ($(ARCH),)
 
