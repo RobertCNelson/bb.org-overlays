@@ -95,7 +95,6 @@ clean_%:
 
 install_%:
 	$(Q)$(MAKE) ARCH=$* install_arch
-	install -d config-pin $(DESTDIR)/usr/bin/
 
 ifeq ($(ARCH),)
 
@@ -151,6 +150,8 @@ PHONY += install_arch
 install_arch: $(ARCH_DTBO)
 	mkdir -p $(DESTDIR)/lib/firmware/
 	cp -v $(obj)/*.dtbo $(DESTDIR)/lib/firmware/
+	mkdir -p $(DESTDIR)/usr/bin/
+	cp -v config-pin $(DESTDIR)/usr/bin/
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
