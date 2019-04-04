@@ -3100,6 +3100,7 @@
 				#size-cells = <0>;
 
 				compatible = "spidev";
+				symlink = "spi/0.0";
 
 				reg = <0>;
 				spi-max-frequency = <16000000>;
@@ -3112,6 +3113,7 @@
 				#size-cells = <0>;
 
 				compatible = "spidev";
+				symlink = "spi/0.1";
 
 				reg = <1>;
 				spi-max-frequency = <16000000>;
@@ -3134,6 +3136,7 @@
 				#size-cells = <0>;
 
 				compatible = "spidev";
+				symlink = "spi/1.0";
 
 				reg = <0>;
 				spi-max-frequency = <16000000>;
@@ -3145,6 +3148,7 @@
 				#size-cells = <0>;
 
 				compatible = "spidev";
+				symlink = "spi/1.1";
 
 				reg = <1>;
 				spi-max-frequency = <16000000>;
