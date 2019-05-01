@@ -60,6 +60,15 @@ DTC=/var/lib/jenkins/git/dtc/dtc make clean
 DTC=/var/lib/jenkins/git/dtc/dtc make all || exit 1
 echo "*********************************************"
 
+git_tag="v1.5.0"
+dtc_git_build
+
+echo "*********************************************"
+echo "dtc: `/var/lib/jenkins/git/dtc/dtc --version`"
+DTC=/var/lib/jenkins/git/dtc/dtc make clean
+DTC=/var/lib/jenkins/git/dtc/dtc make all || exit 1
+echo "*********************************************"
+
 unset git_tag
 dtc_git_build
 
