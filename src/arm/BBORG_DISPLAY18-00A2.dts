@@ -37,7 +37,9 @@
 		"P9.12",	/* BTN5 GPIO60 */
 		"P9.17",	/* LCD SPI0 CS0 */
 		"P9.18",	/* LCD SPI0 MOSI */
-		"P9.22";	/* LCD SPI0 CLK */
+		"P9.22",	/* LCD SPI0 CLK */
+		/* the hardware ip uses */
+		"spi0";
 
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
@@ -85,7 +87,7 @@
 					BONE_P9_12 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN5 GPIO60 */
 					BONE_P9_17 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 CS0 */
 					BONE_P9_18 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 MOSI */
-					BONE_P9_22 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 CLK */
+					BONE_P9_22 (PIN_INPUT_PULLUP | MUX_MODE0)	/* LCD SPI0 CLK */
 				>;
 			};
 			
@@ -137,7 +139,6 @@
 		};
 	};
 
-#if 0
 	/*
 	 * Load the drivers for the buttons and LEDs.
 	 */
@@ -145,6 +146,7 @@
 		target-path="/";
 		__overlay__ {
 
+#if 0
 			gpio-keys {
 				compatible = "gpio-keys";
 				autorepeat;
@@ -209,25 +211,25 @@
 					gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
 				};
 			};
+#endif
 		
 			capeleds {
 				compatible = "gpio-leds";
 
 				led@1 {
-					label = "display18::left";
-					gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
+					label = "display18:green:led1";
+					gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;	/* P8_35: LED1 GPIO8 */
 					default-state = "off";
 				};
-		
+
 				led@2 {
-					label = "display18::right";
-					gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+					label = "display18:red:led2";
+					gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* P8_37: LED2 GPIO78 */
 					default-state = "off";
 				};
 			};
 		};
 	};
-#endif
 
 #if 0
 	/* LCD PWM BackLight */
