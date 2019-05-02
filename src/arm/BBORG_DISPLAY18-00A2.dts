@@ -1,0 +1,277 @@
+/*
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
+
+	/* identification */
+	part-number = "BBORG_DISPLAY18";
+	version = "00A2";
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P8.7",		/* BTN7 GPIO66 */
+		"P8.8",		/* BTN6 GPIO67 */
+		"P8.9",		/* LCD BACKLIGHT TIMER5 */
+		"P8.27",	/* BTN2 GPIO86 */
+		"P8.28",	/* BTN4 GPIO88 */
+		"P8.29",	/* BTN1 GPIO87 */
+		"P8.30",	/* BTN3 GPIO89 */
+		"P8.31",	/* LCD RESET GPIO10 */
+		"P8.33",	/* LCD DC GPIO9 */
+		"P8.35",	/* LED1 GPIO8 */
+		"P8.37",	/* LED2 GPIO78 */
+		"P8.43",	/* BTN8 GPIO72 */
+		"P9.12",	/* BTN5 GPIO60 */
+		"P9.17",	/* LCD SPI0 CS0 */
+		"P9.18",	/* LCD SPI0 MOSI */
+		"P9.22";	/* LCD SPI0 CLK */
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_07_pinmux { status = "disabled"; };
+			P8_08_pinmux { status = "disabled"; };
+			P8_09_pinmux { status = "disabled"; };
+			P8_27_pinmux { status = "disabled"; };
+			P8_28_pinmux { status = "disabled"; };
+			P8_29_pinmux { status = "disabled"; };
+			P8_30_pinmux { status = "disabled"; };
+			P8_31_pinmux { status = "disabled"; };
+			P8_33_pinmux { status = "disabled"; };
+			P8_35_pinmux { status = "disabled"; };
+			P8_37_pinmux { status = "disabled"; };
+			P8_43_pinmux { status = "disabled"; };
+			P9_12_pinmux { status = "disabled"; };
+			P9_17_pinmux { status = "disabled"; };
+			P9_18_pinmux { status = "disabled"; };
+			P9_22_pinmux { status = "disabled"; };
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
+				pinctrl-single,pins = <
+					BONE_P8_07 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN7 GPIO66 */
+					BONE_P8_08 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN6 GPIO67 */
+					BONE_P8_27 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN2 GPIO86 */
+					BONE_P8_28 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN4 GPIO88 */
+					BONE_P8_29 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN1 GPIO87 */
+					BONE_P8_30 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN3 GPIO89 */
+					BONE_P8_31 (PIN_OUTPUT | MUX_MODE7)		/* LCD RESET GPIO10 */
+					BONE_P8_33 (PIN_OUTPUT | MUX_MODE7)		/* LCD DC GPIO9 */
+					BONE_P8_35 (PIN_OUTPUT | MUX_MODE7)		/* LED1 GPIO8 */
+					BONE_P8_37 (PIN_OUTPUT | MUX_MODE7)		/* LED2 GPIO78 */
+					BONE_P8_43 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN8 GPIO72 */
+					BONE_P9_12 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN5 GPIO60 */
+					BONE_P9_17 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 CS0 */
+					BONE_P9_18 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 MOSI */
+					BONE_P9_22 (PIN_OUTPUT | MUX_MODE0)		/* LCD SPI0 CLK */
+				>;
+			};
+			
+			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
+				pinctrl-single,pins = <
+					BONE_P8_09 (PIN_OUTPUT_PULLDOWN | MUX_MODE2) /* P8_09: backlight: timer: gpmc_be0n_cle.timer5 (gpio69) */
+				>;
+			};
+		};
+	};
+
+	/*
+	 * Free up the SPI port used by the cape and reallocate it for the LCD.
+	 */
+	fragment@3 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+
+			channel@0 { status = "disabled"; };
+			channel@1 { status = "disabled"; };
+		};
+	};
+
+	/*
+	 * Free up the SPI port used by the cape and reallocate it for the LCD.
+	 */
+	fragment@4 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			adafruit18: adafruit18@0{
+				compatible = "sitronix,st7735r";
+				pinctrl-names = "default";
+				pinctrl-0 = <&bb_lcd_lcd_pins>;
+				reg = <0>;
+				buswidth = <8>;
+				reset-gpios = <&gpio0 10 0>;	/* P8_31: LCD RESET GPIO10 */
+				dc-gpios = <&gpio0 9 0>;	/* P8_33: LCD DC GPIO9 */
+				debug = <1>;
+				spi-max-frequency = <32000000>;
+				rotate = <90>;
+				bgr;
+				fps = <30>;
+			};
+		};
+	};
+
+#if 0
+	/*
+	 * Load the drivers for the buttons and LEDs.
+	 */
+	fragment@5 {
+		target-path="/";
+		__overlay__ {
+
+			gpio-keys {
+				compatible = "gpio-keys";
+				autorepeat;
+
+				lp-left {
+					label = "left";
+					linux,code = <105>;
+					gpios = <&gpio1 28 GPIO_ACTIVE_LOW>;
+				};
+		
+				lp-right {
+					label = "right";
+					linux,code = <106>;
+					gpios = <&gpio1 26 GPIO_ACTIVE_LOW>;
+				};
+		
+				lp-up {
+					label = "up";
+					linux,code = <103>;
+					gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+				};
+		
+				lp-down {
+					label = "down";
+					linux,code = <108>;
+					gpios = <&gpio1 27 GPIO_ACTIVE_LOW>;
+				};
+		
+				rp-left {
+					label = "p";
+					linux,code = <25>;
+					gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+				};
+		
+				rp-right {
+					label = "tab";
+					linux,code = <15>;
+					gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
+				};
+		
+				rp-up {
+					label = "esc";
+					linux,code = <1>;
+					gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
+				};
+		
+				rp-down {
+					label = "enter";
+					linux,code = <28>;
+					gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+				};
+
+				select {
+					label = "five";
+					linux,code = <6>;
+					gpios = <&gpio3 18 GPIO_ACTIVE_LOW>;
+				};
+
+				start {
+					label = "one";
+					linux,code = <2>;
+					gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
+				};
+			};
+		
+			capeleds {
+				compatible = "gpio-leds";
+		
+				pinctrl-names = "default";
+				pinctrl-0 = <
+					&P1_04_gpio_pin	/* left */
+					&P2_03_gpio_pin	/* right */
+				>;
+		
+				led@1 {
+					label = "gamepup::left";
+					gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
+					default-state = "off";
+				};
+		
+				led@2 {
+					label = "gamepup::right";
+					gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+					default-state = "off";
+				};
+			};
+		};
+	};
+#endif
+
+	/* LCD PWM BackLight */
+	fragment@6 {
+		target-path="/";
+		__overlay__ {
+			dmtimerpwm5: dmtimer-pwm-5 {
+				status = "okay";
+				compatible = "ti,omap-dmtimer-pwm";
+				pinctrl-names = "default";
+				pinctrl-0 = <&bb_lcd_pwm_backlight_pins>;
+				
+				#pwm-cells = <2>;
+				ti,timers = <&timer5>;
+				ti,clock-source = <0x00>;   /* timer_sys_ck */
+			};
+		};
+	};
+
+	fragment@7 {
+		target-path="/";
+		__overlay__ {
+			backlight {
+				status = "okay";
+				compatible = "pwm-backlight";
+				pwms = <&dmtimerpwm5 0 5000000>;
+				brightness-levels = <
+				    0  1  2  3  4  5  6  7  8  9
+				    10 11 12 13 14 15 16 17 18 19
+				    20 21 22 23 24 25 26 27 28 29
+				    30 31 32 33 34 35 36 37 38 39
+				    40 41 42 43 44 45 46 47 48 49
+				    50 51 52 53 54 55 56 57 58 59
+				    60 61 62 63 64 65 66 67 68 69
+				    70 71 72 73 74 75 76 77 78 79
+				    80 81 82 83 84 85 86 87 88 89
+				    90 91 92 93 94 95 96 97 98 99
+				    100
+				>;
+				default-brightness-level = <100>;
+			};
+		};
+	};
+};
+						
