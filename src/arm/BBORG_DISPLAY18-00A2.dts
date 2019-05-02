@@ -24,7 +24,7 @@
 		/* the pin header uses */
 		"P8.7",		/* BTN7 GPIO66 */
 		"P8.8",		/* BTN6 GPIO67 */
-		"P8.9",		/* LCD BACKLIGHT TIMER5 */
+		"P8.9",		/* LCD BACKLIGHT TIMER5 GPIO69 */
 		"P8.27",	/* BTN2 GPIO86 */
 		"P8.28",	/* BTN4 GPIO88 */
 		"P8.29",	/* BTN1 GPIO87 */
@@ -69,6 +69,8 @@
 		__overlay__ {
 			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 				pinctrl-single,pins = <
+					BONE_P8_09 (PIN_OUTPUT | MUX_MODE7)		/* LCD BACKLIGHT TIMER5 GPIO69 */
+
 					BONE_P8_07 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN7 GPIO66 */
 					BONE_P8_08 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN6 GPIO67 */
 					BONE_P8_27 (PIN_INPUT_PULLUP | MUX_MODE7)	/* BTN2 GPIO86 */
@@ -125,6 +127,7 @@
 				buswidth = <8>;
 				reset-gpios = <&gpio0 10 0>;	/* P8_31: LCD RESET GPIO10 */
 				dc-gpios = <&gpio0 9 0>;	/* P8_33: LCD DC GPIO9 */
+				led-gpios = <&gpio2 5 0>;	/* P8_09: LCD BACKLIGHT TIMER5 GPIO69 */
 				debug = <1>;
 				spi-max-frequency = <32000000>;
 				rotate = <90>;
@@ -209,21 +212,15 @@
 		
 			capeleds {
 				compatible = "gpio-leds";
-		
-				pinctrl-names = "default";
-				pinctrl-0 = <
-					&P1_04_gpio_pin	/* left */
-					&P2_03_gpio_pin	/* right */
-				>;
-		
+
 				led@1 {
-					label = "gamepup::left";
+					label = "display18::left";
 					gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
 					default-state = "off";
 				};
 		
 				led@2 {
-					label = "gamepup::right";
+					label = "display18::right";
 					gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
 					default-state = "off";
 				};
@@ -232,6 +229,7 @@
 	};
 #endif
 
+#if 0
 	/* LCD PWM BackLight */
 	fragment@6 {
 		target-path="/";
@@ -273,5 +271,6 @@
 			};
 		};
 	};
+#endif
 };
 						
