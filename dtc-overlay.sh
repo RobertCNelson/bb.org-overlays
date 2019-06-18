@@ -11,7 +11,7 @@ pkg="build-essential"
 check_dpkg
 pkg="flex"
 check_dpkg
-pkg="git-core"
+pkg="git"
 check_dpkg
 
 if [ "${deb_pkgs}" ] ; then
