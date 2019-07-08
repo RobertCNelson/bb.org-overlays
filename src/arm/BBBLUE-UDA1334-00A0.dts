@@ -63,15 +63,10 @@
 
 			op-mode = <0>;          /* MCASP_IIS_MODE */
 			tdm-slots = <2>;
-			num-serializer = <16>;
-			serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-				0 0 1 0
-				0 0 0 0
-				0 0 0 0
-				0 0 0 0
-			>;
+			num-serializer = <2>;
+			serial-dir = <1 0>;	/* AXR0: TX, AXR1: inactive */
 			tx-num-evt = <1>;
-			rx-num-evt = <1>;
+			rx-num-evt = <0>;
 		};
 	};
 
@@ -90,17 +85,28 @@
 				clock-frequency = <11289600>;
 			};
 
+			i2s_dac: i2s_dac {
+				#sound-dai-cells = <0>;
+				compatible = "linux,spdif-dit";
+			};
+
 			sound {
 				compatible = "simple-audio-card";
 				model = "i2s-dac";
 				simple-audio-card,format = "i2s";
 				simple-audio-card,name = "i2s-dac";
-				clocks = <&clk_48k_rate &clk_44k1_rate>;
-				clock-names = "mclk_48k", "mclk_44k1";
+				simple-audio-card,bitclock-master = <&mcasp0>;
+				simple-audio-card,frame-master = <&mcasp0>;
 				mcasp-controller = <&mcasp0>;
-				
+
 				simple-audio-card,cpu {
 					sound-dai = <&mcasp0>;
+					clocks = <&clk_48k_rate &clk_44k1_rate>;
+					clock-names = "mclk_48k", "mclk_44k1";
+				};
+
+				simple-audio-card,codec {
+					sound-dai = <&i2s_dac>;
 				};
 			};
 		};
