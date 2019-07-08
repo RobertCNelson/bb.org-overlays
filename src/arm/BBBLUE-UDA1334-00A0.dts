@@ -1,9 +1,23 @@
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2012,2019 Texas Instruments Incorporated - http://www.ti.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
+ *
+ * Created with help from Daniel Kulp
+ *
+ * Tested with http://adafrui.it/3678
+ *
+ * S1.1_1 -> GND
+ * S1.1_2 -> VIN
+ * S1.1_3 -> DIN
+ * S1.1_4 -> WSEL
+ * S1.1_5 -> BCLK
+ * S1.1_6 -> n/c
+ *
+ * Kernel needs CONFIG_SND_SOC_PCM5102A=m
+ *
  */
 
 /dts-v1/;
@@ -21,9 +35,9 @@
 	/* state the resources this cape uses */
 	exclusive-use =
 		/* the pin header uses */
-		"P9.30",	/* (D12) S1.1_3, mcasp0: mcasp0_d0, DIN */
-		"P9.29",	/* (B13) S1.1_4, mcasp0: mcasp0_fsx, WSEL */
-		"P9.31",	/* (A13) S1.1_5, mcasp0: mcasp0_aclkx, BCLK */
+		"P9.30",	/* (D12) S1.1_3, mcasp0_d0, DIN */
+		"P9.29",	/* (B13) S1.1_4, mcasp0_fsx, WSEL */
+		"P9.31",	/* (A13) S1.1_5, mcasp0_aclkx, BCLK */
 		/* the hardware ip uses */
 		"mcasp0";
 
@@ -53,6 +67,34 @@
 		};
 	};
 
+	fragment@2 {
+		target-path = "/";
+		__overlay__ {
+			i2s_dac: i2s_dac {
+				compatible = "ti,pcm5102a";
+				#sound-dai-cells = <0>;
+			};
+
+			sound {
+				compatible = "simple-audio-card";
+				simple-audio-card,format = "i2s";
+
+				simple-audio-card,cpu {
+					sound-dai = <&mcasp0>;
+					bitclock-master;
+				        bitclock-inversion;
+				        frame-master;
+				        system-clock-frequency = <24000000>;
+				        system-clock-direction-out;
+				};
+
+				simple-audio-card,codec {
+					sound-dai = <&i2s_dac>;
+				};
+			};
+		};
+	};
+
 	fragment@3 {
 		target = <&mcasp0>;
 		__overlay__ {
@@ -67,48 +109,7 @@
 			serial-dir = <1 0>;	/* AXR0: TX, AXR1: inactive */
 			tx-num-evt = <1>;
 			rx-num-evt = <0>;
-		};
-	};
-
-	fragment@4 {
-		target = <&ocp>;
-		__overlay__ {
-			clk_48k_rate: clk_48k_rate {
-				#clock-cells = <0>;
-				compatible = "fixed-clock";
-				clock-frequency = <24576000>;
-			};
-
-			clk_44k1_rate: clk_44k1_rate {
-				#clock-cells = <0>;
-				compatible = "fixed-clock";
-				clock-frequency = <11289600>;
-			};
-
-			i2s_dac: i2s_dac {
-				#sound-dai-cells = <0>;
-				compatible = "linux,spdif-dit";
-			};
-
-			sound {
-				compatible = "simple-audio-card";
-				model = "i2s-dac";
-				simple-audio-card,format = "i2s";
-				simple-audio-card,name = "i2s-dac";
-				simple-audio-card,bitclock-master = <&mcasp0>;
-				simple-audio-card,frame-master = <&mcasp0>;
-				mcasp-controller = <&mcasp0>;
-
-				simple-audio-card,cpu {
-					sound-dai = <&mcasp0>;
-					clocks = <&clk_48k_rate &clk_44k1_rate>;
-					clock-names = "mclk_48k", "mclk_44k1";
-				};
-
-				simple-audio-card,codec {
-					sound-dai = <&i2s_dac>;
-				};
-			};
+			#sound-dai-cells = <0>;
 		};
 	};
 };
