@@ -1,0 +1,54 @@
+/*
+ * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * GP0_1 -> GND
+ * GP0_2 -> 3.3V
+ * GP0_3 -> GPIO1_25 -> MOSI
+ * GP0_4 -> GPIO1_17 -> MISO
+ * GP0_5 -> GPIO3_20 -> SCLK
+ * GP0_6 -> GPIO3_17 -> CS
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,am335x-bone-blue", "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BBBLUE-GP0-SPI";
+	version = "00A0";
+
+	fragment@0 {
+		target-path = "/";
+		__overlay__ {
+			spi_gp0: spi_gp0 {
+				compatible = "spi-gpio";
+				
+				#address-cells = <1>;
+				#size-cells = <0>;
+				ranges;
+		
+				mosi-gpios = <&gpio1 25 0>;
+				miso-gpios = <&gpio1 17 0>;
+				sck-gpios = <&gpio3 20 0>;
+				cs-gpios = <&gpio3 17 0>;
+				num-chipselects = <1>;
+		
+				/* clients */
+				spidev_gp0: spidev_gp0@0 {
+					compatible = "spidev";
+					reg = <0>;      
+					#address-cells = <1>;
+					#size-cells = <0>;
+					spi-max-frequency = <2000000>;
+                                };
+			};
+		};
+	};
+};
