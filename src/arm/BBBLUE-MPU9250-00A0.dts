@@ -1,0 +1,47 @@
+/*
+ * Copyright (C) 2012,2019 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	compatible = "ti,am335x-bone-blue", "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BBBLUE-MPU9250";
+	version = "00A0";
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			mpu9250@68 {
+				compatible = "invensense,mpu9250";
+				reg = <0x68>;
+				interrupt-parent = <&gpio3>;
+				interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
+				i2c-gate {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					ax8975@c {
+						compatible = "asahi-kasei,ak8975";
+						reg = <0x0c>;
+					};
+				};
+			};
+		};
+	};
+};
