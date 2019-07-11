@@ -1,0 +1,115 @@
+/*
+ * Copyright (C) 2012,2019 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Created with help from Daniel Kulp
+ *
+ * Tested with http://adafrui.it/3678
+ *
+ * S1.1_1 -> GND
+ * S1.1_2 -> VIN
+ * S1.1_3 -> DIN
+ * S1.1_4 -> WSEL
+ * S1.1_5 -> BCLK
+ * S1.1_6 -> n/c
+ *
+ * Kernel needs CONFIG_SND_SOC_PCM5102A=m
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/ {
+	compatible = "ti,am335x-bone-blue", "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BBBLUE-UDA1334";
+	version = "00A0";
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.30",	/* (D12) S1.1_3, mcasp0_d0, DIN */
+		"P9.29",	/* (B13) S1.1_4, mcasp0_fsx, WSEL */
+		"P9.31",	/* (A13) S1.1_5, mcasp0_aclkx, BCLK */
+		/* the hardware ip uses */
+		"mcasp0";
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_30_pinmux { status = "disabled"; };
+			P9_29_pinmux { status = "disabled"; };
+			P9_31_pinmux { status = "disabled"; };
+		};
+	};
+
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			uda1334_pins: pinmux_uda1334_pins {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x990, PIN_INPUT | MUX_MODE0) /* (A13) mcasp0_aclkx.mcasp0_aclkx */
+					AM33XX_IOPAD(0x994, PIN_INPUT | MUX_MODE0) /* (B13) mcasp0_fsx.mcasp0_fsx */
+					AM33XX_IOPAD(0x998, PIN_INPUT | MUX_MODE0) /* (D12) mcasp0_axr0.mcasp0_axr0 */
+					/* AM33XX_IOPAD(0x9a8, PIN_INPUT | MUX_MODE0) /* (D13) mcasp0_axr1.mcasp0_axr1 */
+				>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target-path = "/";
+		__overlay__ {
+			i2s_dac: i2s_dac {
+				compatible = "ti,pcm5102a";
+				#sound-dai-cells = <0>;
+			};
+
+			sound {
+				compatible = "simple-audio-card";
+				simple-audio-card,format = "i2s";
+
+				simple-audio-card,cpu {
+					sound-dai = <&mcasp0>;
+					bitclock-master;
+					bitclock-inversion;
+					frame-master;
+					system-clock-frequency = <24000000>;
+					system-clock-direction-out;
+				};
+
+				simple-audio-card,codec {
+					sound-dai = <&i2s_dac>;
+				};
+			};
+		};
+	};
+
+	fragment@3 {
+		target = <&mcasp0>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&uda1334_pins>;
+
+			status = "okay";
+
+			op-mode = <0>;          /* MCASP_IIS_MODE */
+			tdm-slots = <2>;
+			num-serializer = <2>;
+			serial-dir = <1 0>;	/* AXR0: TX, AXR1: inactive */
+			tx-num-evt = <1>;
+			rx-num-evt = <0>;
+			#sound-dai-cells = <0>;
+		};
+	};
+};
