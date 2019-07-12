@@ -82,10 +82,10 @@
 				simple-audio-card,cpu {
 					sound-dai = <&mcasp0>;
 					bitclock-master;
-				        bitclock-inversion;
-				        frame-master;
-				        system-clock-frequency = <24000000>;
-				        system-clock-direction-out;
+					bitclock-inversion;
+					frame-master;
+					system-clock-frequency = <24000000>;
+					system-clock-direction-out;
 				};
 
 				simple-audio-card,codec {
