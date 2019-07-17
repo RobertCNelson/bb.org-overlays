@@ -24,7 +24,7 @@
 
 			chosen {
 				overlays {
-					BB-BONE-NH7C-01-A0.dts = __TIMESTAMP__;
+					BB-BONE-NH7C-01-A0 = __TIMESTAMP__;
 				};
 			};
 		};

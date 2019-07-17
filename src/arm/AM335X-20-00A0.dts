@@ -24,7 +24,7 @@
 
 			chosen {
 				overlays {
-					AM335X-20-00A0.dts = __TIMESTAMP__;
+					AM335X-20-00A0 = __TIMESTAMP__;
 				};
 			};
 		};

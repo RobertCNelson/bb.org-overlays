@@ -70,7 +70,7 @@
 
 			chosen {
 				overlays {
-					BB-BONE-LCD7-01-00A1.dts = __TIMESTAMP__;
+					BB-BONE-LCD7-01-00A1 = __TIMESTAMP__;
 				};
 			};
 		};

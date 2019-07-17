@@ -113,7 +113,7 @@
 			 */
 			chosen {
 				overlays {
-					BB-BBGW-WL1835-00A0.dts = __TIMESTAMP__;
+					BB-BBGW-WL1835-00A0 = __TIMESTAMP__;
 				};
 			};
 

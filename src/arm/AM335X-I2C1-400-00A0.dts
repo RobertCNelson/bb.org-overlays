@@ -19,7 +19,7 @@
 
 			chosen {
 				overlays {
-					AM335X-I2C1-400-00A0.dts = __TIMESTAMP__;
+					AM335X-I2C1-400-00A0 = __TIMESTAMP__;
 				};
 			};
 		};

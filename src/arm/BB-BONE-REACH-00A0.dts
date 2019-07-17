@@ -37,7 +37,7 @@
 
 			chosen {
 				overlays {
-					BB-BONE-REACH-00A0.dts = __TIMESTAMP__;
+					BB-BONE-REACH-00A0 = __TIMESTAMP__;
 				};
 			};
 		};

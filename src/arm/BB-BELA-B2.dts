@@ -22,7 +22,7 @@
 
 			chosen {
 				overlays {
-					BB-BELA-B2.dts = __TIMESTAMP__;
+					BB-BELA-B2 = __TIMESTAMP__;
 				};
 			};
 		};

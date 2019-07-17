@@ -50,7 +50,7 @@
 
 			chosen {
 				overlays {
-					BBBLUE-UDA1334-00A0.dts = __TIMESTAMP__;
+					BBBLUE-UDA1334-00A0 = __TIMESTAMP__;
 				};
 			};
 		};

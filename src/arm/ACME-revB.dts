@@ -37,7 +37,7 @@
 
 			chosen {
 				overlays {
-					ACME-revB.dts = __TIMESTAMP__;
+					ACME-revB = __TIMESTAMP__;
 				};
 			};
 		};

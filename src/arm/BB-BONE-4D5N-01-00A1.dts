@@ -60,7 +60,7 @@
 
 			chosen {
 				overlays {
-					BB-BONE-4D5N-01-00A1.dts = __TIMESTAMP__;
+					BB-BONE-4D5N-01-00A1 = __TIMESTAMP__;
 				};
 			};
 		};
