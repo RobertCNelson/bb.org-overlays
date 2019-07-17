@@ -32,9 +32,24 @@
 		"uart2";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-BONE-SERL-03-00A1 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_21_pinmux { status = "disabled"; };	/* P9_21: spi0_d0.uart2_txd */
@@ -42,7 +57,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_uart2_pins: pinmux_bb_uart2_pins {
@@ -54,7 +69,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&uart2>;
 		__overlay__ {
 			status = "okay";

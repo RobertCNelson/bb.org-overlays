@@ -36,9 +36,24 @@
 		"mcasp0", "spi_gpio";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-CTAG-SW-8CH-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_30_pinmux { status = "disabled"; };	/* mcasp0_axr0 		audio in */
@@ -55,7 +70,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			mcasp0_pins: pinmix_mcasp0_pins {
@@ -81,7 +96,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&spi_gpio>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -104,7 +119,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&mcasp0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -126,7 +141,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&ocp>;
 		__overlay__ {
 

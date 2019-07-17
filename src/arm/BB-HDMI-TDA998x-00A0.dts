@@ -15,9 +15,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-HDMI-TDA998x-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_25_pinmux { status = "disabled"; };	/* mcasp0_ahclkx */
@@ -47,7 +62,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			nxp_hdmi_bonelt_pins: nxp_hdmi_bonelt_pins {
@@ -87,7 +102,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target-path="/";
 		__overlay__ {
 			clk_mcasp0_fixed: clk_mcasp0_fixed {
@@ -122,7 +137,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
@@ -142,7 +157,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&i2c0>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -171,7 +186,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&mcasp0>;
 		__overlay__ {
 			#sound-dai-cells = <0>;

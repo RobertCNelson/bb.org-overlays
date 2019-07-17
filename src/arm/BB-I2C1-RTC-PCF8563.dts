@@ -29,9 +29,24 @@
 		"i2c1";		// hardware ip used
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-I2C1-RTC-PCF8563 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_17_pinmux { status = "disabled"; };	/* i2c1_scl */
@@ -39,7 +54,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 			aliases {
@@ -49,7 +64,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -62,7 +77,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c1>;
 		__overlay__ {
 			status = "okay";

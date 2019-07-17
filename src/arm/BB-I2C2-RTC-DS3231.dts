@@ -24,7 +24,6 @@
 /plugin/;
 
 /{
-
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
 	/* identification */
@@ -34,7 +33,22 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	/*
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-I2C2-RTC-DS3231 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target-path="/";
 		__overlay__ {
 			aliases {
@@ -57,7 +71,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";
