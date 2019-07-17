@@ -11,13 +11,13 @@
 
 / {
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					AM335X-I2C2-400-00A0.dts = __TIMESTAMP__;
 				};

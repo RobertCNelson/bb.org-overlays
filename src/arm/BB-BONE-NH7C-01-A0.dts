@@ -16,13 +16,13 @@
 / {
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					BB-BONE-NH7C-01-A0.dts = __TIMESTAMP__;
 				};

@@ -100,9 +100,9 @@
 			compatible = "ti,am335x-bone-green-wireless", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
 			/*
-			 * Document loaded overlays under: /proc/device-tree/build/overlays/
+			 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 			 */
-			build {
+			chosen {
 				overlays {
 					BB-BBGW-WL1835-1BIT-00A0.dts = __TIMESTAMP__;
 				};

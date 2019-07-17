@@ -29,9 +29,9 @@
 		__overlay__ {
 
 			/*
-			 * Document loaded overlays under: /proc/device-tree/build/overlays/
+			 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 			 */
-			build {
+			chosen {
 				overlays {
 					BBBLUE-GP0-SPI-00A0.dts = __TIMESTAMP__;
 				};

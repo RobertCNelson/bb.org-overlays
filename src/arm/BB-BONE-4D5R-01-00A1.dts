@@ -59,13 +59,13 @@
 		"lcdc";
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					BB-BONE-4D5R-01-00A1.dts = __TIMESTAMP__;
 				};

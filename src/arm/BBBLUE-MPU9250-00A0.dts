@@ -20,13 +20,13 @@
 	version = "00A0";
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					BBBLUE-MPU9250-00A0.dts = __TIMESTAMP__;
 				};

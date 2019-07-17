@@ -62,13 +62,13 @@
 		"tscadc";
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					BB-BONE-LCD3-01-00A2.dts = __TIMESTAMP__;
 				};

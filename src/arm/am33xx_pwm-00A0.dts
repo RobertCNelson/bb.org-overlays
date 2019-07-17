@@ -17,13 +17,13 @@
 	version = "00A0";
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";
 		__overlay__ {
 
-			build {
+			chosen {
 				overlays {
 					am33xx_pwm-00A0.dts = __TIMESTAMP__;
 				};

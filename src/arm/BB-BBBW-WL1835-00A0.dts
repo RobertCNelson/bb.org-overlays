@@ -21,9 +21,9 @@
 			compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
 			/*
-			 * Document loaded overlays under: /proc/device-tree/build/overlays/
+			 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 			 */
-			build {
+			chosen {
 				overlays {
 					BB-BBBW-WL1835-00A0.dts = __TIMESTAMP__;
 				};
