@@ -14,9 +14,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					BB-BELA-B2.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P2_09_pinmux { status = "disabled"; }; 
@@ -51,7 +66,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&i2c0>;
 		__overlay__ {
 			tda19988 {
@@ -60,7 +75,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			/* Pinmux for McASP0 (audio i/o) */
@@ -152,7 +167,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -164,7 +179,7 @@
 	};
 
 	/* McASP config */
-	fragment@4 {
+	fragment@5 {
 		target = <&mcasp0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -188,7 +203,7 @@
 	};
 
 	/* PRU config */
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 			ocp {
@@ -217,7 +232,7 @@
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&spi0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -227,7 +242,7 @@
 		};
 	};
 
-	fragment@7 {
+	fragment@8 {
 		target = <&ocp>;
 		__overlay__ {
 			P2_01_pinmux{ pinctrl-0 = <&P2_01_bela>; };
@@ -251,7 +266,7 @@
 		};
 	};
 
-	fragment@8 {
+	fragment@9 {
 		target-path="/";
 		__overlay__ {
 			bela_digitals {

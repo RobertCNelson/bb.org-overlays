@@ -19,7 +19,22 @@
 	part-number = "BBBLUE-MPU9250";
 	version = "00A0";
 
+	/*
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					BBBLUE-MPU9250-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&i2c2>;
 		__overlay__ {
 			#address-cells = <1>;

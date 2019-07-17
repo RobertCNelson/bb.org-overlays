@@ -27,6 +27,16 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
+
+			/*
+			 * Document loaded overlays under: /proc/device-tree/build/overlays/
+			 */
+			build {
+				overlays {
+					BBBLUE-GP0-SPI-00A0.dts = __TIMESTAMP__;
+				};
+			};
+
 			spi_gp0: spi_gp0 {
 				compatible = "spi-gpio";
 				

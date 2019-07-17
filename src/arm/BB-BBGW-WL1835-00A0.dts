@@ -108,6 +108,15 @@
 			model = "TI AM335x BeagleBone Green Wireless";
 			compatible = "ti,am335x-bone-green-wireless", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
+			/*
+			 * Document loaded overlays under: /proc/device-tree/build/overlays/
+			 */
+			build {
+				overlays {
+					BB-BBGW-WL1835-00A0.dts = __TIMESTAMP__;
+				};
+			};
+
 			wlan_en_reg: fixedregulator@2 {
 				compatible = "regulator-fixed";
 				regulator-name = "wlan-en-regulator";
