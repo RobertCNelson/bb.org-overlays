@@ -28,7 +28,22 @@
 
 		"tscadc";	// hardware ip used
 
+	/*
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					BB-ADC-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&tscadc>;
 		__overlay__ {
 

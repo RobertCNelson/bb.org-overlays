@@ -16,9 +16,24 @@
 	version = "00A0";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					AM335X-PRU-RPROC-4-14-TI-PRUCAPE-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr, OMAP_MUX_MODE6 | AM33XX_PIN_INPUT, PRU CAPE SW1 */
@@ -49,7 +64,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pru_cape_bone_pins: pru_cape_bone_pins {
@@ -84,7 +99,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target-path="/";
 		__overlay__ {
 

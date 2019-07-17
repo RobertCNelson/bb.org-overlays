@@ -10,7 +10,22 @@
 /plugin/;
 
 / {
+	/*
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					AM335X-I2C2-400-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";

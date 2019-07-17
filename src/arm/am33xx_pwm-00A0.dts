@@ -16,56 +16,71 @@
 	part-number = "am33xx_pwm";
 	version = "00A0";
 
+	/*
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					am33xx_pwm-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&epwmss0>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&ehrpwm0>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ecap0>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&epwmss2>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target = <&ehrpwm2>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@7 {
+	fragment@8 {
 		target = <&ecap2>;
 		__overlay__ {
 			status = "okay";

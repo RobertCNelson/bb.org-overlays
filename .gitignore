@@ -1,4 +1,5 @@
 .*
 !.gitignore
 *.dtbo
+config-pin
 
