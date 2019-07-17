@@ -59,9 +59,24 @@
 		"lcdc";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					BB-BONE-4D7R-01-00A1.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_45_pinmux { status = "disabled"; };	/* lcd: lcd_data0 */
@@ -96,7 +111,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -149,14 +164,14 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -165,7 +180,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&i2c1>;
 		__overlay__ {
 			status = "okay";
@@ -198,14 +213,14 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target-path="/";
 		__overlay__ {
 
