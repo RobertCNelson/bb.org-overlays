@@ -5,12 +5,13 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
@@ -61,9 +62,24 @@
 		"tscadc";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/build/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			build {
+				overlays {
+					BB-BONE-LCD3-01-00A2.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr.gpio3_19 */
@@ -100,7 +116,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -154,14 +170,14 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -170,17 +186,16 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&tscadc>;
 		__overlay__ {
-
 			status = "okay";
 			tsc {
 				ti,wires = <4>;
@@ -199,7 +214,7 @@
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target-path="/";
 		__overlay__ {
 			backlight {
