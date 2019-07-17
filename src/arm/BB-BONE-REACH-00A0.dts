@@ -29,9 +29,24 @@
 		"P9.27"; /* DIR_EXT_5	*/
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-BONE-REACH-00A0.dts = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_07_pinmux { status = "disabled"; };
@@ -44,7 +59,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pruicss_stepper_pins_reach: pinmux_pruicss_stepper_pins_reach{
@@ -66,7 +81,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&pruss>;
 		__overlay__{
 			status = "okay";
@@ -93,7 +108,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -113,7 +128,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&tscadc>;
 		__overlay__ {
 			status = "okay";
