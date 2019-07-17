@@ -1,6 +1,6 @@
 Build Status
 
- [![Build Status](http://rcn-ee.online:8080/buildStatus/icon?job=beagleboard_overlays/master)](http://rcn-ee.online:8080/job/beagleboard_overlays/job/master/)
+ [![Build Status](http://gfnd.rcn-ee.org:8080/buildStatus/icon?job=beagleboard_overlays/master)](http://gfnd.rcn-ee.org:8080/job/beagleboard_overlays/job/master/)
 
 
 Users:
