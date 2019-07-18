@@ -159,11 +159,26 @@
 		"pru1",
 		"pruss";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					univ-bbgw-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
 	/************************/
 	/* Pin Multiplexing */
 	/************************/
 
-	fragment@1 {
+	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -859,7 +874,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal {
