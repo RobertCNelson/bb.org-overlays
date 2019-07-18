@@ -18,16 +18,31 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-mBC3-RTC-6-CLICK = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_18_pinmux { status = "disabled"; };	/* MFP - gpio2[1] */
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 			aliases {
@@ -37,7 +52,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";

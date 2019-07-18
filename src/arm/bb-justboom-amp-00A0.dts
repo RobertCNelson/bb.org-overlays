@@ -28,9 +28,24 @@
 		"mcasp0";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					bb-justboom-amp-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_18_pinmux { status = "disabled"; };	/* P9_18: spi0_d1.i2c1_sda,SLEWCTRL_SLOW | INPUT_PULLUP |MODE2*/
@@ -43,7 +58,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -66,7 +81,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -87,7 +102,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&mcasp0>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -109,7 +124,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&ocp>;
 		__overlay__ {
 

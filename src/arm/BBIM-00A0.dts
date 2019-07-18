@@ -82,7 +82,22 @@
 		"uart4",
 		"gpio0_5";
 
+	/*
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BBIM-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -207,11 +222,10 @@
 				AM33XX_IOPAD(0x09ac, PIN_INPUT | MUX_MODE7) >; };
 			P9_25_pruin_pin: pinmux_P9_25_pruin_pin { pinctrl-single,pins = <
 				AM33XX_IOPAD(0x09ac, PIN_INPUT | MUX_MODE6) >; };
-
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 
@@ -251,7 +265,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&dcan1>;
 		__overlay__ {
 			status = "okay";
@@ -260,8 +274,7 @@
 		};
 	};
 
-
-	fragment@3 {
+	fragment@4 {
 		target = <&uart4>;
 		__overlay__ {
 			status = "okay";
@@ -270,8 +283,7 @@
 		};
 	};
 
-
-	fragment@4 {
+	fragment@5 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -392,7 +404,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-bbim {

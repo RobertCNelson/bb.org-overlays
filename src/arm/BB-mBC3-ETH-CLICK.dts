@@ -20,9 +20,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-mBC3-ETH-CLICK = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_14_pinmux { status = "disabled"; };	/* RESET - gpio0[26] */
@@ -44,7 +59,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			mbc3_gpio_pins: pinmux-mbc3-gpio-pins {
@@ -67,7 +82,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&spi0>;
 		__overlay__ {
 			status = "okay";
@@ -79,7 +94,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;

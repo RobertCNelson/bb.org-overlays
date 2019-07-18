@@ -36,9 +36,24 @@
 		"gpio1_17";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-BONE-CRYPTO-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_23_pinmux { status = "disabled"; };	/* P9_23: gpio1_17 FAST | OUTPUT | PULLUP | MODE7 */
@@ -49,7 +64,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			cryptocape_pins: pinmux_cryptocape_pins {
@@ -68,7 +83,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&uart4>;
 		__overlay__ {
 			status = "okay";
@@ -77,7 +92,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c2>;
 		__overlay__ {
 
