@@ -1,7 +1,9 @@
 
-DTC ?= /usr/bin/dtc
+DTC ?= dtc
 CPP ?= cpp
 DESTDIR ?=
+
+DTCVERSION ?= $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
 
 MAKEFLAGS += -rR --no-print-directory
 
