@@ -29,7 +29,7 @@
 		"dcan1";
 
 	/*
-	 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
 		target-path="/";

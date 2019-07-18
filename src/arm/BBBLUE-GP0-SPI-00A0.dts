@@ -29,7 +29,7 @@
 		__overlay__ {
 
 			/*
-			 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
+			 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 			 */
 			chosen {
 				overlays {

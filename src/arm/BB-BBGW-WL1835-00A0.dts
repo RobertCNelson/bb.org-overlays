@@ -109,7 +109,7 @@
 			compatible = "ti,am335x-bone-green-wireless", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
 			/*
-			 * Document loaded overlays under: /proc/device-tree/chosen/overlays/
+			 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 			 */
 			chosen {
 				overlays {
