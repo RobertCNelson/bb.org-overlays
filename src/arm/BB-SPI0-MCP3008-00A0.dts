@@ -30,9 +30,24 @@
 		"spi0";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-SPI0-MCP3008-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
@@ -42,7 +57,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_spi0_pins: pinmux_bb_spi0_pins {
@@ -56,7 +71,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;

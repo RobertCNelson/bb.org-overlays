@@ -19,7 +19,22 @@
 #include <dt-bindings/interrupt-controller/irq.h>
 
 / {
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BBORG_TECHLAB-00A2 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&spi1>;
 		__overlay__ {
 			status = "okay";
@@ -28,7 +43,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -50,7 +65,7 @@
 	/*
 	 * Load the drivers for the LEDs.
 	 */
-	fragment@2 {
+	fragment@3 {
 		target-path="/";
 		__overlay__ {
 			techlab_sevenseg {
@@ -193,7 +208,7 @@
 	/*
 	 * Load driver for accelerometer
 	 */
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c2>;
 		__overlay__ {
 			#address-cells = <1>;

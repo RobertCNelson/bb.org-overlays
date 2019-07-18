@@ -14,9 +14,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BBORG_GAMEPUP-00A2 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P1_04_pinmux { status = "disabled"; };	/* LEDs - left */
@@ -44,7 +59,7 @@
 	/*
 	 * Free up the gpios used by the cape-universal gpio helpers.
 	 */
-	fragment@1 {
+	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal { status = "disabled"; };
@@ -54,7 +69,7 @@
 	/*
 	 * Make a new set of gpio helpers.
 	 */
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal@1 {
@@ -244,7 +259,7 @@
 	/*
 	 * Free up the SPI port used by the cape and reallocate it for the LCD.
 	 */
-	fragment@3 {
+	fragment@4 {
 		target = <&spi0>;
 		__overlay__ {
 			status = "okay";
@@ -257,7 +272,7 @@
 	/*
 	 * Free up the SPI port used by the cape and reallocate it for the LCD.
 	 */
-	fragment@4 {
+	fragment@5 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -292,7 +307,7 @@
 	/*
 	 * Load the drivers for the buttons and LEDs.
 	 */
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 
@@ -402,7 +417,7 @@
 	/*
 	 * Load ALSA driver for piezo
 	 */
-	fragment@6 {
+	fragment@7 {
 		target-path="/";
 		__overlay__ {
 			sndpwm {

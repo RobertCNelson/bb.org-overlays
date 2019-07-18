@@ -38,9 +38,24 @@
 		"dcan1";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BBORG_COMMS-00A2 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_24_pinmux { status = "disabled"; };	/* P9_24: uart1_txd.d_can1_rx */
@@ -50,7 +65,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bborg_comms_can_pins: pinmux_comms_can_pins {
@@ -68,7 +83,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&dcan1>;
 		__overlay__ {
 			status = "okay";
@@ -77,7 +92,7 @@
 		};
 	};
 	
-	fragment@3 {
+	fragment@4 {
 		target = <&uart4>;
 		__overlay__ {
 			status = "okay";

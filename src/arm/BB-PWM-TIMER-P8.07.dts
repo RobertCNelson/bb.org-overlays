@@ -14,16 +14,31 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BB-PWM-TIMER-P8.07 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_07_pinmux { status = "disabled"; };	/* gpio2_2.timer4 */
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			timer4_pin: pinmux_timer4_pin {
@@ -34,7 +49,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target-path="/";
 		__overlay__ {
 			dmtimer-pwm-4 {
