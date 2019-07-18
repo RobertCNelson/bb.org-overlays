@@ -17,9 +17,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					PB-UART4-TESEO-LIV3F = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P1_04_pinmux { status = "disabled"; };	/* gpio2_25 - RST */
@@ -29,7 +44,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pb_pps_gpio_pins: pinmux-pb-pps-gpio-pins {
@@ -48,7 +63,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&uart4>;
 		__overlay__ {
 			status = "okay";
@@ -57,7 +72,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target-path="/";
 		__overlay__ {
 			pps {

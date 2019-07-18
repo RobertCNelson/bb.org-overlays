@@ -20,9 +20,24 @@
 
 / {
 	/*
-	 * Load driver for accelerometer
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					PB-I2C2-ACCEL-TECHLAB-CAPE = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Load driver for accelerometer
+	 */
+	fragment@1 {
 		target = <&i2c2>;
 		__overlay__ {
 			#address-cells = <1>;

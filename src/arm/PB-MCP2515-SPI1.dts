@@ -6,8 +6,22 @@
 #include <dt-bindings/interrupt-controller/irq.h>
 
 / {
-        
-        fragment@0 {
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					PB-MCP2515-SPI1 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+        fragment@1 {
                 target = <&ocp>;
                 __overlay__ {
                         P2_25_pinmux { status = "disabled"; };  /* SPI1 MOSI - gpio1_9 */
@@ -22,7 +36,7 @@
                 };
         };
 
-        fragment@1 {
+        fragment@2 {
                 target = <&spi1>;
                 __overlay__ {
                         status = "okay";
@@ -48,8 +62,7 @@
                 };
         };
 
-
-        fragment@2 {
+        fragment@3 {
                 target = <&am33xx_pinmux>;
                 __overlay__ {
                         mcp2515_int: mcp2515_int {
@@ -58,7 +71,7 @@
                 };
         };
 
-    fragment@3 {
+    fragment@4 {
         target-path = "/";
         __overlay__ {
             mcp2515_clock: mcp2515_clock {
@@ -69,7 +82,7 @@
         };
     };
 
-    fragment@4 {
+    fragment@5 {
         target = <&spi1>;
         __overlay__ {
             #address-cells = <1>;

@@ -13,7 +13,22 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					PB-I2C1-RTC-6-CLICK = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target-path="/";
 		__overlay__ {
 
@@ -24,7 +39,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&i2c1>;
 		__overlay__ {
 			status = "okay";

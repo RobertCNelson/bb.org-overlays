@@ -18,9 +18,24 @@
 
 / {
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					PB-SPI1-MICROSD-CLICK = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P1_36_pinmux { status = "disabled"; };	/* CD - gpio3_14*/
@@ -31,7 +46,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&spi1>;
 		__overlay__ {
 			status = "okay";
@@ -48,7 +63,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
