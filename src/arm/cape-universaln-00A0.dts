@@ -173,7 +173,7 @@
 		"pru1",
 		"pruss";
 
-	fragment@0 {
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 			__overlay__ {
 
@@ -1387,7 +1387,7 @@
 	/* Pin Multiplexing */
 	/************************/
 
-	fragment@1 {
+	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -2463,7 +2463,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal {

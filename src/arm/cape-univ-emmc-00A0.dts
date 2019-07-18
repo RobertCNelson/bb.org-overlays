@@ -44,7 +44,22 @@
 		"P8.24", /* emmc */
 		"P8.25"; /* emmc */
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					cape-univ-emmc-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 			__overlay__ {
 
@@ -210,7 +225,7 @@
 	/* Pin Multiplexing */
 	/************************/
 
-	fragment@1 {
+	fragment@2 {
 		target = <&ocp>;
 		__overlay__ {
 
@@ -368,7 +383,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&ocp>;
 		__overlay__ {
 			cape-universal {
