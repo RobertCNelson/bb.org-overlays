@@ -40,7 +40,11 @@ DTC_FLAGS += -Wno-unit_address_vs_reg
 #http://snapshot.debian.org/archive/debian/20170925T220404Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.4-1_amd64.deb
 
 ifeq "$(DTCVERSION)" "1.4.5"
-	#BROKEN!!!!
+	#GIT BROKEN!!!! Ubuntu Bionic has patches..
+	DTC_FLAGS += -Wno-dmas_property
+	DTC_FLAGS += -Wno-gpios_property
+	DTC_FLAGS += -Wno-pwms_property
+	DTC_FLAGS += -Wno-interrupts_property
 endif
 
 ifeq "$(DTCVERSION)" "1.4.6"
