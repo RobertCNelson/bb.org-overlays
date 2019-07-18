@@ -15,7 +15,22 @@
 	part-number = "uio_pruss_enable";
 	version = "00A0";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					uio_pruss_enable-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&pruss>;
 		__overlay__ {
 

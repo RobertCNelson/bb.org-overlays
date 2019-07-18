@@ -108,10 +108,23 @@ Bit 0 /
 		"spi1",
 		"tscadc";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					RoboticsCape-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
 
 
-
-fragment@0 {
+fragment@1 {
 	target = <&am33xx_pinmux>;
 	__overlay__ {
 		/****************************************
@@ -223,7 +236,7 @@ fragment@0 {
 	Pinmux Helper
 	activates the pinmux helper list of pin modes
 ****************************************/
-fragment@1 {
+fragment@2 {
 	target = <&ocp>;
 		__overlay__ {
 			test_helper: helper {
@@ -239,52 +252,49 @@ fragment@1 {
 /****************************************
  		PWMSS
 ****************************************/
-fragment@2 {
+fragment@3 {
 	target = <&epwmss0>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-fragment@3 {
+fragment@4 {
 	target = <&epwmss1>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-fragment@4 {
+fragment@5 {
 	target = <&epwmss2>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-
-fragment@5 {
+fragment@6 {
 	target = <&ehrpwm0>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-fragment@6 {
+fragment@7 {
 	target = <&ehrpwm1>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-fragment@7 {
+fragment@8 {
 	target = <&ehrpwm2>;
 	__overlay__ {
 		status = "okay";
 	};
 };
 
-
-
-fragment@8 {
+fragment@9 {
 	target = <&eqep0>;
 	__overlay__ {
 		count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
@@ -298,7 +308,7 @@ fragment@8 {
 	};
 };
 
-fragment@9 {
+fragment@10 {
 	target = <&eqep1>;
 	__overlay__ {
 		count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
@@ -311,7 +321,7 @@ fragment@9 {
 	};
 };
 
-fragment@10 {
+fragment@11 {
 	target = <&eqep2>;
 	__overlay__ {
 		count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
