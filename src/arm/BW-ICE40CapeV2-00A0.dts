@@ -50,9 +50,24 @@
 		"spi1";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					BW-ICE40CapeV2-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_31_pinmux { status = "disabled"; };	/* P9_31: mcasp0_aclkx.spi1_sclk, INPUT_PULLUP | MODE3 */
@@ -88,7 +103,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bw_spi1_pins: pinmux_bw_spi1_pins {
@@ -132,7 +147,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -169,7 +184,7 @@
 		};
 	};
 	/*
-	fragment@3 {
+	fragment@4 {
 		target = <&base_fpga_region>;
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -180,7 +195,7 @@
 		};
 	};*/
 
-	fragment@4 {
+	fragment@5 {
 		target = <&gpmc>;
 		depth = <1>;	/* only create devices on depth 1 */
 

@@ -26,7 +26,22 @@
 	exclusive-use =
 	"gpio3_13";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					dev-USB-PWR-CTL-00A1 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -38,7 +53,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target-path="/";
 		__overlay__ {
 

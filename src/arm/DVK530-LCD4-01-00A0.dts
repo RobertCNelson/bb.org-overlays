@@ -52,9 +52,24 @@
 		"lcd";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					DVK551-LCD4-01-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_45_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
@@ -83,7 +98,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
@@ -120,14 +135,14 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&epwmss1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&ehrpwm1>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -136,14 +151,14 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&tscadc>;
 		__overlay__ {
 			status = "okay";
@@ -161,7 +176,7 @@
 		};
 	};
 
-	fragment@6 {
+	fragment@7 {
 		target-path="/";
 		__overlay__ {
 			backlight {

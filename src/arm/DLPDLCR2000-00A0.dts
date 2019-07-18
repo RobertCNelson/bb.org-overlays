@@ -64,9 +64,24 @@
 		"lcd";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					DLPDLCR2000-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_45_pinmux { status = "disabled"; };	/* lcd: lcd_data0 */
@@ -105,7 +120,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 
@@ -153,7 +168,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&lcdc>;
 		__overlay__ {
 			status = "okay";
@@ -161,7 +176,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&i2c2>;
 		__overlay__ {
 			status = "okay";
@@ -181,7 +196,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target-path="/";
 		__overlay__ {
 
@@ -225,7 +240,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@6 {
 		target = <&ocp>;
 		__overlay__ {
 			valversled_helper {

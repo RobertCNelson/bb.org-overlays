@@ -45,11 +45,25 @@
 		"gpio2_3",
 		"gpio2_5";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					NL-AB-BBBC-00D0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
 
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
-	fragment@0 {
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_24_pinmux { status = "disabled"; };
@@ -63,9 +77,7 @@
 		};
 	};
 
-	/*Mux the Pins */
-
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			/*CONFIGURE CAN1*/
@@ -99,16 +111,7 @@
 		};
 	};
 
-/*=============Enable the device ==================*/
-
-/*============Connect the device to user interface driver ==============*/
-/*To connect the device with a user interface,
-/*specify the compatible field in the ocp section.
-/*ocp stand for On Chip Peripherals,
-/*BTW. The compatible field should match the driver you want to use.*/
-
-	/*Turn on CAN1*/
-	fragment@2 {
+	fragment@3 {
 		target = <&dcan1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -120,8 +123,7 @@
 		};
 	};
 
-	/*Turn on UART2*/
-	fragment@3 {
+	fragment@4 {
 		target = <&uart2>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -130,8 +132,7 @@
 		};
 	};
 
-	/*Turn on UART4*/
-	fragment@4 {
+	fragment@5 {
 		target = <&uart4>;
 		__overlay__ {
 			pinctrl-names = "default";
@@ -140,8 +141,7 @@
 		};
 	};
 
-	/*Turn on GPIO*/
-	fragment@5 {
+	fragment@6 {
 		target-path="/";
 		__overlay__ {
 			gpio {

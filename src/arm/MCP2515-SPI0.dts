@@ -21,7 +21,22 @@
 
 	exclusive-use = "P8.6", "gpio1_3";
 
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					MCP2515-SPI0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target = <&spi0>;
 		__overlay__ {
 			status = "okay";
@@ -31,7 +46,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			mcp2515_int: mcp2515_int {
@@ -40,7 +55,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target-path = "/";
 		__overlay__ {
 			mcp2515_clock: mcp2515_clock {
@@ -51,7 +66,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;

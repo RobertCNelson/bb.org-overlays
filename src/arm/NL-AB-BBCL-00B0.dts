@@ -51,9 +51,24 @@
 		"gpio1_29";
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					NL-AB-BBCL-00B0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P9_27_pinmux { status = "disabled"; };
@@ -69,7 +84,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			skywire_on_off_pin: pinmux_skywire_on_off_pin {
@@ -119,7 +134,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&uart4>; 
 		__overlay__ {
 			pinctrl-names = "default";
@@ -128,7 +143,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&ocp>;
 		__overlay__ {
 

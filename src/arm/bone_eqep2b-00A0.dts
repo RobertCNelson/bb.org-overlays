@@ -32,9 +32,24 @@
 		"eqep2";	// hardware ip used
 
 	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			chosen {
+				overlays {
+					bone_eqep2b-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P8_12_pinmux { status = "disabled"; };	/* P8_12: GPIO1_12 = EQEP2A_in */
@@ -44,8 +59,7 @@
 		};
 	};
 
-
-	fragment@1 {
+	fragment@2 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			pinctrl_eqep2: pinctrl_eqep2_pins {
@@ -60,14 +74,14 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&epwmss2>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&eqep2>;
 		__overlay__ {
 			pinctrl-names = "default";
