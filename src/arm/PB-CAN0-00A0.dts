@@ -10,8 +10,8 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/board/am335x-pb-base.h>
 #include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-pb-base.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
