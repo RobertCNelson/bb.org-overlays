@@ -60,8 +60,8 @@
 			pb_dcan0_pins: pinmux_dcan0_pins {
 				/* reuse the BeagleBone definition because it is same AM3358 IOPADs */
 				pinctrl-single,pins = <
-					PB_P1_28 (PIN_INPUT_PULLUP | MUX_MODE2)   /* P9_19: i2c2_scl.d_can0_rx */
-					PB_P1_26 (PIN_OUTPUT_PULLUP | MUX_MODE2)  /* P9_20: i2c2_sda.d_can0_tx */
+					PB_P1_28 (PIN_INPUT_PULLUP | MUX_MODE2)   /* P1_28: i2c2_scl.d_can0_rx */
+					PB_P1_26 (PIN_OUTPUT_PULLUP | MUX_MODE2)  /* P1_26: i2c2_sda.d_can0_tx */
 				>;
 			};
 		};
