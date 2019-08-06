@@ -60,8 +60,8 @@
 			pb_dcan0_pins: pinmux_dcan0_pins {
 				/* https://github.com/beagleboard/BeagleBoard-DeviceTrees/blob/v4.19.x-ti/src/arm/am335x-pocketbeagle.dts#L320 */
 				pinctrl-single,pins = <
-				AM33XX_IOPAD(0x097c, PIN_INPUT_PULLUP | MUX_MODE2)  		/* uart1_rtsn.dcan0_rx */
-				AM33XX_IOPAD(0x0978, PIN_OUTPUT_PULLUP | MUX_MODE2) 		/* uart1_ctsn.dcan0_tx */
+					AM33XX_IOPAD(PB_P1_28, PIN_INPUT_PULLUP | MUX_MODE2)          /* uart1_rtsn.dcan0_rx */
+					AM33XX_IOPAD(PB_P1_26, PIN_OUTPUT_PULLUP | MUX_MODE2)         /* uart1_ctsn.dcan0_tx */
 				>;
 			};
 		};
