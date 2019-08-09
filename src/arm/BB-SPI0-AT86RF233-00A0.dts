@@ -1,0 +1,94 @@
+/*
+ * Copyright (C) 2019 Tomas Arturo Herrera Castro <taherrera@uc.cl>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ * 
+ * Written as part of my master's thesis at PUC Chile,
+ * to run the BeagleBone as an OpenThread Border Router w/o an NCP.
+ *
+ * http://www.sltech.cl
+ *
+ * Compiled using: dtc -O dtb -o BB-SPI0-AT86RF233-00A0.dtbo -b 0 -@ BB-SPI0-AT86RF233-00A0.dts
+ *
+ * Tested on BeagleBone Black Rev. C + REB233-XPRO. Linux beaglebone 4.14.71-ti-r80.
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BB-AT86RF233";
+	version = "00A0";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	fragment@0 {
+		reg = <0>;
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			bb_at86_pins: bb_at86_pins {
+				pinctrl-single,pins = <
+					0x040 0x27  /* irq | P9.15 gpio1[16] | MODE7 | INPUT | PULLDOWN */
+					0x078 0x07  /* rst | P9.12 gpio1[28] | MODE7 | OUTPUT | PULLDOWN */
+        			0x044 0x07  /* slp | P9.23 gpio1[17] | MODE7 | OUTPUT | PULLDOWN */
+				>;
+			};
+			spi0_at86_s0: spi0_at86_s0 {
+				pinctrl-single,pins = <
+					0x150 0x30  /* spi0_sclk, INPUT_PULLUP | MODE0 */
+					0x154 0x30  /* spi0_d0, INPUT_PULLUP | MODE0 */
+					0x158 0x10  /* spi0_d1, OUTPUT_PULLUP | MODE0 */
+					0x15c 0x10  /* spi0_cs0, OUTPUT_PULLUP | MODE0 */
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		reg = <1>;
+		target = <&spi0>;
+		__overlay__{
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&spi0_at86_s0>;		
+
+			at86rf233@0 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				compatible = "atmel,at86rf233";
+				reg = <0>; /* Chip select */
+				interrupt-parent = <&gpio1>;
+ 				interrupts = <16 4>; /* PIN 16, active high 4 */
+				spi-max-frequency = <1000000>;
+				/* Optionals */
+				xtal-trim = /bits/ 8 <0xf>;		/* REB233-XPRO uses internal oscilator, XTAL_TRIM value is recommended */
+				reset-gpio = <&gpio1 28 0x00>; 
+				sleep-gpio = <&gpio1 17 0x00>;
+				/* if not using Optionals: RST pin must be HIGH, SLEEP must be LOW  */
+			};
+		};
+	};
+
+	fragment@2 {
+		reg = <2>;
+		target = <&gpio1>;
+		__overlay__{
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_at86_pins>;
+			
+		};
+
+	};
+
+};
+
