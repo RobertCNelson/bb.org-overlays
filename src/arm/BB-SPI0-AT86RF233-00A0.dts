@@ -69,7 +69,7 @@
  				interrupts = <16 4>; /* PIN 16, active high 4 */
 				spi-max-frequency = <1000000>;
 				/* Optionals */
-				xtal-trim = /bits/ 8 <0xf>;	/* REB233-XPRO uses internal oscilator, XTAL_TRIM value is recommended */
+				xtal-trim = /bits/ 8 <0xf>; /* REB233-XPRO uses internal oscilator, XTAL_TRIM value is recommended */
 				reset-gpio = <&gpio1 28 0x00>; 
 				sleep-gpio = <&gpio1 17 0x00>;
 				/* if not using Optionals: RST pin must be HIGH, SLEEP must be LOW  */
