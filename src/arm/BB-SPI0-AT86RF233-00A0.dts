@@ -66,7 +66,7 @@
 				compatible = "atmel,at86rf233";
 				reg = <0>; /* Chip select */
 				interrupt-parent = <&gpio1>;
- 				interrupts = <16 4>; /* PIN 16, active high 4 */
+ 				interrupts = <16 4>; /* PIN 16, active high */
 				spi-max-frequency = <1000000>;
 				/* Optionals */
 				xtal-trim = /bits/ 8 <0xf>; /* REB233-XPRO uses internal oscilator, XTAL_TRIM value is recommended */
