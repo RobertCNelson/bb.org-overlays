@@ -44,7 +44,24 @@
 		};
 	};
 
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
 	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
+			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
+			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+
+			P9_12_pinmux { status = "disabled"; };	/* rst */
+			P9_15_pinmux { status = "disabled"; };	/* irq */
+			P9_23_pinmux { status = "disabled"; };	/* slp */
+		};
+	};
+
+	fragment@2 {
 		reg = <0>;
 		target = <&am33xx_pinmux>;
 		__overlay__ {
@@ -66,7 +83,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		reg = <1>;
 		target = <&spi0>;
 		__overlay__{
@@ -92,7 +109,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		reg = <2>;
 		target = <&gpio1>;
 		__overlay__{
