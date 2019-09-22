@@ -39,7 +39,7 @@
 
 			chosen {
 				overlays {
-					BB-I2C2-RTC-DS1307 = __TIMESTAMP__;
+					BB-I2C2-RTC-MCP7940X = __TIMESTAMP__;
 				};
 			};
 		};
