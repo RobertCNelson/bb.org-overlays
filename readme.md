@@ -6,7 +6,7 @@ Build Status
 Users:
 ------------
 
-Install or Update bb-cape-overlays debian package (pre installed on: Debian Jessie/Stretch & Ubuntu Xenial images)
+Install or Update bb-cape-overlays debian package (pre installed on: Debian Stretch/Buster & Ubuntu Bionic images)
 
     sudo apt update ; sudo apt install bb-cape-overlays
 
