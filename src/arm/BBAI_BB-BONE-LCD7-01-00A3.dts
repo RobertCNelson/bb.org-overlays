@@ -58,39 +58,39 @@
 					DRA7XX_CORE_IOPAD(0x3788, MUX_MODE14) /* AC6: P8.24: mmc3_dat1.off */
 					DRA7XX_CORE_IOPAD(0x3784, MUX_MODE14) /* AC7: P8.25: mmc3_dat0.off */
 					DRA7XX_CORE_IOPAD(0x35B8, MUX_MODE13) /* B3: P8.26: vin2a_d20.off */
-					DRA7XX_CORE_IOPAD(0x35D8, MUX_MODE14) /* E11: P8.27a: vout1_vsync.off */
+					//DRA7XX_CORE_IOPAD(0x35D8, MUX_MODE14) /* E11: P8.27a: vout1_vsync.off */
 					DRA7XX_CORE_IOPAD(0x3628, MUX_MODE14) /* A8: P8.27b: vout1_d19.off */
-					DRA7XX_CORE_IOPAD(0x35C8, MUX_MODE14) /* D11: P8.28a: vout1_clk.off */
+					//DRA7XX_CORE_IOPAD(0x35C8, MUX_MODE14) /* D11: P8.28a: vout1_clk.off */
 					DRA7XX_CORE_IOPAD(0x362C, MUX_MODE14) /* C9: P8.28b: vout1_d20.off */
-					DRA7XX_CORE_IOPAD(0x35D4, MUX_MODE14) /* C11: P8.29a: vout1_hsync.off */
+					//DRA7XX_CORE_IOPAD(0x35D4, MUX_MODE14) /* C11: P8.29a: vout1_hsync.off */
 					DRA7XX_CORE_IOPAD(0x3630, MUX_MODE14) /* A9: P8.29b: vout1_d21.off */
-					DRA7XX_CORE_IOPAD(0x35CC, MUX_MODE14) /* B10: P8.30a: vout1_de.off */
+					//DRA7XX_CORE_IOPAD(0x35CC, MUX_MODE14) /* B10: P8.30a: vout1_de.off */
 					DRA7XX_CORE_IOPAD(0x3634, MUX_MODE14) /* B9: P8.30b: vout1_d22.off */
-					DRA7XX_CORE_IOPAD(0x3614, MUX_MODE14) /* C8: P8.31a: vout1_d14.off */
+					//DRA7XX_CORE_IOPAD(0x3614, MUX_MODE14) /* C8: P8.31a: vout1_d14.off */
 					DRA7XX_CORE_IOPAD(0x373C, MUX_MODE14) /* G16: P8.31b: mcasp4_axr0.off */
-					DRA7XX_CORE_IOPAD(0x3618, MUX_MODE14) /* C7: P8.32a: vout1_d15.off */
+					//DRA7XX_CORE_IOPAD(0x3618, MUX_MODE14) /* C7: P8.32a: vout1_d15.off */
 					DRA7XX_CORE_IOPAD(0x3740, MUX_MODE14) /* D17: P8.32b: mcasp4_axr1.off */
-					DRA7XX_CORE_IOPAD(0x3610, MUX_MODE14) /* C6: P8.33a: vout1_d13.off */
+					//DRA7XX_CORE_IOPAD(0x3610, MUX_MODE14) /* C6: P8.33a: vout1_d13.off */
 					DRA7XX_CORE_IOPAD(0x34E8, MUX_MODE14) /* AF9: P8.33b: vin1a_fld0.off */
-					DRA7XX_CORE_IOPAD(0x3608, MUX_MODE14) /* D8: P8.34a: vout1_d11.off */
+					//DRA7XX_CORE_IOPAD(0x3608, MUX_MODE14) /* D8: P8.34a: vout1_d11.off */
 					DRA7XX_CORE_IOPAD(0x3564, MUX_MODE14) /* G6: P8.34b: vin2a_vsync0.off */
-					DRA7XX_CORE_IOPAD(0x360C, MUX_MODE14) /* A5: P8.35a: vout1_d12.off */
+					//DRA7XX_CORE_IOPAD(0x360C, MUX_MODE14) /* A5: P8.35a: vout1_d12.off */
 					DRA7XX_CORE_IOPAD(0x34E4, MUX_MODE14) /* AD9: P8.35b: vin1a_de0.off */
-					DRA7XX_CORE_IOPAD(0x3604, MUX_MODE14) /* D7: P8.36a: vout1_d10.off */
+					//DRA7XX_CORE_IOPAD(0x3604, MUX_MODE14) /* D7: P8.36a: vout1_d10.off */
 					DRA7XX_CORE_IOPAD(0x3568, MUX_MODE14) /* F2: P8.36b: vin2a_d0.off */
-					DRA7XX_CORE_IOPAD(0x35FC, MUX_MODE14) /* E8: P8.37a: vout1_d8.off */
+					//DRA7XX_CORE_IOPAD(0x35FC, MUX_MODE14) /* E8: P8.37a: vout1_d8.off */
 					DRA7XX_CORE_IOPAD(0x3738, MUX_MODE14) /* A21: P8.37b: mcasp4_fsx.off */
 					DRA7XX_CORE_IOPAD(0x3600, MUX_MODE14) /* D9: P8.38a: vout1_d9.off */
 					DRA7XX_CORE_IOPAD(0x3734, MUX_MODE14) /* C18: P8.38b: mcasp4_aclkx.off */
-					DRA7XX_CORE_IOPAD(0x35F4, MUX_MODE14) /* F8: P8.39: vout1_d6.off */
-					DRA7XX_CORE_IOPAD(0x35F8, MUX_MODE14) /* E7: P8.40: vout1_d7.off */
-					DRA7XX_CORE_IOPAD(0x35EC, MUX_MODE14) /* E9: P8.41: vout1_d4.off */
-					DRA7XX_CORE_IOPAD(0x35F0, MUX_MODE14) /* F9: P8.42: vout1_d5.off */
-					DRA7XX_CORE_IOPAD(0x35E4, MUX_MODE14) /* F10: P8.43: vout1_d2.off */
-					DRA7XX_CORE_IOPAD(0x35E8, MUX_MODE14) /* G11: P8.44: vout1_d3.off */
-					DRA7XX_CORE_IOPAD(0x35DC, MUX_MODE14) /* F11: P8.45a: vout1_d0.off */
+					//DRA7XX_CORE_IOPAD(0x35F4, MUX_MODE14) /* F8: P8.39: vout1_d6.off */
+					//DRA7XX_CORE_IOPAD(0x35F8, MUX_MODE14) /* E7: P8.40: vout1_d7.off */
+					//DRA7XX_CORE_IOPAD(0x35EC, MUX_MODE14) /* E9: P8.41: vout1_d4.off */
+					//DRA7XX_CORE_IOPAD(0x35F0, MUX_MODE14) /* F9: P8.42: vout1_d5.off */
+					//DRA7XX_CORE_IOPAD(0x35E4, MUX_MODE14) /* F10: P8.43: vout1_d2.off */
+					//DRA7XX_CORE_IOPAD(0x35E8, MUX_MODE14) /* G11: P8.44: vout1_d3.off */
+					//DRA7XX_CORE_IOPAD(0x35DC, MUX_MODE14) /* F11: P8.45a: vout1_d0.off */
 					DRA7XX_CORE_IOPAD(0x361C, MUX_MODE14) /* B7: P8.45b: vout1_d16.off */
-					DRA7XX_CORE_IOPAD(0x35E0, MUX_MODE14) /* G10: P8.46a: vout1_d1.off */
+					//DRA7XX_CORE_IOPAD(0x35E0, MUX_MODE14) /* G10: P8.46a: vout1_d1.off */
 					DRA7XX_CORE_IOPAD(0x3638, MUX_MODE14) /* A10: P8.46b: vout1_d23.off */
 					DRA7XX_CORE_IOPAD(0x372C, MUX_MODE14) /* B19: P9.11a: mcasp3_axr0.off */
 					DRA7XX_CORE_IOPAD(0x3620, MUX_MODE14) /* B8: P9.11b: vout1_d17.off */
@@ -109,7 +109,7 @@
 					DRA7XX_CORE_IOPAD(0x3578, PIN_INPUT_PULLUP | MUX_MODE12) /* D2: P9.20b: vin2a_d4.pr1_pru1_gpi1 */
 					DRA7XX_CORE_IOPAD(0x34F0, MUX_MODE14) /* AF8: P9.21a: vin1a_vsync0.off */
 					DRA7XX_CORE_IOPAD(0x37C4, MUX_MODE14) /* B22: P9.21b: spi2_d1.off */
-					DRA7XX_CORE_IOPAD(0x369C, MUX_MODE14) /* B26: P9.22a: xref_clk2.off */
+					//DRA7XX_CORE_IOPAD(0x369C, MUX_MODE14) /* B26: P9.22a: xref_clk2.off */
 					DRA7XX_CORE_IOPAD(0x37C0, MUX_MODE14) /* A26: P9.22b: spi2_sclk.off */
 					DRA7XX_CORE_IOPAD(0x37B4, MUX_MODE14) /* A22: P9.23: spi1_cs1.off */
 					DRA7XX_CORE_IOPAD(0x368C, MUX_MODE14) /* F20: P9.24: gpio6_15.off */
@@ -140,6 +140,34 @@
 			bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 				pinctrl-single,pins = <
 					DRA7XX_CORE_IOPAD(BBAI_P9_14, PIN_OUTPUT_PULLDOWN | MUX_MODE10)
+				>;
+			};
+
+			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
+				pinctrl-single,pins = <
+					DRA7XX_CORE_IOPAD(BBAI_P9_22A, PIN_OUTPUT_PULLUP | MUX_MODE14)
+
+					DRA7XX_CORE_IOPAD(BBAI_P8_45A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d0.vout1_d0 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_46A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d1.vout1_d1 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_43, PIN_OUTPUT | MUX_MODE0)	/* vout1_d2.vout1_d2 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_44, PIN_OUTPUT | MUX_MODE0)	/* vout1_d3.vout1_d3 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_41, PIN_OUTPUT | MUX_MODE0)	/* vout1_d4.vout1_d4 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_42, PIN_OUTPUT | MUX_MODE0)	/* vout1_d5.vout1_d5 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_39, PIN_OUTPUT | MUX_MODE0)	/* vout1_d6.vout1_d6 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_40, PIN_OUTPUT | MUX_MODE0)	/* vout1_d7.vout1_d7 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_37A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d8.vout1_d8 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_38A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d9.vout1_d9 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_36A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d10.vout1_d10 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_34A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d11.vout1_d11 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_35A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d12.vout1_d12 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_33A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d13.vout1_d13 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_31A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d14.vout1_d14 */
+					DRA7XX_CORE_IOPAD(BBAI_P8_32A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d15.vout1_d15 */
+
+					DRA7XX_CORE_IOPAD(BBAI_P8_27A, PIN_OUTPUT | MUX_MODE0)	/* vout1_vsync.vout1_vsync */
+					DRA7XX_CORE_IOPAD(BBAI_P8_29A, PIN_OUTPUT | MUX_MODE0)	/* vout1_hsync.vout1_hsync */
+					DRA7XX_CORE_IOPAD(BBAI_P8_28A, PIN_OUTPUT | MUX_MODE0)	/* vout1_clk.vout1_clk */
+					DRA7XX_CORE_IOPAD(BBAI_P8_30A, PIN_OUTPUT | MUX_MODE0)	/* vout1_de.vout1_de */
 				>;
 			};
 		};
