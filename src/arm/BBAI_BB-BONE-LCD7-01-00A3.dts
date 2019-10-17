@@ -9,6 +9,7 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/dra.h>
 
@@ -189,10 +190,34 @@
 		};
 	};
 
+        fragment@5 {
+                target = <&dss>;
+                __overlay__ {
+
+			status = "ok";
+
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_lcd_lcd_pins>;
+
+			port {
+				dpi_out: endpoint {
+					data-lines = <16>;
+					remote-endpoint = <&lcd_in>;
+				};
+			};
+                };
+        };
+
 	fragment@7 {
 		target-path="/";
 		__overlay__ {
-			backlight {
+
+			aliases {
+				display0 = &lcd0;
+//				display1 = "/connector";
+	                };
+
+			lcd0_bl: backlight {
 				status = "okay";
 				compatible = "pwm-backlight";
 				pwms = <&ehrpwm2 0 500000 0>;
@@ -210,6 +235,40 @@
 					100
 				>;
 				default-brightness-level = <100>;
+			};
+
+			lcd0: display@0 {
+				compatible = "panel-dpi";
+				label = "lcd";
+				status = "okay";
+
+				backlight = <&lcd0_bl>;
+
+				//pinctrl-names = "default";
+				//pinctrl-0 = <&bb_lcd_lcd_pins>;
+				//enable-gpios = <&gpio6 19 GPIO_ACTIVE_LOW>;
+
+				port {
+					lcd_in: endpoint {
+						remote-endpoint = <&dpi_out>;
+					};
+				};
+
+				panel-timing {
+					clock-frequency = <30000000>;
+					de-active = <1>;
+					hactive = <800>;
+					hback-porch = <40>;
+					hfront-porch = <40>;
+					hsync-active = <0>;
+					hsync-len = <3>;
+					pixelclk-active = <0>;
+					vactive = <480>;
+					vback-porch = <30>;
+					vfront-porch = <13>;
+					vsync-active = <0>;
+					vsync-len = <3>;
+				};
 			};
 
 			gpio-leds-cape-lcd {
