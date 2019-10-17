@@ -144,10 +144,14 @@
 				>;
 			};
 
-			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
+			bb_lcd_en_pins: pinmux_bb_lcd_en_pins {
 				pinctrl-single,pins = <
 					DRA7XX_CORE_IOPAD(BBAI_P8_20, PIN_OUTPUT_PULLUP | MUX_MODE14)
+				>;
+			};
 
+			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
+				pinctrl-single,pins = <
 					DRA7XX_CORE_IOPAD(BBAI_P8_45A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d0.vout1_d0 */
 					DRA7XX_CORE_IOPAD(BBAI_P8_46A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d1.vout1_d1 */
 					DRA7XX_CORE_IOPAD(BBAI_P8_43, PIN_OUTPUT | MUX_MODE0)	/* vout1_d2.vout1_d2 */
@@ -193,14 +197,15 @@
 	fragment@5 {
 		target = <&dss>;
 		__overlay__ {
-
-			status = "ok";
-
 			pinctrl-names = "default";
 			pinctrl-0 = <&bb_lcd_lcd_pins>;
+			status = "okay";
 
 			port {
-				dpi_out: endpoint {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				dpi_out: endpoint@0 {
 					data-lines = <16>;
 					remote-endpoint = <&lcd_in>;
 				};
@@ -243,9 +248,9 @@
 
 				backlight = <&lcd0_bl>;
 
-				//pinctrl-names = "default";
-				//pinctrl-0 = <&bb_lcd_lcd_pins>;
-				//enable-gpios = <&gpio6 19 GPIO_ACTIVE_LOW>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&bb_lcd_en_pins>;
+				enable-gpios = <&gpio6 30 GPIO_ACTIVE_HIGH>;
 
 				port {
 					lcd_in: endpoint {
