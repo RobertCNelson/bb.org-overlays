@@ -146,7 +146,7 @@
 
 			bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 				pinctrl-single,pins = <
-					DRA7XX_CORE_IOPAD(BBAI_P9_20, PIN_OUTPUT_PULLUP | MUX_MODE14)
+					DRA7XX_CORE_IOPAD(BBAI_P8_20, PIN_OUTPUT_PULLUP | MUX_MODE14)
 
 					DRA7XX_CORE_IOPAD(BBAI_P8_45A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d0.vout1_d0 */
 					DRA7XX_CORE_IOPAD(BBAI_P8_46A, PIN_OUTPUT | MUX_MODE0)	/* vout1_d1.vout1_d1 */
