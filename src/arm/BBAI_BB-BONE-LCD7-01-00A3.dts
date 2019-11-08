@@ -173,6 +173,23 @@
 					DRA7XX_CORE_IOPAD(BBAI_P8_29A, PIN_OUTPUT | MUX_MODE0)	/* vout1_hsync.vout1_hsync */
 					DRA7XX_CORE_IOPAD(BBAI_P8_28A, PIN_OUTPUT | MUX_MODE0)	/* vout1_clk.vout1_clk */
 					DRA7XX_CORE_IOPAD(BBAI_P8_30A, PIN_OUTPUT | MUX_MODE0)	/* vout1_de.vout1_de */
+
+/* Turn off things that should be turned off already */
+					DRA7XX_CORE_IOPAD(BBAI_P8_31B, PULL_DIS | MUX_MODE15) /* G16: P8.31b: mcasp4_axr0.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_32B, PULL_DIS | MUX_MODE15) /* D17: P8.32b: mcasp4_axr1.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_33B, PULL_DIS | MUX_MODE15) /* AF9: P8.33b: vin1a_fld0.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_34B, PULL_DIS | MUX_MODE15) /* G6: P8.34b: vin2a_vsync0.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_35B, PULL_DIS | MUX_MODE15) /* AD9: P8.35b: vin1a_de0.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_36B, PULL_DIS | MUX_MODE15) /* F2: P8.36b: vin2a_d0.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_37B, PULL_DIS | MUX_MODE15) /* A21: P8.37b: mcasp4_fsx.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_38B, PULL_DIS | MUX_MODE15) /* C18: P8.38b: mcasp4_aclkx.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_45B, PULL_DIS | MUX_MODE15) /* B7: P8.45b: vout1_d16.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_46B, PULL_DIS | MUX_MODE15) /* A10: P8.46b: vout1_d23.off */
+
+					DRA7XX_CORE_IOPAD(BBAI_P8_27B, PULL_DIS | MUX_MODE15) /* A8: P8.27b: vout1_d19.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_28B, PULL_DIS | MUX_MODE15) /* C9: P8.28b: vout1_d20.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_29B, PULL_DIS | MUX_MODE15) /* A9: P8.29b: vout1_d21.off */
+					DRA7XX_CORE_IOPAD(BBAI_P8_30B, PULL_DIS | MUX_MODE15) /* B9: P8.30b: vout1_d22.off */
 				>;
 			};
 		};
