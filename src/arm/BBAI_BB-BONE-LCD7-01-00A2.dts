@@ -231,6 +231,38 @@
 		};
 	};
 
+	fragment@6 {
+		target = <&i2c1>;
+		__overlay__ {
+			stmpe811@41 {
+				stmpe_touchscreen {
+					status = "okay";
+					compatible = "st,stmpe-ts";
+					/* 8 sample average control */
+					st,ave-ctrl = <3>;
+					/* 7 length fractional part in z */
+					st,fraction-z = <7>;
+					/*
+					 * 50 mA typical 80 mA max touchscreen drivers
+					 * current limit value
+					 */
+					st,i-drive = <1>;
+					/* 1 ms panel driver settling time */
+					st,settling = <3>;
+					/* 5 ms touch detect interrupt delay */
+					st,touch-det-delay = <5>;
+
+					touchscreen-offset-x=<100>;
+					touchscreen-offset-y=<100>;
+
+					//touchscreen-inverted-x = <1>;
+					touchscreen-inverted-y = <1>;
+					//touchscreen-swapped-x-y = <1>;
+				};
+			};
+		};
+	};
+
 	fragment@7 {
 		target-path="/";
 		__overlay__ {
