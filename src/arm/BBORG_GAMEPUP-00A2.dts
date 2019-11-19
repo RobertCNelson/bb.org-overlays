@@ -53,6 +53,7 @@
 			P2_24_pinmux { status = "disabled"; };	/* keys - right-pad left (p) */
 			P1_31_pinmux { status = "disabled"; };	/* keys - select (five) */
 			P1_35_pinmux { status = "disabled"; };	/* keys - start (one) */
+			P1_33_pinmux { status = "disabled"; };	/* speaker */
 		};
 	};
 
@@ -423,6 +424,10 @@
 			status = "okay";
 			sndpwm {
 				compatible = "snd-pwmsp";
+				pinctrl-names = "default";
+				pinctrl-0 = <
+					&P1_33_pwm_pin 		/* speaker */
+				>;
 				pwms = <&ehrpwm0 1 0 0>;
 				status = "okay";
 			};
