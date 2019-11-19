@@ -428,7 +428,7 @@
 				pinctrl-0 = <
 					&P1_33_pwm_pin 		/* speaker */
 				>;
-				pwms = <&ehrpwm0 1 0 0>;
+				pwms = <&ehrpwm0 1 1000 0>;
 				status = "okay";
 			};
 		};
