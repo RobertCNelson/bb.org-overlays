@@ -419,7 +419,7 @@
 	 * Load ALSA driver for piezo
 	 */
 	fragment@7 {
-		target = <&ehrpwm0>;
+		target-path = "/";
 		__overlay__ {
 			status = "okay";
 			sndpwm {
