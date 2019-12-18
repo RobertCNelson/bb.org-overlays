@@ -255,6 +255,7 @@
 				status = "okay";
 			};
 		};
+	};
 
 	fragment@7 {
 		target-path="/";
