@@ -126,8 +126,13 @@
 
 			bb_dlp_gpio_pins: pinmux_dlp_gpio_pins {
 				pinctrl-single,pins = <
-					BONE_P9_15 (PIN_OUTPUT | MUX_MODE7) 
 					BONE_P8_26 (PIN_INPUT_PULLDOWN | MUX_MODE7)
+				>;
+			};
+
+			bb_dlp_led_pins: pinmux_dlp_led_pins {
+				pinctrl-single,pins = <
+					BONE_P9_15 (PIN_OUTPUT | MUX_MODE7)
 				>;
 			};
 
@@ -248,6 +253,23 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&bb_dlp_gpio_pins>;
 				status = "okay";
+			};
+		};
+
+	fragment@7 {
+		target-path="/";
+		__overlay__ {
+
+			leds {
+				pinctrl-names = "default";
+				pinctrl-0 = <&bb_dlp_led_pins>;
+				compatible = "gpio-leds";
+
+				proj_on_ext {
+					label = "proj_on_ext";
+					gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
+					default-state = "on";
+				};
 			};
 		};
 	};
