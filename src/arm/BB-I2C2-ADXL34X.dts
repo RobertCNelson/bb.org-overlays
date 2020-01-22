@@ -17,7 +17,7 @@
 		__overlay__ {
 			chosen {
 				overlays {
-					BB-GPIO-GROVE-BUTTON-00A0 = __TIMESTAMP__;
+					BB-I2C2-ADXL34X-00A0 = __TIMESTAMP__;
 				};
 			};
 		};

@@ -27,6 +27,20 @@
 		"uart4";		// hardware ip used
 
 	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+			chosen {
+				overlays {
+					BB-UART4-E-INK-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
 	fragment@0 {
