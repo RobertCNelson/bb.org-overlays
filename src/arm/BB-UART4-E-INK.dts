@@ -43,7 +43,7 @@
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
-	fragment@0 {
+	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
 			P2_05_pinmux { status = "disabled"; };	/* uart4_rxd */
