@@ -9,7 +9,21 @@
 /plugin/;
 
 / {
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
 	fragment@0 {
+		target-path="/";
+		__overlay__ {
+			chosen {
+				overlays {
+					BB-I2C2-VL53L0X-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
 		target-path="/";
 		__overlay__ {
 
@@ -22,7 +36,7 @@
 		};
 	};
 
-	fragment@1 {
+	fragment@2 {
 		/* SLOT I2C1 */
 		//target = <&i2c1>;
 		/* SLOT I2C2 */
