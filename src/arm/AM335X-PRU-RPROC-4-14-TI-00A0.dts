@@ -47,6 +47,17 @@
 					ranges = <0x0 0x4a300000 0x80000>;
 					status = "okay";
 
+					shmem@0 {
+						reg = <0x0 0x2000>,
+						      <0x2000 0x2000>,
+						      <0x10000 0x3000>;
+						reg-names = "dram0",
+							    "dram1",
+							    "dram2";
+						compatible = "uio";
+						symlink = "uio/pru-shmem";
+					};
+
 					pruss: pruss@0 {
 						compatible = "ti,am3356-pruss";
 						reg = <0x0 0x80000>;
