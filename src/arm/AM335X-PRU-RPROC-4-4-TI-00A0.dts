@@ -54,6 +54,17 @@
 					#size-cells = <1>;
 					ranges;
 
+					shmem@4a300000 {
+						reg = <0x4a300000 0x2000>,
+						      <0x4a302000 0x2000>,
+						      <0x4a310000 0x3000>;
+						reg-names = "dram0",
+							    "dram1",
+							    "dram2";
+						compatible = "uio";
+						symlink = "uio/pru-shmem";
+					};
+
 					pruss_intc: intc@4a320000 {
 						compatible = "ti,am3352-pruss-intc";
 						reg = <0x4a320000 0x2000>;
