@@ -186,9 +186,6 @@
 
 			adc {
 				ti,adc-channels = <4 5 6 7>;
-				ti,chan-step-opendelay = <0x098 0x3ffff 0x098 0x0>;
-				ti,chan-step-sampledelay = <0xff 0x0 0xf 0x0>;
-				ti,chan-step-avg = <16 2 4 8>;
 			};
 		};
 	};
