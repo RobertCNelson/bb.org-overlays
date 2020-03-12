@@ -22,10 +22,10 @@
 	/* state the resources this cape uses */
 	exclusive-use =
 		/* the pin header uses */
-		"P9.22",	/* spi0_sclk, SPI0_SCLK */
-		"P9.21",	/* spi0_d0, SPI0_MISO */
-		"P9.18",	/* spi0_d1, SPI0_MOSI */
-		"P9.17",	/* spi0_cs0, CS0 */
+		"P9.17",	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+		"P9.18",	/* P9_18 (B16) spi0_d1.spi0_d1 */
+		"P9.21",	/* P9_21 (B17) spi0_d0.spi0_d0 */
+		"P9.22",	/* P9_22 (A17) spi0_sclk.spi0_sclk */
 		/* the hardware ip uses */
 		"spi0";
 
@@ -50,10 +50,10 @@
 	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
-			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
-			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
-			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
-			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+			P9_17_pinmux { status = "disabled"; };	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18 (B16) spi0_d1.spi0_d1 */
+			P9_21_pinmux { status = "disabled"; };	/* P9_21 (B17) spi0_d0.spi0_d0 */
+			P9_22_pinmux { status = "disabled"; };	/* P9_22 (A17) spi0_sclk.spi0_sclk */
 		};
 	};
 
@@ -62,10 +62,10 @@
 		__overlay__ {
 			bb_spi0_pins: pinmux_bb_spi0_pins {
 				pinctrl-single,pins = <
-					BONE_P9_22 (PIN_INPUT_PULLUP | MUX_MODE0) /* spi0_sclk.spi0_sclk */
-					BONE_P9_21 (PIN_INPUT_PULLUP | MUX_MODE0) /* spi0_d0.spi0_d0 */
-					BONE_P9_18 (PIN_OUTPUT_PULLUP | MUX_MODE0) /* spi0_d0.spi0_d1 */
-					BONE_P9_17 (PIN_OUTPUT_PULLUP | MUX_MODE0)  /* spi0_cs0.spi0_cs0 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0) /* P9_22 (A17) spi0_sclk.spi0_sclk */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)   /* P9_21 (B17) spi0_d0.spi0_d0 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)   /* P9_18 (B16) spi0_d1.spi0_d1 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)  /* P9_17 (A16) spi0_cs0.spi0_cs0 */
 				>;
 			};
 		};
@@ -80,7 +80,6 @@
 			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <&bb_spi0_pins>;
-			ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 			mcp3x0x@0 {
 				spi-max-frequency = <1000000>;

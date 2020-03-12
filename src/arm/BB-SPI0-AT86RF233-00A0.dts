@@ -19,6 +19,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
 
@@ -26,8 +29,15 @@
 	part-number = "BB-AT86RF233";
 	version = "00A0";
 
-	#address-cells = <1>;
-	#size-cells = <0>;
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.17",	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+		"P9.18",	/* P9_18 (B16) spi0_d1.spi0_d1 */
+		"P9.21",	/* P9_21 (B17) spi0_d0.spi0_d0 */
+		"P9.22",	/* P9_22 (A17) spi0_sclk.spi0_sclk */
+		/* the hardware ip uses */
+		"spi0";
 
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
@@ -50,10 +60,10 @@
 	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
-			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
-			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
-			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
-			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+			P9_17_pinmux { status = "disabled"; };	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+			P9_18_pinmux { status = "disabled"; };	/* P9_18 (B16) spi0_d1.spi0_d1 */
+			P9_21_pinmux { status = "disabled"; };	/* P9_21 (B17) spi0_d0.spi0_d0 */
+			P9_22_pinmux { status = "disabled"; };	/* P9_22 (A17) spi0_sclk.spi0_sclk */
 
 			P9_12_pinmux { status = "disabled"; };	/* rst */
 			P9_15_pinmux { status = "disabled"; };	/* irq */
@@ -74,10 +84,10 @@
 			};
 			spi0_at86_s0: spi0_at86_s0 {
 				pinctrl-single,pins = <
-					0x150 0x30  /* spi0_sclk, INPUT_PULLUP | MODE0 */
-					0x154 0x30  /* spi0_d0, INPUT_PULLUP | MODE0 */
-					0x158 0x10  /* spi0_d1, OUTPUT_PULLUP | MODE0 */
-					0x15c 0x10  /* spi0_cs0, OUTPUT_PULLUP | MODE0 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0) /* P9_22 (A17) spi0_sclk.spi0_sclk */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)   /* P9_21 (B17) spi0_d0.spi0_d0 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)   /* P9_18 (B16) spi0_d1.spi0_d1 */
+					AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)  /* P9_17 (A16) spi0_cs0.spi0_cs0 */
 				>;
 			};
 		};
@@ -86,9 +96,10 @@
 	fragment@3 {
 		reg = <1>;
 		target = <&spi0>;
-		__overlay__{
+		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
+
 			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <&spi0_at86_s0>;		

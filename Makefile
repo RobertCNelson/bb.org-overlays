@@ -74,6 +74,16 @@ ifeq "$(DTCVERSION)" "1.5.0"
 	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
 endif
 
+ifeq "$(DTCVERSION)" "1.6.0"
+	#http://snapshot.debian.org/package/device-tree-compiler/1.5.0-1/#device-tree-compiler_1.5.0-1
+	#http://snapshot.debian.org/archive/debian/20190313T032949Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-1_amd64.deb
+	#Debian: 1.4.6
+	DTC_FLAGS += -Wno-chosen_node_is_root
+	DTC_FLAGS += -Wno-alias_paths
+	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
+	DTC_FLAGS += -Wno-chosen_node_is_root
+endif
+
 ifeq "$(DTCVERSION)" "2.0.0"
 	#BUILDBOT...http://gfnd.rcn-ee.org:8080/job/beagleboard_overlays/job/master/
 	DTC_FLAGS += -Wno-chosen_node_is_root
