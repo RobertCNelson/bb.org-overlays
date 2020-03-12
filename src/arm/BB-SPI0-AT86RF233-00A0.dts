@@ -21,6 +21,7 @@
 
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
@@ -32,6 +33,9 @@
 	/* state the resources this cape uses */
 	exclusive-use =
 		/* the pin header uses */
+		"P9.15",	/* irq P9_15 (R13) gpmc_a0.gpio1[16] */
+		"P9.23",	/* rst P9_23 (V14) gpmc_a1.gpio1[17] */
+		"P9.12",	/* slp P9_12 (U18) gpmc_be1n.gpio1[28] */
 		"P9.17",	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
 		"P9.18",	/* P9_18 (B16) spi0_d1.spi0_d1 */
 		"P9.21",	/* P9_21 (B17) spi0_d0.spi0_d0 */
@@ -65,21 +69,20 @@
 			P9_21_pinmux { status = "disabled"; };	/* P9_21 (B17) spi0_d0.spi0_d0 */
 			P9_22_pinmux { status = "disabled"; };	/* P9_22 (A17) spi0_sclk.spi0_sclk */
 
-			P9_12_pinmux { status = "disabled"; };	/* rst */
-			P9_15_pinmux { status = "disabled"; };	/* irq */
-			P9_23_pinmux { status = "disabled"; };	/* slp */
+			P9_15_pinmux { status = "disabled"; };	/* irq P9_15 (R13) gpmc_a0.gpio1[16] */
+			P9_23_pinmux { status = "disabled"; };	/* rst P9_23 (V14) gpmc_a1.gpio1[17] */
+			P9_12_pinmux { status = "disabled"; };	/* slp P9_12 (U18) gpmc_be1n.gpio1[28] */
 		};
 	};
 
 	fragment@2 {
-		reg = <0>;
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_at86_pins: bb_at86_pins {
 				pinctrl-single,pins = <
-					0x040 0x27  /* irq | P9.15 gpio1[16] | MODE7 | INPUT | PULLDOWN */
-					0x078 0x07  /* rst | P9.12 gpio1[28] | MODE7 | OUTPUT | PULLDOWN */
-					0x044 0x07  /* slp | P9.23 gpio1[17] | MODE7 | OUTPUT | PULLDOWN */
+					AM33XX_PADCONF(AM335X_PIN_GPMC_A0, PIN_INPUT_PULLDOWN, MUX_MODE7)    /* irq P9_15 (R13) gpmc_a0.gpio1[16] */
+					AM33XX_PADCONF(AM335X_PIN_GPMC_A1, PIN_OUTPUT_PULLDOWN, MUX_MODE7)   /* rst P9_23 (V14) gpmc_a1.gpio1[17] */
+					AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_OUTPUT_PULLDOWN, MUX_MODE7) /* slp P9_12 (U18) gpmc_be1n.gpio1[28] */
 				>;
 			};
 			spi0_at86_s0: spi0_at86_s0 {
@@ -94,7 +97,6 @@
 	};
 
 	fragment@3 {
-		reg = <1>;
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -102,32 +104,25 @@
 
 			status = "okay";
 			pinctrl-names = "default";
-			pinctrl-0 = <&spi0_at86_s0>;		
+			pinctrl-0 = <&spi0_at86_s0>;
+
 			at86rf233@0 {
-				#address-cells = <1>;
-				#size-cells = <0>;
 				compatible = "atmel,at86rf233";
-				reg = <0>; /* Chip select */
-				interrupt-parent = <&gpio1>;
- 				interrupts = <16 4>; /* PIN 16, active high */
+
+				pinctrl-names = "default";
+				pinctrl-0 = <&bb_at86_pins>;
+
 				spi-max-frequency = <1000000>;
+				reg = <0>;
+				interrupt-parent = <&gpio1>;
+				interrupts = <16 IRQ_TYPE_LEVEL_HIGH>; /* gpio1[16] active high */
 				/* Optionals */
 				xtal-trim = /bits/ 8 <0xf>; /* REB233-XPRO uses internal oscilator, XTAL_TRIM value is recommended */
+
 				reset-gpio = <&gpio1 28 0x00>; 
 				sleep-gpio = <&gpio1 17 0x00>;
 				/* if not using Optionals: RST pin must be HIGH, SLEEP must be LOW  */
 			};
 		};
 	};
-
-	fragment@4 {
-		reg = <2>;
-		target = <&gpio1>;
-		__overlay__{
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_at86_pins>;
-		};
-	};
 };
-
