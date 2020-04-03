@@ -199,28 +199,6 @@
 		};
 	};
 
-	fragment@4 {
-		target-path="/";
-		__overlay__ {
-				kim {
-				compatible = "kim";
-				nshutdown_gpio = <3>; /* Bank0, pin3 */
-				dev_name = "/dev/ttyS1";
-				flow_cntrl = <1>;
-				baud_rate = <3000000>;
-			};
-		};
-	};
-
-	fragment@5 {
-		target-path="/";
-		__overlay__ {
-			btwilink {
-				compatible = "btwilink";
-			};
-		};	
-	};
-
 	fragment@6 {
 		target = <&mmc2>;
 		__overlay__ {
