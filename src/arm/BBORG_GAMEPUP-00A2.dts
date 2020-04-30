@@ -12,28 +12,19 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
-/ {
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
-	fragment@0 {
-		target-path="/";
-		__overlay__ {
-
-			chosen {
+		&{/chosen} {
 				overlays {
 					BBORG_GAMEPUP-00A2 = __TIMESTAMP__;
 				};
-			};
 		};
-	};
 
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
-	fragment@1 {
-		target = <&ocp>;
-		__overlay__ {
+		&ocp {
 			P1_04_pinmux { status = "disabled"; };	/* LEDs - left */
 			P2_03_pinmux { status = "disabled"; };	/* LEDs - right */
 			P1_06_pinmux { status = "disabled"; }; 	/* LCD - CS */
@@ -55,24 +46,18 @@
 			P1_35_pinmux { status = "disabled"; };	/* keys - start (one) */
 			P1_33_pinmux { status = "disabled"; };	/* speaker */
 		};
-	};
 
 	/*
 	 * Free up the gpios used by the cape-universal gpio helpers.
 	 */
-	fragment@2 {
-		target = <&ocp>;
-		__overlay__ {
+		&ocp {
 			cape-universal { status = "disabled"; };
 		};
-	};
 
 	/*
 	 * Make a new set of gpio helpers.
 	 */
-	fragment@3 {
-		target = <&ocp>;
-		__overlay__ {
+		&ocp {
 			cape-universal@1 {
 				compatible = "gpio-of-helper";
 				status = "okay";
@@ -255,27 +240,21 @@
 				};
 			};
 		};
-	};
 
 	/*
 	 * Free up the SPI port used by the cape and reallocate it for the LCD.
 	 */
-	fragment@4 {
-		target = <&spi0>;
-		__overlay__ {
+		&spi0 {
 			status = "okay";
 
 			channel@0 { status = "disabled"; };
 			channel@1 { status = "disabled"; };
 		};
-	};
 
 	/*
 	 * Free up the SPI port used by the cape and reallocate it for the LCD.
 	 */
-	fragment@5 {
-		target = <&spi0>;
-		__overlay__ {
+		&spi0 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -303,14 +282,11 @@
 				fps = <30>;
 			};
 		};
-	};
 
 	/*
 	 * Load the drivers for the buttons and LEDs.
 	 */
-	fragment@6 {
-		target-path="/";
-		__overlay__ {
+		&{/} {
 
 			gpio-keys {
 				compatible = "gpio-keys";
@@ -413,14 +389,11 @@
 				};
 			};
 		};
-	};
 
 	/*
 	 * Load ALSA driver for piezo
 	 */
-	fragment@7 {
-		target-path = "/";
-		__overlay__ {
+		&{/} {
 			status = "okay";
 			sndpwm {
 				compatible = "snd-pwmsp";
@@ -432,6 +405,3 @@
 				status = "okay";
 			};
 		};
-	};
-};
-						
