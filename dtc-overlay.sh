@@ -1,7 +1,43 @@
 #!/bin/sh -e
 
+DIR="$PWD"
+
 check_dpkg () {
 	LC_ALL=C dpkg --list | awk '{print $2}' | grep "^${pkg}" >/dev/null || deb_pkgs="${deb_pkgs}${pkg} "
+}
+
+dtc_git_build () {
+	project="dtc"
+	server="git://git.kernel.org/pub/scm/utils/dtc/dtc.git"
+
+	if [ ! -d ${HOME}/git/ ] ; then
+		mkdir -p ${HOME}/git/ || true
+	fi
+
+	if [ ! -f ${HOME}/git/${project}/.git/config ] ; then
+		git clone ${server} ${HOME}/git/${project}/
+	fi
+
+	cd ${HOME}/git/${project}/
+	make clean
+	git checkout master -f
+	git pull || true
+
+	if [ ! "x${git_tag}" = "x" ] ; then
+		test_for_branch=$(git branch --list ${git_tag}-build)
+		if [ "x${test_for_branch}" != "x" ] ; then
+			git branch ${git_tag}-build -D
+		fi
+
+		git checkout ${git_tag} -b ${git_tag}-build
+	fi
+
+	make clean
+	make PREFIX=/usr/local/ CC=gcc CROSS_COMPILE= all
+	echo "Installing into: /usr/local/bin/"
+	sudo make PREFIX=/usr/local/ install
+	sudo ln -sf /usr/local/bin/dtc /usr/bin/dtc
+	echo "dtc: `/usr/bin/dtc --version`"
 }
 
 unset deb_pkgs
@@ -21,37 +57,5 @@ if [ "${deb_pkgs}" ] ; then
 	sudo apt-get clean
 fi
 
-#git_sha="origin/master"
-git_sha="origin/dtc-v1.4.4"
-project="dtc"
-#server="https://git.kernel.org/pub/scm/utils/dtc"
-server="https://github.com/RobertCNelson"
-
-if [ ! -f ${HOME}/git/bb.org-${project}/.git/config ] ; then
-	git clone ${server}/${project}.git ${HOME}/git/bb.org-${project}/
-fi
-
-if [ ! -f ${HOME}/git/bb.org-${project}/.git/config ] ; then
-	rm -rf ${HOME}/git/bb.org-${project}/ || true
-	echo "error: git failure, try re-runing"
-	exit
-fi
-
-cd ${HOME}/git/bb.org-${project}/
-make clean
-git checkout master -f
-git pull || true
-
-test_for_branch=$(git branch --list ${git_sha}-build)
-if [ "x${test_for_branch}" != "x" ] ; then
-	git branch ${git_sha}-build -D
-fi
-
-git checkout ${git_sha} -b ${git_sha}-build
-
-make clean
-make PREFIX=/usr/local/ CC=gcc CROSS_COMPILE= all
-echo "Installing into: /usr/local/bin/"
-sudo make PREFIX=/usr/local/ install
-sudo ln -sf /usr/local/bin/dtc /usr/bin/dtc
-echo "dtc: `/usr/bin/dtc --version`"
+git_tag="v1.4.7"
+dtc_git_build

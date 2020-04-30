@@ -109,13 +109,9 @@ Step 2: Install *.dtbo:
 Developers: Tested Versions of dtc:
 ------------
 
-    v1.4.4
-    v1.4.6
     v1.4.7
     v1.5.0
     v1.5.1
-
-Known Broken: v1.4.5 (DO NOT USE)
 
 U-Boot Overlays:
 ------------
