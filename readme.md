@@ -56,44 +56,6 @@ v4.14.x mainline + Real Time:
 
     sudo /opt/scripts/tools/update_kernel.sh --lts-4_14 --bone-rt-channel
 
-Supported Linux Kernels: v4.9.x:
-------------
-
-v4.9.x-ti:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --ti-channel
-
-v4.9.x-ti + Real Time:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --ti-rt-channel
-
-v4.9.x mainline:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --bone-channel
-
-v4.9.x mainline + Real Time:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_9 --bone-rt-channel
-
-Supported Linux Kernels: v4.4.x:
-------------
-
-v4.4.x-ti:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --ti-channel
-
-v4.4.x-ti + Real Time:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --ti-rt-channel
-
-v4.4.x mainline:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --bone-channel
-
-v4.4.x mainline + Real Time:
-
-    sudo /opt/scripts/tools/update_kernel.sh --lts-4_4 --bone-rt-channel
-
 Developers:
 ------------
 
@@ -106,7 +68,7 @@ Step 2: Install *.dtbo:
 
     ./install.sh
 
-Developers: Tested Versions of dtc:
+Developers: Tested Versions of dtc: (dtc v1.4.7 is minimum required)
 ------------
 
     v1.4.7
