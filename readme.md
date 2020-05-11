@@ -18,6 +18,25 @@ Pre-built kernels: (there are multiple options avaiable)
     cd /opt/scripts/tools
     git pull
 
+Supported Linux Kernels: v5.4.x:
+------------
+
+v5.4.x-ti:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-5_4 --ti-channel
+
+v5.4.x-ti + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-5_4 --ti-rt-channel
+
+v5.4.x mainline:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-5_4 --bone-channel
+
+v5.4.x mainline + Real Time:
+
+    sudo /opt/scripts/tools/update_kernel.sh --lts-5_4 --bone-rt-channel
+
 Supported Linux Kernels: v4.19.x:
 ------------
 
