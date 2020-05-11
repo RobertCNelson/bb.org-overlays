@@ -34,34 +34,32 @@ ifndef KBUILD_VERBOSE
   KBUILD_VERBOSE = 0
 endif
 
+#https://snapshot.debian.org/package/device-tree-compiler/
+
 DTC_FLAGS += -Wno-unit_address_vs_reg
 
 ifeq "$(DTCVERSION)" "1.4.7"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.4.7-3/#device-tree-compiler_1.4.7-3
-	#http://snapshot.debian.org/archive/debian/20180911T215003Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.7-3_amd64.deb
-	#Debian: 1.4.6
+	# wget https://snapshot.debian.org/archive/debian/20180911T215003Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.7-3_amd64.deb
 	DTC_FLAGS += -Wno-chosen_node_is_root
 	DTC_FLAGS += -Wno-alias_paths
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
 endif
 
 ifeq "$(DTCVERSION)" "1.5.0"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.5.0-1/#device-tree-compiler_1.5.0-1
-	#http://snapshot.debian.org/archive/debian/20190313T032949Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-1_amd64.deb
-	#Debian: 1.4.6
+	# wget https://snapshot.debian.org/archive/debian/20190708T032337Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-2_amd64.deb
 	DTC_FLAGS += -Wno-chosen_node_is_root
 	DTC_FLAGS += -Wno-alias_paths
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
+endif
+
+ifeq "$(DTCVERSION)" "1.5.1"
+	# wget https://snapshot.debian.org/archive/debian/20190914T205752Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.1-1_amd64.deb
+	DTC_FLAGS += -Wno-chosen_node_is_root
+	DTC_FLAGS += -Wno-alias_paths
 endif
 
 ifeq "$(DTCVERSION)" "1.6.0"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.5.0-1/#device-tree-compiler_1.5.0-1
-	#http://snapshot.debian.org/archive/debian/20190313T032949Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-1_amd64.deb
-	#Debian: 1.4.6
+	#wget https://snapshot.debian.org/archive/debian/20200304T150617Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.6.0-1_amd64.deb
 	DTC_FLAGS += -Wno-chosen_node_is_root
 	DTC_FLAGS += -Wno-alias_paths
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
-	DTC_FLAGS += -Wno-chosen_node_is_root
 endif
 
 ifeq "$(DTCVERSION)" "2.0.0"
