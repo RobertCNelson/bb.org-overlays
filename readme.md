@@ -141,3 +141,8 @@ v4.4.x: removed kernel overlays
 
     AM335X-PRU-RPROC-4-4-TI-00A0.dts
     AM335X-PRU-RPROC-4-4-TI-PRUCAPE-00A0.dts
+
+v4.9.x: removed kernel overlays
+
+    AM335X-PRU-RPROC-4-9-TI-00A0.dts
+    AM335X-PRU-RPROC-4-9-TI-PRUCAPE-00A0.dts
