@@ -137,3 +137,7 @@ Cape Universal Overlays only in Legacy Branch: (these have been embedded into th
     univ-hdmi-00A0.dts
     univ-nhdmi-00A0.dts
 
+v4.4.x: removed kernel overlays
+
+    AM335X-PRU-RPROC-4-4-TI-00A0.dts
+    AM335X-PRU-RPROC-4-4-TI-PRUCAPE-00A0.dts
