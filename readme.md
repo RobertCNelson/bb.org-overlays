@@ -80,3 +80,41 @@ U-Boot Overlays:
 
 https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays
 
+Legacy Branch: legacy-dtc-1.4.4
+------------
+
+Step 1: Clone this repo:
+
+    git clone -b legacy-dtc-1.4.4 https://github.com/beagleboard/bb.org-overlays
+    cd ./bb.org-overlays
+
+Step 2: Install *.dtbo:
+
+    ./install.sh
+
+Cape Universal Overlays only in Legacy Branch: (these have been embedded into the base *.dtb tree for v4.14.x+ for a few years)
+
+    bb-cape-universal.dtsi
+    cape-univ-audio-00A0.dts
+    cape-univ-emmc-00A0.dts
+    cape-universal-00A0.dts
+    cape-universala-00A0.dts
+    cape-universalh-00A0.dts
+    cape-universaln-00A0.dts
+    cape-univ-hdmi-00A0.dts
+    univ-all-00A0.dts
+    univ-bbb-EVA-00A0.dts
+    univ-bbb-EVx-00A0.dts
+    univ-bbb-Exx-00A0.dts
+    univ-bbb-xVA-00A0.dts
+    univ-bbb-xVx-00A0.dts
+    univ-bbb-xxx-00A0.dts
+    univ-bbgw-00A0.dts
+    univ-bbgw-EW-00A0.dts
+    univ-bbgw-Ex-00A0.dts
+    univ-bbgw-xW-00A0.dts
+    univ-bbgw-xx-00A0.dts
+    univ-emmc-00A0.dts
+    univ-hdmi-00A0.dts
+    univ-nhdmi-00A0.dts
+
