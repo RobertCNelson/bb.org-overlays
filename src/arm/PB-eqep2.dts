@@ -1,0 +1,68 @@
+/*
+ * Copyright (C) 2013 Nathaniel R. Lewis - http://nathanielrlewis.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ * Enable eQEP2 on the PocketBeagle
+ */
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/ {
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			P2_18_eqep2: pinmux_default_eqep2_strb { pinctrl-single,pins = <0x03C (PIN_INPUT | MUX_MODE4)>; };
+			P2_22_eqep2: pinmux_default_eqep2_idx { pinctrl-single,pins = <0x038 (PIN_INPUT | MUX_MODE4)>; };
+			P2_24_eqep2: pinmux_default_eqep2_a { pinctrl-single,pins = <0x030 (PIN_INPUT | MUX_MODE4)>; };
+			P2_33_eqep2: pinmux_default_eqep2_b { pinctrl-single,pins = <0x034 (PIN_INPUT | MUX_MODE4)>; };
+		};
+	};
+
+	fragment@1 {
+		target = <&epwmss2>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@2 {
+		target = <&eqep2>;
+		__overlay__ {
+			//pinctrl-names = "default"; // no pins here, as this would make us unable to set them via config-pin
+			//pinctrl-0 = <&pinctrl_eqep2>;
+
+			count_mode = <0>;	// count_mode is not userspace op_mode
+			// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
+			// 1 -> Direction mode.  cha input = clock, chb input = direction
+			// 2 -> UP count mode for frequency measurement QDIR=1, ignore direction input
+			// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
+
+			swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
+			invert_qa = <0>;		// invert channel A input?
+			invert_qb = <0>;		// invert channel B input?
+			invert_qi = <0>;		// invert index input?
+			invert_qs = <0>;		// invert strobe input?
+			omit_interrupt = <0>;	// 1 -> do not install interrupt handler, 0 -> do install
+
+			status = "okay";
+		};
+	};
+
+	fragment@3 {
+		target = <&ocp>;
+		__overlay__ {
+			P2_18_pinmux{ pinctrl-0 = <&P2_18_eqep2>; };
+			P2_22_pinmux{ pinctrl-0 = <&P2_22_eqep2>; };
+			P2_24_pinmux{ pinctrl-0 = <&P2_24_eqep2>; };
+			P2_33_pinmux{ pinctrl-0 = <&P2_33_eqep2>; };
+		};
+	};
+
+};
