@@ -1,6 +1,7 @@
 
 DTC ?= dtc
 CPP ?= cpp
+CC ?=
 DESTDIR ?=
 
 DTCVERSION ?= $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
@@ -116,7 +117,7 @@ export quiet Q KBUILD_VERBOSE
 
 all_%:
 	$(Q)$(MAKE) ARCH=$* all_arch
-	gcc -o config-pin ./tools/pmunts_muntsos/config-pin.c
+	$(CC)gcc -o config-pin ./tools/pmunts_muntsos/config-pin.c
 
 clean_%:
 	$(Q)$(MAKE) ARCH=$* clean_arch
