@@ -1,0 +1,21 @@
+/*
+Use the usb0 port as HOST port.
+This has been tested on the PocketBeagle, where the micro-USB port is usb0.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as
+published by the Free Software Foundation.
+
+*/
+
+/dts-v1/;
+/plugin/;
+/ {
+        fragment@0 {
+                target = <&usb0>;
+                __overlay__ {
+                        status = "okay";
+                        dr_mode = "host";
+                };
+        };
+};

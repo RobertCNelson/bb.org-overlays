@@ -1,0 +1,34 @@
+/*
+Use the usb1 port as a peripheral.
+
+ PocketBeagle    | USB cable
+ P1.05 USB1_VBUS | 5V
+ P1.07 VIN       | 5V *
+ P1.09 USB1_DN   | D-
+ P1.11 USB1_DP   | D+
+ P1.13 USB1_ID   | floating (only matters if dr_mode = "otg")
+ P1.15 GND       | GND
+
+*: P1.07 VIN is (almost) in parallel with the 5V pin from the micro USB port.
+Only apply 5V there if it is safe to do so (i.e.: only if at most one of the
+two USB ports is connected to a host at any given time).
+
+See https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/osd335x-lesson-2-usb-circuitry/ for more details.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as
+published by the Free Software Foundation.
+
+*/
+
+/dts-v1/;
+/plugin/;
+/ {
+        fragment@0 {
+                target = <&usb1>;
+                __overlay__ {
+                        status = "okay";
+                        dr_mode = "peripheral";
+                };
+        };
+};
