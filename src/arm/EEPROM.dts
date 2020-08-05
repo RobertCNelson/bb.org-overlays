@@ -1,0 +1,31 @@
+/*
+ * Use an EEPROM via the i2c bus.
+ *
+ * This sets up a 24c04 EEPROM on bus i2c2 at address 0x50. It does not take
+ * care of pin muxing.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&i2c2>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clock-frequency = <400000>;
+			eeprom: eeprom@50 {
+				compatible = "24c04";
+				reg = <0x50>;
+				pagesize = <16>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+			};
+		};
+	};
+};
