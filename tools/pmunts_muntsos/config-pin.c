@@ -33,7 +33,13 @@
 #include <sys/param.h>
 
 #define NAMES		"/sys/firmware/devicetree/base/ocp/%s_pinmux/pinctrl-names"
-#define STATE		"/sys/devices/platform/ocp/ocp:%s_pinmux/state"
+
+#if board_soc == AM572X
+  #define STATE   "/sys/devices/platform/44000000.ocp/44000000.ocp:%s_pinmux/state"
+#else
+  #define STATE		"/sys/devices/platform/ocp/ocp:%s_pinmux/state"
+#endif
+
 #define DIRECTION "/sys/class/gpio/gpio%d/direction"
 #define DELIMITERS	" \t\r\n"
 
