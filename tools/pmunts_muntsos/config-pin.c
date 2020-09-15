@@ -29,17 +29,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
+#include <dirent.h>
 #include <sys/param.h>
 
 #define NAMES		"/sys/firmware/devicetree/base/ocp/%s_pinmux/pinctrl-names"
-
-#if board_soc == AM572X
-  #define STATE   "/sys/devices/platform/44000000.ocp/44000000.ocp:%s_pinmux/state"
-#else
-  #define STATE		"/sys/devices/platform/ocp/ocp:%s_pinmux/state"
-#endif
-
+#define STATE_AI   "/sys/devices/platform/44000000.ocp/44000000.ocp:%s_pinmux/state"
+#define STATE		"/sys/devices/platform/ocp/ocp:%s_pinmux/state"
 #define DIRECTION "/sys/class/gpio/gpio%d/direction"
 #define DELIMITERS	" \t\r\n"
 
@@ -205,7 +200,15 @@ static void QueryMode(char *pin)
   fixup_pin_name(pin);
 
   memset(filename, 0, sizeof(filename));
-  snprintf(filename, sizeof(filename), STATE, pin);
+  DIR* dir = opendir("/sys/devices/platform/ocp/");
+  if (dir) {
+    /* AM335x */
+    closedir(dir);
+    snprintf(filename, sizeof(filename), STATE, pin);
+  } else {
+    /* AM572x  */
+    snprintf(filename, sizeof(filename), STATE_AI, pin);
+  }
 
   // Open the current mode file
 
@@ -286,7 +289,15 @@ static void ConfigureMode(char *pin, char *mode, bool quiet)
   fixup_pin_name(pin);
 
   memset(filename, 0, sizeof(filename));
-  snprintf(filename, sizeof(filename), STATE, pin);
+  DIR* dir = opendir("/sys/devices/platform/ocp/");
+  if (dir) {
+    /* AM335x */
+    closedir(dir);
+    snprintf(filename, sizeof(filename), STATE, pin);
+  } else {
+    /* AM572x  */
+    snprintf(filename, sizeof(filename), STATE_AI, pin);
+  }
 
   // Open the current mode file
 
