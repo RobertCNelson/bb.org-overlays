@@ -8,7 +8,7 @@ check_dpkg () {
 
 dtc_git_build () {
 	project="dtc"
-	server="git://git.kernel.org/pub/scm/utils/dtc/dtc.git"
+	server="https://git.kernel.org/pub/scm/utils/dtc/dtc.git"
 
 	if [ ! -d ${HOME}/git/ ] ; then
 		mkdir -p ${HOME}/git/ || true
