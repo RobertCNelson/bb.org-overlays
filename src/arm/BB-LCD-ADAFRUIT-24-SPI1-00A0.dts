@@ -97,11 +97,11 @@
 			/* See page 1446 of am35xx TRM */
 			bb_spi1_pins: pinmux_bb_spi1_pins {
 				pinctrl-single,pins = <
-					0x190 0x33	/* mcasp0_aclkx.spi1_sclk,  INPUT_PULLUP | MODE3 */
-					0x194 0x33	/* mcasp0_fsx.spi1_d0,      INPUT_PULLUP | MODE3 */
-					0x198 0x13	/* mcasp0_axr0.spi1_d1,    OUTPUT_PULLUP | MODE3 */
-					0x19c 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
-					// 0x164 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
+					BONE_P9_31 0x33	/* mcasp0_aclkx.spi1_sclk,  INPUT_PULLUP | MODE3 */
+					BONE_P9_29 0x33	/* mcasp0_fsx.spi1_d0,      INPUT_PULLUP | MODE3 */
+					BONE_P9_30 0x13	/* mcasp0_axr0.spi1_d1,    OUTPUT_PULLUP | MODE3 */
+					BONE_P9_28 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
+					// BONE_P9_42A 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
 				>;
 			};
 
@@ -201,7 +201,7 @@
 				backlight = <&backlight_pwm>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
 				// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
 				// rotation is optional
-				rotation = <180>;
+				rotation = <270>;
 			};
 		};
 	};
