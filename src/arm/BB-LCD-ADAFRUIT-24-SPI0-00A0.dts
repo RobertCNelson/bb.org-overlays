@@ -22,14 +22,14 @@
  *
  * It should be connected to BeagleBone SPI0 bus:
  *
- *   P9.20 <--> reset
  *   P9.16 <--> lite (pwm) [OPTIONAL]
- *   P9.19 <--> dc
- *   P9.23 <--> lite (gpio) [OPTIONAL]
  *   P9.17 <--> tft_cs
  *   P9.18 <--> mosi
+ *   P9.19 <--> dc
+ *   P9.20 <--> reset
  *   P9.21 <--> miso
  *   P9.22 <--> clk
+ *   P9.23 <--> lite (gpio) [OPTIONAL]
  *
  * This overlay will load the mainline tinydrm ili9341 driver by David Lechner:
  * https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/tiny/ili9341.c
@@ -80,10 +80,10 @@
 	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
-			P9_20_pinmux { status = "disabled"; };	/* lcd reset */
 			P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
 			P9_19_pinmux { status = "disabled"; };	/* lcd dc */
-		/*	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
+			P9_20_pinmux { status = "disabled"; };	/* lcd reset */
+		//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
 			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
 			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
 			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
