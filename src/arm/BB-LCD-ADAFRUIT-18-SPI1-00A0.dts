@@ -20,10 +20,10 @@
  *
  * It should be connected to BeagleBone SPI1 bus:
  *
- *   P9.12 <--> reset
  *   P9.14 <--> lite (pwm) [OPTIONAL]
- *   P9.15 <--> dc
  *   P9.23 <--> lite (gpio) [OPTIONAL]
+ *   P9.25 <--> reset
+ *   P9.27 <--> dc
  *   P9.28 <--> tft_cs
  *   P9.30 <--> mosi
  *   P9.31 <--> clk
@@ -31,7 +31,7 @@
  * This overlay will load the mainline tinydrm st7735r driver by David Lechner:
  * https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/tinydrm/st7735r.c
  *
- * Tested with 4.16.0-rc2-bone3 kernel on Debian 9.3 image
+ * Tested with 4.19.94-ti-r50 kernel on Debian 10 image
  *
  * Run libdrm modetest for colorbar test based on instructions from:
  * https://github.com/notro/tinydrm/wiki/Development#modetest
@@ -42,9 +42,6 @@
  *
  * Mailing list post with more information:
  * https://groups.google.com/d/msg/beagleboard/GuMQIP_XCW0/b3lxbx_8AwAJ
- *
- * GitHub Gist with testing results:
- * https://gist.github.com/pdp7/aee5664598059c9b9a9020f107957f80
  *
  * Discussion with notro on how to test tinydrm driver:
  * https://github.com/notro/tinydrm/issues/1#issuecomment-367279037
@@ -79,9 +76,9 @@
 	fragment@1 {
 		target = <&ocp>;
 		__overlay__ {
-			P9_12_pinmux { status = "disabled"; };	/* lcd reset */
+			P9_25_pinmux { status = "disabled"; };	/* lcd reset */
 			P9_14_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
-			P9_15_pinmux { status = "disabled"; };	/* lcd dc */
+			P9_27_pinmux { status = "disabled"; };	/* lcd dc */
 		//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
 			P9_28_pinmux { status = "disabled"; };	/* spi1_cs0 */
 			P9_29_pinmux { status = "disabled"; };	/* spi1_d0 */
@@ -100,6 +97,8 @@
 					BONE_P9_29 0x33	/* mcasp0_fsx.spi1_d0,      INPUT_PULLUP | MODE3 */
 					BONE_P9_30 0x13	/* mcasp0_axr0.spi1_d1,    OUTPUT_PULLUP | MODE3 */
 					BONE_P9_28 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
+					BONE_P9_27 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
+					BONE_P9_25 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
 					// BONE_P9_42A 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
 				>;
 			};
@@ -190,8 +189,8 @@
 				compatible = "jianda,jd-t18003-t01", "sitronix,st7735r";
 				reg = <0>;
 				spi-max-frequency = <16000000>;
-				dc-gpios = <&gpio1 16 0>;      // lcd dc    P9.15 gpio1[16]
-				reset-gpios = <&gpio1 28 0>;   // lcd reset P9.12 gpio1[28]
+				dc-gpios = <&gpio3 19 0>;      // lcd dc    P9.27 gpio3[19]
+				reset-gpios = <&gpio3 21 0>;   // lcd reset P9.25 gpio3[21]
 				// backlight is optional
 				// choose either pwm or gpio control
 				//backlight = <&backlight_gpio>; // lcd lite  P9.23 gpio1[17]
