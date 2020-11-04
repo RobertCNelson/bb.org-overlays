@@ -82,7 +82,7 @@
 			P9_25_pinmux { status = "disabled"; };	/* lcd reset */
 			P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
 			P9_27_pinmux { status = "disabled"; };	/* lcd dc */
-			P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
+		//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
 			P9_28_pinmux { status = "disabled"; };	/* spi1_cs0 */
 			P9_29_pinmux { status = "disabled"; };	/* spi1_d0 */
 			P9_30_pinmux { status = "disabled"; };	/* spi1_d1 */
@@ -101,6 +101,8 @@
 					BONE_P9_29 0x33	/* mcasp0_fsx.spi1_d0,      INPUT_PULLUP | MODE3 */
 					BONE_P9_30 0x13	/* mcasp0_axr0.spi1_d1,    OUTPUT_PULLUP | MODE3 */
 					BONE_P9_28 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
+					BONE_P9_27 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
+					BONE_P9_25 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
 					// BONE_P9_42A 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
 				>;
 			};
