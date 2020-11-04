@@ -83,7 +83,7 @@
 			P9_20_pinmux { status = "disabled"; };	/* lcd reset */
 			P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
 			P9_19_pinmux { status = "disabled"; };	/* lcd dc */
-			P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
+		/*	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
 			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
 			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
 			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
@@ -98,11 +98,13 @@
 			/* See page 1446 of am35xx TRM */
 			bb_spi0_pins: pinmux_bb_spi0_pins {
 				pinctrl-single,pins = <
-					0x150 0x30	/* mcasp0_aclkx.spi0_sclk,  INPUT_PULLUP | MODE0 */
-					0x154 0x30	/* mcasp0_fsx.spi0_d0,      INPUT_PULLUP | MODE0 */
-					0x158 0x10	/* mcasp0_axr0.spi0_d1,    OUTPUT_PULLUP | MODE0 */
-					0x15c 0x10	/* mcasp0_ahclkr.spi0_cs0, OUTPUT_PULLUP | MODE0 */
-					// 0x164 0x12	/* eCAP0_in_PWM0_out.spi0_cs1 OUTPUT_PULLUP | MODE2 */
+					BONE_P9_22 0x30	/* mcasp0_aclkx.spi0_sclk,  INPUT_PULLUP | MODE0 */
+					BONE_P9_21 0x30	/* mcasp0_fsx.spi0_d0,      INPUT_PULLUP | MODE0 */
+					BONE_P9_18 0x10	/* mcasp0_axr0.spi0_d1,    OUTPUT_PULLUP | MODE0 */
+					BONE_P9_17 0x10	/* mcasp0_ahclkr.spi0_cs0, OUTPUT_PULLUP | MODE0 */
+					BONE_P9_19 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
+					BONE_P9_20 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
+					// No cs1 for spi0
 				>;
 			};
 
@@ -202,7 +204,7 @@
 				backlight = <&backlight_pwm>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
 				// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
 				// rotation is optional
-				rotation = <180>;
+				rotation = <270>;
 			};
 		};
 	};
