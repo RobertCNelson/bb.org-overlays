@@ -1,0 +1,231 @@
+/*
+ * For CircuitCo WL1835MOD cape, see https://github.com/CircuitCo/WL1835MOD 
+ * This file adapted from am335x-boneblack-wl1835mod-cape.dtsi
+ */
+ 
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BB-BONE-WL1835MOD";
+	version = "00A0";
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P8.21",	/* GPIO1_30 (MMC2) */
+		"P8.20",	/* GPIO1_31 (MMC2) */
+		"P8.25",	/* GPIO1_0 (MMC2) */
+		"P8.24",	/* GPIO1_1 (MMC2) */
+		"P8.05",	/* GPIO1_2 (MMC2) */
+		"P8.06",	/* GPIO1_3 (MMC2) */
+
+		"P8.35",	/* UART4_RTS */
+		"P8.33",	/* UART4_CTS */
+		"P9.11",	/* UART4_RXD */
+		"P9.13",	/* UART4_TXD */
+
+		"P9.19",	/* I2C2_SCL */
+		"P9.20",	/* I2C2_SDA */
+
+		"P9.41",	/* CLKOUT2 */
+
+		"gpio1_12", /* BT_EN */
+		"gpio0_26",	/* WL_EN */
+		"gpio0_27",	/* WL_IRQ */
+		"gpio1_29",	/* BF_EN */
+		"gpio1_15",	/* reserved */
+		"gpio1_5",	/* reserved */
+
+		/* the hardware ip uses */
+		"uart4",
+		"mmc2",
+		"i2c2";
+
+	/*
+	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+	 */
+	fragment@0 {
+		target-path = "/";
+		__overlay__ {
+		
+			chosen {
+				overlays {
+					BB-BONE-WL1835MOD-00A0 = __TIMESTAMP__;
+				};
+			};
+		};
+	};
+
+	/*
+	 * Free up the pins used by the cape from the pinmux helpers.
+	 */
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			P8_21_pinmux { status = "disabled"; };	/* GPIO1_30: MMC2 */
+			P8_20_pinmux { status = "disabled"; };	/* GPIO1_31: MMC2 */
+			P8_25_pinmux { status = "disabled"; };	/* GPIO1_0: MMC2 */
+			P8_24_pinmux { status = "disabled"; };	/* GPIO1_1: MMC2 */
+			P8_05_pinmux { status = "disabled"; };	/* GPIO1_2: MMC2 */
+			P8_06_pinmux { status = "disabled"; };	/* GPIO1_3: MMC2 */
+
+			P8_12_pinmux { status = "disabled"; };	/* GPIO1_12: BT_EN */
+			P8_14_pinmux { status = "disabled"; };	/* GPIO0_26: WL_EN */
+			P8_17_pinmux { status = "disabled"; };	/* GPIO0_27: WL_IRQ */
+			P8_26_pinmux { status = "disabled"; };	/* GPIO1_29: BF_EN */
+
+			P8_35_pinmux { status = "disabled"; };	/* UART4_RTS */
+			P8_33_pinmux { status = "disabled"; };	/* UART4_CTS */
+			P9_11_pinmux { status = "disabled"; };	/* UART4_RXD */
+			P9_13_pinmux { status = "disabled"; };	/* UART4_TXD */
+
+			P9_19_pinmux { status = "disabled"; };	/* I2C2_SCL */
+			P9_20_pinmux { status = "disabled"; };	/* I2C2_SDA */
+
+			P9_41_pinmux { status = "disabled"; };	/* CLKOUT2 */
+			P8_15_pinmux { status = "disabled"; };	/* GPIO1_15: reserved */
+			P8_22_pinmux { status = "disabled"; };	/* GPIO1_5: reserved */
+		};
+	};
+
+	fragment@2 {
+		target-path = "/";
+		__overlay__ {
+			wlan_en_reg: fixedregulator@2 {
+				compatible = "regulator-fixed";
+				regulator-name = "wlan-en-regulator";
+				regulator-min-microvolt = <1800000>;
+				regulator-max-microvolt = <1800000>;
+
+				/* WL_EN */
+				gpio = <&gpio0 26 0>;
+				enable-active-high;
+			};
+
+			kim {
+			        compatible = "kim";
+			        nshutdown_gpio = <44>; /* Bank1, pin12 */
+			        dev_name = "/dev/ttyO4";
+			        flow_cntrl = <1>;
+			        baud_rate = <3000000>;
+			};
+
+			btwilink {
+			        compatible = "btwilink";
+			};
+		};
+	};
+
+	fragment@3 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			bt_pins: pinmux_bt_pins {
+				pinctrl-single,pins = <
+					BONE_P8_12 (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpmc_ad12.gpio1_12 BT_EN */
+				>;
+			};
+
+			mmc2_pins: pinmux_mmc2_pins {
+				pinctrl-single,pins = <
+					BONE_P8_21 (PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn1.mmc1_clk */
+					BONE_P8_20 (PIN_INPUT_PULLUP | MUX_MODE2) /* gpmc_csn2.mmc1_cmd */
+					BONE_P8_25 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad0.mmc1_dat0 */
+					BONE_P8_24 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad1.mmc1_dat1 */
+					BONE_P8_05 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad2.mmc1_dat2 */
+					BONE_P8_06 (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad3.mmc1_dat3 */
+				>;
+			};
+
+			mmc2_pins_sleep: pinmux_mmc2_pins_sleep {
+				pinctrl-single,pins = <
+					BONE_P8_21 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_csn1.mmc1_clk */
+					BONE_P8_20 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_csn2.mmc1_cmd */
+					BONE_P8_25 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad0.mmc1_dat0 */
+					BONE_P8_24 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad1.mmc1_dat1 */
+					BONE_P8_05 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad2.mmc1_dat2 */
+					BONE_P8_06 (PIN_INPUT_PULLDOWN | MUX_MODE7) /* gpmc_ad3.mmc1_dat3 */
+				>;
+			};
+
+			/* wl18xx card enable/irq GPIOs. */
+			wlan_pins: pinmux_wlan_pins {
+				pinctrl-single,pins = <
+					BONE_P8_14 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad10.gpio0_26 WL_EN */
+					BONE_P8_17 (PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_ad11.gpio0_27 WL_IRQ */
+					BONE_P8_26 (PIN_OUTPUT_PULLUP | MUX_MODE0)	/* gpmc_csn0.gpio1_29 BF_EN */
+				>;
+			};
+
+			/* wl18xx card enable/irq GPIOs. */
+			wlan_pins_sleep: pinmux_wlan_pins_sleep {
+				pinctrl-single,pins = <
+					BONE_P8_14 (PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpmc_ad10.gpio0_26 WL_EN */
+					BONE_P8_17 (PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_ad11.gpio0_27 WL_IRQ */
+					BONE_P8_26 (PIN_OUTPUT_PULLUP | MUX_MODE0)	/* gpmc_csn0.gpio1_29 BF_EN */
+				>;
+			};
+
+			uart4_pins_default: pinmux_uart4_pins_default {
+				pinctrl-single,pins = <
+					BONE_P8_35 (PIN_INPUT | MUX_MODE6)		/* lcd_data12.uart4_cts */
+					BONE_P8_33 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* lcd_data13.uart4_rts */
+					BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6)	/* gpmc_wait0.uart4_rxd */
+					BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)	/* gpmc_wpn.uart4_txd */
+				>;
+			};
+
+			uart4_pins_sleep: pinmux_uart4_pins_sleep {
+				pinctrl-single,pins = <
+					BONE_P8_35 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* lcd_data12.uart4_cts */
+					BONE_P8_33 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* lcd_data13.uart4_rts */
+					BONE_P9_11 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_wait0.uart4_rxd */
+					BONE_P9_13 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_wpn.uart4_txd */
+				>;
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&mmc2>;
+		__overlay__ {
+			status = "okay";
+			vmmc-supply = <&wlan_en_reg>;
+			bus-width = <4>;
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&mmc2_pins &wlan_pins>;
+			pinctrl-1 = <&mmc2_pins_sleep &wlan_pins_sleep>;
+			ti,non-removable;
+			ti,needs-special-hs-handling;
+			cap-power-off-card;
+			keep-power-in-suspend;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+			wlcore: wlcore@0 {
+				compatible = "ti,wl1835";
+				reg = <2>;
+				interrupt-parent = <&gpio0>;
+				interrupts = <27 IRQ_TYPE_LEVEL_HIGH>;
+			};
+		};
+	};
+	
+	fragment@5 {
+		target = <&uart4>;
+		__overlay__ {
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart4_pins_default>;
+			pinctrl-1 = <&uart4_pins_sleep>;
+			status = "okay";
+		};
+	};
+};
