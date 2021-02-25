@@ -85,7 +85,13 @@
 			status = "okay";
 			pinctrl-names = "default";
 			pinctrl-0 = <&bb_spi1_pins>;
-			ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
+
+			/*
+			 * Select the D0 pin as output and D1 as
+			 * input. The default is D0 as input and
+			 * D1 as output.
+			 */
+			//ti,pindir-d0-out-d1-in;
 
 			channel@0 {
 				#address-cells = <1>;
