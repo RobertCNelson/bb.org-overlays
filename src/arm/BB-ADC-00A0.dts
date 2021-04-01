@@ -10,24 +10,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-ADC";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P9.39",		// AIN0
-		"P9.40",		// AIN1
-		"P9.37",		// AIN2
-		"P9.38",		// AIN3
-		"P9.33",		// AIN4
-		"P9.36",		// AIN5
-		"P9.35",		// AIN6
-
-		"tscadc";	// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

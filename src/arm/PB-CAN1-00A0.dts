@@ -14,20 +14,6 @@
 #include <dt-bindings/board/am335x-pb-base.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "PB-CAN1";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P2.09", /* can1_rx */
-		"P2.11", /* can1_tx */
-		/* the hardware ip uses */
-		"dcan1";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

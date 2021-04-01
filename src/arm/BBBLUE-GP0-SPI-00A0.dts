@@ -18,12 +18,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,am335x-bone-blue", "ti,beaglebone", "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BBBLUE-GP0-SPI";
-	version = "00A0";
-
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {

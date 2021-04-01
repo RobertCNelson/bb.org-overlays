@@ -17,23 +17,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "seeed-4mic-voicecard";
-	version = "00A0", "A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.27",	/* mcasp0: mcasp0_fsr */
-		"P9.28",	/* mcasp0: mcasp0_ahclkr */
-		"P9.30",	/* mcasp0: mcasp0_axr0 */
-		"P9.42",	/* mcasp0: mcasp0_aclkr */
-		/* the hardware ip uses */
-		"gpio3_21",
-		"mcasp0";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

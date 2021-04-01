@@ -20,15 +20,6 @@
 /plugin/;
 
 /{
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	part-number = "BB-UART4-RTSCTS";
-	version = "00A0";
-
-	exclusive-use =
-		"P8.33",    // uart4_rtsn     conflict with HDMI pin
-		"P8.35";    // uart4_ctsn     conflict with HDMI pin
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

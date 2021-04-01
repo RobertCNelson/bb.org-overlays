@@ -10,45 +10,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-	part-number = "BW-ICE40Cape";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.31",	/* bw_spi1_sclk */
-		"P9.29",	/* bw_spi1_d0 */
-		"P9.30",	/* bw_spi1_d1 */
-		"P9.28",	/* bw_spi1_cs0 */
-		"P9.25",	/* bw_creset */
-		"P9.21",	/* bw_cdone */
-		"P8.25",	/* bw_gpmc_ad0 */
-		"P8.24",	/* bw_gpmc_ad1 */
-		"P8.5",		/* bw_gpmc_ad2 */
-		"P8.6",		/* bw_gpmc_ad3 */
-		"P8.23",	/* bw_gpmc_ad4 */
-		"P8.22",	/* bw_gpmc_ad5 */
-		"P8.3",		/* bw_gpmc_ad6 */
-		"P8.4",		/* bw_gpmc_ad7 */
-		"P8.19",	/* bw_gpmc_ad8 */
-		"P8.13",	/* bw_gpmc_ad9 */
-		"P8.14",	/* bw_gpmc_ad10 */
-		"P8.17",	/* bw_gpmc_ad11 */
-		"P8.12",	/* bw_gpmc_ad12 */
-		"P8.11",	/* bw_gpmc_ad13 */
-		"P8.16",	/* bw_gpmc_ad14 */
-		"P8.15",	/* bw_gpmc_ad15 */
-		"P9.12",	/* bw_gpmc_ben1 */
-		"P8.21",	/* bw_gpmc_csn1 */
-		"P8.18",	/* bw_gpmc_clk */
-		"P8.7",		/* bw_gpmc_advn_ale */
-		"P8.8",		/* bw_gpmc_oen_ren */
-		"P8.10",	/* bw_gpmc_wen */
-		"P8.9",		/* bw_gpmc_ben0_cle */
-		"gpmc",
-		"spi1";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

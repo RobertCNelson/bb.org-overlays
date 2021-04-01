@@ -47,21 +47,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART4-RS485";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P9.13",		// uart4_txd
-		"P9.11",		// uart4_rxd
-		"P9.27",		// uart4_de/re
-		"gpio3_19",
-
-		"uart4";		// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

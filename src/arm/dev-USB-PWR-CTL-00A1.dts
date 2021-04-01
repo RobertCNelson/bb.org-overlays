@@ -16,16 +16,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "dev-USB-PWR-CTL";
-	version = "00A1";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-	"gpio3_13";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

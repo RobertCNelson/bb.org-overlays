@@ -15,21 +15,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	// identification
-	part-number = "bone_eqep2";
-	version	    = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P8.41",	// EQEP2A_in
-		"P8.42",	// EQEP2B_in
-		"P8.39",	// EQEP2_index
-		"P8.40",	// EQEP2_strobe
-
-		"eqep0";	// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

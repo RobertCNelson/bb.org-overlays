@@ -14,27 +14,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-BONE-CRYPTO";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		/* For Flashing the ATmega328p */
-		"P9.13",	/* uart4_txd */
-		"P9.11",	/* uart4_rxd */
-		"P9.23",	/* gpio1_17 */
-		/* As the AUTHO Input from the AES132 */
-		"P8.11",	/* gpio1_13 */
-
-		/* the hardware ip uses */
-		"uart4",
-		"gpio1_13",
-		"gpio1_17";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

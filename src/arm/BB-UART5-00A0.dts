@@ -15,19 +15,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART5";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P8.37",		// uart5_txd
-		"P8.38",		// uart5_rxd
-
-		"uart5";		// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

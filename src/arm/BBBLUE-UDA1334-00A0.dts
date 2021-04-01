@@ -26,21 +26,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,am335x-bone-blue", "ti,beaglebone", "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BBBLUE-UDA1334";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.30",	/* (D12) S1.1_3, mcasp0_d0, DIN */
-		"P9.29",	/* (B13) S1.1_4, mcasp0_fsx, WSEL */
-		"P9.31",	/* (A13) S1.1_5, mcasp0_aclkx, BCLK */
-		/* the hardware ip uses */
-		"mcasp0";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

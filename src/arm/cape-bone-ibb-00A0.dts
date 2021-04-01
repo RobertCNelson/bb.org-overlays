@@ -16,29 +16,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "cape-bone-ibb";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.24",	/* uart1_txd */
-		"P9.26",	/* uart1_rxd */
-		"P9.21",	/* uart2_txd */
-		"P9.22",	/* uart2_rxd */
-		"P9.13",	/* uart4_txd */
-		"P9.11",	/* uart4_rxd */
-		"P9.15",	/* rtc-int */
-
-		/* the hardware ip uses */
-		"uart1",
-		"uart2",
-		"uart4",
-		"gpio1_16";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

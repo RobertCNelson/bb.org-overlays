@@ -14,19 +14,6 @@
 #include <dt-bindings/gpio/gpio.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-I2C2-PCF8523";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P9.19",	// i2c2_sda
-		"P9.20",	// i2c2_scl
-
-		"i2c2";		// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

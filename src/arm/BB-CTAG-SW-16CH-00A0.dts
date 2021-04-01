@@ -11,31 +11,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-CTAG-SW-16CH";
-	version = "00A0", "A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* audio */
-		"P9.30",	/* mcasp0_axr0 		audio in */
-		"P9.28",	/* mcasp0_axr2 		audio out */
-		"P9.31",	/* mcasp0_ahclkx	transmit bitclock */
-		"P9.29",	/* mcasp0_fsx 		transmit frameclock */
-		"P9.12",	/* mcasp0_aclkr		receive bitclock */
-		"P9.27",	/* mcasp0_fsr		receive frameclock */
-		"P9.25",	/* mcasp0_ahclkx 	masterclock */
-		/* spi */
-		"P8.32",	/* spi_sclk */
-		"P8.33",	/* spi_mosi */
-		"P8.14",	/* spi_miso */
-		"P8.17",	/* spi_cs0 */
-		"P8.31",	/* spi_cs1 */
-		/* the hardware ip uses */
-		"mcasp0", "spi_gpio";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

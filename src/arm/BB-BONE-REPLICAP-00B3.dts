@@ -10,47 +10,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BB-BONE-REPLICAP";
-	version = "00B3";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header P8 uses */
-		"P8.8",  /* FAULT_EXT_2	*/
-		"P8.9",  /* FAULT_Y 	*/
-		"P8.10", /* FAULT_X 	*/
-		"P8.11", /* STEP_H	*/
-		"P8.12", /* STEP_Y      */
-		"P8.13", /* STEP_Z      */
-		"P8.14", /* DIR_Z       */
-		"P8.15", /* DIR_E 	*/
-		"P8.16", /* DIR_H 	*/
-		"P8.17", /* STEP_X      */
-		"P8.18", /* FAULT_E	*/
-		"P8.19", /* DIR_Y       */
-		"P8.26", /* DIR_X       */
-		/* the pin header P9 uses */
-		"P9.11", /* END_STOP_X2	*/
-		"P9.12", /* STEP_E 	*/
-		"P9.13", /* END_STOP_Z1	*/
-		"P9.16", /* SERVO_0     */
-		"P9.18", /* SERVO_1	*/
-		"P9.22", /* Dallas 1W   */
-		"P9.23", /* END_STOP_Y1 */
-		"P9.24", /* FAULT_Z     */
-		"P9.25", /* END_STOP_X1	*/
-		"P9.28", /* END_STOP_Y2	*/
-		"P9.30", /* SPI1_MOSI	*/
-		"P9.31", /* SPI1_SCLK	*/
-		"P9.33", /* AIN4        */
-		"P9.35", /* AIN6        */
-		"P9.36", /* AIN5        */
-		"P9.41", /* ENABLE_PWM  */
-		"P9.42"; /* SPI1_CS1	*/
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

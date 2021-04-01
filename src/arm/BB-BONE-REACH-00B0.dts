@@ -10,22 +10,6 @@
 /plugin/;
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BB-BONE-REACH";
-	version = "00B0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header P8 uses */
-		"P8.7",  /* STEP_B	*/
-		/* the pin header P9 uses */
-		"P9.15", /* STEP_A	*/
-		"P9.17", /* DIR_A	*/
-		"P9.26", /* DIR_B	*/
-		"P9.21"; /* FAULT_REACH	*/
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

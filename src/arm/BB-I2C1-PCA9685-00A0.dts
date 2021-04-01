@@ -14,24 +14,6 @@
 #include <dt-bindings/gpio/gpio.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-I2C1-PCA9685";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		/* the pin header uses */
-		"P9.23",	/* gpio1_17 */
-		"P9.27",	/* gpio3_19 */
-		"P9.18",	/* i2c1_sda */
-		"P9.17",	/* i2c1_scl */
-		/* the hardware ip uses */
-		"gpio1_17",
-		"gpio3_19",
-		"i2c1";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

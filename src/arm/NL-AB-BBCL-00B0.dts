@@ -24,32 +24,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-black-wireless", "ti,beaglebone-green";
-	part-number = "NL-AB-BBCL";
-	version = "00B0";
-
-	exclusive-use = 
-		/* the pin header and pins used */
-		"P9.11", /* UART4 RXD */
-		"P9.13", /* UART4 TXD */
-		"P8.33", /* UART4_RTS*/
-		"P8.35", /* UART4_CTS*/
-		"P8.17", /* GPIO0_27, Sky_PWR_EN, output, init-high*/
-		"P8.26", /* GPIO1_29, Sky_PWR_PG, input*/
-		"P9.12", /* GPIO1_28, Sky_DTR, output, init-low*/
-		"P9.15", /* GPIO1_16, Sky_Reset, output, init-low*/
-		"P9.25", /* GPIO3_21, EEPROM_WP, output, init high*/
-		"P9.27", /* GPIO3_21, Sky_On_Off, output, init high*/
-		
-		
-		 /* the hardware IP use */
-		"uart4_RTSCTS",
-		"gpio1_28",
-		"gpio3_21",
-		"gpio3_19",
-		"gpio0_27",
-		"gpio1_29";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

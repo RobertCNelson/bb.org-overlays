@@ -13,35 +13,6 @@
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BBORG_DISPLAY18";
-	version = "00A2";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P8.7",		/* BTN7 GPIO66 */
-		"P8.8",		/* BTN6 GPIO67 */
-		"P8.9",		/* LCD BACKLIGHT TIMER5 GPIO69 */
-		"P8.27",	/* BTN2 GPIO86 */
-		"P8.28",	/* BTN4 GPIO88 */
-		"P8.29",	/* BTN1 GPIO87 */
-		"P8.30",	/* BTN3 GPIO89 */
-		"P8.31",	/* LCD RESET GPIO10 */
-		"P8.33",	/* LCD DC GPIO9 */
-		"P8.35",	/* LED1 GPIO8 */
-		"P8.37",	/* LED2 GPIO78 */
-		"P8.43",	/* BTN8 GPIO72 */
-		"P9.12",	/* BTN5 GPIO60 */
-		"P9.17",	/* LCD SPI0 CS0 */
-		"P9.18",	/* LCD SPI0 MOSI */
-		"P9.21",	/* LCD SPI0 MISO */
-		"P9.22",	/* LCD SPI0 CLK */
-		/* the hardware ip uses */
-		"spi0";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

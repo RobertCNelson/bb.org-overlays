@@ -7,64 +7,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-BBBMINI";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		/* PRU RCInput */
-		"P8.15",	/* pru1: pr1_ecap0_ecap_capin, PPM-sum, SBUS, DSM */
-
-		/* PRU RCOutput */
-		"P8.28",	/* pru1: pr1_pru1_pru_r30_10, CH_1 */
-		"P8.27",	/* pru1: pr1_pru1_pru_r30_8, CH_2 */
-		"P8.30",	/* pru1: pr1_pru1_pru_r30_11, CH_3 */
-		"P8.29",	/* pru1: pr1_pru1_pru_r30_9, CH_4 */
-		"P8.40",	/* pru1: pr1_pru1_pru_r30_7, CH_5 */
-		"P8.39",	/* pru1: pr1_pru1_pru_r30_6, CH_6 */
-		"P8.42",	/* pru1: pr1_pru1_pru_r30_5, CH_7 */
-		"P8.41",	/* pru1: pr1_pru1_pru_r30_4, CH_8 */
-		"P8.44",	/* pru1: pr1_pru1_pru_r30_3, CH_9 */
-		"P8.43",	/* pru1: pr1_pru1_pru_r30_2, CH_10 */
-		"P8.46",	/* pru1: pr1_pru1_pru_r30_1, CH_11 */
-		"P8.45",	/* pru1: pr1_pru1_pru_r30_0, CH_12 */
-
-		/* SPI0 */
-		"P9.22",	/* spi0: spi0_sclk, SPI0_SCLK */
-		"P9.21",	/* spi0: spi0_d0, SPI0_MISO */
-		"P9.18",	/* spi0: spi0_d1, SPI0_MOSI */
-		"P9.17",	/* spi0: spi0_cs0, CS0 */
-
-		/* SPI1 */
-		"P9.31",	/* spi1: spi1_sclk, SPI1_SCLK */
-		"P9.29",	/* spi1: spi1_d0, SPI1_MISO */
-		"P9.30",	/* spi1: spi1_d1, SPI1_MOSI */
-		"P9.28",	/* spi1: spi1_cs0, MPU9250 CS0 */
-		"P9.42",	/* spi1: spi1_cs1, MS5611 CS1 */
-		
-		/* UART4 MAVLink */
-		"P9.13",	/* uart4_txd */
-		"P9.11",	/* uart4_rxd */
-
-		/* UART5 GPS */
-		"P8.37",	/* uart5_txd */
-		"P8.38",	/* uart5_rxd */
-
-		/* CAN1 */
-		"P9.24",	/* can1_rx */
-		"P9.26",	/* can1_tx */
-		/* the hardware ip uses */
-		"pru1",
-		"spi0",
-		"spi1",
-		"uart4",
-		"uart5",
-		"dcan1";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

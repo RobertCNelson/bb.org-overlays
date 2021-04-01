@@ -19,32 +19,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 /{
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-	part-number = "NL-AB-BBBC";
-	version = "00D0";
-
-	/* State resources this cape uses */
-	exclusive-use =
-		/* the pin header and pins used */
-		"P9.13", /* UART4 TXD */
-		"P9.11", /* UART4 RXD */
-		"P9.21", /* UART2 TXD */
-		"P9.22", /* UART2 RXD */
-		"P9.24", /* CAN1 RXD */
-		"P9.26", /* CAN1 TXD */
-		"P8.8", /*SKYWIRE ON-OFF*/
-		"P8.9", /*SKYWIRE DTR*/
-
-		 /* the hardware IP use */
-		"uart4_txd_mux2",
-		"uart4_rxd_mux2",
-		"uart2_txd",
-		"uart2_rxd",
-		"CAN1_rxd",
-		"CAN1_txd",
-		"gpio2_3",
-		"gpio2_5";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

@@ -14,55 +14,6 @@
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "DLPDLCR2000";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P8.45",	/* lcd: lcd_data0 */
-		"P8.46",	/* lcd: lcd_data1 */
-		"P8.43",	/* lcd: lcd_data2 */
-		"P8.44",	/* lcd: lcd_data3 */
-		"P8.41",	/* lcd: lcd_data4 */
-		"P8.42",	/* lcd: lcd_data5 */
-		"P8.39",	/* lcd: lcd_data6 */
-		"P8.40",	/* lcd: lcd_data7 */
-		"P8.37",	/* lcd: lcd_data8 */
-		"P8.38",	/* lcd: lcd_data9 */
-		"P8.36",	/* lcd: lcd_data10 */
-		"P8.34",	/* lcd: lcd_data11 */
-		"P8.35",	/* lcd: lcd_data12 */
-		"P8.33",	/* lcd: lcd_data13 */
-		"P8.31",	/* lcd: lcd_data14 */
-		"P8.32",	/* lcd: lcd_data15 */
-
-		"P8.15",	/* gpmc_ad15.lcd_data16 */
-		"P8.16",	/* gpmc_ad14.lcd_data17 */
-		"P8.11",	/* gpmc_ad13.lcd_data18 */
-		"P8.12",	/* gpmc_ad12.lcd_data19 */
-		"P8.17",	/* gpmc_ad11.lcd_data20 */
-		"P8.14",	/* gpmc_ad10.lcd_data21 */
-		"P8.13",	/* gpmc_ad9.lcd_data22 */
-		"P8.19",	/* gpmc_ad8.lcd_data23 */
-
-		"P8.27",	/* lcd: lcd_vsync */
-		"P8.29",	/* lcd: lcd_hsync */
-		"P8.28",	/* lcd: lcd_pclk */
-		"P8.30",	/* lcd: lcd_ac_bias_en */
-
-		"P8.26",	/* GPIO: INIT_DONE /*
-		"P9.15",	/* GPIO: PROJ_ON_EXT /*
-	
-		/* the hardware IP uses */
-	
-		"gpio1_29",
-		"gpio1_16",	
-		"lcd";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

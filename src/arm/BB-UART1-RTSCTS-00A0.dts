@@ -20,15 +20,6 @@
 /plugin/;
 
 /{
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	part-number = "BB-UART1-RTSCTS";
-	version = "00A0";
-
-	exclusive-use =
-		"P9.19",    // uart1_rtsn     conflict with I2C2_SCL  i.e. cape EEPROM
-		"P9.20";    // uart1_ctsn     conflict with I2C2_SDA  i.e. cape EEPROM
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

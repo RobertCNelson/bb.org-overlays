@@ -15,21 +15,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART2";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P9.21",		// uart2_txd
-		"P9.22",		// uart2_rxd
-	//	"P8.38",		// uart2_rtsn  conflict with uart5
-	//	"P8.37",		// uart2_ctsn  conflict with uart5
-
-		"uart2";		// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

@@ -15,25 +15,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BBORG_RELAY";
-	version = "00A2";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.41",	/* gpio0_20 */
-		"P9.42",	/* gpio0_07 */
-		"P9.30",	/* gpio3_16 */
-		"P9.27",	/* gpio3_19 */
-		/* the hardware ip uses */
-		"gpio1_16",
-		"gpio0_07",
-		"gpio3_16",
-		"gpio3_19";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

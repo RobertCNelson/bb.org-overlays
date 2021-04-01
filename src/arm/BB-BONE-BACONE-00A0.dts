@@ -13,35 +13,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-BONE-BACONE";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.36",	/* AIN5 */
-		"P8.19",	/* gpio-keys: gpio0_22 */
-		"P9.14",	/* pwm: ehrpwm1A */
-		"P9.16",	/* pwm: ehrpwm1B */
-		"P9.42",	/* pwm: eCAP0_in_PWM0_out */
-		"P9.15",	/* shift: gpio1_16 CLEAR */
-		"P9.17",	/* shift: gpio0_5 LATCH */
-		"P9.18",	/* shift: gpio0_4 SERIAL */
-		"P9.22",	/* shift: gpio0_2 CLOCK */
-		/* the hardware ip uses */
-		"tscadc",
-		"gpio0_22",
-		"ehrpwm1A",
-		"ehrpwm1B",
-		"eCAP0_in_PWM0_out",
-		"gpio1_16",
-		"gpio0_5",
-		"gpio0_4",
-		"gpio0_2";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

@@ -14,49 +14,6 @@
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-
-	/* identification */
-	part-number = "BB-BONE-4D5C-01";
-	version = "00A1";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P8.45",	/* lcd: lcd_data0 */
-		"P8.46",	/* lcd: lcd_data1 */
-		"P8.43",	/* lcd: lcd_data2 */
-		"P8.44",	/* lcd: lcd_data3 */
-		"P8.41",	/* lcd: lcd_data4 */
-		"P8.42",	/* lcd: lcd_data5 */
-		"P8.39",	/* lcd: lcd_data6 */
-		"P8.40",	/* lcd: lcd_data7 */
-		"P8.37",	/* lcd: lcd_data8 */
-		"P8.38",	/* lcd: lcd_data9 */
-		"P8.36",	/* lcd: lcd_data10 */
-		"P8.34",	/* lcd: lcd_data11 */
-		"P8.35",	/* lcd: lcd_data12 */
-		"P8.33",	/* lcd: lcd_data13 */
-		"P8.31",	/* lcd: lcd_data14 */
-		"P8.32",	/* lcd: lcd_data15 */
-		"P8.27",	/* lcd: lcd_vsync */
-		"P8.29",	/* lcd: lcd_hsync */
-		"P8.28",	/* lcd: lcd_pclk */
-		"P8.30",	/* lcd: lcd_ac_bias_en */
-		"P9.27",	/* lcd: gpio3_19 DISPEN */
-		"P9.14",	/* pwm: ehrpwm1a PWM_BL */
-
-		"P9.18",	/* i2c1_sda */
-		"P9.17",	/* i2c1_scl */
-		"P9.26",	/* touch interrupt on gpio0_14 */
-
-		/* the hardware IP uses */
-		"i2c1",
-		"gpio0_14", /* touch interrupt on gpio0_14 */
-		"gpio3_19",	/* lcd: gpio3_19 DISPEN */
-		"ehrpwm1a",
-		"lcdc";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

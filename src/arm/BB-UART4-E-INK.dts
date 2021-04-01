@@ -13,19 +13,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	// identification
-	part-number = "BB-UART4-E-INK";
-	version = "00A0";
-
-	// resources this cape uses
-	exclusive-use =
-		"P2.05",		// uart4_rxd
-		"P2.07",		// uart4_txd
-
-		"uart4";		// hardware ip used
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

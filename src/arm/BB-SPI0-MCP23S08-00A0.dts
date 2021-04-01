@@ -13,22 +13,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-SPI0-MCP23S08";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P9.17",	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
-		"P9.18",	/* P9_18 (B16) spi0_d1.spi0_d1 */
-		"P9.21",	/* P9_21 (B17) spi0_d0.spi0_d0 */
-		"P9.22",	/* P9_22 (A17) spi0_sclk.spi0_sclk */
-		/* the hardware ip uses */
-		"spi0";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */

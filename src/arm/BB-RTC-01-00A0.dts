@@ -14,22 +14,6 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 
 / {
-	compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
-
-	/* identification */
-	part-number = "BB-RTC-01";
-	version = "00A0";
-
-	/* state the resources this cape uses */
-	exclusive-use =
-		/* the pin header uses */
-		"P8.26",	/* rtc: gpio1_29 */
-		"P9.18",	/* i2c1_sda */
-		"P9.17",	/* i2c1_scl */
-
-		"gpio1_29",
-		"i2c1";
-
 	/*
 	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 	 */
