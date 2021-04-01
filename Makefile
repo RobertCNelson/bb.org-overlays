@@ -1,7 +1,7 @@
 
-DTC ?= dtc
-CPP ?= cpp
-CC ?= gcc
+DTC := dtc
+CPP := cpp
+CC := gcc
 DESTDIR ?=
 
 DTCVERSION ?= $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
